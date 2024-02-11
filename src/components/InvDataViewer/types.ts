@@ -1,10 +1,11 @@
+export type dataPerYearType = { [key: string]: Data };
+
 export interface LabelData<T> {
     label: string;
     children?: LabelData<T>[];
     main?: boolean;
     value?: number | (( data: T ) => number|undefined);
 }
-
 
 export interface Data {
     INCOME_STATEMENT: IncomeStatement

@@ -1,18 +1,18 @@
 import React from 'react'
-import { Data, LabelData } from './types'
+import { LabelData, dataPerYearType } from './types'
 import { balanceSheetStructure, cashFlowStructure, incomeStatementStructure } from './constants';
 
-interface DataViewerProps {
-    dataPerYears: { [key: string]: Data }
+interface InvDataViewerProps {
+    dataPerYear?: dataPerYearType
 }
 
-export const DataViewer: React.FC<DataViewerProps> = ({ dataPerYears }) => {
+export const InvDataViewer: React.FC<InvDataViewerProps> = ({ dataPerYear }) => {
     const renderRows = ( data?: LabelData<any>[] ) => {
         if ( !data ) return null;
         return 
             {data?.map(item => 
             (<>
-               <tr>
+               <tr key={item.label}>
                     <td>{item.label}</td>
                 </tr>
                 {renderRows(item.children)} 
@@ -26,8 +26,8 @@ export const DataViewer: React.FC<DataViewerProps> = ({ dataPerYears }) => {
                 <thead>
                     <tr>
                         <th></th>
-                        {Object.keys(dataPerYears).map((year) => (
-                            <th>{year}</th>
+                        {Object.keys(dataPerYear||[]).map((year) => (
+                            <th key={year}>{year}</th>
                         ))}
                     </tr>
                 </thead>
