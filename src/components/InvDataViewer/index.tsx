@@ -1,56 +1,67 @@
-import React from 'react'
-import { LabelData, dataPerYearType } from './types'
+import React, { ReactNode } from 'react'
+import { LabelData, InvData } from './types'
 import { balanceSheetStructure, cashFlowStructure, incomeStatementStructure } from './constants';
+import { Cell, HeaderCell, TitleCell } from './styles';
 
 interface InvDataViewerProps {
-    dataPerYear?: dataPerYearType
+    data?: InvData
 }
 
-export const InvDataViewer: React.FC<InvDataViewerProps> = ({ dataPerYear }) => {
-    const renderRows = ( data?: LabelData<any>[] ) => {
+export const InvDataViewer: React.FC<InvDataViewerProps> = ({ data }) => {
+    const { name, years } = data || {};
+    console.log(years)
+
+    const renderRows = ({ data, level, category }: { data?: LabelData<any>[], level: number, category: string }) => {
         if ( !data ) return null;
-        return 
-            {data?.map(item => 
-            (<>
-               <tr key={item.label}>
-                    <td>{item.label}</td>
-                </tr>
-                {renderRows(item.children)} 
-            </>) 
+        return <>
+            {data?.map((item): ReactNode => 
+                (
+                    <>
+                        <tr key={item.label} className='hover:bg-primary-reverse'>
+                            <TitleCell level={level} bold={item.main}>{item.label}</TitleCell>
+                            {Object.keys(years||[]).map((year) => (
+                                <Cell key={item.label + year}>{item.value?.((years?.[year] as any)?.[category] || {})?.toLocaleString()}</Cell>
+                            ))}
+                        </tr>
+                        {renderRows({ data: item.children, level: level+1, category })}
+                    </>
+                )
             )}
+        </>            
     }
 
-    const displayTable = ( data: LabelData<any>[] ) => {
+    const displayTable = ( category: string, data: LabelData<any>[] ) => {
         return (
             <table>
                 <thead>
                     <tr>
                         <th></th>
-                        {Object.keys(dataPerYear||[]).map((year) => (
-                            <th key={year}>{year}</th>
+                        {Object.keys(years||[]).map((year) => (
+                            <HeaderCell key={year}>{year}</HeaderCell>
                         ))}
                     </tr>
                 </thead>
                 <tbody>
-                    {renderRows(data)}
+                    {renderRows({ data, level: 0, category })}
                 </tbody>
             </table> 
         );
     }
 
     return (
-        <div>
+        <div className='m-5'>
+            <h1 className='text-center'>{name}</h1>
             <div>
-                <h3>Income Statement</h3>
-                {displayTable(incomeStatementStructure)}
+                <h3 className='bg-primary p-2'>Income Statement</h3>
+                {displayTable('INCOME_STATEMENT', incomeStatementStructure)}
             </div>
             <div>
-                <h3>Balance Sheet</h3>
-                {displayTable(balanceSheetStructure)}
+                <h3 className='bg-primary p-2'>Balance Sheet</h3>
+                {displayTable('BALANCE_SHEET', balanceSheetStructure)}
             </div>
             <div>
-                <h3>Cash Flow</h3>
-                {displayTable(cashFlowStructure)}
+                <h3 className='bg-primary p-2'>Cash Flow</h3>
+                {displayTable('CASH_FLOW', cashFlowStructure)}
             </div>
         </div>
     )
