@@ -1,3 +1,3 @@
-import React from 'react';
+import React from 'react'
 
-export const HomePage: React.FC = () => <div></div>;
+export const HomePage: React.FC = () => <div></div>

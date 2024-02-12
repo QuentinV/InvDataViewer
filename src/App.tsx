@@ -1,10 +1,10 @@
 import React from 'react'
-import 'primereact/resources/themes/nova-alt/theme.css';
-import 'primeflex/primeflex.css';
+import 'primereact/resources/themes/nova-alt/theme.css'
+import 'primeflex/primeflex.css'
 
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { TickerPage } from './pages/TickerPage';
-import { HomePage } from './pages/HomePage';
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { TickerPage } from './pages/TickerPage'
+import { HomePage } from './pages/HomePage'
 
 function App() {
     return (
@@ -13,7 +13,7 @@ function App() {
                 <div>
                     <Routes>
                         <Route index element={<HomePage />} />
-                        <Route path='/:ticker' element={<TickerPage />} />
+                        <Route path="/:ticker" element={<TickerPage />} />
                     </Routes>
                 </div>
             </BrowserRouter>

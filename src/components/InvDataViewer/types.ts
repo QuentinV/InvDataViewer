@@ -1,14 +1,14 @@
 export interface InvData {
-    cik?: string;
-    name?: string;
+    cik?: string
+    name?: string
     years?: { [key: string]: Data }
-} 
+}
 
 export interface LabelData<T> {
-    label: string;
-    children?: LabelData<T>[];
-    main?: boolean;
-    value?: (( data: T ) => number|undefined);
+    label: string
+    children?: LabelData<T>[]
+    main?: boolean
+    value?: (data: T) => number | undefined
 }
 
 export interface Data {
