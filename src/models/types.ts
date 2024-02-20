@@ -8,10 +8,14 @@ export interface Data {
     INCOME_STATEMENT: IncomeStatement
     BALANCE_SHEET: BalanceSheet
     CASH_FLOW: CashFlow
+    metrics: Metrics
 }
 
-
-
+export interface Metrics {
+    adjustedNetIncome: number;
+    grossProfitMargin: number;
+    operatingIncome: number;
+}
 
 export interface IncomeStatement {
     REVENUE?: number
