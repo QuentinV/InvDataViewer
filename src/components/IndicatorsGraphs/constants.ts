@@ -49,7 +49,7 @@ export const chartData: {[key:string]: ( years: { [key: string]: Data } ) => obj
                 {
                     label: '40% is good',
                     pointStyle: false,
-                    data: arrYears.map(k => 40),
+                    data: arrYears.map(() => 40),
                     borderColor: 'black'
                 }
             ]
