@@ -1,19 +1,19 @@
 import React, { ReactNode } from 'react'
-import { LabelData, InvData } from './types'
+import { LabelData } from './types'
 import {
     balanceSheetStructure,
     cashFlowStructure,
     incomeStatementStructure,
 } from './constants'
 import { Cell, HeaderCell, TitleCell } from './styles'
+import { InvData } from '../../models/types'
 
 interface InvDataViewerProps {
     data?: InvData
 }
 
 export const InvDataViewer: React.FC<InvDataViewerProps> = ({ data }) => {
-    const { name, years } = data || {}
-    console.log(years)
+    const { years } = data || {};
 
     const renderRows = ({
         data,
@@ -78,8 +78,7 @@ export const InvDataViewer: React.FC<InvDataViewerProps> = ({ data }) => {
     }
 
     return (
-        <div className="m-5">
-            <h1 className="text-center">{name}</h1>
+        <div>
             <div>
                 <h3 className="bg-primary p-2">Income Statement</h3>
                 {displayTable('INCOME_STATEMENT', incomeStatementStructure)}

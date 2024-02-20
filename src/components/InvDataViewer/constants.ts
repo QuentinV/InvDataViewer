@@ -1,4 +1,5 @@
-import { BalanceSheet, CashFlow, IncomeStatement, LabelData } from './types'
+import { BalanceSheet, CashFlow, IncomeStatement } from '../../models/types'
+import { LabelData } from './types'
 
 export const incomeStatementStructure: LabelData<IncomeStatement>[] = [
     {
@@ -75,7 +76,7 @@ export const incomeStatementStructure: LabelData<IncomeStatement>[] = [
         value: (data) => data.NET_INCOME_FROM_CONTINUING_OPERATIONS,
     },
     {
-        label: 'Net income rom discontinuing operations',
+        label: 'Net income from discontinuing operations',
         value: (data) => data.NET_INCOME_FROM_DISCONTINUING_OPERATIONS,
     },
     {
