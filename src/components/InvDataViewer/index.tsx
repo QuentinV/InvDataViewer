@@ -14,6 +14,7 @@ interface InvDataViewerProps {
 
 export const InvDataViewer: React.FC<InvDataViewerProps> = ({ data }) => {
     const { years } = data || {};
+    const yearsKeys = Object.keys(years || []).slice(-10);
 
     const renderRows = ({
         data,
@@ -37,7 +38,7 @@ export const InvDataViewer: React.FC<InvDataViewerProps> = ({ data }) => {
                                 <TitleCell level={level} bold={item.main}>
                                     {item.label}
                                 </TitleCell>
-                                {Object.keys(years || []).map((year) => (
+                                {yearsKeys.map((year) => (
                                     <Cell key={item.label + year}>
                                         {item
                                             .value?.(
@@ -67,7 +68,7 @@ export const InvDataViewer: React.FC<InvDataViewerProps> = ({ data }) => {
                 <thead>
                     <tr>
                         <th></th>
-                        {Object.keys(years || []).map((year) => (
+                        {yearsKeys.map((year) => (
                             <HeaderCell key={year}>{year}</HeaderCell>
                         ))}
                     </tr>
