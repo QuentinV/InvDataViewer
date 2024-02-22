@@ -65,7 +65,7 @@ export const chartData: {[key:string]: ( years: { [key: string]: Data } ) => { o
     'OperatingIncome': ( years ) => getData('Operating income', 'operatingIncome', 'OIPS', years ),
     'AdjustedNetIncome': ( years ) => getData('EPS Growth', 'adjustedNetIncome', 'Adjusted net income', years ),
     'GrossProfitMargin': ( years ) => {
-        const arrYears = Object.keys(years);
+        const arrYears = Object.keys(years).splice(-10);
         return {
             options: getChartOptions( 'Gross Profit Margin' ),
             data: {
