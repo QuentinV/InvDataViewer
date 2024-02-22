@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Data } from '../../../models/types';
-import { chartData, chartOptions } from '../constants';
+import { chartData } from '../constants';
 
 import { Chart } from 'primereact/chart';
 
@@ -10,7 +10,7 @@ interface MetricsGraphProps {
 }
 
 export const MetricsGraph: React.FC<MetricsGraphProps> = ({ dataKey, years }) => {
-    const [data, setData] = useState<object|null>(null);
+    const [data, setData] = useState<{ data: object; options: object }|null>(null);
 
     useEffect(() => {
         setData(chartData[dataKey](years));
@@ -18,7 +18,7 @@ export const MetricsGraph: React.FC<MetricsGraphProps> = ({ dataKey, years }) =>
 
     if (!data) return null;
 
-    return (<div>
-        {chartData && <Chart type="line" data={data} options={chartOptions} />}
+    return (<div className='w-5'>
+        {chartData && <Chart type="line" data={data.data} options={data.options} />}
     </div>);
 };
