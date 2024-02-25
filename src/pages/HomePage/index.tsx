@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from 'react'
 import { DataView } from 'primereact/dataview';
 import { Paginator } from 'primereact/paginator';
 import { InputText } from 'primereact/inputtext';
+import { useNavigate } from 'react-router';
 
 interface Company {
     ticker: string;
@@ -14,6 +15,7 @@ export const HomePage: React.FC = () => {
     const [opts, setOpts] = useState({ first: 0, rows: 25 });
     const [total, setTotal] = useState(0);
     const [filter, setFilter] = useState('');
+    const navigate = useNavigate();
 
     useEffect(() => {
         fetch(`http://192.168.1.85:18800/invData/tickers`, { 
@@ -31,7 +33,11 @@ export const HomePage: React.FC = () => {
     const itemTemplate = ({title, ticker}: Company) => {
         const name = title.toLowerCase();
         return (
-            <div className="w-20rem h-3rem pt-5 pb-5 pl-2 pr-2 bg-blue-50 hover:bg-blue-100 text-center cursor-pointer align-items-center justify-content-center flex" key={ticker}>
+            <div 
+                className="w-20rem h-3rem pt-5 pb-5 pl-2 pr-2 bg-blue-50 hover:bg-blue-100 text-center cursor-pointer align-items-center justify-content-center flex" 
+                key={ticker} 
+                onClick={() => navigate({ pathname: `/company/${ticker}` })}
+            >
                 {name[0].toUpperCase() + name.slice(1)}
             </div>
         );

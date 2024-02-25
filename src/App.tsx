@@ -15,7 +15,7 @@ function App() {
                 <div>
                     <Routes>
                         <Route index element={<ProtectedRoute><HomePage /></ProtectedRoute>} />
-                        <Route path="/:ticker" element={<ProtectedRoute><TickerPage /></ProtectedRoute>} />
+                        <Route path="/company/:ticker" element={<ProtectedRoute><TickerPage /></ProtectedRoute>} />
                         <Route path="/login" element={<LoginPage />} />
                     </Routes>
                 </div>
