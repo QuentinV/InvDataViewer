@@ -5,6 +5,8 @@ import 'primeflex/primeflex.css'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { TickerPage } from './pages/TickerPage'
 import { HomePage } from './pages/HomePage'
+import { LoginPage } from './pages/LoginPage'
+import { ProtectedRoute } from './components/routes/ProtectedRoute'
 
 function App() {
     return (
@@ -12,8 +14,9 @@ function App() {
             <BrowserRouter>
                 <div>
                     <Routes>
-                        <Route index element={<HomePage />} />
-                        <Route path="/:ticker" element={<TickerPage />} />
+                        <Route index element={<ProtectedRoute><HomePage /></ProtectedRoute>} />
+                        <Route path="/:ticker" element={<ProtectedRoute><TickerPage /></ProtectedRoute>} />
+                        <Route path="/login" element={<LoginPage />} />
                     </Routes>
                 </div>
             </BrowserRouter>

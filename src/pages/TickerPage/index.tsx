@@ -9,7 +9,9 @@ export const TickerPage: React.FC = () => {
     const [data, setData] = useState<InvData | undefined>()
 
     useEffect(() => {
-        fetch(`http://192.168.1.85:18800/invData/fundamentals/${ticker}`).then(
+        fetch(`http://192.168.1.85:18800/invData/fundamentals/${ticker}`, { 
+            headers: [ ['x-token', localStorage.getItem('token' ) || ''] ] 
+        }).then(
             async (res) => setData(await res.json())
         )
     }, [ticker]);
