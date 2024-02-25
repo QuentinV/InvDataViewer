@@ -13,7 +13,7 @@ export const MetricsGraph: React.FC<MetricsGraphProps> = ({ dataKey, years }) =>
     const [data, setData] = useState<{ data: object; options: object }|null>(null);
 
     useEffect(() => {
-        setData(chartData[dataKey](years));
+        setData(chartData[dataKey].data(years));
     }, [ dataKey, years ]);
 
     if (!data) return null;

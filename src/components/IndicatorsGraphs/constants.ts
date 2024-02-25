@@ -43,13 +43,12 @@ export const getChartOptions = ( titleText: string ) => ({
     }
 });
 
-const getData = ( category: number, title: string, key: keyof Metrics, label: string, years: { [key: string]: Data } ) => {
+const getData = ( title: string, key: keyof Metrics, label: string, years: { [key: string]: Data } ) => {
     const arrYears = Object.keys(years).slice(-10);
     const values = arrYears.map(k => years[k].metrics[key]);
     const digits = Math.trunc(Math.min(...values).toString().length / 3);
     const div = Number('1' + Array(digits*3).fill('0').join(''));
     return {
-        category,
         options: getChartOptions( title ),
         data: {
             labels: arrYears,
@@ -64,10 +63,10 @@ const getData = ( category: number, title: string, key: keyof Metrics, label: st
     }
 }
 
-export const chartData: {[key:string]: ( years: { [key: string]: Data } ) => { options: object, data: object }} = {
-    'OperatingIncome': ( years ) => getData( 0, 'Operating income', 'operatingIncome', 'OIPS', years ),
-    'AdjustedNetIncome': ( years ) => getData( 0, 'EPS Growth', 'adjustedNetIncome', 'Adjusted net income', years ),
-    'GrossProfitMargin': ( years ) => {
+export const chartData: {[key:string]: { category: number; data: ( years: { [key: string]: Data } ) => { options: object, data: object } } } = {
+    'OperatingIncome': { category: 0, data: ( years ) => getData( 'Operating income', 'operatingIncome', 'OIPS', years ) },
+    'AdjustedNetIncome': { category: 0, data: ( years ) => getData( 'EPS Growth', 'adjustedNetIncome', 'Adjusted net income', years ) },
+    'GrossProfitMargin': { category: 3, data: ( years ) => {
         const arrYears = Object.keys(years).splice(-10);
         return {
             category: 3,
@@ -88,6 +87,6 @@ export const chartData: {[key:string]: ( years: { [key: string]: Data } ) => { o
                     }
                 ]
             }
-        }
-    }
+        } 
+    } }
 }
