@@ -1,6 +1,6 @@
 {
-  "name": "my-app",
-  "version": "0.1.0",
+  "name": "inv-data-viewer",
+  "version": "0.0.1",
   "private": true,
   "homepage": "https://quentinv.github.io/InvDataViewer",
   "dependencies": {
