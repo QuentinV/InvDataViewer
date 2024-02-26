@@ -88,5 +88,28 @@ export const chartData: {[key:string]: { category: number; data: ( years: { [key
                 ]
             }
         } 
-    } }
+    } },
+    'RevenueGrowthVsCOGSGrowth': { category: 0, data: ( years ) => {
+        const arrYears = Object.keys(years).splice(-10);
+        return {
+            category: 3,
+            options: getChartOptions( 'Revenue Growth vs COGS Growth' ),
+            data: {
+                labels: arrYears,
+                datasets: [
+                    {
+                        label: 'Revenue Growth (%)',
+                        data: arrYears.map(k => years[k].metrics.revenueGrowth),
+                        borderColor: '#106ebe'   
+                    },
+                    {
+                        label: 'COGS Growth (%)',
+                        pointStyle: false,
+                        data: arrYears.map(k => years[k].metrics.cogsGrowth),
+                        borderColor: 'brown'
+                    }
+                ]
+            }
+        } 
+    } },
 }

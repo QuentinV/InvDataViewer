@@ -15,6 +15,8 @@ export interface Metrics {
     adjustedNetIncome: number;
     grossProfitMargin: number;
     operatingIncome: number;
+    revenueGrowth: number;
+    cogsGrowth: number;
 }
 
 export interface IncomeStatement {
