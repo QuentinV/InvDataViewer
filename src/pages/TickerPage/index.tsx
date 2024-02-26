@@ -3,17 +3,18 @@ import { InvDataViewer } from '../../components/InvDataViewer'
 import { IndicatorsGraph } from '../../components/IndicatorsGraphs';
 import { useParams } from 'react-router'
 import { InvData } from '../../models/types';
+import { api } from '../../api/invData';
 
 export const TickerPage: React.FC = () => {
     const { ticker } = useParams()
     const [data, setData] = useState<InvData | undefined>()
 
     useEffect(() => {
-        fetch(`http://192.168.1.85:18800/invData/fundamentals/${ticker}`, { 
-            headers: [ ['x-token', localStorage.getItem('token' ) || ''] ] 
-        }).then(
-            async (res) => setData(await res.json())
-        )
+        const getTicker = async () => {
+            const res = await api(`invData/fundamentals/${ticker}`);
+            setData(await res.json());
+        }
+        getTicker();
     }, [ticker]);
 
     if ( !data ) {

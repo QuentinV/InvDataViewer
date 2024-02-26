@@ -3,6 +3,7 @@ import { DataView } from 'primereact/dataview';
 import { Paginator } from 'primereact/paginator';
 import { InputText } from 'primereact/inputtext';
 import { useNavigate } from 'react-router';
+import { api } from '../../api/invData';
 
 interface Company {
     ticker: string;
@@ -18,14 +19,14 @@ export const HomePage: React.FC = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch(`http://192.168.1.85:18800/invData/tickers`, { 
-            headers: [ ['x-token', localStorage.getItem('token' ) || ''] ] 
-        }).then( async res => {
+        const getTickers = async () => {
+            const res = await api(`invData/tickers`);
             const data = (await res.json()).filter( (i: Company) => i.title.toLowerCase().indexOf( filter.toLowerCase() ) !== -1 ).sort( (a: Company, b: Company) => a.title.toLowerCase().localeCompare(b.title.toLowerCase()));
             const value = data.slice(opts.first, opts.first + opts.rows);
             setCompanies(value);
             setTotal(data.length);
-        })
+        }
+        getTickers();
     }, [opts, filter]);
 
     const onPageChange = async ({ first, rows }: { first: number; rows: number }) => setOpts({ first, rows });
