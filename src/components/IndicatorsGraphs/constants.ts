@@ -43,9 +43,9 @@ export const getChartOptions = ( titleText: string ) => ({
     }
 });
 
-const getData = ( title: string, key: keyof Metrics, label: string, years: { [key: string]: Data } ) => {
+const getData = ( title: string, label: string, years: { [key: string]: Data }, { metric, getValue }: { metric?: keyof Metrics, getValue?: (data: Data) => number|undefined } ) => {
     const arrYears = Object.keys(years).slice(-10);
-    const values = arrYears.map(k => years[k].metrics[key]);
+    const values = arrYears.map(k => (metric ? years[k].metrics[metric] : getValue?.(years[k])) || 0);
     const digits = Math.trunc(Math.min(...values).toString().length / 3);
     const div = Number('1' + Array(digits*3).fill('0').join(''));
     return {
@@ -64,12 +64,11 @@ const getData = ( title: string, key: keyof Metrics, label: string, years: { [ke
 }
 
 export const chartData: {[key:string]: { category: number; data: ( years: { [key: string]: Data } ) => { options: object, data: object } } } = {
-    'OperatingIncome': { category: 0, data: ( years ) => getData( 'Operating income', 'operatingIncome', 'OIPS', years ) },
-    'AdjustedNetIncome': { category: 0, data: ( years ) => getData( 'EPS Growth', 'adjustedNetIncome', 'Adjusted net income', years ) },
+    'OperatingIncome': { category: 0, data: ( years ) => getData( 'Operating income', 'OIPS', years, { metric: 'operatingIncome' } ) },
+    'AdjustedNetIncome': { category: 0, data: ( years ) => getData( 'EPS Growth', 'Adjusted net income', years, { metric: 'adjustedNetIncome' } ) },
     'GrossProfitMargin': { category: 3, data: ( years ) => {
         const arrYears = Object.keys(years).splice(-10);
         return {
-            category: 3,
             options: getChartOptions( 'Gross Profit Margin' ),
             data: {
                 labels: arrYears,
@@ -92,7 +91,6 @@ export const chartData: {[key:string]: { category: number; data: ( years: { [key
     'RevenueGrowthVsCOGSGrowth': { category: 0, data: ( years ) => {
         const arrYears = Object.keys(years).splice(-10);
         return {
-            category: 3,
             options: getChartOptions( 'Revenue Growth vs COGS Growth' ),
             data: {
                 labels: arrYears,
@@ -107,6 +105,29 @@ export const chartData: {[key:string]: { category: number; data: ( years: { [key
                         pointStyle: false,
                         data: arrYears.map(k => years[k].metrics.cogsGrowth),
                         borderColor: 'brown'
+                    }
+                ]
+            }
+        } 
+    } },
+    'CashAndEquivalents': { category: 1, data: ( years ) => getData( 'Cash & Equivalents', 'Cash & Equivalents', years, { getValue: data => data.BALANCE_SHEET.CASH_AND_CASH_EQUIVALENTS } ) },
+    'SgaAmargin': { category: 3, data: ( years ) => {
+        const arrYears = Object.keys(years).splice(-10);
+        return {
+            options: getChartOptions( 'SgaA margin' ),
+            data: {
+                labels: arrYears,
+                datasets: [
+                    {
+                        label: 'V&V/Revenue (%)',
+                        data: arrYears.map(k => years[k].metrics.vvRevenue),
+                        borderColor: '#106ebe'   
+                    },
+                    {
+                        label: '30% is good',
+                        pointStyle: false,
+                        data: arrYears.map(() => 30),
+                        borderColor: 'black'
                     }
                 ]
             }

@@ -17,6 +17,7 @@ export interface Metrics {
     operatingIncome: number;
     revenueGrowth: number;
     cogsGrowth: number;
+    vvRevenue: number;
 }
 
 export interface IncomeStatement {
