@@ -7,6 +7,7 @@ import {
 } from './constants'
 import { Cell, HeaderCell, TitleCell } from './styles'
 import { InvData } from '../../models/types'
+import { formatLargeNumber } from '../../utils/formatLargeNumber'
 
 interface InvDataViewerProps {
     data?: InvData
@@ -40,13 +41,12 @@ export const InvDataViewer: React.FC<InvDataViewerProps> = ({ data }) => {
                                 </TitleCell>
                                 {yearsKeys.map((year) => (
                                     <Cell key={item.label + year}>
-                                        {item
+                                        {formatLargeNumber(item
                                             .value?.(
                                                 (years?.[year] as any)?.[
                                                     category
                                                 ] || {}
-                                            )
-                                            ?.toLocaleString()}
+                                            ))}
                                     </Cell>
                                 ))}
                             </tr>
