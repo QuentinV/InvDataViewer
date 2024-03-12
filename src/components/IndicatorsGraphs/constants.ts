@@ -46,7 +46,8 @@ export const getChartOptions = ( titleText: string ) => ({
 const getData = ( title: string, label: string, years: { [key: string]: Data }, { metric, getValue }: { metric?: keyof Metrics, getValue?: (data: Data) => number|undefined } ) => {
     const arrYears = Object.keys(years).slice(-10);
     const values = arrYears.map(k => (metric ? years[k].metrics[metric] : getValue?.(years[k])) || 0);
-    const log1000 = Math.floor(Math.log10(Math.abs(Math.min(...values.map(v => Math.round(v))))) / 3);
+    const min = Math.min(...values.map(v => Math.round(v)));
+    const log1000 = Math.floor(Math.log10(Math.abs(min) || 1) / 3);
     
     return {
         options: getChartOptions( title ),
