@@ -3,7 +3,7 @@ import { Data, Metrics } from "../../models/types";
 const textColor = '#333333';
 const textColorSecondary = '#848484';
 const surfaceBorder = '#c8c8c8';
-const digitsMapping = ['Thousands', 'Millions', 'Billions', 'Trillions'];
+const digitsMapping = ['', 'Thousands', 'Millions', 'Billions', 'Trillions'];
 
 export const categories = ['Growth', 'Liquidity', 'Debt ratio', 'Profitability', 'Miscellaneous'];
 
@@ -46,21 +46,25 @@ export const getChartOptions = ( titleText: string ) => ({
 const getData = ( title: string, label: string, years: { [key: string]: Data }, { metric, getValue }: { metric?: keyof Metrics, getValue?: (data: Data) => number|undefined } ) => {
     const arrYears = Object.keys(years).slice(-10);
     const values = arrYears.map(k => (metric ? years[k].metrics[metric] : getValue?.(years[k])) || 0);
-    const digits = Math.trunc(Math.min(...values).toString().length / 3);
-    const div = Number('1' + Array(digits*3).fill('0').join(''));
+    const log1000 = Math.floor(Math.log10(Math.abs(Math.min(...values.map(v => Math.round(v))))) / 3);
+    
     return {
         options: getChartOptions( title ),
         data: {
             labels: arrYears,
             datasets: [
                 {
-                    label: `${label} (${digitsMapping[digits-1]})`,
-                    data: values.map(k => (k/div).toFixed(2)),
+                    label: `${label} ${digitsMapping[log1000] ? `(${digitsMapping[log1000]})` : ''}`,
+                    data: values.map(k => {
+                        if ( k === 0 ) return 0;
+                        const roundedNumber = (k / Math.pow(1000, log1000)).toFixed(2);
+                        return Number(roundedNumber.substring(0, roundedNumber.endsWith('00') ? roundedNumber.length - 3 : ( roundedNumber.endsWith('0') ? roundedNumber.length - 1 : roundedNumber.length ) ) );
+                    }),
                     borderColor: '#106ebe'   
                 }
             ]
         }
-    }
+    };
 }
 
 export const chartData: {[key:string]: { category: number; data: ( years: { [key: string]: Data } ) => { options: object, data: object } } } = {
