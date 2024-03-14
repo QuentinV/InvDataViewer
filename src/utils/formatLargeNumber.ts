@@ -1,5 +1,5 @@
 export const formatLargeNumber = (number?: number): string => {
-    if ( number === undefined ) {
+    if ( number === undefined || number === null ) {
         return '';
     }
 
