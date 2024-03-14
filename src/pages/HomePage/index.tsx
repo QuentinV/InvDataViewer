@@ -20,11 +20,10 @@ export const HomePage: React.FC = () => {
 
     useEffect(() => {
         const getTickers = async () => {
-            const res = await api(`invData/tickers`);
-            const data = (await res.json()).filter( (i: Company) => i.title.toLowerCase().indexOf( filter.toLowerCase() ) !== -1 ).sort( (a: Company, b: Company) => a.title.toLowerCase().localeCompare(b.title.toLowerCase()));
-            const value = data.slice(opts.first, opts.first + opts.rows);
-            setCompanies(value);
-            setTotal(data.length);
+            const res = await api(`invData/tickers?first=${opts.first}&rows=${opts.rows}&q=${filter.toLocaleLowerCase()}`);
+            const data = (await res.json())
+            setCompanies(data.data);
+            setTotal(data.total);
         }
         getTickers();
     }, [opts, filter]);
