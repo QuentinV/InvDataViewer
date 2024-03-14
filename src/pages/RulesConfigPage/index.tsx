@@ -25,11 +25,16 @@ export const RulesConfigPage: React.FC = () => {
 
     return <div>
         <h2 className='text-center'>Edit rules config</h2>
-        <div className='m-auto'>
+        <div className='flex h-27rem w-full'>
             <Editor
                 value={rules}
                 onChange={(value: object) => { setRules(value) }}
-            />
+                history={true}
+                navigationBar={true}
+                statusBar={true}
+                allowedModes={['tree', 'view', 'form', 'code', 'text']}
+                innerRef={(ref: HTMLElement) => ref.classList.add("flex-auto")}
+            />       
         </div>
         <div className='mt-2 text-center'><Button label="Save" onClick={save} /></div>
     </div>   
