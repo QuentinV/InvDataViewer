@@ -71,6 +71,29 @@ const getData = ( title: string, label: string, years: { [key: string]: Data }, 
 export const chartData: {[key:string]: { category: number; data: ( years: { [key: string]: Data } ) => { options: object, data: object } } } = {
     'OperatingIncome': { category: 0, data: ( years ) => getData( 'Operating income', 'OIPS', years, { metric: 'operatingIncome' } ) },
     'AdjustedNetIncome': { category: 0, data: ( years ) => getData( 'EPS Growth', 'Adjusted net income', years, { metric: 'adjustedNetIncome' } ) },
+    'OwnersEarningsGrowth': { category: 0, data: ( years ) => {
+        const arrYears = Object.keys(years).splice(-10);
+        return {
+            options: getChartOptions( 'Owners Earnings Growth' ),
+            data: {
+                labels: arrYears,
+                datasets: [
+                    {
+                        label: 'OE Growth',
+                        data: arrYears.map(k => years[k].metrics.ownersEarningsGrowth),
+                        borderColor: '#106ebe'   
+                    },
+                    {
+                        label: '6.5% is good',
+                        pointStyle: false,
+                        data: arrYears.map(() => 6.5),
+                        borderColor: 'black'
+                    }
+                ]
+            }
+        } 
+    } },
+    'OwnersEarningsPerShare': { category: 0, data: ( years ) => getData( 'Owners Earnings per share', 'Owners Earnings per share', years, { metric: 'ownersEarningsPerShare' } ) },
     'GrossProfitMargin': { category: 3, data: ( years ) => {
         const arrYears = Object.keys(years).splice(-10);
         return {

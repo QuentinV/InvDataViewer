@@ -18,6 +18,8 @@ export interface Metrics {
     revenueGrowth: number;
     cogsGrowth: number;
     vvRevenue: number;
+    ownersEarningsGrowth: number;
+    ownersEarningsPerShare: number;
 }
 
 export interface IncomeStatement {
