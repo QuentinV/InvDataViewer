@@ -4,6 +4,7 @@ import { api } from '../../api/invData';
 import { JsonEditor as Editor } from 'jsoneditor-react';
 import 'jsoneditor-react/es/editor.min.css';
 import { Button } from 'primereact/button';
+import { TestsViewer } from './TestsViewer';
 
 export const RulesConfigPage: React.FC = () => {
     const [rules, setRules] = useState<object>();
@@ -36,6 +37,7 @@ export const RulesConfigPage: React.FC = () => {
                 innerRef={(ref: HTMLElement) => ref.classList.add("flex-auto")}
             />       
         </div>
-        <div className='mt-2 text-center'><Button label="Save" onClick={save} /></div>
+        <div className='mt-2 mb-8 text-center'><Button label="Save" onClick={save} /></div>
+        <TestsViewer />
     </div>   
 }
