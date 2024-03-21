@@ -1,4 +1,4 @@
-export const formatLargeNumber = (number?: number): string => {
+export const formatLargeNumber = (number?: number, indexAbbreviation?: number): string => {
     if ( number === undefined || number === null ) {
         return '';
     }
@@ -8,7 +8,7 @@ export const formatLargeNumber = (number?: number): string => {
     }
 
     const abbreviations = ['', 'K', 'M', 'B', 'T'];
-    let log1000 = Math.floor(Math.log10(Math.abs(number)) / 3);
+    let log1000 = indexAbbreviation == undefined || indexAbbreviation === -1 ? Math.floor(Math.log10(Math.abs(number)) / 3) : indexAbbreviation;
 
     const diff = log1000 - abbreviations.length;
     if ( diff >= 0 ) {
