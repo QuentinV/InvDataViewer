@@ -1,11 +1,12 @@
-import React, { ReactNode } from 'react'
+import React from 'react'
 import { LabelData } from './types'
+import { DataTable } from 'primereact/datatable';
+import { Column } from 'primereact/column';
 import {
     balanceSheetStructure,
     cashFlowStructure,
     incomeStatementStructure,
 } from './constants'
-import { Cell, HeaderCell, TitleCell } from './styles'
 import { InvData } from '../../models/types'
 import { formatLargeNumber } from '../../utils/formatLargeNumber'
 
@@ -17,64 +18,42 @@ export const InvDataViewer: React.FC<InvDataViewerProps> = ({ data }) => {
     const { years } = data || {};
     const yearsKeys = Object.keys(years || []).slice(-10);
 
-    const renderRows = ({
-        data,
-        level,
-        category,
-    }: {
-        data?: LabelData<any>[]
-        level: number
-        category: string
-    }) => {
-        if (!data) return null
-        return (
-            <>
-                {data?.map(
-                    (item): ReactNode => (
-                        <>
-                            <tr
-                                key={item.label}
-                                className="hover:bg-primary-reverse"
-                            >
-                                <TitleCell level={level} bold={item.main}>
-                                    {item.label}
-                                </TitleCell>
-                                {yearsKeys.map((year) => (
-                                    <Cell key={item.label + year}>
-                                        {formatLargeNumber(item
-                                            .value?.(
-                                                (years?.[year] as any)?.[
-                                                    category
-                                                ] || {}
-                                            ))}
-                                    </Cell>
-                                ))}
-                            </tr>
-                            {renderRows({
-                                data: item.children,
-                                level: level + 1,
-                                category,
-                            })}
-                        </>
-                    )
-                )}
-            </>
-        )
-    }
-
     const displayTable = (category: string, data: LabelData<any>[]) => {
+        const d = data.map( s => {
+            return {
+                ...s,
+                ...yearsKeys.reduce( (prev: any, current) => {
+                    const c: any = years?.[current];
+                    const val = c?.[category];
+                    prev[current] = formatLargeNumber(val ? s?.value?.( val ) : undefined);
+                    return prev;
+                }, {})
+            }
+        });
+
+        const renderLabel = (data: any) => {
+            return <span style={{ fontWeight: data.main ? 'bolder' : 'normal', padding: `3px 3px 3px ${(data.level || 0) * 40 + 3}px` }}>
+                {data.label}
+            </span>
+        }
+
         return (
-            <table>
-                <thead>
-                    <tr>
-                        <th></th>
-                        {yearsKeys.map((year) => (
-                            <HeaderCell key={year}>{year}</HeaderCell>
-                        ))}
-                    </tr>
-                </thead>
-                <tbody>{renderRows({ data, level: 0, category })}</tbody>
-            </table>
+            <div>
+                <DataTable value={d} selectionMode="single">
+                    <Column field="label" header="" body={renderLabel} bodyStyle={{ border: 0 }} headerStyle={{ border: 0 }}></Column>
+                    {yearsKeys.map((year) => (
+                        <Column 
+                            key={year} 
+                            field={year} 
+                            header={year}
+                            bodyStyle={{ border: 0 }}
+                            headerStyle={{ border: 0 }}
+                            alignHeader={'right'}
+                            align={'right'}>
+                        </Column>
+                    ))}
+                </DataTable>
+            </div>
         )
     }
 
