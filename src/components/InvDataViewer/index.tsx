@@ -1,96 +1,30 @@
-import React, { ReactNode } from 'react'
-import { LabelData } from './types'
+import React from 'react'
 import {
     balanceSheetStructure,
     cashFlowStructure,
     incomeStatementStructure,
 } from './constants'
-import { Cell, HeaderCell, TitleCell } from './styles'
 import { InvData } from '../../models/types'
-import { formatLargeNumber } from '../../utils/formatLargeNumber'
+import { InvDataViewerTable } from './InvDataViewerTable';
 
 interface InvDataViewerProps {
-    data?: InvData
+    data?: InvData;
 }
 
 export const InvDataViewer: React.FC<InvDataViewerProps> = ({ data }) => {
-    const { years } = data || {};
-    const yearsKeys = Object.keys(years || []).slice(-10);
-
-    const renderRows = ({
-        data,
-        level,
-        category,
-    }: {
-        data?: LabelData<any>[]
-        level: number
-        category: string
-    }) => {
-        if (!data) return null
-        return (
-            <>
-                {data?.map(
-                    (item): ReactNode => (
-                        <>
-                            <tr
-                                key={item.label}
-                                className="hover:bg-primary-reverse"
-                            >
-                                <TitleCell level={level} bold={item.main}>
-                                    {item.label}
-                                </TitleCell>
-                                {yearsKeys.map((year) => (
-                                    <Cell key={item.label + year}>
-                                        {formatLargeNumber(item
-                                            .value?.(
-                                                (years?.[year] as any)?.[
-                                                    category
-                                                ] || {}
-                                            ))}
-                                    </Cell>
-                                ))}
-                            </tr>
-                            {renderRows({
-                                data: item.children,
-                                level: level + 1,
-                                category,
-                            })}
-                        </>
-                    )
-                )}
-            </>
-        )
-    }
-
-    const displayTable = (category: string, data: LabelData<any>[]) => {
-        return (
-            <table>
-                <thead>
-                    <tr>
-                        <th></th>
-                        {yearsKeys.map((year) => (
-                            <HeaderCell key={year}>{year}</HeaderCell>
-                        ))}
-                    </tr>
-                </thead>
-                <tbody>{renderRows({ data, level: 0, category })}</tbody>
-            </table>
-        )
-    }
-
     return (
         <div>
             <div>
                 <h3 className="bg-primary p-2">Income Statement</h3>
-                {displayTable('INCOME_STATEMENT', incomeStatementStructure)}
+                <InvDataViewerTable dataKey='INCOME_STATEMENT' structure={incomeStatementStructure} data={data} />
             </div>
             <div>
                 <h3 className="bg-primary p-2">Balance Sheet</h3>
-                {displayTable('BALANCE_SHEET', balanceSheetStructure)}
+                <InvDataViewerTable dataKey='BALANCE_SHEET' structure={balanceSheetStructure} data={data} />
             </div>
             <div>
                 <h3 className="bg-primary p-2">Cash Flow</h3>
-                {displayTable('CASH_FLOW', cashFlowStructure)}
+                <InvDataViewerTable dataKey='CASH_FLOW' structure={cashFlowStructure} data={data} />
             </div>
         </div>
     )
