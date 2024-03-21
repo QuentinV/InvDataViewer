@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { LabelData } from './types'
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
@@ -9,6 +9,7 @@ import {
 } from './constants'
 import { InvData } from '../../models/types'
 import { formatLargeNumber } from '../../utils/formatLargeNumber'
+import { Button } from 'primereact/button';
 
 interface InvDataViewerProps {
     data?: InvData
@@ -17,8 +18,11 @@ interface InvDataViewerProps {
 export const InvDataViewer: React.FC<InvDataViewerProps> = ({ data }) => {
     const { years } = data || {};
     const yearsKeys = Object.keys(years || []).slice(-10);
+    const dtIncStat = useRef(null);
+    const dtBalSheet = useRef(null);
+    const dtCashFlow = useRef(null);
 
-    const displayTable = (category: string, data: LabelData<any>[]) => {
+    const displayTable = (category: string, data: LabelData<any>[], dt: any) => {
         const d = data.map( s => {
             return {
                 ...s,
@@ -37,9 +41,25 @@ export const InvDataViewer: React.FC<InvDataViewerProps> = ({ data }) => {
             </span>
         }
 
+        const exportCSV = () => {
+            console.log(dt.current)
+            dt.current?.exportCSV?.({ selectionOnly: false });
+        };
+
+        const header = (
+            <div className="flex align-items-center justify-content-end gap-2">
+                <Button type="button" icon="pi pi-file" rounded onClick={() => exportCSV()} data-pr-tooltip="CSV" />
+            </div>
+        );
+
         return (
             <div>
-                <DataTable value={d} selectionMode="single">
+                <DataTable 
+                    ref={dt} 
+                    value={d} 
+                    selectionMode="single" 
+                    header={header} 
+                    pt={{ header: { style: { background: 'none', border: 'none' }}}}>
                     <Column field="label" header="" body={renderLabel} bodyStyle={{ border: 0 }} headerStyle={{ border: 0 }}></Column>
                     {yearsKeys.map((year) => (
                         <Column 
@@ -61,15 +81,15 @@ export const InvDataViewer: React.FC<InvDataViewerProps> = ({ data }) => {
         <div>
             <div>
                 <h3 className="bg-primary p-2">Income Statement</h3>
-                {displayTable('INCOME_STATEMENT', incomeStatementStructure)}
+                {displayTable('INCOME_STATEMENT', incomeStatementStructure, dtIncStat)}
             </div>
             <div>
                 <h3 className="bg-primary p-2">Balance Sheet</h3>
-                {displayTable('BALANCE_SHEET', balanceSheetStructure)}
+                {displayTable('BALANCE_SHEET', balanceSheetStructure, dtBalSheet)}
             </div>
             <div>
                 <h3 className="bg-primary p-2">Cash Flow</h3>
-                {displayTable('CASH_FLOW', cashFlowStructure)}
+                {displayTable('CASH_FLOW', cashFlowStructure, dtCashFlow)}
             </div>
         </div>
     )
