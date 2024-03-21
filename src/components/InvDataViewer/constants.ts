@@ -5,16 +5,16 @@ export const incomeStatementStructure: LabelData<IncomeStatement>[] = [
     {
         label: 'Revenue',
         value: (data) => data.REVENUE,
-        main: true,
+        main: true
     },
     {
         label: 'Cost of revenue',
         value: (data) => data.COST_OF_REVENUE,
-        main: true,
+        main: true
     },
     {
         label: 'Gross profit',
-        value: (data) => data.GROSS_PROFIT,
+        value: (data) => data.GROSS_PROFIT
     },
     {
         label: 'Total operating expenses',
@@ -45,49 +45,49 @@ export const incomeStatementStructure: LabelData<IncomeStatement>[] = [
     {
         label: 'Operating income',
         value: (data) => data.OPERATING_INCOME,
-        main: true,
+        main: true
     },
     {
         label: 'Interest expense',
         value: (data) => data.INTEREST_EXPENSES,
-        main: true,
+        main: true
     },
     {
         label: 'Other income (expense)',
-        value: (data) => data.OTHER_INCOME_EXPENSE,
+        value: (data) => data.OTHER_INCOME_EXPENSE
     },
     {
         label: 'Income before taxes',
         value: (data) => data.INCOME_BEFORE_TAXES,
-        main: true,
+        main: true
     },
     {
         label: 'Provision for income taxes',
-        value: (data) => data.PROVISION_FOR_INCOME_TAXES,
+        value: (data) => data.PROVISION_FOR_INCOME_TAXES
     },
     {
         label: 'Minority interest',
-        value: (data) => data.MINORITY_INTEREST,
+        value: (data) => data.MINORITY_INTEREST
     },
     {
         label: 'Other income',
-        value: (data) => data.OTHER_INCOME,
+        value: (data) => data.OTHER_INCOME
     },
     {
         label: 'Net income from continuing operations',
-        value: (data) => data.NET_INCOME_FROM_CONTINUING_OPERATIONS,
+        value: (data) => data.NET_INCOME_FROM_CONTINUING_OPERATIONS
     },
     {
         label: 'Net income from discontinuing operations',
-        value: (data) => data.NET_INCOME_FROM_DISCONTINUING_OPERATIONS,
+        value: (data) => data.NET_INCOME_FROM_DISCONTINUING_OPERATIONS
     },
     {
         label: 'Other',
-        value: (data) => data.OTHER,
+        value: (data) => data.OTHER
     },
     {
         label: 'Net income',
-        value: (data) => data.NET_INCOME,
+        value: (data) => data.NET_INCOME
     },
     {
         label: 'Preferred dividends',
@@ -104,13 +104,15 @@ export const incomeStatementStructure: LabelData<IncomeStatement>[] = [
     {
         label: 'Basic',
         value: (data) => data.EARNINGS_PER_SHARE_BASIC,
-        level: 1
+        level: 1,
+        avoidFormat: true
     },
     {
         label: 'Diluted',
         value: (data) => data.EARNINGS_PER_SHARE_DILUTED,
         main: true,
-        level: 1
+        level: 1,
+        avoidFormat: true
     },
     {
         label: 'Weighted average shares outstanding'

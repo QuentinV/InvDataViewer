@@ -25,7 +25,8 @@ export const InvDataViewerTable: React.FC<InvDataViewerTableProps> = ({ dataKey,
             ...yearsKeys.reduce( (prev: any, current) => {
                 const c: any = years?.[current];
                 const val = c?.[dataKey];
-                prev[current] = formatLargeNumber(val ? s?.value?.( val ) : undefined, numberFormatIndex);
+                const v = val ? s?.value?.( val ) : undefined;
+                prev[current] = s.avoidFormat ? v : formatLargeNumber(v, numberFormatIndex);
                 return prev;
             }, {})
         }

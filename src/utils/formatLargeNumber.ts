@@ -18,5 +18,5 @@ export const formatLargeNumber = (number?: number, indexAbbreviation?: number): 
     let roundedNumber = (number / Math.pow(1000, log1000)).toFixed(2);
     roundedNumber = roundedNumber.substring(0, roundedNumber.endsWith('00') ? roundedNumber.length - 3 : ( roundedNumber.endsWith('0') ? roundedNumber.length - 1 : roundedNumber.length ) );
     
-    return `${roundedNumber}${abbreviations[log1000]}`;
+    return `${roundedNumber}${indexAbbreviation === -1 ? abbreviations[log1000] : ''}`;
 }
