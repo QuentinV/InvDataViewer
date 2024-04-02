@@ -17,7 +17,7 @@ export const InvDataViewerTable: React.FC<InvDataViewerTableProps> = ({ dataKey,
     const { years } = data || {};
     const yearsKeys = Object.keys(years || []).slice(-10);
     const dt: any = useRef(null);
-    const [numberFormatIndex, setNumberFormatIndex] = useState<number>(-1);
+    const [numberFormatIndex, setNumberFormatIndex] = useState<number>(2);
 
     const d = structure.map( s => {
         return {
@@ -85,8 +85,8 @@ export const InvDataViewerTable: React.FC<InvDataViewerTableProps> = ({ dataKey,
                     key={year} 
                     field={year} 
                     header={year}
-                    bodyStyle={{ borderLeft: 0, borderRight: 0, borderTop: 0, padding: '4px' }}
-                    headerStyle={{ border: 0, padding: '10px 4px' }}
+                    bodyStyle={{ borderLeft: 0, borderRight: 0, borderTop: 0, padding: '4px 10px' }}
+                    headerStyle={{ border: 0, padding: '10px 10px' }}
                     alignHeader={'right'}
                     align={'right'}>
                 </Column>
