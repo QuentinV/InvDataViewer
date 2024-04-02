@@ -310,6 +310,11 @@ export const balanceSheetStructure: LabelData<BalanceSheet>[] = [
         level: 3
     },
     {
+        label: 'Taxes payable',
+        value: (data) => data.TAXES_PAYABLE,
+        level: 3
+    },
+    {
         label: 'Deferred income taxes',
         value: (data) =>
             data.DEFERRED_INCOME_TAXES_CURRENT_LIABILITIES,
