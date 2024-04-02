@@ -1,13 +1,9 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useState } from 'react'
 import { api } from '../../../api/invData';
 import { CompanySelector } from '../../../components/CompanySelector';
-import { Chips, ChipsRemoveEvent } from "primereact/chips";
+import { Chips } from "primereact/chips";
 import { Button } from 'primereact/button';
 import { InvData } from '../../../models/types';
-
-interface TestResult {
-    data: InvData
-}
 
 export const TestsViewer: React.FC = () => {
     const [value, setValue] = useState<string[]>([]);

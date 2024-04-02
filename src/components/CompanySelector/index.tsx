@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useState } from 'react'
 import { api } from '../../api/invData';
 import { AutoComplete, AutoCompleteCompleteEvent } from "primereact/autocomplete";
 import { Button } from 'primereact/button';
