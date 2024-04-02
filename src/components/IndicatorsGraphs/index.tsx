@@ -15,11 +15,16 @@ export const IndicatorsGraph : React.FC<IndicatorsGraphProps> = ({ data }) => {
         <h3 className="bg-primary p-2">Metrics</h3>
         <div>
             <TabView>
-            {categories.map( (elem, index) => (
-                <TabPanel header={elem} key={index}>
-                    <div className='flex flex-wrap justify-content-around gap-4'>
-                        {Object.keys(chartData).filter( chartKey => chartData[chartKey].category == index ).map( chartKey => <MetricsGraph key={chartKey} dataKey={chartKey} years={years} />)}
-                    </div>
+            {chartData.map( (elem, index) => (
+                <TabPanel header={categories[index]} key={index}>
+                        {
+                            elem
+                                .map( (e, i) => 
+                                    <div key={i} className='flex justify-content-around gap-2' style={{ marginBottom: '75px'}}>
+                                        <MetricsGraph getData={e.data} years={years} /> 
+                                    </div>
+                                )
+                        }
                 </TabPanel>   
             ) )}
             </TabView>

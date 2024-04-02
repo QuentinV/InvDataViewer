@@ -68,97 +68,106 @@ const getData = ( title: string, label: string, years: { [key: string]: Data }, 
     };
 }
 
-export const chartData: {[key:string]: { category: number; data: ( years: { [key: string]: Data } ) => { options: object, data: object } } } = {
-    'OperatingIncome': { category: 0, data: ( years ) => getData( 'Operating income', 'OIPS', years, { metric: 'operatingIncome' } ) },
-    'AdjustedNetIncome': { category: 0, data: ( years ) => getData( 'EPS Growth', 'Adjusted net income', years, { metric: 'adjustedNetIncome' } ) },
-    'OwnersEarningsGrowth': { category: 0, data: ( years ) => {
-        const arrYears = Object.keys(years).splice(-10);
-        return {
-            options: getChartOptions( 'Owners Earnings Growth' ),
-            data: {
-                labels: arrYears,
-                datasets: [
-                    {
-                        label: 'OE Growth',
-                        data: arrYears.map(k => years[k].metrics.ownersEarningsGrowth),
-                        borderColor: '#106ebe'   
-                    },
-                    {
-                        label: '6.5% is good',
-                        pointStyle: false,
-                        data: arrYears.map(() => 6.5),
-                        borderColor: 'black'
-                    }
-                ]
-            }
-        } 
-    } },
-    'OwnersEarningsPerShare': { category: 0, data: ( years ) => getData( 'Owners Earnings per share', 'Owners Earnings per share', years, { metric: 'ownersEarningsPerShare' } ) },
-    'GrossProfitMargin': { category: 3, data: ( years ) => {
-        const arrYears = Object.keys(years).splice(-10);
-        return {
-            options: getChartOptions( 'Gross Profit Margin' ),
-            data: {
-                labels: arrYears,
-                datasets: [
-                    {
-                        label: 'Gross Profit Margin (%)',
-                        data: arrYears.map(k => years[k].metrics.grossProfitMargin),
-                        borderColor: '#106ebe'   
-                    },
-                    {
-                        label: '40% is good',
-                        pointStyle: false,
-                        data: arrYears.map(() => 40),
-                        borderColor: 'black'
-                    }
-                ]
-            }
-        } 
-    } },
-    'RevenueGrowthVsCOGSGrowth': { category: 0, data: ( years ) => {
-        const arrYears = Object.keys(years).splice(-10);
-        return {
-            options: getChartOptions( 'Revenue Growth vs COGS Growth' ),
-            data: {
-                labels: arrYears,
-                datasets: [
-                    {
-                        label: 'Revenue Growth (%)',
-                        data: arrYears.map(k => years[k].metrics.revenueGrowth),
-                        borderColor: '#106ebe'   
-                    },
-                    {
-                        label: 'COGS Growth (%)',
-                        pointStyle: false,
-                        data: arrYears.map(k => years[k].metrics.cogsGrowth),
-                        borderColor: 'brown'
-                    }
-                ]
-            }
-        } 
-    } },
-    'CashAndEquivalents': { category: 1, data: ( years ) => getData( 'Cash & Equivalents', 'Cash & Equivalents', years, { getValue: data => data.BALANCE_SHEET.CASH_AND_CASH_EQUIVALENTS } ) },
-    'SgaAmargin': { category: 3, data: ( years ) => {
-        const arrYears = Object.keys(years).splice(-10);
-        return {
-            options: getChartOptions( 'SgaA margin' ),
-            data: {
-                labels: arrYears,
-                datasets: [
-                    {
-                        label: 'V&V/Revenue (%)',
-                        data: arrYears.map(k => years[k].metrics.vvRevenue),
-                        borderColor: '#106ebe'   
-                    },
-                    {
-                        label: '30% is good',
-                        pointStyle: false,
-                        data: arrYears.map(() => 30),
-                        borderColor: 'black'
-                    }
-                ]
-            }
-        } 
-    } },
-}
+type ChartDataType = { data: ( years: { [key: string]: Data } ) => { options: object, data: object } };
+export const chartData: ChartDataType[][] = [
+    [
+        { data: ( years ) => getData( 'EPS Growth', 'Adjusted net income', years, { metric: 'adjustedNetIncome' } ) },
+        { data: ( years ) => getData( 'Operating income', 'OIPS', years, { metric: 'operatingIncome' } ) },
+        { data: ( years ) => {
+            const arrYears = Object.keys(years).splice(-10);
+            return {
+                options: getChartOptions( 'Owners Earnings Growth' ),
+                data: {
+                    labels: arrYears,
+                    datasets: [
+                        {
+                            label: 'OE Growth',
+                            data: arrYears.map(k => years[k].metrics.ownersEarningsGrowth),
+                            borderColor: '#106ebe'   
+                        },
+                        {
+                            label: '6.5% is good',
+                            pointStyle: false,
+                            data: arrYears.map(() => 6.5),
+                            borderColor: 'black'
+                        }
+                    ]
+                }
+            } 
+        } },
+        { data: ( years ) => getData( 'Owners Earnings per share', 'Owners Earnings per share', years, { metric: 'ownersEarningsPerShare' } ) },
+        { data: ( years ) => {
+            const arrYears = Object.keys(years).splice(-10);
+            return {
+                options: getChartOptions( 'Revenue Growth vs COGS Growth' ),
+                data: {
+                    labels: arrYears,
+                    datasets: [
+                        {
+                            label: 'Revenue Growth (%)',
+                            data: arrYears.map(k => years[k].metrics.revenueGrowth),
+                            borderColor: '#106ebe'   
+                        },
+                        {
+                            label: 'COGS Growth (%)',
+                            pointStyle: false,
+                            data: arrYears.map(k => years[k].metrics.cogsGrowth),
+                            borderColor: 'brown'
+                        }
+                    ]
+                }
+            } 
+        } }
+    ],
+    [
+        { data: ( years ) => getData( 'Cash & Equivalents', 'Cash & Equivalents', years, { getValue: data => data.BALANCE_SHEET.CASH_AND_CASH_EQUIVALENTS } ) }
+    ],
+    [],
+    [
+        { data: ( years ) => {
+            const arrYears = Object.keys(years).splice(-10);
+            return {
+                options: getChartOptions( 'Gross Profit Margin' ),
+                data: {
+                    labels: arrYears,
+                    datasets: [
+                        {
+                            label: 'Gross Profit Margin (%)',
+                            data: arrYears.map(k => years[k].metrics.grossProfitMargin),
+                            borderColor: '#106ebe'   
+                        },
+                        {
+                            label: '40% is good',
+                            pointStyle: false,
+                            data: arrYears.map(() => 40),
+                            borderColor: 'black'
+                        }
+                    ]
+                }
+            } 
+        } },
+        { data: ( years ) => {
+            const arrYears = Object.keys(years).splice(-10);
+            return {
+                options: getChartOptions( 'SgaA margin' ),
+                data: {
+                    labels: arrYears,
+                    datasets: [
+                        {
+                            label: 'V&V/Revenue (%)',
+                            data: arrYears.map(k => years[k].metrics.vvRevenue),
+                            borderColor: '#106ebe'   
+                        },
+                        {
+                            label: '30% is good',
+                            pointStyle: false,
+                            data: arrYears.map(() => 30),
+                            borderColor: 'black'
+                        }
+                    ]
+                }
+            } 
+        } }
+    ],
+    []
+]
