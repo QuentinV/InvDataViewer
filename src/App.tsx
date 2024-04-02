@@ -1,5 +1,5 @@
 import React from 'react'
-import 'primereact/resources/themes/nova-alt/theme.css'
+import 'primereact/resources/themes/mira/theme.css'
 import 'primeflex/primeflex.css'
 import 'primeicons/primeicons.css';
 

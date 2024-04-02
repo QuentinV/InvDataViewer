@@ -46,7 +46,7 @@ export const HomePage: React.FC = () => {
     const header = () => {
         return <div className='flex'>
             <Paginator className='w-max ml-8 bg-white border-none' first={opts.first} rows={opts.rows} totalRecords={total} rowsPerPageOptions={[25, 50, 100, 200]} onPageChange={onPageChange} />
-            <InputText className='ml-auto' placeholder="Search..." type="text" onChange={(event) => setFilter(event.currentTarget.value) }  />
+            <InputText className='ml-auto h-2rem align-self-center' placeholder="Search..." type="text" onChange={(event) => setFilter(event.currentTarget.value) }  />
         </div>
     }
 

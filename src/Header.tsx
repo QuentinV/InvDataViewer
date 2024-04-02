@@ -10,5 +10,5 @@ export const Header: React.FC = () => {
         { label: 'Config', icon: 'pi pi-cog', command: () => navigate('/config/rules') }
     ];
 
-    return <Menubar model={items} className='h-2rem border-transparent justify-content-end' /> ;
+    return <Menubar model={items} className='h-2rem border-transparent justify-content-end' style={{ background: 'none' }} /> ;
 }
