@@ -33,7 +33,7 @@ export const InvDataViewerTable: React.FC<InvDataViewerTableProps> = ({ dataKey,
     });
 
     const renderLabel = (data: any) => {
-        return <span style={{ fontWeight: data.main ? 'bolder' : 'normal', padding: `3px 3px 3px ${(data.level || 0) * 40 + 3}px` }}>
+        return <span style={{ fontWeight: data.main ? 'bolder' : 'normal', padding: `0 0 0 ${(data.level || 0) * 40 + 3}px` }}>
             {data.label}
         </span>
     }
@@ -73,17 +73,20 @@ export const InvDataViewerTable: React.FC<InvDataViewerTableProps> = ({ dataKey,
         <DataTable 
             ref={dt} 
             value={d} 
+            scrollable={true}
+            scrollHeight="500px"
             selectionMode="single" 
             header={header} 
+            stripedRows={true}
             pt={{ header: { style: { background: 'none', border: 'none' }}}}>
-            <Column field="label" header="" body={renderLabel} bodyStyle={{ border: 0 }} headerStyle={{ border: 0 }}></Column>
+            <Column field="label" header="" body={renderLabel} bodyStyle={{ border: 0, padding: '3px' }} headerStyle={{ border: 0 }}></Column>
             {yearsKeys.map((year) => (
                 <Column 
                     key={year} 
                     field={year} 
                     header={year}
-                    bodyStyle={{ border: 0 }}
-                    headerStyle={{ border: 0 }}
+                    bodyStyle={{ borderLeft: 0, borderRight: 0, borderTop: 0, padding: '4px' }}
+                    headerStyle={{ border: 0, padding: '10px 4px' }}
                     alignHeader={'right'}
                     align={'right'}>
                 </Column>
