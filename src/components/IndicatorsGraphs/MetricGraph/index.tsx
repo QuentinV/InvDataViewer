@@ -1,24 +1,58 @@
 import React, { useEffect, useState } from 'react';
 import { Data } from '../../../models/types';
-import { chartData } from '../constants';
+import { ChartValueDataType, chartData } from '../constants';
 
 import { Chart } from 'primereact/chart';
 
 interface MetricsGraphProps {
-    getData: (years: { [key: string]: Data }) => { data: object; options: object };
+    getData: (years: { [key: string]: Data }) => { data: ChartValueDataType; options: object };
     years: { [key: string]: Data };
 }
 
 export const MetricsGraph: React.FC<MetricsGraphProps> = ({ getData, years }) => {
-    const [data, setData] = useState<{ data: object; options: object }|null>(null);
+    const [value, setValue] = useState<{ data: ChartValueDataType; options: object }|null>(null);
+    const [tableVisible, setTableVisible] = useState<boolean>(false);
 
     useEffect(() => {
-        setData(getData(years));
+        setValue(getData(years));
     }, [ getData, years ]);
 
-    if (!data) return null;
+    if (!value) return null;
 
     return (<div className='w-full'>
-        {chartData && <Chart type="line" data={data.data} options={data.options} />}
+        {chartData && 
+            <div>
+                <div className='relative'>
+                    <Chart type="line" data={value.data} options={value.options} />
+                    <div 
+                        className='absolute hover:text-primary cursor-pointer' 
+                        style={{ right: '15px', top: '15px'}}
+                        onClick={() => setTableVisible(!tableVisible)}
+                    >
+                        <i className='pi pi-table' />
+                    </div>
+                </div>
+                {
+                    tableVisible && <div>
+                        <table className='w-full m-3 mb-0' border={1}>
+                            <thead>
+                                <tr>
+                                    <th className='p-1'>Label</th>
+                                    {value.data.labels.map( k => <th key={k} className='text-right p-1'>{k}</th>)}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {value.data.datasets.map( (item: any, k) => 
+                                    <tr key={k}>
+                                        <td className='p-1'>{item.label}</td>
+                                        {item.data.map( (v: any, i: number) => <td key={i} className='text-right p-1'>{v}</td> )}
+                                    </tr> 
+                                )}
+                            </tbody>
+                        </table>
+                    </div>
+                }
+            </div>
+        }
     </div>);
 };

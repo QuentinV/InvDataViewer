@@ -68,8 +68,9 @@ const getData = ( title: string, label: string, years: { [key: string]: Data }, 
     };
 }
 
-type ChartDataType = { data: ( years: { [key: string]: Data } ) => { options: object, data: object } };
-export const chartData: ChartDataType[][] = [
+export type ChartValueDataType = { labels: string[]; datasets: object[] };
+export type ChartValueType = { data: ( years: { [key: string]: Data } ) => { options: object, data: ChartValueDataType } };
+export const chartData: ChartValueType[][] = [
     [
         { data: ( years ) => getData( 'EPS Growth', 'Adjusted net income', years, { metric: 'adjustedNetIncome' } ) },
         { data: ( years ) => getData( 'Operating income', 'OIPS', years, { metric: 'operatingIncome' } ) },
