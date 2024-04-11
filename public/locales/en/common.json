@@ -2,6 +2,11 @@
     "home": {
         "title": "Companies"
     },
+    "menu": {
+        "home": "Home",
+        "config": "Config",
+        "lang": "Language"
+    },
     "controls": {
         "search": "Search..."
     },

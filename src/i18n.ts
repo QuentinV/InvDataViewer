@@ -6,7 +6,7 @@ i18n
   .use(initReactI18next)
   .use(Backend)
   .init({
-    lng: "en",
+    lng: window.localStorage.getItem('lng') || "de",
     fallbackLng: "en",
     ns: ['common'],
     defaultNS: 'common',
