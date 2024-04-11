@@ -11,7 +11,7 @@ i18n
     ns: ['common'],
     defaultNS: 'common',
     backend: {
-        loadPath: "InvDataViewer/locales/{{lng}}/{{ns}}.json",
+        loadPath: "/InvDataViewer/locales/{{lng}}/{{ns}}.json",
         crossDomain: true
     },
     interpolation: {
