@@ -1,8 +1,14 @@
 
-export interface LabelData<T> {
+export interface LabelData {
     label: string;
     main?: boolean;
-    value?: (data: T) => number | undefined;
     level?: number;
     avoidFormat?: boolean;
+    name: string;
+}
+
+
+export interface Config {
+    children: LabelData[];
+    name: string;
 }

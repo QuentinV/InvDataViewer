@@ -5,7 +5,7 @@ const textColorSecondary = '#848484';
 const surfaceBorder = '#c8c8c8';
 const digitsMapping = ['', 'Thousands', 'Millions', 'Billions', 'Trillions'];
 
-export const categories = ['Growth', 'Liquidity', 'Debt ratio', 'Profitability', 'Miscellaneous'];
+export const categories = ['growth', 'liquidity', 'debt', 'profitability', 'miscs'];
 
 export const getChartOptions = ( titleText: string ) => ({
     maintainAspectRatio: false,

@@ -4,6 +4,7 @@ import { Paginator } from 'primereact/paginator';
 import { InputText } from 'primereact/inputtext';
 import { useNavigate } from 'react-router';
 import { api } from '../../api/invData';
+import { useTranslation } from 'react-i18next';
 
 interface Company {
     ticker: string;
@@ -17,6 +18,7 @@ export const HomePage: React.FC = () => {
     const [total, setTotal] = useState(0);
     const [filter, setFilter] = useState('');
     const navigate = useNavigate();
+    const { t } = useTranslation();
 
     useEffect(() => {
         const getTickers = async () => {
@@ -46,13 +48,13 @@ export const HomePage: React.FC = () => {
     const header = () => {
         return <div className='flex'>
             <Paginator className='w-max ml-8 bg-white border-none' first={opts.first} rows={opts.rows} totalRecords={total} rowsPerPageOptions={[25, 50, 100, 200]} onPageChange={onPageChange} />
-            <InputText className='ml-auto h-2rem align-self-center' placeholder="Search..." type="text" onChange={(event) => setFilter(event.currentTarget.value) }  />
+            <InputText className='ml-auto h-2rem align-self-center' placeholder={t('controls.search')} type="text" onChange={(event) => setFilter(event.currentTarget.value) }  />
         </div>
     }
 
     return (
         <div className='m-auto flex flex-column w-full'>
-            <h3 className='text-center'>Companies</h3>
+            <h3 className='text-center'>{t('home.title')}</h3>
             <div className="card pl-5 pr-5 w-full">
                 <DataView ref={ds} value={companies} rows={50} itemTemplate={itemTemplate} pt={{
                     grid: { className: 'gap-3 align-content-start h-30rem overflow-auto overflow-x-hidden justify-content-center' },

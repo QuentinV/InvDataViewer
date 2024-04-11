@@ -1,32 +1,35 @@
 import React, { useRef, useState } from 'react'
-import { LabelData } from '../types'
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { InvData } from '../../../models/types'
 import { formatLargeNumber } from '../../../utils/formatLargeNumber'
 import { Button } from 'primereact/button';
 import { SelectButton } from 'primereact/selectbutton';
+import { LabelData } from '../types';
+import { useTranslation } from 'react-i18next';
 
 interface InvDataViewerTableProps {
     dataKey: string;
-    structure: LabelData<any>[];
+    structure: LabelData[];
     data?: InvData;
 }
 
 export const InvDataViewerTable: React.FC<InvDataViewerTableProps> = ({ dataKey, structure, data }) => {
+    const { t } = useTranslation();
     const { years } = data || {};
     const yearsKeys = Object.keys(years || []).slice(-10);
     const dt: any = useRef(null);
     const [numberFormatIndex, setNumberFormatIndex] = useState<number>(2);
 
-    const d = structure.map( s => {
+    const d = structure.map( ld => {
         return {
-            ...s,
+            ...ld,
+            label: t(`ticker.fundamentals.${dataKey}.${ld.name}`),
             ...yearsKeys.reduce( (prev: any, current) => {
                 const c: any = years?.[current];
-                const val = c?.[dataKey];
-                const v = val ? s?.value?.( val ) : undefined;
-                prev[current] = s.avoidFormat ? v : formatLargeNumber(v, numberFormatIndex);
+                const fundData = c?.[dataKey];
+                const v = fundData ? fundData?.[ld.name] : undefined;
+                prev[current] = ld.avoidFormat ? v : formatLargeNumber(v, numberFormatIndex);
                 return prev;
             }, {})
         }
