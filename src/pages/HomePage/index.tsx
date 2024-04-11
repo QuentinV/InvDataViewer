@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useState } from 'react'
 import { DataView } from 'primereact/dataview';
 import { Paginator } from 'primereact/paginator';
 import { InputText } from 'primereact/inputtext';
@@ -12,7 +12,6 @@ interface Company {
 }
 
 export const HomePage: React.FC = () => {
-    const ds = useRef(null);
     const [companies, setCompanies] = useState<Company[]>([]);
     const [opts, setOpts] = useState({ first: 0, rows: 25 });
     const [total, setTotal] = useState(0);
@@ -56,7 +55,7 @@ export const HomePage: React.FC = () => {
         <div className='m-auto flex flex-column w-full'>
             <h3 className='text-center'>{t('home.title')}</h3>
             <div className="card pl-5 pr-5 w-full">
-                <DataView ref={ds} value={companies} rows={50} itemTemplate={itemTemplate} pt={{
+                <DataView value={companies} rows={50} itemTemplate={itemTemplate} pt={{
                     grid: { className: 'gap-3 align-content-start h-30rem overflow-auto overflow-x-hidden justify-content-center' },
                     header: { className: 'bg-white border-none' }
                 }} header={header()} />
