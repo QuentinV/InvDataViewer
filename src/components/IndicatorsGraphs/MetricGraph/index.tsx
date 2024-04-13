@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Data } from '../../../models/types';
-import { ChartValueDataType, chartData } from '../constants';
 
 import { Chart } from 'primereact/chart';
+import { ChartValueDataType } from '../hooks';
 
 interface MetricsGraphProps {
     getData: (years: { [key: string]: Data }) => { data: ChartValueDataType; options: object };
@@ -20,8 +20,7 @@ export const MetricsGraph: React.FC<MetricsGraphProps> = ({ getData, years }) =>
     if (!value) return null;
 
     return (<div className='w-full'>
-        {chartData && 
-            <div>
+        <div>
                 <div className='relative'>
                     <Chart type="line" data={value.data} options={value.options} />
                     <div 
@@ -53,6 +52,5 @@ export const MetricsGraph: React.FC<MetricsGraphProps> = ({ getData, years }) =>
                     </div>
                 }
             </div>
-        }
     </div>);
 };

@@ -19,6 +19,44 @@
                 "debt": "Debt",
                 "profitability": "Profitability",
                 "miscs": "Miscs"
+            },
+            "charts": {
+                "epsGrowth": {
+                    "title": "EPS Growth",
+                    "dataset1": "Adjusted net income"
+                },
+                "operatingIncome": {
+                    "title": "Operating income",
+                    "dataset1": "OIPS"
+                },
+                "ownersEarningsGrowth": {
+                    "title": "Owners Earnings Growth",
+                    "dataset1": "OE Growth",
+                    "dataset2": "6.5% is good"
+                },
+                "ownersEarningsPerShare": {
+                    "title": "Owners Earnings per share",
+                    "dataset1": "Owners Earnings per share"
+                },
+                "revenueGrowthVsCOGSGrowth": {
+                    "title": "Revenue Growth vs COGS Growth",
+                    "dataset1": "Revenue Growth (%)",
+                    "dataset2": "COGS Growth (%)"
+                },
+                "cashEquivalents": {
+                    "title": "Cash & Equivalents",
+                    "dataset1": "Cash & Equivalents"
+                },
+                "grossProfitMargin": {
+                    "title": "Gross Profit Margin (%)",
+                    "dataset1": "Gross Profit Margin (%)",
+                    "dataset2": "40% is good"
+                },
+                "sgaAMargin": {
+                    "title": "SgaA margin",
+                    "dataset1": "V&V/Revenue (%)",
+                    "dataset2": "30% is good"
+                }
             }
         },
         "fundamentals": {

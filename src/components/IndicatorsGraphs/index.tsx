@@ -1,9 +1,10 @@
 import React from 'react';
 import { InvData } from '../../models/types';
 import { MetricsGraph } from './MetricGraph';
-import { categories, chartData } from './constants';
+import { categories } from './constants';
 import { TabPanel, TabView } from 'primereact/tabview';
 import { useTranslation } from 'react-i18next';
+import { useChartData } from './hooks';
 
 interface IndicatorsGraphProps {
     data?: InvData
@@ -12,6 +13,7 @@ interface IndicatorsGraphProps {
 export const IndicatorsGraph : React.FC<IndicatorsGraphProps> = ({ data }) => {
     const { t } = useTranslation();
     const years = data?.years||{};
+    const chartData = useChartData(t);
 
     return ( <div>
         <h3 className="bg-primary p-2">{t('ticker.metrics.title')}</h3>
