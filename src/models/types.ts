@@ -1,7 +1,8 @@
 export interface InvData {
     cik?: string
     name?: string
-    years?: { [key: string]: Data }
+    years?: { [key: string]: Data },
+    metrics: GlobalMetrics
 }
 
 export interface Data {
@@ -18,6 +19,12 @@ export interface Metrics {
     vvRevenue: number;
     ownersEarningsGrowth: number;
     ownersEarningsPerShare: number;
+}
+
+export interface GlobalMetrics {
+    cagrAdjustedProfit?: number;
+    cagrEarningsPerShare?: number;
+    tenYAvgEarningsPerShare?: number;
 }
 
 export interface BalanceSheet {

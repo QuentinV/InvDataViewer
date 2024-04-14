@@ -1,5 +1,5 @@
 import { TFunction } from "i18next";
-import { Data, Metrics } from "../../models/types";
+import { Data, GlobalMetrics, Metrics } from "../../models/types";
 import { digitsMapping, surfaceBorder, textColor, textColorSecondary } from "./constants";
 
 export const getChartOptions = ( titleText: string ) => ({
@@ -64,12 +64,24 @@ const getData = ( title: string, label: string, years: { [key: string]: Data }, 
 }
 
 export type ChartValueDataType = { labels: string[]; datasets: object[] };
-export type ChartValueType = { data: ( years: { [key: string]: Data } ) => { options: object, data: ChartValueDataType } };
+export interface ChartAdditionalData {
+    label: string;
+    value: number;
+    symbol: string;
+}
+export type ChartValueType = { data: ( years: { [key: string]: Data }, globalMetrics?: GlobalMetrics ) => { options: object, data: ChartValueDataType, additionalData?: ChartAdditionalData[] } };
 export const useChartData: (t: TFunction) => ChartValueType[][] = (t) => {
     const tp = 'ticker.metrics.charts';
     return [
         [
-            { data: ( years ) => getData( t(`${tp}.epsGrowth.title`), t(`${tp}.epsGrowth.dataset1`), years, { metric: 'adjustedNetIncome' } ) },
+            { data: ( years, globalMetrics ) => ({
+                ...getData( t(`${tp}.epsGrowth.title`), t(`${tp}.epsGrowth.dataset1`), years, { metric: 'adjustedNetIncome' } ),
+                additionalData: [
+                    { label: t(`${tp}.epsGrowth.cagrAdjustedProfit`), value: globalMetrics?.cagrAdjustedProfit || 0, symbol: '%' },
+                    { label: t(`${tp}.epsGrowth.cagrEarningsPerShare`), value: globalMetrics?.cagrEarningsPerShare || 0, symbol: '%' },
+                    { label: t(`${tp}.epsGrowth.10yAvgEarningsPerShare`), value: globalMetrics?.tenYAvgEarningsPerShare || 0, symbol: '$' }
+                ]
+            }) },
             { data: ( years ) => getData( t(`${tp}.operatingIncome.title`), t(`${tp}.operatingIncome.dataset1`), years, { metric: 'operatingIncome' } ) },
             { data: ( years ) => {
                 const arrYears = Object.keys(years).splice(-10);

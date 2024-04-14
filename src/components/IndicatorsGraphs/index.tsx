@@ -25,7 +25,7 @@ export const IndicatorsGraph : React.FC<IndicatorsGraphProps> = ({ data }) => {
                             elem
                                 .map( (e, i) => 
                                     <div key={i} className='flex justify-content-around gap-2' style={{ marginBottom: '75px'}}>
-                                        <MetricsGraph getData={e.data} years={years} /> 
+                                        <MetricsGraph getData={e.data} years={years} globalMetrics={data?.metrics} /> 
                                     </div>
                                 )
                         }

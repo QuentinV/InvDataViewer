@@ -1,34 +1,52 @@
 import React, { useEffect, useState } from 'react';
-import { Data } from '../../../models/types';
+import { Data, GlobalMetrics } from '../../../models/types';
 
 import { Chart } from 'primereact/chart';
-import { ChartValueDataType } from '../hooks';
+import { ChartAdditionalData, ChartValueDataType } from '../hooks';
 
 interface MetricsGraphProps {
-    getData: (years: { [key: string]: Data }) => { data: ChartValueDataType; options: object };
+    getData: (years: { [key: string]: Data }, globalMetrics?: GlobalMetrics) => { data: ChartValueDataType; options: object };
     years: { [key: string]: Data };
+    globalMetrics?: GlobalMetrics;
 }
 
-export const MetricsGraph: React.FC<MetricsGraphProps> = ({ getData, years }) => {
-    const [value, setValue] = useState<{ data: ChartValueDataType; options: object }|null>(null);
+export const MetricsGraph: React.FC<MetricsGraphProps> = ({ getData, years, globalMetrics }) => {
+    const [value, setValue] = useState<{ data: ChartValueDataType; options: object, additionalData?: ChartAdditionalData[] }|null>(null);
     const [tableVisible, setTableVisible] = useState<boolean>(false);
 
     useEffect(() => {
-        setValue(getData(years));
+        setValue(getData(years, globalMetrics));
     }, [ getData, years ]);
 
     if (!value) return null;
 
     return (<div className='w-full'>
         <div>
-                <div className='relative'>
-                    <Chart type="line" data={value.data} options={value.options} />
-                    <div 
-                        className='absolute hover:text-primary cursor-pointer' 
-                        style={{ right: '15px', top: '15px'}}
-                        onClick={() => setTableVisible(!tableVisible)}
-                    >
-                        <i className='pi pi-table' />
+                <div className='flex'>
+                    <div className='relative flex-auto'>
+                        <Chart type="line" data={value.data} options={value.options} />
+                        <div 
+                            className='absolute hover:text-primary cursor-pointer' 
+                            style={{ right: '15px', top: '15px'}}
+                            onClick={() => setTableVisible(!tableVisible)}
+                        >
+                            <i className='pi pi-table' />
+                        </div>
+                    </div>
+                    <div className='flex-none align-self-center'>
+                        {!!value.additionalData && 
+                            value.additionalData.map( (ad, k) => 
+                                <div key={k} className='mt-4 mb-4 ml-3'>
+                                    <div className='text-primary font-bold'>{ad.label}</div>
+                                    <div className='text-primary'>
+                                        {ad.value?.toLocaleString(undefined, {
+                                            minimumFractionDigits: 2,
+                                            maximumFractionDigits: 2
+                                        })}{ad.symbol}
+                                    </div>
+                                </div>
+                            )
+                        }
                     </div>
                 </div>
                 {
