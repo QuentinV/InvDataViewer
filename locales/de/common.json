@@ -23,7 +23,10 @@
             "charts": {
                 "epsGrowth": {
                     "title": "EPS-Wachstum",
-                    "dataset1": "Angepasstes Nettoeinkommen"
+                    "dataset1": "Angepasstes Nettoeinkommen",
+                    "cagrAdjustedProfit": "CAGR angepasster Gewinn",
+                    "cagrEarningsPerShare": "CAGR Gewinn je Aktie",
+                    "10yAvgEarningsPerShare": "10J-AVG Gewinn je Aktie"
                 },
                 "operatingIncome": {
                     "title": "Operatives Ergebnis",
