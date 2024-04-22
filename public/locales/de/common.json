@@ -32,11 +32,6 @@
                     "title": "Operatives Ergebnis",
                     "dataset1": "OIPS"
                 },
-                "ownersEarningsGrowth": {
-                    "title": "Ertragswachstum der Eigentümer",
-                    "dataset1": "OE Growth",
-                    "dataset2": "6,5 % ist gut"
-                },
                 "ownersEarningsPerShare": {
                     "title": "Eigentümergewinn je Aktie",
                     "dataset1": "Eigentümergewinn je Aktie"

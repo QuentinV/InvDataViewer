@@ -83,28 +83,6 @@ export const useChartData: (t: TFunction) => ChartValueType[][] = (t) => {
                 ]
             }) },
             { data: ( years ) => getData( t(`${tp}.operatingIncome.title`), t(`${tp}.operatingIncome.dataset1`), years, { metric: 'operatingIncome' } ) },
-            { data: ( years ) => {
-                const arrYears = Object.keys(years).splice(-10);
-                return {
-                    options: getChartOptions( t(`${tp}.ownersEarningsGrowth.title`) ),
-                    data: {
-                        labels: arrYears,
-                        datasets: [
-                            {
-                                label: t(`${tp}.ownersEarningsGrowth.dataset1`),
-                                data: arrYears.map(k => years[k].metrics.ownersEarningsGrowth),
-                                borderColor: '#106ebe'   
-                            },
-                            {
-                                label: t(`${tp}.ownersEarningsGrowth.dataset2`),
-                                pointStyle: false,
-                                data: arrYears.map(() => 6.5),
-                                borderColor: 'black'
-                            }
-                        ]
-                    }
-                } 
-            } },
             { data: ( years ) => getData( t(`${tp}.ownersEarningsPerShare.title`), t(`${tp}.ownersEarningsPerShare.dataset1`), years, { metric: 'ownersEarningsPerShare' } ) },
             { data: ( years ) => {
                 const arrYears = Object.keys(years).splice(-10);

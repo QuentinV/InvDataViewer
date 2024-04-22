@@ -32,11 +32,6 @@
                     "title": "Operating income",
                     "dataset1": "OIPS"
                 },
-                "ownersEarningsGrowth": {
-                    "title": "Owners Earnings Growth",
-                    "dataset1": "OE Growth",
-                    "dataset2": "6.5% is good"
-                },
                 "ownersEarningsPerShare": {
                     "title": "Owners Earnings per share",
                     "dataset1": "Owners Earnings per share"
