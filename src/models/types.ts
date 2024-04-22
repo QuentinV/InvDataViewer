@@ -12,6 +12,7 @@ export interface Data {
 
 export interface Metrics {
     adjustedNetIncome: number;
+    adjustedNetIncomePerShare: number;
     grossProfitMargin: number;
     operatingIncome: number;
     revenueGrowth: number;

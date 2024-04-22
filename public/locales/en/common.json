@@ -23,7 +23,7 @@
             "charts": {
                 "epsGrowth": {
                     "title": "EPS Growth",
-                    "dataset1": "Adjusted net income",
+                    "dataset1": "Adjusted net income per share",
                     "cagrAdjustedProfit": "CAGR Adjusted profit",
                     "cagrEarningsPerShare": "CAGR Earnings per share",
                     "10yAvgEarningsPerShare": "10Y-AVG earnings per share"

@@ -75,7 +75,7 @@ export const useChartData: (t: TFunction) => ChartValueType[][] = (t) => {
     return [
         [
             { data: ( years, globalMetrics ) => ({
-                ...getData( t(`${tp}.epsGrowth.title`), t(`${tp}.epsGrowth.dataset1`), years, { metric: 'adjustedNetIncome' } ),
+                ...getData( t(`${tp}.epsGrowth.title`), t(`${tp}.epsGrowth.dataset1`), years, { metric: 'adjustedNetIncomePerShare' } ),
                 additionalData: [
                     { label: t(`${tp}.epsGrowth.cagrAdjustedProfit`), value: globalMetrics?.cagrAdjustedProfit || 0, symbol: '%' },
                     { label: t(`${tp}.epsGrowth.cagrEarningsPerShare`), value: globalMetrics?.cagrEarningsPerShare || 0, symbol: '%' },
