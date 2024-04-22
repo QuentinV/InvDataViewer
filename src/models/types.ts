@@ -26,6 +26,9 @@ export interface GlobalMetrics {
     cagrAdjustedProfit?: number;
     cagrEarningsPerShare?: number;
     tenYAvgEarningsPerShare?: number;
+    cagrOperatingIncome?: number;
+    cagrOperatingIncomePerShare?: number;
+    tenYAvgEbitPerShare?: number;
 }
 
 export interface BalanceSheet {

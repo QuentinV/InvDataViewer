@@ -82,7 +82,14 @@ export const useChartData: (t: TFunction) => ChartValueType[][] = (t) => {
                     { label: t(`${tp}.epsGrowth.10yAvgEarningsPerShare`), value: globalMetrics?.tenYAvgEarningsPerShare || 0, symbol: '$' }
                 ]
             }) },
-            { data: ( years ) => getData( t(`${tp}.operatingIncome.title`), t(`${tp}.operatingIncome.dataset1`), years, { metric: 'operatingIncome' } ) },
+            { data: ( years, globalMetrics ) => ({
+                ...getData( t(`${tp}.operatingIncome.title`), t(`${tp}.operatingIncome.dataset1`), years, { metric: 'operatingIncome' } ),
+                additionalData: [
+                    { label: t(`${tp}.operatingIncome.cagrOperatingIncome`), value: globalMetrics?.cagrOperatingIncome || 0, symbol: '%' },
+                    { label: t(`${tp}.operatingIncome.cagrOperatingIncomePerShare`), value: globalMetrics?.cagrOperatingIncomePerShare || 0, symbol: '%' },
+                    { label: t(`${tp}.operatingIncome.10yAvgEbitPerShare`), value: globalMetrics?.tenYAvgEbitPerShare || 0, symbol: '$' }
+                ]
+            }) },
             { data: ( years ) => getData( t(`${tp}.ownersEarningsPerShare.title`), t(`${tp}.ownersEarningsPerShare.dataset1`), years, { metric: 'ownersEarningsPerShare' } ) },
             { data: ( years ) => {
                 const arrYears = Object.keys(years).splice(-10);

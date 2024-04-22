@@ -30,7 +30,10 @@
                 },
                 "operatingIncome": {
                     "title": "Operating income",
-                    "dataset1": "OIPS"
+                    "dataset1": "Operating income per share",
+                    "cagrOperatingIncome": "CAGR operating income",
+                    "cagrOperatingIncomePerShare": "CAGR operating income per share",
+                    "10yAvgEbitPerShare": "10Y-AVG EBIT per share"
                 },
                 "ownersEarningsPerShare": {
                     "title": "Owners Earnings per share",
