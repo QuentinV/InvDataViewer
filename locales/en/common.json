@@ -23,19 +23,17 @@
             "charts": {
                 "epsGrowth": {
                     "title": "EPS Growth",
-                    "dataset1": "Adjusted net income",
+                    "dataset1": "Adjusted net income per share",
                     "cagrAdjustedProfit": "CAGR Adjusted profit",
                     "cagrEarningsPerShare": "CAGR Earnings per share",
                     "10yAvgEarningsPerShare": "10Y-AVG earnings per share"
                 },
                 "operatingIncome": {
                     "title": "Operating income",
-                    "dataset1": "OIPS"
-                },
-                "ownersEarningsGrowth": {
-                    "title": "Owners Earnings Growth",
-                    "dataset1": "OE Growth",
-                    "dataset2": "6.5% is good"
+                    "dataset1": "Operating income per share",
+                    "cagrOperatingIncome": "CAGR operating income",
+                    "cagrOperatingIncomePerShare": "CAGR operating income per share",
+                    "10yAvgEbitPerShare": "10Y-AVG EBIT per share"
                 },
                 "ownersEarningsPerShare": {
                     "title": "Owners Earnings per share",

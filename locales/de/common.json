@@ -23,7 +23,7 @@
             "charts": {
                 "epsGrowth": {
                     "title": "EPS-Wachstum",
-                    "dataset1": "Angepasstes Nettoeinkommen",
+                    "dataset1": "Angepasster Gewinn je Aktie",
                     "cagrAdjustedProfit": "CAGR angepasster Gewinn",
                     "cagrEarningsPerShare": "CAGR Gewinn je Aktie",
                     "10yAvgEarningsPerShare": "10J-AVG Gewinn je Aktie"
@@ -31,11 +31,6 @@
                 "operatingIncome": {
                     "title": "Operatives Ergebnis",
                     "dataset1": "OIPS"
-                },
-                "ownersEarningsGrowth": {
-                    "title": "Ertragswachstum der Eigentümer",
-                    "dataset1": "OE Growth",
-                    "dataset2": "6,5 % ist gut"
                 },
                 "ownersEarningsPerShare": {
                     "title": "Eigentümergewinn je Aktie",
