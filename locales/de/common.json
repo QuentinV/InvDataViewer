@@ -32,14 +32,12 @@
                     "title": "Operatives Ergebnis",
                     "dataset1": "OIPS"
                 },
-                "ownersEarningsPerShare": {
-                    "title": "Eigentümergewinn je Aktie",
-                    "dataset1": "Eigentümergewinn je Aktie"
-                },
                 "revenueGrowthVsCOGSGrowth": {
                     "title": "Umsatzwachstum vs. COGS-Wachstum",
-                    "dataset1": "Umsatzwachstum (%)",
-                    "dataset2": "COGS-Wachstum (%)"
+                    "dataset1": "Umsatz je Aktie",
+                    "dataset2": "Umsatzkosten je Aktie",
+                    "cagrRevenue": "CAGR Umsatz",
+                    "cagrRevenuePerShare": "CAGR Umsatz je Aktie"
                 },
                 "cashEquivalents": {
                     "title": "Bargeld & Äquivalente",
