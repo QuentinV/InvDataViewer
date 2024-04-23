@@ -90,8 +90,7 @@ export const useChartData: (t: TFunction) => ChartValueType[][] = (t) => {
                     { label: t(`${tp}.operatingIncome.10yAvgEbitPerShare`), value: globalMetrics?.tenYAvgEbitPerShare || 0, symbol: '$' }
                 ]
             }) },
-            { data: ( years ) => getData( t(`${tp}.ownersEarningsPerShare.title`), t(`${tp}.ownersEarningsPerShare.dataset1`), years, { metric: 'ownersEarningsPerShare' } ) },
-            { data: ( years ) => {
+            { data: ( years, globalMetrics ) => {
                 const arrYears = Object.keys(years).splice(-10);
                 return {
                     options: getChartOptions( t(`${tp}.revenueGrowthVsCOGSGrowth.title`) ),
@@ -100,17 +99,21 @@ export const useChartData: (t: TFunction) => ChartValueType[][] = (t) => {
                         datasets: [
                             {
                                 label: t(`${tp}.revenueGrowthVsCOGSGrowth.dataset1`),
-                                data: arrYears.map(k => years[k].metrics.revenueGrowth),
+                                data: arrYears.map(k => years[k].metrics.revenuePerShare),
                                 borderColor: '#106ebe'   
                             },
                             {
                                 label: t(`${tp}.revenueGrowthVsCOGSGrowth.dataset2`),
                                 pointStyle: false,
-                                data: arrYears.map(k => years[k].metrics.cogsGrowth),
-                                borderColor: 'brown'
+                                data: arrYears.map(k => years[k].metrics.costsPerShare),
+                                borderColor: 'red'
                             }
                         ]
-                    }
+                    },
+                    additionalData: [
+                        { label: t(`${tp}.revenueGrowthVsCOGSGrowth.cagrRevenue`), value: globalMetrics?.cagrRevenue || 0, symbol: '%'},
+                        { label: t(`${tp}.revenueGrowthVsCOGSGrowth.cagrRevenuePerShare`), value: globalMetrics?.cagrRevenuePerShare || 0, symbol: '%'}
+                    ]
                 } 
             } }
         ],

@@ -15,8 +15,8 @@ export interface Metrics {
     adjustedNetIncomePerShare: number;
     grossProfitMargin: number;
     operatingIncome: number;
-    revenueGrowth: number;
-    cogsGrowth: number;
+    revenuePerShare: number;
+    costsPerShare: number;
     vvRevenue: number;
     ownersEarningsGrowth: number;
     ownersEarningsPerShare: number;
@@ -29,6 +29,8 @@ export interface GlobalMetrics {
     cagrOperatingIncome?: number;
     cagrOperatingIncomePerShare?: number;
     tenYAvgEbitPerShare?: number;
+    cagrRevenue?: number;
+    cagrRevenuePerShare?: number;
 }
 
 export interface BalanceSheet {
