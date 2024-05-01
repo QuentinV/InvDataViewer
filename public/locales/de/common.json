@@ -53,6 +53,10 @@
                     "title": "Cashflow Ratio",
                     "dataset1": "CFR"
                 },
+                "freeCashflow": {
+                    "title": "Free Cashflow",
+                    "dataset1": "Free Cash Flow"
+                },
                 "grossProfitMargin": {
                     "title": "Bruttogewinnmarge (%)",
                     "dataset1": "Bruttogewinnmarge (%)",

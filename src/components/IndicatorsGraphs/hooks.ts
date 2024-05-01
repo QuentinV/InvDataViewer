@@ -156,6 +156,9 @@ export const useChartData: (t: TFunction) => ChartValueType[][] = (t) => {
             },
             { 
                 data: ( years ) => getData( t(`${tp}.cashflowRatio.title`), t(`${tp}.cashflowRatio.dataset1`), years, { getValue: data => ((data.CASH_FLOW.NET_CASH_PROVIDED_BY_OPERATING_ACTIVITIES || 0) / (data.BALANCE_SHEET.TOTAL_CURRENT_LIABILITIES || 1)) * 100 } )
+            },
+            { 
+                data: ( years ) => getData( t(`${tp}.freeCashflow.title`), t(`${tp}.freeCashflow.dataset1`), years, { getValue: data => data.metrics.freeCashFlow } )
             }            
         ],
         [],
