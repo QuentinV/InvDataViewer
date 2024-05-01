@@ -47,6 +47,11 @@
                     "dataset1": "Cash & Equivalents",
                     "cashToShortTermDebtRatio": "Cash to short-term debt ratio"
                 },
+                "cashflowToLongTermDebtRatio": {
+                    "title": "Cashflow to long-term debt ratio",
+                    "dataset1": "Free Cash Flow",
+                    "dataset2": "Long-term Liabilities"
+                },
                 "grossProfitMargin": {
                     "title": "Gross Profit Margin (%)",
                     "dataset1": "Gross Profit Margin (%)",

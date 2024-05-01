@@ -129,6 +129,30 @@ export const useChartData: (t: TFunction) => ChartValueType[][] = (t) => {
                         ] 
                     }
                 }
+            },
+            { 
+                data: ( years ) => {
+                    const lastYear = Object.keys(years)[Object.keys(years).length-1];
+                    const lastYearData = years[lastYear];
+                    const freeCashFlow = lastYearData.metrics.freeCashFlow;
+                    const ltd = lastYearData.BALANCE_SHEET.LONG_TERM_DEBT || 1;
+                    return {
+                        options: getChartOptions( t(`${tp}.cashflowToLongTermDebtRatio.title`) ),
+                        data: {
+                            labels: [lastYear, String(Number(lastYear) + 3), String(Number(lastYear) + 4)],
+                            datasets: [
+                                {
+                                    label: t(`${tp}.cashflowToLongTermDebtRatio.dataset1`),
+                                    data: [1, 3, 4].map( k => freeCashFlow * k ),
+                                },
+                                {
+                                    label: t(`${tp}.cashflowToLongTermDebtRatio.dataset2`),
+                                    data: [0, 0, 0].map( k => ltd ),
+                                }
+                            ]
+                        }
+                    }
+                }
             }
         ],
         [],

@@ -20,6 +20,7 @@ export interface Metrics {
     vvRevenue: number;
     ownersEarningsGrowth: number;
     ownersEarningsPerShare: number;
+    freeCashFlow: number;
 }
 
 export interface GlobalMetrics {
@@ -36,4 +37,5 @@ export interface GlobalMetrics {
 export interface BalanceSheet {
     CASH_AND_CASH_EQUIVALENTS?: number
     TOTAL_CURRENT_LIABILITIES?: number
+    LONG_TERM_DEBT?: number
 }

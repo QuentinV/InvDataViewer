@@ -42,7 +42,12 @@
                 "cashEquivalents": {
                     "title": "Bargeld & Äquivalente",
                     "dataset1": "Bargeld & Äquivalente",
-                    "cashToShortTermDebtRatio": "Cash to short-term debt ratio"
+                    "cashToShortTermDebtRatio": "Verhältnis Cashflow zu Verschuldung"
+                },
+                "cashflowToLongTermDebtRatio": {
+                    "title": "Cashflow zu langfristiger Verschuldungsquote",
+                    "dataset1": "Freier Cashflow",
+                    "dataset2": "Langfristige Verbindlichkeiten"
                 },
                 "grossProfitMargin": {
                     "title": "Bruttogewinnmarge (%)",
