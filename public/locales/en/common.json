@@ -52,6 +52,10 @@
                     "dataset1": "Free Cash Flow",
                     "dataset2": "Long-term Liabilities"
                 },
+                "cashflowRatio": {
+                    "title": "Cashflow Ratio",
+                    "dataset1": "CFR"
+                },
                 "grossProfitMargin": {
                     "title": "Gross Profit Margin (%)",
                     "dataset1": "Gross Profit Margin (%)",

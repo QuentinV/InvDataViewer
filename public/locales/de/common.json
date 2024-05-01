@@ -49,6 +49,10 @@
                     "dataset1": "Freier Cashflow",
                     "dataset2": "Langfristige Verbindlichkeiten"
                 },
+                "cashflowRatio": {
+                    "title": "Cashflow Ratio",
+                    "dataset1": "CFR"
+                },
                 "grossProfitMargin": {
                     "title": "Bruttogewinnmarge (%)",
                     "dataset1": "Bruttogewinnmarge (%)",
