@@ -55,7 +55,11 @@
                 },
                 "freeCashflow": {
                     "title": "Free Cashflow",
-                    "dataset1": "Free Cash Flow"
+                    "dataset1": "Free Cash Flow (%)"
+                },
+                "freeCashflowToRevenueRatio": {
+                    "title": "Free Cashflow to Revenue Ratio",
+                    "dataset1": "FCF/Umsatz"
                 },
                 "grossProfitMargin": {
                     "title": "Bruttogewinnmarge (%)",

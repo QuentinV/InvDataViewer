@@ -6,6 +6,7 @@ export interface InvData {
 }
 
 export interface Data {
+    INCOME_STATEMENT: IncomeStatement
     BALANCE_SHEET: BalanceSheet
     CASH_FLOW: CashFlow
     metrics: Metrics
@@ -33,6 +34,10 @@ export interface GlobalMetrics {
     tenYAvgEbitPerShare?: number;
     cagrRevenue?: number;
     cagrRevenuePerShare?: number;
+}
+
+export interface IncomeStatement {
+    REVENUE?: number
 }
 
 export interface BalanceSheet {

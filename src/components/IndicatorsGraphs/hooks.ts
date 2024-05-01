@@ -159,7 +159,10 @@ export const useChartData: (t: TFunction) => ChartValueType[][] = (t) => {
             },
             { 
                 data: ( years ) => getData( t(`${tp}.freeCashflow.title`), t(`${tp}.freeCashflow.dataset1`), years, { getValue: data => data.metrics.freeCashFlow } )
-            }            
+            },
+            { 
+                data: ( years ) => getData( t(`${tp}.freeCashflowToRevenueRatio.title`), t(`${tp}.freeCashflowToRevenueRatio.dataset1`), years, { getValue: data => (data.metrics.freeCashFlow / (data.INCOME_STATEMENT.REVENUE || 0)) * 100 } )
+            }              
         ],
         [],
         [
