@@ -44,7 +44,8 @@
                 },
                 "cashEquivalents": {
                     "title": "Cash & Equivalents",
-                    "dataset1": "Cash & Equivalents"
+                    "dataset1": "Cash & Equivalents",
+                    "cashToShortTermDebtRatio": "Cash to short-term debt ratio"
                 },
                 "grossProfitMargin": {
                     "title": "Gross Profit Margin (%)",

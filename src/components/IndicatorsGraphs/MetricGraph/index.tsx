@@ -3,6 +3,7 @@ import { Data, GlobalMetrics } from '../../../models/types';
 
 import { Chart } from 'primereact/chart';
 import { ChartAdditionalData, ChartValueDataType } from '../hooks';
+import { formatFromSymbol } from '../../../utils/formatFromSymbol';
 
 interface MetricsGraphProps {
     getData: (years: { [key: string]: Data }, globalMetrics?: GlobalMetrics) => { data: ChartValueDataType; options: object };
@@ -39,10 +40,7 @@ export const MetricsGraph: React.FC<MetricsGraphProps> = ({ getData, years, glob
                                 <div key={k} className='mt-4 mb-4 ml-3'>
                                     <div className='text-primary font-bold'>{ad.label}</div>
                                     <div className='text-primary'>
-                                        {ad.value?.toLocaleString(undefined, {
-                                            minimumFractionDigits: 2,
-                                            maximumFractionDigits: 2
-                                        })}{ad.symbol}
+                                        {formatFromSymbol(ad.symbol, ad.value)}
                                     </div>
                                 </div>
                             )

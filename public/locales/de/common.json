@@ -41,7 +41,8 @@
                 },
                 "cashEquivalents": {
                     "title": "Bargeld & Äquivalente",
-                    "dataset1": "Bargeld & Äquivalente"
+                    "dataset1": "Bargeld & Äquivalente",
+                    "cashToShortTermDebtRatio": "Cash to short-term debt ratio"
                 },
                 "grossProfitMargin": {
                     "title": "Bruttogewinnmarge (%)",

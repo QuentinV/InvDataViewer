@@ -35,4 +35,5 @@ export interface GlobalMetrics {
 
 export interface BalanceSheet {
     CASH_AND_CASH_EQUIVALENTS?: number
+    TOTAL_CURRENT_LIABILITIES?: number
 }

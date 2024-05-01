@@ -118,7 +118,18 @@ export const useChartData: (t: TFunction) => ChartValueType[][] = (t) => {
             } }
         ],
         [
-            { data: ( years ) => getData( t(`${tp}.cashEquivalents.title`), t(`${tp}.cashEquivalents.dataset1`), years, { getValue: data => data.BALANCE_SHEET.CASH_AND_CASH_EQUIVALENTS } ) }
+            { 
+                data: ( years ) => {
+                    const lastYear = Object.keys(years)[Object.keys(years).length-1];
+                    const bs = years[lastYear].BALANCE_SHEET;
+                    return {
+                        ...getData( t(`${tp}.cashEquivalents.title`), t(`${tp}.cashEquivalents.dataset1`), years, { getValue: data => data.BALANCE_SHEET.CASH_AND_CASH_EQUIVALENTS } ),
+                        additionalData: [
+                            { label: t(`${tp}.cashEquivalents.cashToShortTermDebtRatio`), value: (bs.CASH_AND_CASH_EQUIVALENTS || 0) / (bs.TOTAL_CURRENT_LIABILITIES || 1), symbol: '%'}
+                        ] 
+                    }
+                }
+            }
         ],
         [],
         [
