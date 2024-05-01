@@ -41,7 +41,31 @@
                 },
                 "cashEquivalents": {
                     "title": "Bargeld & Äquivalente",
-                    "dataset1": "Bargeld & Äquivalente"
+                    "dataset1": "Bargeld & Äquivalente",
+                    "cashToShortTermDebtRatio": "Verhältnis Cashflow zu Verschuldung"
+                },
+                "cashflowToLongTermDebtRatio": {
+                    "title": "Cashflow zu langfristiger Verschuldungsquote",
+                    "dataset1": "Freier Cashflow",
+                    "dataset2": "Langfristige Verbindlichkeiten"
+                },
+                "cashflowRatio": {
+                    "title": "Cashflow Ratio",
+                    "dataset1": "CFR"
+                },
+                "freeCashflow": {
+                    "title": "Free Cashflow",
+                    "dataset1": "Free Cash Flow (%)"
+                },
+                "freeCashflowToRevenueRatio": {
+                    "title": "Verhältnis von freiem Cashflow zu Umsatz",
+                    "dataset1": "FCF/Umsatz"
+                },
+                "workingCapitalRatio": {
+                    "title": "Liquiditätsgrad",
+                    "dataset1": "Liquiditätsgrad",
+                    "dataset2": "WCR > 1.2",
+                    "dataset3": "WCR < 2.0"
                 },
                 "grossProfitMargin": {
                     "title": "Bruttogewinnmarge (%)",

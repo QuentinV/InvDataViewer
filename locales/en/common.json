@@ -44,7 +44,31 @@
                 },
                 "cashEquivalents": {
                     "title": "Cash & Equivalents",
-                    "dataset1": "Cash & Equivalents"
+                    "dataset1": "Cash & Equivalents",
+                    "cashToShortTermDebtRatio": "Cash to short-term debt ratio"
+                },
+                "cashflowToLongTermDebtRatio": {
+                    "title": "Cashflow to long-term debt ratio",
+                    "dataset1": "Free Cash Flow",
+                    "dataset2": "Long-term Liabilities"
+                },
+                "cashflowRatio": {
+                    "title": "Cashflow Ratio",
+                    "dataset1": "CFR"
+                },
+                "freeCashflow": {
+                    "title": "Free Cashflow",
+                    "dataset1": "Free Cash Flow"
+                },
+                "freeCashflowToRevenueRatio": {
+                    "title": "Free Cashflow to Revenue Ratio",
+                    "dataset1": "FCF/Revenue (%)"
+                },
+                "workingCapitalRatio": {
+                    "title": "Working Capital Ratio",
+                    "dataset1": "Working capital ratio",
+                    "dataset2": "WCR > 1.2",
+                    "dataset3": "WCR < 2.0"
                 },
                 "grossProfitMargin": {
                     "title": "Gross Profit Margin (%)",
