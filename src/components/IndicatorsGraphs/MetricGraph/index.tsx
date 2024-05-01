@@ -60,7 +60,12 @@ export const MetricsGraph: React.FC<MetricsGraphProps> = ({ getData, years, glob
                                 {value.data.datasets.map( (item: any, k) => 
                                     <tr key={k}>
                                         <td className='p-1'>{item.label}</td>
-                                        {item.data.map( (v: any, i: number) => <td key={i} className='text-right p-1'>{v}</td> )}
+                                        {item.data.map( (v: any, i: number) => <td key={i} className='text-right p-1'>
+                                            {v.toLocaleString(undefined, {
+                                                minimumFractionDigits: 2,
+                                                maximumFractionDigits: 2
+                                            })}
+                                        </td> )}
                                     </tr> 
                                 )}
                             </tbody>

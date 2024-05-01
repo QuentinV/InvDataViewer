@@ -44,6 +44,7 @@ export interface BalanceSheet {
     CASH_AND_CASH_EQUIVALENTS?: number
     TOTAL_CURRENT_LIABILITIES?: number
     LONG_TERM_DEBT?: number
+    TOTAL_CURRENT_ASSETS?: number;
 }
 
 export interface CashFlow {

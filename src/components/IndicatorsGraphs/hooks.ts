@@ -162,7 +162,34 @@ export const useChartData: (t: TFunction) => ChartValueType[][] = (t) => {
             },
             { 
                 data: ( years ) => getData( t(`${tp}.freeCashflowToRevenueRatio.title`), t(`${tp}.freeCashflowToRevenueRatio.dataset1`), years, { getValue: data => (data.metrics.freeCashFlow / (data.INCOME_STATEMENT.REVENUE || 0)) * 100 } )
-            }              
+            },
+            { data: ( years ) => {
+                const arrYears = Object.keys(years).splice(-10);
+                return {
+                    options: getChartOptions( t(`${tp}.workingCapitalRatio.title`) ),
+                    data: {
+                        labels: arrYears,
+                        datasets: [
+                            {
+                                label: t(`${tp}.workingCapitalRatio.dataset1`),
+                                data: arrYears.map(k => (years[k].BALANCE_SHEET.TOTAL_CURRENT_ASSETS || 0) / (years[k].BALANCE_SHEET.TOTAL_CURRENT_LIABILITIES || 1 )),
+                                borderColor: '#106ebe'   
+                            },
+                            {
+                                label: t(`${tp}.workingCapitalRatio.dataset2`),
+                                data: arrYears.map( () => 1.2 ),
+                                borderColor: 'red'   
+                            },
+                            {
+                                label: t(`${tp}.workingCapitalRatio.dataset3`),
+                                pointStyle: false,
+                                data: arrYears.map( () => 2 ),
+                                borderColor: 'grey'
+                            }
+                        ]
+                    }
+                } 
+            } }              
         ],
         [],
         [

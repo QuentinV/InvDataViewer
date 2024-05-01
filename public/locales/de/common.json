@@ -58,8 +58,14 @@
                     "dataset1": "Free Cash Flow (%)"
                 },
                 "freeCashflowToRevenueRatio": {
-                    "title": "Free Cashflow to Revenue Ratio",
+                    "title": "Verhältnis von freiem Cashflow zu Umsatz",
                     "dataset1": "FCF/Umsatz"
+                },
+                "workingCapitalRatio": {
+                    "title": "Liquiditätsgrad",
+                    "dataset1": "Liquiditätsgrad",
+                    "dataset2": "WCR > 1.2",
+                    "dataset3": "WCR < 2.0"
                 },
                 "grossProfitMargin": {
                     "title": "Bruttogewinnmarge (%)",
