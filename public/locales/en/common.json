@@ -61,7 +61,7 @@
                     "dataset1": "Free Cash Flow"
                 },
                 "freeCashflowToRevenueRatio": {
-                    "title": "Verhältnis von freiem Cashflow zu Umsatz",
+                    "title": "Free Cashflow to Revenue Ratio",
                     "dataset1": "FCF/Revenue (%)"
                 },
                 "workingCapitalRatio": {
