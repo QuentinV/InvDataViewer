@@ -27,6 +27,10 @@ export interface Metrics {
     ltDebtToEquityRatio: number;
     ltDebtToOpIncomeRatio: number;
     longTermDebt: number;
+    operatingMargin: number;
+    daMargin: number;
+    rdRevenueMargin: number;
+    rdMargin: number;
 }
 
 export interface GlobalMetrics {

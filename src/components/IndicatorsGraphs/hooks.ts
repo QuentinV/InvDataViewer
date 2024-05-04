@@ -278,7 +278,7 @@ export const useChartData: (t: TFunction) => ChartValueType[][] = (t) => {
                         datasets: [
                             {
                                 label: t(`${tp}.grossProfitMargin.dataset1`),
-                                data: arrYears.map(k => years[k].metrics.grossProfitMargin),
+                                data: arrYears.map(k => years[k].metrics.grossProfitMargin * 100),
                                 borderColor: '#106ebe'   
                             },
                             {
@@ -300,7 +300,7 @@ export const useChartData: (t: TFunction) => ChartValueType[][] = (t) => {
                         datasets: [
                             {
                                 label: t(`${tp}.sgaAMargin.dataset1`),
-                                data: arrYears.map(k => years[k].metrics.vvRevenue),
+                                data: arrYears.map(k => years[k].metrics.vvRevenue * 100),
                                 borderColor: '#106ebe'   
                             },
                             {
@@ -312,7 +312,82 @@ export const useChartData: (t: TFunction) => ChartValueType[][] = (t) => {
                         ]
                     }
                 } 
-            } }
+            } },
+            { data: ( years ) => {
+                const arrYears = Object.keys(years).splice(-10);
+                return {
+                    options: getChartOptions( t(`${tp}.operatingMargin.title`) ),
+                    data: {
+                        labels: arrYears,
+                        datasets: [
+                            {
+                                label: t(`${tp}.operatingMargin.dataset1`),
+                                data: arrYears.map(k => years[k].metrics.operatingMargin * 100),
+                                borderColor: '#106ebe'   
+                            },
+                            {
+                                label: t(`${tp}.operatingMargin.dataset2`),
+                                pointStyle: false,
+                                data: arrYears.map(() => 10),
+                                borderColor: 'brown'
+                            }
+                        ]
+                    }
+                } 
+            } },
+            { data: ( years ) => {
+                const arrYears = Object.keys(years).splice(-10);
+                return {
+                    options: getChartOptions( t(`${tp}.daMargin.title`) ),
+                    data: {
+                        labels: arrYears,
+                        datasets: [
+                            {
+                                label: t(`${tp}.daMargin.dataset1`),
+                                data: arrYears.map(k => years[k].metrics.daMargin * 100),
+                                borderColor: '#106ebe'   
+                            },
+                            {
+                                label: t(`${tp}.daMargin.dataset2`),
+                                pointStyle: false,
+                                data: arrYears.map(() => 8),
+                                borderColor: 'brown'
+                            }
+                        ]
+                    }
+                } 
+            } },
+            { data: ( years ) => {
+                const arrYears = Object.keys(years).splice(-10);
+                return {
+                    options: getChartOptions( t(`${tp}.rdRevenueMargin.title`) ),
+                    data: {
+                        labels: arrYears,
+                        datasets: [
+                            {
+                                label: t(`${tp}.rdRevenueMargin.dataset1`),
+                                data: arrYears.map(k => years[k].metrics.rdRevenueMargin * 100),
+                                borderColor: '#106ebe'   
+                            },
+                            {
+                                label: t(`${tp}.rdRevenueMargin.dataset2`),
+                                pointStyle: false,
+                                data: arrYears.map(() => 16),
+                                borderColor: 'brown'
+                            },
+                            {
+                                label: t(`${tp}.rdRevenueMargin.dataset3`),
+                                pointStyle: false,
+                                data: arrYears.map(() => 10),
+                                borderColor: 'brown'
+                            }
+                        ]
+                    }
+                } 
+            } },
+            { 
+                data: ( years ) => getData( t(`${tp}.rdMargin.title`), t(`${tp}.rdMargin.dataset1`), years, { getValue: data => data.metrics.rdMargin * 100 } )
+            },
         ]
     ] 
 }

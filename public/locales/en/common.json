@@ -96,6 +96,26 @@
                     "title": "SgaA margin",
                     "dataset1": "V&V/Revenue (%)",
                     "dataset2": "30% is good"
+                },
+                "operatingMargin": {
+                    "title": "Operating Margin",
+                    "dataset1": "Operating Margin",
+                    "dataset2": "AVG OM S&P500"
+                },
+                "daMargin": {
+                    "title": "D&A Margin",
+                    "dataset1": "Depreciation and Amortization by gross profit",
+                    "dataset2": "8% is good"
+                },
+                "rdRevenueMargin": {
+                    "title": "R&D Revenue Margin",
+                    "dataset1": "R&D Revenue",
+                    "dataset2": "Obere Grenze",
+                    "dataset3": "Untere Grenze"
+                },
+                "rdMargin": {
+                    "title": "R&D Margin",
+                    "dataset1": "R&D/Net income"
                 }
             }
         },
