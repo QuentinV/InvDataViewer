@@ -23,6 +23,10 @@ export interface Metrics {
     ownersEarningsGrowth: number;
     ownersEarningsPerShare: number;
     freeCashFlow: number;
+    debtToEquityRatio: number;
+    ltDebtToEquityRatio: number;
+    ltDebtToOpIncomeRatio: number;
+    longTermDebt: number;
 }
 
 export interface GlobalMetrics {
@@ -38,6 +42,7 @@ export interface GlobalMetrics {
 
 export interface IncomeStatement {
     REVENUE?: number
+    OPERATING_INCOME?: number
 }
 
 export interface BalanceSheet {

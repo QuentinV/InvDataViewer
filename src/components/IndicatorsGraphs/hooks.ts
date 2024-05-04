@@ -192,7 +192,81 @@ export const useChartData: (t: TFunction) => ChartValueType[][] = (t) => {
             } }              
         ],
         [
-
+            { data: ( years ) => {
+                const arrYears = Object.keys(years).splice(-10);
+                return {
+                    options: getChartOptions( t(`${tp}.debtToEquityRatio.title`) ),
+                    data: {
+                        labels: arrYears,
+                        datasets: [
+                            {
+                                label: t(`${tp}.debtToEquityRatio.dataset1`),
+                                data: arrYears.map(k => years[k].metrics.debtToEquityRatio * 100),
+                                borderColor: '#106ebe'   
+                            },
+                            {
+                                label: t(`${tp}.debtToEquityRatio.dataset2`),
+                                pointStyle: false,
+                                data: arrYears.map(k => 100),
+                                borderColor: 'grey'
+                            },
+                            {
+                                label: t(`${tp}.debtToEquityRatio.dataset3`),
+                                pointStyle: false,
+                                data: arrYears.map(k => 50),
+                                borderColor: 'green'
+                            }
+                        ]
+                    }
+                } 
+            } },
+            { data: ( years ) => {
+                const arrYears = Object.keys(years).splice(-10);
+                return {
+                    options: getChartOptions( t(`${tp}.ltDebtToEquityRatio.title`) ),
+                    data: {
+                        labels: arrYears,
+                        datasets: [
+                            {
+                                label: t(`${tp}.ltDebtToEquityRatio.dataset1`),
+                                data: arrYears.map(k => years[k].metrics.ltDebtToEquityRatio * 100),
+                                borderColor: '#106ebe'   
+                            },
+                            {
+                                label: t(`${tp}.ltDebtToEquityRatio.dataset2`),
+                                pointStyle: false,
+                                data: arrYears.map(k => 35),
+                                borderColor: 'green'
+                            }
+                        ]
+                    }
+                } 
+            } },
+            { data: ( years ) => {
+                const arrYears = Object.keys(years).splice(-10);
+                return {
+                    options: getChartOptions( t(`${tp}.ltDebtToOpIncomeRatio.title`) ),
+                    data: {
+                        labels: arrYears,
+                        datasets: [
+                            {
+                                label: t(`${tp}.ltDebtToOpIncomeRatio.dataset1`),
+                                data: arrYears.map(k => years[k].INCOME_STATEMENT.OPERATING_INCOME),
+                                borderColor: '#106ebe'   
+                            },
+                            {
+                                label: t(`${tp}.ltDebtToOpIncomeRatio.dataset2`),
+                                pointStyle: false,
+                                data: arrYears.map(k => years[k].metrics.longTermDebt * 100),
+                                borderColor: 'red'
+                            }
+                        ]
+                    },
+                    additionalData: [
+                        { label: t(`${tp}.ltDebtToOpIncomeRatio.ltDebtToOpIncomeRatio`), value: years[arrYears[arrYears.length-1]]?.metrics.ltDebtToOpIncomeRatio, symbol: "%" }
+                    ]
+                } 
+            } }
         ],
         [
             { data: ( years ) => {

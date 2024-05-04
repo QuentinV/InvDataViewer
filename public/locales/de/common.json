@@ -67,6 +67,23 @@
                     "dataset2": "WCR > 1.2",
                     "dataset3": "WCR < 2.0"
                 },
+                "debtToEquityRatio": {
+                    "title": "Debt to equity ratio",
+                    "dataset1": "Debt/Equity",
+                    "dataset2": "<= 100% is good",
+                    "dataset3": "<= 50% is really good"
+                },
+                "ltDebtToEquityRatio": {
+                    "title": "Long term debt to equity ratio",
+                    "dataset1": "LT Debt/Equity",
+                    "dataset2": "<= 35% is good"
+                },
+                "ltDebtToOpIncomeRatio": {
+                    "title": "Longterm debt to operating income ratio",
+                    "dataset1": "Operating income",
+                    "dataset2": "Long-term liabilities",
+                    "ltDebtToOpIncomeRatio": "LT debt/OI ratio"
+                },
                 "grossProfitMargin": {
                     "title": "Bruttogewinnmarge (%)",
                     "dataset1": "Bruttogewinnmarge (%)",
