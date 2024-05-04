@@ -191,7 +191,9 @@ export const useChartData: (t: TFunction) => ChartValueType[][] = (t) => {
                 } 
             } }              
         ],
-        [],
+        [
+
+        ],
         [
             { data: ( years ) => {
                 const arrYears = Object.keys(years).splice(-10);
@@ -237,7 +239,6 @@ export const useChartData: (t: TFunction) => ChartValueType[][] = (t) => {
                     }
                 } 
             } }
-        ],
-        []
+        ]
     ] 
 }

@@ -3,4 +3,4 @@ export const textColorSecondary = '#848484';
 export const surfaceBorder = '#c8c8c8';
 export const digitsMapping = ['', 'Thousands', 'Millions', 'Billions', 'Trillions'];
 
-export const categories = ['growth', 'liquidity', 'debt', 'profitability', 'miscs'];
+export const categories = ['growth', 'liquidity', 'debt', 'profitability'];
