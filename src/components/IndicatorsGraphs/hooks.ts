@@ -66,7 +66,7 @@ const getData = ( title: string, label: string, years: { [key: string]: Data }, 
 export type ChartValueDataType = { labels: string[]; datasets: object[] };
 export interface ChartAdditionalData {
     label: string;
-    value: number;
+    value?: number;
     symbol: string;
 }
 export type ChartValueType = { data: ( years: { [key: string]: Data }, globalMetrics?: GlobalMetrics ) => { options: object, data: ChartValueDataType, additionalData?: ChartAdditionalData[] } };
@@ -77,17 +77,17 @@ export const useChartData: (t: TFunction) => ChartValueType[][] = (t) => {
             { data: ( years, globalMetrics ) => ({
                 ...getData( t(`${tp}.epsGrowth.title`), t(`${tp}.epsGrowth.dataset1`), years, { metric: 'adjustedNetIncomePerShare' } ),
                 additionalData: [
-                    { label: t(`${tp}.epsGrowth.cagrAdjustedProfit`), value: globalMetrics?.cagrAdjustedProfit || 0, symbol: '%' },
-                    { label: t(`${tp}.epsGrowth.cagrEarningsPerShare`), value: globalMetrics?.cagrEarningsPerShare || 0, symbol: '%' },
-                    { label: t(`${tp}.epsGrowth.10yAvgEarningsPerShare`), value: globalMetrics?.tenYAvgEarningsPerShare || 0, symbol: '$' }
+                    { label: t(`${tp}.epsGrowth.cagrAdjustedProfit`), value: globalMetrics?.cagrAdjustedProfit, symbol: '%' },
+                    { label: t(`${tp}.epsGrowth.cagrEarningsPerShare`), value: globalMetrics?.cagrEarningsPerShare, symbol: '%' },
+                    { label: t(`${tp}.epsGrowth.10yAvgEarningsPerShare`), value: globalMetrics?.tenYAvgEarningsPerShare, symbol: '$' }
                 ]
             }) },
             { data: ( years, globalMetrics ) => ({
                 ...getData( t(`${tp}.operatingIncome.title`), t(`${tp}.operatingIncome.dataset1`), years, { metric: 'operatingIncome' } ),
                 additionalData: [
-                    { label: t(`${tp}.operatingIncome.cagrOperatingIncome`), value: globalMetrics?.cagrOperatingIncome || 0, symbol: '%' },
-                    { label: t(`${tp}.operatingIncome.cagrOperatingIncomePerShare`), value: globalMetrics?.cagrOperatingIncomePerShare || 0, symbol: '%' },
-                    { label: t(`${tp}.operatingIncome.10yAvgEbitPerShare`), value: globalMetrics?.tenYAvgEbitPerShare || 0, symbol: '$' }
+                    { label: t(`${tp}.operatingIncome.cagrOperatingIncome`), value: globalMetrics?.cagrOperatingIncome, symbol: '%' },
+                    { label: t(`${tp}.operatingIncome.cagrOperatingIncomePerShare`), value: globalMetrics?.cagrOperatingIncomePerShare, symbol: '%' },
+                    { label: t(`${tp}.operatingIncome.10yAvgEbitPerShare`), value: globalMetrics?.tenYAvgEbitPerShare, symbol: '$' }
                 ]
             }) },
             { data: ( years, globalMetrics ) => {
@@ -111,8 +111,8 @@ export const useChartData: (t: TFunction) => ChartValueType[][] = (t) => {
                         ]
                     },
                     additionalData: [
-                        { label: t(`${tp}.revenueGrowthVsCOGSGrowth.cagrRevenue`), value: globalMetrics?.cagrRevenue || 0, symbol: '%'},
-                        { label: t(`${tp}.revenueGrowthVsCOGSGrowth.cagrRevenuePerShare`), value: globalMetrics?.cagrRevenuePerShare || 0, symbol: '%'}
+                        { label: t(`${tp}.revenueGrowthVsCOGSGrowth.cagrRevenue`), value: globalMetrics?.cagrRevenue, symbol: '%'},
+                        { label: t(`${tp}.revenueGrowthVsCOGSGrowth.cagrRevenuePerShare`), value: globalMetrics?.cagrRevenuePerShare, symbol: '%'}
                     ]
                 } 
             } }
