@@ -125,7 +125,7 @@ export const useChartData: (t: TFunction) => ChartValueType[][] = (t) => {
                     return {
                         ...getData( t(`${tp}.cashEquivalents.title`), t(`${tp}.cashEquivalents.dataset1`), years, { getValue: data => data.BALANCE_SHEET.CASH_AND_CASH_EQUIVALENTS } ),
                         additionalData: [
-                            { label: t(`${tp}.cashEquivalents.cashToShortTermDebtRatio`), value: (bs.CASH_AND_CASH_EQUIVALENTS || 0) / (bs.TOTAL_CURRENT_LIABILITIES || 1), symbol: '%'}
+                            { label: t(`${tp}.cashEquivalents.cashToShortTermDebtRatio`), value: (Number(bs.CASH_AND_CASH_EQUIVALENTS) / Number(bs.TOTAL_CURRENT_LIABILITIES)) || undefined, symbol: '%'}
                         ] 
                     }
                 }
