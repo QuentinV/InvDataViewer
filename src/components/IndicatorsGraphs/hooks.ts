@@ -477,8 +477,7 @@ export const useChartData: (t: TFunction) => ChartValueType[][] = (t) => {
                                     ),
                                     pointStyle: false,
                                     data: arrYears.map(
-                                        (k) =>
-                                            years[k].metrics.longTermDebt * 100
+                                        (k) => years[k].metrics.longTermDebt
                                     ),
                                     borderColor: 'red',
                                 },
