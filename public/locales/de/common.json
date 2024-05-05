@@ -11,6 +11,9 @@
         "search": "Suche..."
     },
     "ticker": {
+        "market": {
+            "title": "Marktanteilspreis"
+        },
         "metrics": {
             "title": "Metrics",
             "categories": {
