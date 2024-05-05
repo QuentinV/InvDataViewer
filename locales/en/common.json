@@ -11,6 +11,9 @@
         "search": "Search..."
     },
     "ticker": {
+        "market": {
+            "title": "Market share price"
+        },
         "metrics": {
             "title": "Metrics",
             "categories": {
