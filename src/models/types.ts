@@ -1,7 +1,7 @@
 export interface InvData {
     cik?: string
     name?: string
-    years?: { [key: string]: Data },
+    years?: { [key: string]: Data }
     metrics: GlobalMetrics
 }
 
@@ -13,35 +13,35 @@ export interface Data {
 }
 
 export interface Metrics {
-    adjustedNetIncome: number;
-    adjustedNetIncomePerShare: number;
-    grossProfitMargin: number;
-    operatingIncome: number;
-    revenuePerShare: number;
-    costsPerShare: number;
-    vvRevenue: number;
-    ownersEarningsGrowth: number;
-    ownersEarningsPerShare: number;
-    freeCashFlow: number;
-    debtToEquityRatio: number;
-    ltDebtToEquityRatio: number;
-    ltDebtToOpIncomeRatio: number;
-    longTermDebt: number;
-    operatingMargin: number;
-    daMargin: number;
-    rdRevenueMargin: number;
-    rdMargin: number;
+    adjustedNetIncome: number
+    adjustedNetIncomePerShare: number
+    grossProfitMargin: number
+    operatingIncome: number
+    revenuePerShare: number
+    costsPerShare: number
+    vvRevenue: number
+    ownersEarningsGrowth: number
+    ownersEarningsPerShare: number
+    freeCashFlow: number
+    debtToEquityRatio: number
+    ltDebtToEquityRatio: number
+    ltDebtToOpIncomeRatio: number
+    longTermDebt: number
+    operatingMargin: number
+    daMargin: number
+    rdRevenueMargin: number
+    rdMargin: number
 }
 
 export interface GlobalMetrics {
-    cagrAdjustedProfit?: number;
-    cagrEarningsPerShare?: number;
-    tenYAvgEarningsPerShare?: number;
-    cagrOperatingIncome?: number;
-    cagrOperatingIncomePerShare?: number;
-    tenYAvgEbitPerShare?: number;
-    cagrRevenue?: number;
-    cagrRevenuePerShare?: number;
+    cagrAdjustedProfit?: number
+    cagrEarningsPerShare?: number
+    tenYAvgEarningsPerShare?: number
+    cagrOperatingIncome?: number
+    cagrOperatingIncomePerShare?: number
+    tenYAvgEbitPerShare?: number
+    cagrRevenue?: number
+    cagrRevenuePerShare?: number
 }
 
 export interface IncomeStatement {
@@ -53,7 +53,7 @@ export interface BalanceSheet {
     CASH_AND_CASH_EQUIVALENTS?: number
     TOTAL_CURRENT_LIABILITIES?: number
     LONG_TERM_DEBT?: number
-    TOTAL_CURRENT_ASSETS?: number;
+    TOTAL_CURRENT_ASSETS?: number
 }
 
 export interface CashFlow {

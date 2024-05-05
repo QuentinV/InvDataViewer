@@ -37,7 +37,10 @@ const pTradingViewSymbolOverview: React.FC<TradindViewSymbolOverviewProps> = ({
     }, [ticker])
 
     return (
-        <div className="tradingview-widget-container w-full" ref={container}></div>
+        <div
+            className="tradingview-widget-container w-full"
+            ref={container}
+        ></div>
     )
 }
 
