@@ -33,6 +33,8 @@ export interface Metrics {
     rdMargin: number
     interestExpenseMargin: number
     assetTurnover: number
+    roe: number
+    investmentMargin: number
 }
 
 export interface GlobalMetrics {
@@ -44,6 +46,7 @@ export interface GlobalMetrics {
     tenYAvgEbitPerShare?: number
     cagrRevenue?: number
     cagrRevenuePerShare?: number
+    tenYAvgInvMargin?: number
 }
 
 export interface IncomeStatement {

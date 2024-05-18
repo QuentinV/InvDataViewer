@@ -636,6 +636,55 @@ export const useChartData: (t: TFunction) => ChartValueType[][] = (t) => {
                 data: (years) => {
                     const arrYears = Object.keys(years).splice(-10)
                     return {
+                        options: getChartOptions(
+                            t(`${tp}.roe.title`)
+                        ),
+                        data: {
+                            labels: arrYears,
+                            datasets: [
+                                {
+                                    label: t(`${tp}.roe.dataset1`),
+                                    data: arrYears.map(
+                                        (k) =>
+                                            years[k].metrics.roe *
+                                            100
+                                    ),
+                                    borderColor: '#106ebe',
+                                },
+                                {
+                                    label: t(`${tp}.roe.dataset2`),
+                                    pointStyle: false,
+                                    data: arrYears.map(() => 20),
+                                    borderColor: 'brown',
+                                },
+                            ],
+                        },
+                    }
+                },
+            },
+            {
+                data: (years, globalMetrics) => ({
+                    ...getData(
+                        t(`${tp}.invMargin.title`),
+                        t(`${tp}.invMargin.dataset1`),
+                        years,
+                        { getValue: (data) => data.metrics.investmentMargin * 100 }
+                    ),
+                    additionalData: [
+                        {
+                            label: t(
+                                `${tp}.invMargin.tenYAvgInvMargin`
+                            ),
+                            value: globalMetrics?.tenYAvgInvMargin,
+                            symbol: '%',
+                        },
+                    ]
+                }),
+            },
+            {
+                data: (years) => {
+                    const arrYears = Object.keys(years).splice(-10)
+                    return {
                         options: getChartOptions(t(`${tp}.daMargin.title`)),
                         data: {
                             labels: arrYears,

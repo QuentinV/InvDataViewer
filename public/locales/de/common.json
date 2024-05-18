@@ -111,6 +111,16 @@
                     "dataset1": "Operating Margin",
                     "dataset2": "AVG OM S&P500"
                 },
+                "roe": {
+                    "title": "ROE",
+                    "dataset1": "ROE",
+                    "dataset2": "> 20% is ist sehr gut"
+                },
+                "invMargin": {
+                    "title": "Investment Margin",
+                    "dataset1": "Investitionen/Operating Income",
+                    "tenYAvgInvMargin": "10-AV Inv Margin"
+                },
                 "daMargin": {
                     "title": "D&A Margin",
                     "dataset1": "Depreciation and Amortization by gross profit",
