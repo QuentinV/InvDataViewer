@@ -90,6 +90,11 @@
                     "dataset2": "Long-term liabilities",
                     "ltDebtToOpIncomeRatio": "LT debt/OI ratio"
                 },
+                "interestExpenseMargin": {
+                    "title": "Interest expense margin",
+                    "dataset1": "Interest expense / EBIT",
+                    "dataset2": "< 15 % is good"
+                },
                 "grossProfitMargin": {
                     "title": "Gross Profit Margin (%)",
                     "dataset1": "Gross Profit Margin (%)",
@@ -100,10 +105,24 @@
                     "dataset1": "V&V/Revenue (%)",
                     "dataset2": "30% is good"
                 },
+                "assetTurnover": {
+                    "title": "Asset turnover",
+                    "dataset1": "Asset turnover"
+                },
                 "operatingMargin": {
                     "title": "Operating Margin",
                     "dataset1": "Operating Margin",
                     "dataset2": "AVG OM S&P500"
+                },
+                "roe": {
+                    "title": "ROE",
+                    "dataset1": "ROE",
+                    "dataset2": "> 20% is is super good"
+                },
+                "invMargin": {
+                    "title": "Investment Margin",
+                    "dataset1": "Investitionen/Operating Income",
+                    "tenYAvgInvMargin": "10-AV Inv Margin"
                 },
                 "daMargin": {
                     "title": "D&A Margin",
