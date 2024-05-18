@@ -31,6 +31,7 @@ export interface Metrics {
     daMargin: number
     rdRevenueMargin: number
     rdMargin: number
+    interestExpenseMargin: number
 }
 
 export interface GlobalMetrics {

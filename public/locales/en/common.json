@@ -90,6 +90,11 @@
                     "dataset2": "Long-term liabilities",
                     "ltDebtToOpIncomeRatio": "LT debt/OI ratio"
                 },
+                "interestExpenseMargin": {
+                    "title": "Interest expense margin",
+                    "dataset1": "Interest expense / EBIT",
+                    "dataset2": "< 15 % is good"
+                },
                 "grossProfitMargin": {
                     "title": "Gross Profit Margin (%)",
                     "dataset1": "Gross Profit Margin (%)",

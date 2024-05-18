@@ -496,6 +496,41 @@ export const useChartData: (t: TFunction) => ChartValueType[][] = (t) => {
                     }
                 },
             },
+            {
+                data: (years) => {
+                    const arrYears = Object.keys(years).splice(-10)
+                    return {
+                        options: getChartOptions(
+                            t(`${tp}.interestExpenseMargin.title`)
+                        ),
+                        data: {
+                            labels: arrYears,
+                            datasets: [
+                                {
+                                    label: t(
+                                        `${tp}.interestExpenseMargin.dataset1`
+                                    ),
+                                    data: arrYears.map(
+                                        (k) =>
+                                            years[k].metrics.interestExpenseMargin
+                                    ),
+                                    borderColor: '#106ebe',
+                                },
+                                {
+                                    label: t(
+                                        `${tp}.interestExpenseMargin.dataset2`
+                                    ),
+                                    pointStyle: false,
+                                    data: arrYears.map(
+                                        (k) => years[k].metrics.longTermDebt
+                                    ),
+                                    borderColor: 'red',
+                                },
+                            ],
+                        }
+                    }
+                },
+            }
         ],
         [
             {
