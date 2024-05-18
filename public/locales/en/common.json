@@ -105,6 +105,10 @@
                     "dataset1": "V&V/Revenue (%)",
                     "dataset2": "30% is good"
                 },
+                "assetTurnover": {
+                    "title": "Asset turnover",
+                    "dataset1": "Asset turnover"
+                },
                 "operatingMargin": {
                     "title": "Operating Margin",
                     "dataset1": "Operating Margin",

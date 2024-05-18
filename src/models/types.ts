@@ -32,6 +32,7 @@ export interface Metrics {
     rdRevenueMargin: number
     rdMargin: number
     interestExpenseMargin: number
+    assetTurnover: number
 }
 
 export interface GlobalMetrics {

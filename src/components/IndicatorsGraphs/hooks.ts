@@ -512,7 +512,7 @@ export const useChartData: (t: TFunction) => ChartValueType[][] = (t) => {
                                     ),
                                     data: arrYears.map(
                                         (k) =>
-                                            years[k].metrics.interestExpenseMargin
+                                            years[k].metrics.interestExpenseMargin * 100
                                     ),
                                     borderColor: '#106ebe',
                                 },
@@ -522,9 +522,9 @@ export const useChartData: (t: TFunction) => ChartValueType[][] = (t) => {
                                     ),
                                     pointStyle: false,
                                     data: arrYears.map(
-                                        (k) => years[k].metrics.longTermDebt
+                                        (k) => 15
                                     ),
-                                    borderColor: 'red',
+                                    borderColor: 'brown',
                                 },
                             ],
                         }
@@ -592,6 +592,15 @@ export const useChartData: (t: TFunction) => ChartValueType[][] = (t) => {
                         },
                     }
                 },
+            },
+            {
+                data: (years) =>
+                    getData(
+                        t(`${tp}.assetTurnover.title`),
+                        t(`${tp}.assetTurnover.dataset1`),
+                        years,
+                        { getValue: (data) => data.metrics.assetTurnover * 100 }
+                    ),
             },
             {
                 data: (years) => {
