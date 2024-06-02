@@ -1,7 +1,7 @@
 
-export interface PointData {
+export interface ScoreData {
     graphKey: string;
     value: number;
 }
 
-export type PointsData = {[key: string]: PointData}
+export type ScoresData = {[key: string]: ScoreData}

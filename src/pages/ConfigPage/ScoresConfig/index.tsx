@@ -5,7 +5,7 @@ import { JsonEditor as Editor } from 'jsoneditor-react'
 import 'jsoneditor-react/es/editor.min.css'
 import { Button } from 'primereact/button'
 
-export const PointsConfig: React.FC = () => {
+export const ScoresConfig: React.FC = () => {
     const [rules, setRules] = useState<object>()
 
     useEffect(() => {

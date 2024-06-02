@@ -1,5 +1,5 @@
 import { attach, createEffect, createEvent, createStore, sample } from 'effector';
-import { PointData, PointsData } from './types';
+import { ScoreData, ScoresData } from './types';
 import { api } from '../../api/invData';
 
 const $ticker = createStore<string>('');
@@ -10,24 +10,24 @@ const getScoresForActiveTickerFx = attach({
     source: $ticker,
     mapParams: ( _params: unknown, ticker: string ) => ({ ticker }),
     effect: createEffect(async ({ ticker }: { ticker: string }) => {
-        const res = await api(`invData/points/${ticker}`)
+        const res = await api(`invData/scores/${ticker}`)
         return res.json();
     })
 })
 
 const saveScoreFx = attach({
     source: $ticker,
-    mapParams: ( params: PointData, ticker: string ) => ({ ...params, ticker }),
+    mapParams: ( params: ScoreData, ticker: string ) => ({ ...params, ticker }),
     effect: createEffect(({ ticker, graphKey, value }: { ticker: string, graphKey: string, value: number }) => {
-        api(`invData/points`, {
+        api(`invData/scores`, {
             method: 'POST',
             body: JSON.stringify({ ticker, graphKey, value }),
         })
     })
 })
 
-const $scores = createStore<PointsData | null>(null);
-const setScore = createEvent<PointData>();
+const $scores = createStore<ScoresData | null>(null);
+const setScore = createEvent<ScoreData>();
 $scores
     .on(getScoresForActiveTickerFx.doneData, (_, state) => state)
     .on(setScore, (current, state) => ({ ...current, ...{ [state.graphKey]: state }}));
@@ -40,7 +40,7 @@ sample({
 
 sample({
     clock: saveScoreFx.done,
-    fn: ( { params: {graphKey, value} } ): PointData => ({ graphKey, value }),
+    fn: ( { params: {graphKey, value} } ): ScoreData => ({ graphKey, value }),
     target: setScore
 })
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import { TabView, TabPanel } from 'primereact/tabview'
 import { RulesConfig } from './RulesConfig';
-import { PointsConfig } from './PointsConfig';
+import { ScoresConfig } from './ScoresConfig';
 
 
 export const ConfigPage: React.FC = () => {
@@ -15,7 +15,7 @@ export const ConfigPage: React.FC = () => {
             </TabPanel>
             <TabPanel header="Scores mapping rules">
                 <div className="m-0">
-                    <PointsConfig />
+                    <ScoresConfig />
                 </div>
             </TabPanel>
         </TabView>
