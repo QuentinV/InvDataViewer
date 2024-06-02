@@ -5,7 +5,7 @@ import { Chart } from 'primereact/chart'
 import { ChartAdditionalData, ChartValueDataType } from '../hooks'
 import { formatFromSymbol } from '../../../utils/formatFromSymbol'
 import { VotingSelector } from '../VotingSelector'
-import { PointData } from '../types'
+import { PointData } from '../../../models/types'
 
 interface MetricsGraphProps {
     graphKey: string;

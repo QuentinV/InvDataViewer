@@ -5,7 +5,8 @@ import { categories } from './constants'
 import { TabPanel, TabView } from 'primereact/tabview'
 import { useTranslation } from 'react-i18next'
 import { useChartData } from './hooks'
-import { PointData, PointsData } from './types'
+import { PointData, PointsData } from '../../models/types'
+import { ScoreViewer } from '../ScoreViewer'
 
 interface IndicatorsGraphProps {
     data?: InvData;
@@ -23,6 +24,9 @@ export const IndicatorsGraph: React.FC<IndicatorsGraphProps> = ({ data, savePoin
             <h3 className="bg-primary p-2">{t('ticker.metrics.title')}</h3>
             <div>
                 <TabView>
+                    <TabPanel header="Score">
+                        <ScoreViewer data={points} />
+                    </TabPanel>
                     {chartData.map((elem, index) => (
                         <TabPanel
                             header={t(

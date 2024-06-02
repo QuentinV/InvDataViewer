@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { SelectButton } from 'primereact/selectbutton'
-import { PointData } from '../types';
+import { PointData } from '../../../models/types';
 
 interface VotingSelectorProps {
     graphKey: string;

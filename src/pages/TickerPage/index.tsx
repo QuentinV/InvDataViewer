@@ -7,7 +7,7 @@ import { api } from '../../api/invData'
 import { Config } from '../../components/InvDataViewer/types'
 import { useTranslation } from 'react-i18next'
 import { TradingViewSymbolOverview } from '../../components/tradingView/SymbolOverview'
-import { PointsData } from '../../components/IndicatorsGraphs/types'
+import { PointsData } from '../../models/types'
 
 export const TickerPage: React.FC = () => {
     const { t } = useTranslation()
