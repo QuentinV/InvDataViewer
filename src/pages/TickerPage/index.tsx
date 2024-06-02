@@ -7,12 +7,14 @@ import { api } from '../../api/invData'
 import { Config } from '../../components/InvDataViewer/types'
 import { useTranslation } from 'react-i18next'
 import { TradingViewSymbolOverview } from '../../components/tradingView/SymbolOverview'
+import { PointsData } from '../../components/IndicatorsGraphs/types'
 
 export const TickerPage: React.FC = () => {
     const { t } = useTranslation()
     const { ticker } = useParams()
     const [data, setData] = useState<InvData | undefined | null>()
     const [configs, setConfigs] = useState<Config[] | undefined>()
+    const [points, setPoints] = useState<PointsData | undefined>();
 
     useEffect(() => {
         const getTicker = async () => {
@@ -29,6 +31,11 @@ export const TickerPage: React.FC = () => {
             setConfigs(await res.json())
         }
         getConfig()
+        const getPoints = async () => {
+            const res = await api(`invData/points/${ticker}`)
+            setPoints(await res.json())
+        }
+        getPoints();
     }, [ticker])
 
     if (data === undefined || configs === undefined) {
@@ -44,7 +51,7 @@ export const TickerPage: React.FC = () => {
         )
     }
 
-    const setPoints = ({ graphKey, value }: { graphKey: string; value: number }) => 
+    const savePoints = ({ graphKey, value }: { graphKey: string; value: number }) => 
         api(`invData/points`, {
             method: 'POST',
             body: JSON.stringify({ ticker, graphKey, value }),
@@ -57,7 +64,7 @@ export const TickerPage: React.FC = () => {
                 <h3 className="bg-primary p-2">{t('ticker.market.title')}</h3>
                 <TradingViewSymbolOverview ticker={ticker || ''} />
             </div>
-            <IndicatorsGraph data={data} setPoints={setPoints} />
+            <IndicatorsGraph data={data} savePoints={savePoints} points={points} />
             <InvDataViewer data={data} configs={configs} />
         </div>
     )

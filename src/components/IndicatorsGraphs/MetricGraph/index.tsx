@@ -5,6 +5,7 @@ import { Chart } from 'primereact/chart'
 import { ChartAdditionalData, ChartValueDataType } from '../hooks'
 import { formatFromSymbol } from '../../../utils/formatFromSymbol'
 import { VotingSelector } from '../VotingSelector'
+import { PointData } from '../types'
 
 interface MetricsGraphProps {
     graphKey: string;
@@ -14,7 +15,8 @@ interface MetricsGraphProps {
     ) => { data: ChartValueDataType; options: object }
     years: { [key: string]: Data }
     globalMetrics?: GlobalMetrics;
-    setPoints: ({ graphKey, value }: { graphKey: string; value: number }) => void;
+    savePoints: ({ graphKey, value }: PointData) => void;
+    pointValue?: number;
 }
 
 export const MetricsGraph: React.FC<MetricsGraphProps> = ({
@@ -22,7 +24,8 @@ export const MetricsGraph: React.FC<MetricsGraphProps> = ({
     getData,
     years,
     globalMetrics,
-    setPoints
+    savePoints,
+    pointValue
 }) => {
     const [value, setValue] = useState<{
         data: ChartValueDataType
@@ -58,7 +61,7 @@ export const MetricsGraph: React.FC<MetricsGraphProps> = ({
                             className="absolute"
                             style={{ left: '15px', top: '10px' }}
                         >
-                            <VotingSelector graphKey={graphKey} setValue={setPoints} />
+                            <VotingSelector graphKey={graphKey} setValue={savePoints} value={pointValue} />
                         </div>
                     </div>
                     <div className="flex-none align-self-center">

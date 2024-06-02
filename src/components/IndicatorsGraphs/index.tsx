@@ -5,13 +5,15 @@ import { categories } from './constants'
 import { TabPanel, TabView } from 'primereact/tabview'
 import { useTranslation } from 'react-i18next'
 import { useChartData } from './hooks'
+import { PointData, PointsData } from './types'
 
 interface IndicatorsGraphProps {
     data?: InvData;
-    setPoints: ({ graphKey, value }: { graphKey: string; value: number }) => void;
+    savePoints: ({ graphKey, value }: PointData) => void;
+    points?: PointsData;
 }
 
-export const IndicatorsGraph: React.FC<IndicatorsGraphProps> = ({ data, setPoints }) => {
+export const IndicatorsGraph: React.FC<IndicatorsGraphProps> = ({ data, savePoints, points }) => {
     const { t } = useTranslation()
     const years = data?.years || {}
     const chartData = useChartData(t)
@@ -39,7 +41,8 @@ export const IndicatorsGraph: React.FC<IndicatorsGraphProps> = ({ data, setPoint
                                         getData={e.data}
                                         years={years}
                                         globalMetrics={data?.metrics}
-                                        setPoints={setPoints}
+                                        savePoints={savePoints}
+                                        pointValue={points?.[e.key]?.value}
                                     />
                                 </div>
                             ))}

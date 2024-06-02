@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import { SelectButton } from 'primereact/selectbutton'
+import { PointData } from '../types';
 
 interface VotingSelectorProps {
     graphKey: string;
     value?: number;
-    setValue: ({ graphKey, value }: { graphKey: string; value: number }) => void;
+    setValue: ({ graphKey, value }: PointData) => void;
 }
 
 const items = [-2, -1, 0, 1, 2].map( k => ({ name: String(k), value: k }));
@@ -13,7 +14,7 @@ export const VotingSelector: React.FC<VotingSelectorProps> = ({ graphKey, value,
     const [ownValue, setOwnValue] = useState<number | undefined>(value);
 
     const setVal = (v : number) => {
-        setValue({ graphKey, value: value || 0 });
+        setValue({ graphKey, value: v });
         setOwnValue(v);
     }
 
