@@ -7,10 +7,11 @@ import { useTranslation } from 'react-i18next'
 import { useChartData } from './hooks'
 
 interface IndicatorsGraphProps {
-    data?: InvData
+    data?: InvData;
+    setPoints: ({ graphKey, value }: { graphKey: string; value: number }) => void;
 }
 
-export const IndicatorsGraph: React.FC<IndicatorsGraphProps> = ({ data }) => {
+export const IndicatorsGraph: React.FC<IndicatorsGraphProps> = ({ data, setPoints }) => {
     const { t } = useTranslation()
     const years = data?.years || {}
     const chartData = useChartData(t)
@@ -34,9 +35,11 @@ export const IndicatorsGraph: React.FC<IndicatorsGraphProps> = ({ data }) => {
                                     style={{ marginBottom: '75px' }}
                                 >
                                     <MetricsGraph
+                                        graphKey={e.key}
                                         getData={e.data}
                                         years={years}
                                         globalMetrics={data?.metrics}
+                                        setPoints={setPoints}
                                     />
                                 </div>
                             ))}

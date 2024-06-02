@@ -44,6 +44,12 @@ export const TickerPage: React.FC = () => {
         )
     }
 
+    const setPoints = ({ graphKey, value }: { graphKey: string; value: number }) => 
+        api(`invData/points`, {
+            method: 'POST',
+            body: JSON.stringify({ ticker, graphKey, value }),
+        })
+
     return (
         <div className="ml-4 pr-4 pb-4 overflow-auto h-full">
             <h1 className="text-center">{data.name}</h1>
@@ -51,7 +57,7 @@ export const TickerPage: React.FC = () => {
                 <h3 className="bg-primary p-2">{t('ticker.market.title')}</h3>
                 <TradingViewSymbolOverview ticker={ticker || ''} />
             </div>
-            <IndicatorsGraph data={data} />
+            <IndicatorsGraph data={data} setPoints={setPoints} />
             <InvDataViewer data={data} configs={configs} />
         </div>
     )
