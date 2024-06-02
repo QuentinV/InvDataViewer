@@ -11,6 +11,10 @@ export const chartOptions = {
             borderWidth: 3
         }
     },
+    scale: {
+        min: -2,
+        max: 2
+    },
     scales: {
         r: {
             ticks: {
