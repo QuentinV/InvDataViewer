@@ -65,13 +65,6 @@ export interface CashFlow {
     NET_CASH_PROVIDED_BY_OPERATING_ACTIVITIES?: number
 }
 
-export interface PointData {
-    graphKey: string;
-    value: number;
-}
-
-export type PointsData = {[key: string]: PointData}
-
 export interface ScoreDetailsConfig {
     value: number;
 }

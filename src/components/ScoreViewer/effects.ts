@@ -1,5 +1,6 @@
 import { TFunction } from "i18next";
-import { PointsData, ScoreConfig } from "../../models/types";
+import { ScoreConfig } from "../../models/types";
+import { PointsData } from "../../models/scores/types";
 
 export const getScoreChartData = ({ t, config, data } : { t: TFunction, config: ScoreConfig; data: PointsData }) => {
     const scores = Object.keys(config).map( k => {

@@ -7,16 +7,17 @@ import { api } from '../../api/invData'
 import { Config } from '../../components/InvDataViewer/types'
 import { useTranslation } from 'react-i18next'
 import { TradingViewSymbolOverview } from '../../components/tradingView/SymbolOverview'
-import { PointsData } from '../../models/types'
+import { scoresEvents } from '../../models/scores';
 
 export const TickerPage: React.FC = () => {
     const { t } = useTranslation()
     const { ticker } = useParams()
     const [data, setData] = useState<InvData | undefined | null>()
     const [configs, setConfigs] = useState<Config[] | undefined>()
-    const [points, setPoints] = useState<PointsData | undefined>();
 
     useEffect(() => {
+        if (!ticker) return;
+
         const getTicker = async () => {
             const res = await api(`invData/fundamentals/${ticker}`)
             if (res.status === 404) {
@@ -31,11 +32,8 @@ export const TickerPage: React.FC = () => {
             setConfigs(await res.json())
         }
         getConfig()
-        const getPoints = async () => {
-            const res = await api(`invData/points/${ticker}`)
-            setPoints(await res.json())
-        }
-        getPoints();
+
+        scoresEvents.setTicker(ticker);
     }, [ticker])
 
     if (data === undefined || configs === undefined) {
@@ -51,12 +49,6 @@ export const TickerPage: React.FC = () => {
         )
     }
 
-    const savePoints = ({ graphKey, value }: { graphKey: string; value: number }) => 
-        api(`invData/points`, {
-            method: 'POST',
-            body: JSON.stringify({ ticker, graphKey, value }),
-        })
-
     return (
         <div className="ml-4 pr-4 pb-4 overflow-auto h-full">
             <h1 className="text-center">{data.name}</h1>
@@ -64,7 +56,7 @@ export const TickerPage: React.FC = () => {
                 <h3 className="bg-primary p-2">{t('ticker.market.title')}</h3>
                 <TradingViewSymbolOverview ticker={ticker || ''} />
             </div>
-            <IndicatorsGraph data={data} savePoints={savePoints} points={points} />
+            <IndicatorsGraph data={data} />
             <InvDataViewer data={data} configs={configs} />
         </div>
     )

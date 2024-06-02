@@ -1,19 +1,18 @@
 import { Chart } from 'primereact/chart'
 import React, { useEffect, useState } from 'react'
+import { useUnit } from 'effector-react';
 import { useTranslation } from 'react-i18next'
 import { chartOptions } from './constants';
-import { PointsData, ScoreConfig } from '../../models/types';
+import { ScoreConfig } from '../../models/types';
 import { api } from '../../api/invData';
 import { getScoreChartData } from './effects';
+import { scoresStores } from '../../models/scores';
 
-interface ScoreViewerProps {
-    data?: PointsData
-}
-
-export const ScoreViewer: React.FC<ScoreViewerProps> = ({ data }) => {
+export const ScoreViewer: React.FC = () => {
     const { t } = useTranslation()
     const [config, setConfig] = useState<ScoreConfig>();
     const [chartData, setChartData] = useState<any>();
+    const data = useUnit(scoresStores.$scores);
 
     useEffect(() => {
         if ( config && data )

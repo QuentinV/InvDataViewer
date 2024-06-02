@@ -5,16 +5,13 @@ import { categories } from './constants'
 import { TabPanel, TabView } from 'primereact/tabview'
 import { useTranslation } from 'react-i18next'
 import { useChartData } from './hooks'
-import { PointData, PointsData } from '../../models/types'
 import { ScoreViewer } from '../ScoreViewer'
 
 interface IndicatorsGraphProps {
     data?: InvData;
-    savePoints: ({ graphKey, value }: PointData) => void;
-    points?: PointsData;
 }
 
-export const IndicatorsGraph: React.FC<IndicatorsGraphProps> = ({ data, savePoints, points }) => {
+export const IndicatorsGraph: React.FC<IndicatorsGraphProps> = ({ data }) => {
     const { t } = useTranslation()
     const years = data?.years || {}
     const chartData = useChartData(t)
@@ -25,7 +22,7 @@ export const IndicatorsGraph: React.FC<IndicatorsGraphProps> = ({ data, savePoin
             <div>
                 <TabView>
                     <TabPanel header={t('ticker.metrics.categories.score')}>
-                        <ScoreViewer data={points} />
+                        <ScoreViewer />
                     </TabPanel>
                     {chartData.map((elem, index) => (
                         <TabPanel
@@ -45,8 +42,6 @@ export const IndicatorsGraph: React.FC<IndicatorsGraphProps> = ({ data, savePoin
                                         getData={e.data}
                                         years={years}
                                         globalMetrics={data?.metrics}
-                                        savePoints={savePoints}
-                                        pointValue={points?.[e.key]?.value}
                                     />
                                 </div>
                             ))}
