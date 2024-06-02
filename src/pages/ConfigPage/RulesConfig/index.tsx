@@ -6,7 +6,7 @@ import 'jsoneditor-react/es/editor.min.css'
 import { Button } from 'primereact/button'
 import { TestsViewer } from './TestsViewer'
 
-export const RulesConfigPage: React.FC = () => {
+export const RulesConfig: React.FC = () => {
     const [rules, setRules] = useState<object>()
 
     useEffect(() => {
@@ -29,7 +29,6 @@ export const RulesConfigPage: React.FC = () => {
 
     return (
         <>
-            <h2 className="text-center">Edit rules config</h2>
             <div className="flex h-27rem w-full">
                 <Editor
                     value={rules}
