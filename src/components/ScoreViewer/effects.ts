@@ -3,8 +3,10 @@ import { PointsData, ScoreConfig } from "../../models/types";
 
 export const getScoreChartData = ({ t, config, data } : { t: TFunction, config: ScoreConfig; data: PointsData }) => {
     const scores = Object.keys(config).map( k => {
+        const value = config[k].value || 0;
         const details = config[k].details;
-        return Object.keys(details).reduce( (prev, kv) => prev += ((details[kv].value/100) * (data[kv]?.value || 0)), 0 );
+        return Number((Object.keys(details)
+                     .reduce( (prev, kv) => prev += ((details[kv].value/100) * (data[kv]?.value || 0)), 0 ) * value / 100).toFixed(2));
     });
     return {
         labels: Object.keys(config).map( k => t(`ticker.metrics.categories.${k}`)),

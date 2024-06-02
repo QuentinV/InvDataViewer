@@ -13,7 +13,7 @@ export const ConfigPage: React.FC = () => {
                     <RulesConfig />
                 </div>
             </TabPanel>
-            <TabPanel header="Points rules">
+            <TabPanel header="Scores mapping rules">
                 <div className="m-0">
                     <PointsConfig />
                 </div>
