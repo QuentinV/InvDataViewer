@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { chartOptions } from './constants';
 import { PointsData, ScoreConfig } from '../../models/types';
 import { api } from '../../api/invData';
-import { useScoreChartData } from './hooks';
+import { getScoreChartData } from './effects';
 
 interface ScoreViewerProps {
     data?: PointsData
@@ -13,7 +13,12 @@ interface ScoreViewerProps {
 export const ScoreViewer: React.FC<ScoreViewerProps> = ({ data }) => {
     const { t } = useTranslation()
     const [config, setConfig] = useState<ScoreConfig>();
-    const chartData: any = data && config ? useScoreChartData({ t, config, data }) : undefined;
+    const [chartData, setChartData] = useState<any>();
+
+    useEffect(() => {
+        if ( config && data )
+            setChartData(getScoreChartData({ t, config, data }));
+    }, [data, config, t])
 
     useEffect(() => {
         const getConfigs = async () => {

@@ -1,7 +1,7 @@
 import { TFunction } from "i18next";
 import { PointsData, ScoreConfig } from "../../models/types";
 
-export const useScoreChartData = ({ t, config, data } : { t: TFunction, config: ScoreConfig; data: PointsData }) => {
+export const getScoreChartData = ({ t, config, data } : { t: TFunction, config: ScoreConfig; data: PointsData }) => {
     return {
         labels: Object.keys(config).map( k => t(`ticker.metrics.categories.${k}`)),
         datasets: [{
