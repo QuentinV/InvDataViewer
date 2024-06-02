@@ -24,7 +24,7 @@ export const IndicatorsGraph: React.FC<IndicatorsGraphProps> = ({ data, savePoin
             <h3 className="bg-primary p-2">{t('ticker.metrics.title')}</h3>
             <div>
                 <TabView>
-                    <TabPanel header="Score">
+                    <TabPanel header={t('ticker.metrics.categories.score')}>
                         <ScoreViewer data={points} />
                     </TabPanel>
                     {chartData.map((elem, index) => (

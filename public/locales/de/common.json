@@ -17,6 +17,7 @@
         "metrics": {
             "title": "Metrics",
             "categories": {
+                "score": "Score",
                 "growth": "Wachstum",
                 "liquidity": "Liquidität",
                 "debt": "Verschuldungsgrad",
