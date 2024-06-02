@@ -22,7 +22,7 @@ export const Header: React.FC = () => {
         {
             label: t('menu.config'),
             icon: 'pi pi-cog',
-            command: () => navigate('/config/rules'),
+            command: () => navigate('/config'),
         },
         {
             label: t('menu.lang'),

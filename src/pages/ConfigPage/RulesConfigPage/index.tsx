@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { api } from '../../api/invData'
+import { api } from '../../../api/invData'
 // @ts-expect-error no type
 import { JsonEditor as Editor } from 'jsoneditor-react'
 import 'jsoneditor-react/es/editor.min.css'
@@ -28,7 +28,7 @@ export const RulesConfigPage: React.FC = () => {
     }
 
     return (
-        <div>
+        <>
             <h2 className="text-center">Edit rules config</h2>
             <div className="flex h-27rem w-full">
                 <Editor
@@ -49,6 +49,6 @@ export const RulesConfigPage: React.FC = () => {
                 <Button label="Save" onClick={save} />
             </div>
             <TestsViewer />
-        </div>
+        </>
     )
 }

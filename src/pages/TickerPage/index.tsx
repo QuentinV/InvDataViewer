@@ -45,7 +45,7 @@ export const TickerPage: React.FC = () => {
     }
 
     return (
-        <div className="m-5">
+        <div className="ml-4 pr-4 pb-4 overflow-auto h-full">
             <h1 className="text-center">{data.name}</h1>
             <div>
                 <h3 className="bg-primary p-2">{t('ticker.market.title')}</h3>
