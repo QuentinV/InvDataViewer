@@ -17,11 +17,11 @@
         "metrics": {
             "title": "Metrics",
             "categories": {
+                "score": "Score",
                 "growth": "Growth",
                 "liquidity": "Liquidity",
                 "debt": "Debt",
-                "profitability": "Profitability",
-                "miscs": "Miscs"
+                "profitability": "Profitability"
             },
             "charts": {
                 "epsGrowth": {
