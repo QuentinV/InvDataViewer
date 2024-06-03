@@ -64,3 +64,16 @@ export interface BalanceSheet {
 export interface CashFlow {
     NET_CASH_PROVIDED_BY_OPERATING_ACTIVITIES?: number
 }
+
+export interface ScoreDetailsConfig {
+    value: number;
+}
+
+export interface ScoreCategoryConfig {
+    value: number;
+    details: { [key:string]: ScoreDetailsConfig };
+}
+
+export interface ScoreConfig {
+    [key: string]: ScoreCategoryConfig;
+}

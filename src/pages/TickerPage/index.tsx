@@ -7,6 +7,7 @@ import { api } from '../../api/invData'
 import { Config } from '../../components/InvDataViewer/types'
 import { useTranslation } from 'react-i18next'
 import { TradingViewSymbolOverview } from '../../components/tradingView/SymbolOverview'
+import { scoresEvents } from '../../models/scores';
 
 export const TickerPage: React.FC = () => {
     const { t } = useTranslation()
@@ -15,6 +16,8 @@ export const TickerPage: React.FC = () => {
     const [configs, setConfigs] = useState<Config[] | undefined>()
 
     useEffect(() => {
+        if (!ticker) return;
+
         const getTicker = async () => {
             const res = await api(`invData/fundamentals/${ticker}`)
             if (res.status === 404) {
@@ -29,6 +32,8 @@ export const TickerPage: React.FC = () => {
             setConfigs(await res.json())
         }
         getConfig()
+
+        scoresEvents.setTicker(ticker);
     }, [ticker])
 
     if (data === undefined || configs === undefined) {
@@ -45,7 +50,7 @@ export const TickerPage: React.FC = () => {
     }
 
     return (
-        <div className="m-5">
+        <div className="ml-4 pr-4 pb-4 overflow-auto h-full">
             <h1 className="text-center">{data.name}</h1>
             <div>
                 <h3 className="bg-primary p-2">{t('ticker.market.title')}</h3>

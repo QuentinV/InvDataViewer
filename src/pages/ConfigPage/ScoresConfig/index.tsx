@@ -1,19 +1,18 @@
 import React, { useEffect, useState } from 'react'
-import { api } from '../../api/invData'
+import { api } from '../../../api/invData'
 // @ts-expect-error no type
 import { JsonEditor as Editor } from 'jsoneditor-react'
 import 'jsoneditor-react/es/editor.min.css'
 import { Button } from 'primereact/button'
-import { TestsViewer } from './TestsViewer'
 
-export const RulesConfigPage: React.FC = () => {
+export const ScoresConfig: React.FC = () => {
     const [rules, setRules] = useState<object>()
 
     useEffect(() => {
         const getConfigs = async () => {
-            const res = await api(`invData/config/fundamentals/rules?limit=1`)
+            const res = await api(`invData/config/voting?limit=1`)
             const value = await res.json()
-            setRules(value[0].rules)
+            setRules(value[0]?.rules || {})
         }
         getConfigs()
     }, [])
@@ -21,15 +20,14 @@ export const RulesConfigPage: React.FC = () => {
     if (!rules) return null
 
     const save = () => {
-        api(`invData/config/fundamentals/rules`, {
+        api(`invData/config/voting`, {
             method: 'POST',
             body: JSON.stringify({ rules }),
         })
     }
 
     return (
-        <div>
-            <h2 className="text-center">Edit rules config</h2>
+        <>
             <div className="flex h-27rem w-full">
                 <Editor
                     value={rules}
@@ -48,7 +46,6 @@ export const RulesConfigPage: React.FC = () => {
             <div className="mt-2 mb-8 text-center">
                 <Button label="Save" onClick={save} />
             </div>
-            <TestsViewer />
-        </div>
+        </>
     )
 }

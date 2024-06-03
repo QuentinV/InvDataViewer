@@ -74,7 +74,7 @@ export const HomePage: React.FC = () => {
     }
 
     return (
-        <div className="m-auto flex flex-column w-full">
+        <div className="m-auto flex flex-column w-full overflow-auto">
             <h3 className="text-center">{t('home.title')}</h3>
             <div className="card pl-5 pr-5 w-full">
                 <DataView

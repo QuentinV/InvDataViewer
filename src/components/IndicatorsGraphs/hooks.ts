@@ -96,6 +96,7 @@ export interface ChartAdditionalData {
     symbol: string
 }
 export type ChartValueType = {
+    key: string;
     data: (
         years: { [key: string]: Data },
         globalMetrics?: GlobalMetrics
@@ -110,6 +111,7 @@ export const useChartData: (t: TFunction) => ChartValueType[][] = (t) => {
     return [
         [
             {
+                key: 'epsGrowth',
                 data: (years, globalMetrics) => ({
                     ...getData(
                         t(`${tp}.epsGrowth.title`),
@@ -137,6 +139,7 @@ export const useChartData: (t: TFunction) => ChartValueType[][] = (t) => {
                 }),
             },
             {
+                key: 'operatingIncome',
                 data: (years, globalMetrics) => ({
                     ...getData(
                         t(`${tp}.operatingIncome.title`),
@@ -170,6 +173,7 @@ export const useChartData: (t: TFunction) => ChartValueType[][] = (t) => {
                 }),
             },
             {
+                key: 'revenueGrowthVsCOGSGrowth',
                 data: (years, globalMetrics) => {
                     const arrYears = Object.keys(years).splice(-10)
                     return {
@@ -222,6 +226,7 @@ export const useChartData: (t: TFunction) => ChartValueType[][] = (t) => {
         ],
         [
             {
+                key: 'cashEquivalents',
                 data: (years) => {
                     const lastYear =
                         Object.keys(years)[Object.keys(years).length - 1]
@@ -253,6 +258,7 @@ export const useChartData: (t: TFunction) => ChartValueType[][] = (t) => {
                 },
             },
             {
+                key: 'cashflowToLongTermDebtRatio',
                 data: (years) => {
                     const lastYear =
                         Object.keys(years)[Object.keys(years).length - 1]
@@ -290,6 +296,7 @@ export const useChartData: (t: TFunction) => ChartValueType[][] = (t) => {
                 },
             },
             {
+                key: 'cashflowRatio',
                 data: (years) =>
                     getData(
                         t(`${tp}.cashflowRatio.title`),
@@ -307,6 +314,7 @@ export const useChartData: (t: TFunction) => ChartValueType[][] = (t) => {
                     ),
             },
             {
+                key: 'freeCashflow',
                 data: (years) =>
                     getData(
                         t(`${tp}.freeCashflow.title`),
@@ -316,6 +324,7 @@ export const useChartData: (t: TFunction) => ChartValueType[][] = (t) => {
                     ),
             },
             {
+                key: 'freeCashflowToRevenueRatio',
                 data: (years) =>
                     getData(
                         t(`${tp}.freeCashflowToRevenueRatio.title`),
@@ -330,6 +339,7 @@ export const useChartData: (t: TFunction) => ChartValueType[][] = (t) => {
                     ),
             },
             {
+                key: 'workingCapitalRatio',
                 data: (years) => {
                     const arrYears = Object.keys(years).splice(-10)
                     return {
@@ -375,6 +385,7 @@ export const useChartData: (t: TFunction) => ChartValueType[][] = (t) => {
         ],
         [
             {
+                key: 'debtToEquityRatio',
                 data: (years) => {
                     const arrYears = Object.keys(years).splice(-10)
                     return {
@@ -417,6 +428,7 @@ export const useChartData: (t: TFunction) => ChartValueType[][] = (t) => {
                 },
             },
             {
+                key: 'ltDebtToEquityRatio',
                 data: (years) => {
                     const arrYears = Object.keys(years).splice(-10)
                     return {
@@ -451,6 +463,7 @@ export const useChartData: (t: TFunction) => ChartValueType[][] = (t) => {
                 },
             },
             {
+                key: 'ltDebtToOpIncomeRatio',
                 data: (years) => {
                     const arrYears = Object.keys(years).splice(-10)
                     return {
@@ -497,6 +510,7 @@ export const useChartData: (t: TFunction) => ChartValueType[][] = (t) => {
                 },
             },
             {
+                key: 'interestExpenseMargin',
                 data: (years) => {
                     const arrYears = Object.keys(years).splice(-10)
                     return {
@@ -534,6 +548,7 @@ export const useChartData: (t: TFunction) => ChartValueType[][] = (t) => {
         ],
         [
             {
+                key: 'grossProfitMargin',
                 data: (years) => {
                     const arrYears = Object.keys(years).splice(-10)
                     return {
@@ -568,6 +583,7 @@ export const useChartData: (t: TFunction) => ChartValueType[][] = (t) => {
                 },
             },
             {
+                key: 'sgaAMargin',
                 data: (years) => {
                     const arrYears = Object.keys(years).splice(-10)
                     return {
@@ -594,6 +610,7 @@ export const useChartData: (t: TFunction) => ChartValueType[][] = (t) => {
                 },
             },
             {
+                key: 'assetTurnover',
                 data: (years) =>
                     getData(
                         t(`${tp}.assetTurnover.title`),
@@ -603,6 +620,7 @@ export const useChartData: (t: TFunction) => ChartValueType[][] = (t) => {
                     ),
             },
             {
+                key: 'operatingMargin',
                 data: (years) => {
                     const arrYears = Object.keys(years).splice(-10)
                     return {
@@ -633,6 +651,7 @@ export const useChartData: (t: TFunction) => ChartValueType[][] = (t) => {
                 },
             },
             {
+                key: 'roe',
                 data: (years) => {
                     const arrYears = Object.keys(years).splice(-10)
                     return {
@@ -663,6 +682,7 @@ export const useChartData: (t: TFunction) => ChartValueType[][] = (t) => {
                 },
             },
             {
+                key: 'invMargin',
                 data: (years, globalMetrics) => ({
                     ...getData(
                         t(`${tp}.invMargin.title`),
@@ -682,6 +702,7 @@ export const useChartData: (t: TFunction) => ChartValueType[][] = (t) => {
                 }),
             },
             {
+                key: 'daMargin',
                 data: (years) => {
                     const arrYears = Object.keys(years).splice(-10)
                     return {
@@ -708,6 +729,7 @@ export const useChartData: (t: TFunction) => ChartValueType[][] = (t) => {
                 },
             },
             {
+                key: 'rdRevenueMargin',
                 data: (years) => {
                     const arrYears = Object.keys(years).splice(-10)
                     return {
@@ -744,6 +766,7 @@ export const useChartData: (t: TFunction) => ChartValueType[][] = (t) => {
                 },
             },
             {
+                key: 'rdMargin',
                 data: (years) =>
                     getData(
                         t(`${tp}.rdMargin.title`),

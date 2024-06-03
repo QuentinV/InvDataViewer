@@ -4,20 +4,23 @@ import { Data, GlobalMetrics } from '../../../models/types'
 import { Chart } from 'primereact/chart'
 import { ChartAdditionalData, ChartValueDataType } from '../hooks'
 import { formatFromSymbol } from '../../../utils/formatFromSymbol'
+import { VotingSelector } from '../VotingSelector'
 
 interface MetricsGraphProps {
+    graphKey: string;
     getData: (
         years: { [key: string]: Data },
         globalMetrics?: GlobalMetrics
     ) => { data: ChartValueDataType; options: object }
     years: { [key: string]: Data }
-    globalMetrics?: GlobalMetrics
+    globalMetrics?: GlobalMetrics;
 }
 
 export const MetricsGraph: React.FC<MetricsGraphProps> = ({
+    graphKey,
     getData,
     years,
-    globalMetrics,
+    globalMetrics
 }) => {
     const [value, setValue] = useState<{
         data: ChartValueDataType
@@ -48,6 +51,12 @@ export const MetricsGraph: React.FC<MetricsGraphProps> = ({
                             onClick={() => setTableVisible(!tableVisible)}
                         >
                             <i className="pi pi-table" />
+                        </div>
+                        <div
+                            className="absolute"
+                            style={{ left: '15px', top: '10px' }}
+                        >
+                            <VotingSelector graphKey={graphKey} />
                         </div>
                     </div>
                     <div className="flex-none align-self-center">

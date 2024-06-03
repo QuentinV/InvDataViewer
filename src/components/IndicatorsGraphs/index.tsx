@@ -5,9 +5,10 @@ import { categories } from './constants'
 import { TabPanel, TabView } from 'primereact/tabview'
 import { useTranslation } from 'react-i18next'
 import { useChartData } from './hooks'
+import { ScoreViewer } from '../ScoreViewer'
 
 interface IndicatorsGraphProps {
-    data?: InvData
+    data?: InvData;
 }
 
 export const IndicatorsGraph: React.FC<IndicatorsGraphProps> = ({ data }) => {
@@ -20,6 +21,9 @@ export const IndicatorsGraph: React.FC<IndicatorsGraphProps> = ({ data }) => {
             <h3 className="bg-primary p-2">{t('ticker.metrics.title')}</h3>
             <div>
                 <TabView>
+                    <TabPanel header={t('ticker.metrics.categories.score')}>
+                        <ScoreViewer />
+                    </TabPanel>
                     {chartData.map((elem, index) => (
                         <TabPanel
                             header={t(
@@ -34,6 +38,7 @@ export const IndicatorsGraph: React.FC<IndicatorsGraphProps> = ({ data }) => {
                                     style={{ marginBottom: '75px' }}
                                 >
                                     <MetricsGraph
+                                        graphKey={e.key}
                                         getData={e.data}
                                         years={years}
                                         globalMetrics={data?.metrics}

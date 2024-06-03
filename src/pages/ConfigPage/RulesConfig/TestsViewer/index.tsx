@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import { api } from '../../../api/invData'
-import { CompanySelector } from '../../../components/CompanySelector'
+import { api } from '../../../../api/invData'
+import { CompanySelector } from '../../../../components/CompanySelector'
 import { Chips } from 'primereact/chips'
 import { Button } from 'primereact/button'
-import { InvData } from '../../../models/types'
+import { InvData } from '../../../../models/types'
 
 export const TestsViewer: React.FC = () => {
     const [value, setValue] = useState<string[]>([])
