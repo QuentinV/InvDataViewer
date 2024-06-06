@@ -122,7 +122,7 @@
                 "invMargin": {
                     "title": "Investment Margin",
                     "dataset1": "Investitionen/Operating Income",
-                    "tenYAvgInvMargin": "10-AV Inv Margin"
+                    "tenYAvgInvMargin": "10-AVG Inv Margin"
                 },
                 "daMargin": {
                     "title": "D&A Margin",
