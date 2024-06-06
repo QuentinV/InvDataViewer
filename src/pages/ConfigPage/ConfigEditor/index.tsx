@@ -5,12 +5,16 @@ import { JsonEditor as Editor } from 'jsoneditor-react'
 import 'jsoneditor-react/es/editor.min.css'
 import { Button } from 'primereact/button'
 
-export const ScoresConfig: React.FC = () => {
+interface ConfigEditorProps {
+    endpoint: string;
+}
+
+export const ConfigEditor: React.FC<ConfigEditorProps> = ({ endpoint }) => {
     const [rules, setRules] = useState<object>()
 
     useEffect(() => {
         const getConfigs = async () => {
-            const res = await api(`invData/config/voting?limit=1`)
+            const res = await api(`invData/${endpoint}?limit=1`)
             const value = await res.json()
             setRules(value[0]?.rules || {})
         }
@@ -20,7 +24,7 @@ export const ScoresConfig: React.FC = () => {
     if (!rules) return null
 
     const save = () => {
-        api(`invData/config/voting`, {
+        api(`invData/${endpoint}`, {
             method: 'POST',
             body: JSON.stringify({ rules }),
         })
