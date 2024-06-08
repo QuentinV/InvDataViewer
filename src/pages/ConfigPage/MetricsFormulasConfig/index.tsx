@@ -3,15 +3,20 @@ import { ConfigEditor } from '../ConfigEditor'
 import { Button } from 'primereact/button';
 import { Sidebar } from 'primereact/sidebar';
 import { Tests } from './Tests';
+import { Dropdown } from 'primereact/dropdown';
+
+const profiles = [{ name: 'dev'}, { name: 'prod'}];
 
 export const MetricsFormulasConfig: React.FC = () => {
     const [displayDoc, setDisplayDoc] = useState<boolean>(false);
     const [displaySidebarTests, setDisplaySidebarTests] = useState<boolean>(false);
+    const [profile, setProfile] = useState<{ name: string}>({ name: 'dev' });
     return (
         <>
-            <div className='mb-3'>
-                <Button className='mr-2' onClick={() => setDisplayDoc(!displayDoc)}>Toggle documentation</Button>
+            <div className='flex mb-3 gap-3'>
+                <Button onClick={() => setDisplayDoc(!displayDoc)}>Toggle documentation</Button>
                 <Button onClick={() => setDisplaySidebarTests(true)}>Tests</Button>
+                <div>Profile <Dropdown options={profiles} optionLabel='name' value={profile} onChange={e => setProfile(e.value)} /></div>
             </div>
             { displayDoc && 
             <div className='ml-1 mb-1'>
@@ -40,9 +45,9 @@ export const MetricsFormulasConfig: React.FC = () => {
                     </div>
                 </div>
             </div>}
-            <ConfigEditor endpoint='config/metrics/formulas' />
+            <ConfigEditor endpoint='config/metrics/formulas' profile={profile.name} />
             <Sidebar visible={displaySidebarTests} position="right" onHide={() => setDisplaySidebarTests(false)}>
-                <Tests />
+                <Tests profile={profile.name} />
             </Sidebar>
         </>
     )

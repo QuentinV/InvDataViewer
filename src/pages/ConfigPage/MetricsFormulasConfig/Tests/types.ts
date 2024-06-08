@@ -4,6 +4,5 @@ export interface TestConfig {
     name: string;
     inputData: object;
     expectedData: object;
-    result?: boolean;
-    errorMessage?: string;
+    results?: { [key: string]: { pass: boolean; errorMessage?: string; }};
 }

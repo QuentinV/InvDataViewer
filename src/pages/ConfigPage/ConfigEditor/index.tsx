@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { api } from '../../../api/invData'
 // @ts-expect-error no type
 import { JsonEditor as Editor } from 'jsoneditor-react'
@@ -7,26 +7,31 @@ import { Button } from 'primereact/button'
 
 interface ConfigEditorProps {
     endpoint: string;
+    profile?: string;
 }
 
-export const ConfigEditor: React.FC<ConfigEditorProps> = ({ endpoint }) => {
+export const ConfigEditor: React.FC<ConfigEditorProps> = ({ endpoint, profile }) => {
     const [rules, setRules] = useState<object>()
+    const [instance, setInstance] = useState<any>();
+    const setEditorInstance = (ins: any) => setInstance(ins);
 
     useEffect(() => {
         const getConfigs = async () => {
-            const res = await api(`invData/${endpoint}?limit=1`)
-            const value = await res.json()
-            setRules(value[0]?.rules || {})
+            const res = await api(`invData/${endpoint}?limit=1${profile ? `&profile=${profile}` : ''}`)
+            const value = await res.json();
+            const r = value[0]?.rules || {};
+            setRules(r)
+            instance?.jsonEditor?.set(r);
         }
         getConfigs()
-    }, [])
+    }, [profile])
 
     if (!rules) return null
 
     const save = () => {
         api(`invData/${endpoint}`, {
             method: 'POST',
-            body: JSON.stringify({ rules }),
+            body: JSON.stringify({ rules, profile }),
         })
     }
 
@@ -34,6 +39,7 @@ export const ConfigEditor: React.FC<ConfigEditorProps> = ({ endpoint }) => {
         <>
             <div className="flex h-27rem w-full">
                 <Editor
+                    ref={setEditorInstance}
                     value={rules}
                     onChange={(value: object) => {
                         setRules(value)

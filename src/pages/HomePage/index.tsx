@@ -39,7 +39,11 @@ export const HomePage: React.FC = () => {
         rows: number
     }) => setOpts({ first, rows })
 
-    const itemTemplate = ({ title, ticker }: Company) => {
+    const itemTemplate = (company: Company) => {
+        if ( !company ) 
+            return null;
+
+        const { title, ticker } = company;
         const name = title.toLowerCase()
         return (
             <div
