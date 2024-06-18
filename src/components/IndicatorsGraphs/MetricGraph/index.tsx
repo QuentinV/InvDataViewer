@@ -1,39 +1,32 @@
 import React, { useEffect, useState } from 'react'
-import { Data, GlobalMetrics } from '../../../models/types'
-
 import { Chart } from 'primereact/chart'
-import { ChartAdditionalData, ChartValueDataType } from '../hooks'
 import { formatFromSymbol } from '../../../utils/formatFromSymbol'
 import { VotingSelector } from '../VotingSelector'
+import { ChartOptions, ChartSettings } from '../types'
+import { InvData } from '../../../models/types'
+import { getData } from './utils'
+import { useTranslation } from 'react-i18next'
+import { ProgressSpinner } from 'primereact/progressspinner'
 
 interface MetricsGraphProps {
-    graphKey: string;
-    getData: (
-        years: { [key: string]: Data },
-        globalMetrics?: GlobalMetrics
-    ) => { data: ChartValueDataType; options: object }
-    years: { [key: string]: Data }
-    globalMetrics?: GlobalMetrics;
+    config: ChartOptions;
+    data: InvData;
 }
 
-export const MetricsGraph: React.FC<MetricsGraphProps> = ({
-    graphKey,
-    getData,
-    years,
-    globalMetrics
-}) => {
-    const [value, setValue] = useState<{
-        data: ChartValueDataType
-        options: object
-        additionalData?: ChartAdditionalData[]
-    } | null>(null)
+export const MetricsGraph: React.FC<MetricsGraphProps> = ({ config, data }) => {
+    const { t } = useTranslation();
+    const [value, setValue] = useState<ChartSettings | null>(null)
     const [tableVisible, setTableVisible] = useState<boolean>(false)
 
     useEffect(() => {
-        setValue(getData(years, globalMetrics))
-    }, [getData, years])
+        setValue(getData({ config, data, t }))
+    }, [config, data])
 
-    if (!value) return null
+    if (!value) {
+        return (
+            <div className='text-center'><ProgressSpinner /></div>
+        );
+    }
 
     return (
         <div className="w-full">
@@ -56,7 +49,7 @@ export const MetricsGraph: React.FC<MetricsGraphProps> = ({
                             className="absolute"
                             style={{ left: '15px', top: '10px' }}
                         >
-                            <VotingSelector graphKey={graphKey} />
+                            <VotingSelector graphKey={config.key} />
                         </div>
                     </div>
                     <div className="flex-none align-self-center">
@@ -111,3 +104,4 @@ export const MetricsGraph: React.FC<MetricsGraphProps> = ({
         </div>
     )
 }
+

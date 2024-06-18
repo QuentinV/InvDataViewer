@@ -7,6 +7,7 @@ import { ScoreConfig } from '../../models/types';
 import { api } from '../../api/invData';
 import { getScoreChartData } from './effects';
 import { scoresStores } from '../../models/scores';
+import { ProgressSpinner } from 'primereact/progressspinner';
 
 export const ScoreViewer: React.FC = () => {
     const { t } = useTranslation()
@@ -27,7 +28,7 @@ export const ScoreViewer: React.FC = () => {
         getConfigs()
     }, [])
 
-    if ( !data || !config || !chartData ) return null;
+    if ( !data || !config || !chartData ) return <div className='text-center'><ProgressSpinner /></div>;
 
     const values = chartData.datasets[0].data;
 

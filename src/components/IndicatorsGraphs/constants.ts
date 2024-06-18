@@ -8,5 +8,3 @@ export const digitsMapping = [
     'Billions',
     'Trillions',
 ]
-
-export const categories = ['growth', 'liquidity', 'debt', 'profitability']

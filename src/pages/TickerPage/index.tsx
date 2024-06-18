@@ -4,16 +4,15 @@ import { IndicatorsGraph } from '../../components/IndicatorsGraphs'
 import { useParams } from 'react-router'
 import { InvData } from '../../models/types'
 import { api } from '../../api/invData'
-import { Config } from '../../components/InvDataViewer/types'
 import { useTranslation } from 'react-i18next'
 import { TradingViewSymbolOverview } from '../../components/tradingView/SymbolOverview'
 import { scoresEvents } from '../../models/scores';
+import { ProgressSpinner } from 'primereact/progressspinner'
 
 export const TickerPage: React.FC = () => {
     const { t } = useTranslation()
     const { ticker } = useParams()
     const [data, setData] = useState<InvData | undefined | null>()
-    const [configs, setConfigs] = useState<Config[] | undefined>()
 
     useEffect(() => {
         if (!ticker) return;
@@ -27,17 +26,12 @@ export const TickerPage: React.FC = () => {
             }
         }
         getTicker()
-        const getConfig = async () => {
-            const res = await api(`invData/config/fundamentals/display`)
-            setConfigs(await res.json())
-        }
-        getConfig()
 
         scoresEvents.setTicker(ticker);
     }, [ticker])
 
-    if (data === undefined || configs === undefined) {
-        return null
+    if (data === undefined) {
+        return <div className='text-center'><ProgressSpinner /></div>;
     }
 
     if (data === null) {
@@ -57,7 +51,7 @@ export const TickerPage: React.FC = () => {
                 <TradingViewSymbolOverview ticker={ticker || ''} />
             </div>
             <IndicatorsGraph data={data} />
-            <InvDataViewer data={data} configs={configs} />
+            <InvDataViewer data={data} />
         </div>
     )
 }

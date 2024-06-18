@@ -1,54 +1,64 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { InvData } from '../../models/types'
 import { MetricsGraph } from './MetricGraph'
-import { categories } from './constants'
 import { TabPanel, TabView } from 'primereact/tabview'
 import { useTranslation } from 'react-i18next'
-import { useChartData } from './hooks'
 import { ScoreViewer } from '../ScoreViewer'
+import { api } from '../../api/invData'
+import { ChartsConfig } from './types'
+import { ProgressSpinner } from 'primereact/progressspinner'
 
 interface IndicatorsGraphProps {
     data?: InvData;
 }
 
 export const IndicatorsGraph: React.FC<IndicatorsGraphProps> = ({ data }) => {
-    const { t } = useTranslation()
-    const years = data?.years || {}
-    const chartData = useChartData(t)
+    const { t } = useTranslation();
+    const [ config, setConfig ] = useState<ChartsConfig | null>(null);
+
+    useEffect(() => {
+        const getData = async () => {
+            const res = await api(`invData/config/metrics/charts?limit=1`)
+            setConfig((await res.json())[0].rules);
+        }
+        getData()
+    }, []);
 
     return (
         <div>
             <h3 className="bg-primary p-2">{t('ticker.metrics.title')}</h3>
-            <div>
-                <TabView>
-                    <TabPanel header={t('ticker.metrics.categories.score')}>
-                        <ScoreViewer />
-                    </TabPanel>
-                    {chartData.map((elem, index) => (
-                        <TabPanel
-                            header={t(
-                                `ticker.metrics.categories.${categories[index]}`
-                            )}
-                            key={index}
-                        >
-                            {elem.map((e, i) => (
-                                <div
-                                    key={i}
-                                    className="flex justify-content-around gap-2"
-                                    style={{ marginBottom: '75px' }}
-                                >
-                                    <MetricsGraph
-                                        graphKey={e.key}
-                                        getData={e.data}
-                                        years={years}
-                                        globalMetrics={data?.metrics}
-                                    />
-                                </div>
-                            ))}
+            {
+                !data || !config 
+                ? (<div><ProgressSpinner /></div>)
+                : (<div>
+                    <TabView>
+                        <TabPanel header={t('ticker.metrics.categories.score')}>
+                            <ScoreViewer />
                         </TabPanel>
-                    ))}
-                </TabView>
-            </div>
+                        {!!data && Object.keys(config).map( key => (
+                            <TabPanel
+                                header={t(
+                                    `ticker.metrics.categories.${key}`
+                                )}
+                                key={key}
+                            >
+                                {config[key].map((e, i) => (
+                                    <div
+                                        key={i}
+                                        className="flex justify-content-around gap-2"
+                                        style={{ marginBottom: '75px' }}
+                                    >
+                                        <MetricsGraph
+                                            config={e}
+                                            data={data}
+                                        />
+                                    </div>
+                                ))}
+                            </TabPanel>
+                        ))}
+                    </TabView>
+                </div>)
+            }
         </div>
     )
 }

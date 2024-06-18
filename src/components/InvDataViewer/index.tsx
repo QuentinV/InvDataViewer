@@ -1,19 +1,33 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { InvData } from '../../models/types'
 import { InvDataViewerTable } from './InvDataViewerTable'
 import { useTranslation } from 'react-i18next'
 import { Config } from './types'
+import { api } from '../../api/invData'
+import { ProgressSpinner } from 'primereact/progressspinner'
 
 interface InvDataViewerProps {
     data?: InvData
-    configs: Config[]
 }
 
 export const InvDataViewer: React.FC<InvDataViewerProps> = ({
-    data,
-    configs,
+    data
 }) => {
-    const { t } = useTranslation()
+    const { t } = useTranslation();
+    const [configs, setConfigs] = useState<Config[] | undefined>()
+
+    useEffect(() => {
+        const getConfig = async () => {
+            const res = await api(`invData/config/fundamentals/display`)
+            setConfigs(await res.json())
+        }
+        getConfig()
+    }, [])
+
+    if ( !configs ) {
+        return <div className='text-center'><ProgressSpinner /></div>;
+    }
+    
     return (
         <div>
             {configs.map((c, i) => (

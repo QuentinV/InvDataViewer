@@ -13,40 +13,11 @@ export interface Data {
 }
 
 export interface Metrics {
-    adjustedNetIncome: number
-    adjustedNetIncomePerShare: number
-    grossProfitMargin: number
-    operatingIncome: number
-    revenuePerShare: number
-    costsPerShare: number
-    vvRevenue: number
-    ownersEarningsGrowth: number
-    ownersEarningsPerShare: number
-    freeCashFlow: number
-    debtToEquityRatio: number
-    ltDebtToEquityRatio: number
-    ltDebtToOpIncomeRatio: number
-    longTermDebt: number
-    operatingMargin: number
-    daMargin: number
-    rdRevenueMargin: number
-    rdMargin: number
-    interestExpenseMargin: number
-    assetTurnover: number
-    roe: number
-    investmentMargin: number
+    [metricKey: string]: number;
 }
 
 export interface GlobalMetrics {
-    cagrAdjustedProfit?: number
-    cagrEarningsPerShare?: number
-    tenYAvgEarningsPerShare?: number
-    cagrOperatingIncome?: number
-    cagrOperatingIncomePerShare?: number
-    tenYAvgEbitPerShare?: number
-    cagrRevenue?: number
-    cagrRevenuePerShare?: number
-    tenYAvgInvMargin?: number
+    [metricKey: string]: number;
 }
 
 export interface IncomeStatement {
