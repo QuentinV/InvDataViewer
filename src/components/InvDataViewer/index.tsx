@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next'
 import { Config } from './types'
 import { api } from '../../api/invData'
 import { ProgressSpinner } from 'primereact/progressspinner'
+import { Accordion, AccordionTab } from 'primereact/accordion'
 
 interface InvDataViewerProps {
     data?: InvData
@@ -30,18 +31,18 @@ export const InvDataViewer: React.FC<InvDataViewerProps> = ({
     
     return (
         <div>
+            <h3 className="bg-primary p-2">{t('ticker.fundamentals.title')}</h3>
+            <Accordion multiple>
             {configs.map((c, i) => (
-                <div key={i}>
-                    <h3 className="bg-primary p-2">
-                        {t(`ticker.fundamentals.${c.name}.title`)}
-                    </h3>
+                <AccordionTab key={i} header={t(`ticker.fundamentals.${c.name}.title`)}>
                     <InvDataViewerTable
                         dataKey={c.name}
                         structure={c.children}
                         data={data}
                     />
-                </div>
+                </AccordionTab>
             ))}
+            </Accordion>
         </div>
     )
 }

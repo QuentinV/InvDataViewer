@@ -139,6 +139,7 @@
             }
         },
         "fundamentals": {
+            "title": "Fundamentals",
             "INCOME_STATEMENT": {
                 "title": "Gewinn- und Verlustrechnung",
                 "REVENUE": "Umsatz",
