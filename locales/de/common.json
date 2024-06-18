@@ -29,7 +29,7 @@
                     "dataset1": "Angepasster Gewinn je Aktie",
                     "cagrAdjustedProfit": "CAGR angepasster Gewinn",
                     "cagrEarningsPerShare": "CAGR Gewinn je Aktie",
-                    "10yAvgEarningsPerShare": "10J-AVG Gewinn je Aktie"
+                    "tenYAvgEarningsPerShare": "10J-AVG Gewinn je Aktie"
                 },
                 "operatingIncome": {
                     "title": "Operatives Ergebnis",
@@ -139,6 +139,7 @@
             }
         },
         "fundamentals": {
+            "title": "Fundamentals",
             "INCOME_STATEMENT": {
                 "title": "Gewinn- und Verlustrechnung",
                 "REVENUE": "Umsatz",
