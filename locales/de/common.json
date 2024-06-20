@@ -33,7 +33,10 @@
                 },
                 "operatingIncome": {
                     "title": "Operatives Ergebnis",
-                    "dataset1": "OIPS"
+                    "dataset1": "OIPS",
+                    "cagrOperatingIncome": "CAGR operating income",
+                    "cagrOperatingIncomePerShare": "CAGR operating income per share",
+                    "tenYAvgEbitPerShare": "10Y-AVG EBIT per share"
                 },
                 "revenueGrowthVsCOGSGrowth": {
                     "title": "Umsatzwachstum vs. COGS-Wachstum",
