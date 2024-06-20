@@ -7,12 +7,6 @@ const defaultFormat = (value?: number) =>
     })
 
 export const formatFromSymbol = (symbol?: string, value?: number) => {
-    switch (symbol) {
-        case '%':
-            return `${defaultFormat(formatPercent(value))}%`
-        case '$':
-            return `${defaultFormat(value)}$`
-        default:
-            return defaultFormat(value)
-    }
+    const v = symbol === '%' ? formatPercent(value) : value;
+    return `${defaultFormat(v)}${symbol === '%' || symbol === '$' ? symbol : '' }`;
 }
