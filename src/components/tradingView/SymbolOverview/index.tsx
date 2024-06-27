@@ -2,10 +2,11 @@ import React, { useEffect, useRef, memo } from 'react'
 
 interface TradindViewSymbolOverviewProps {
     ticker: string
+    exchange: string
 }
 
 const pTradingViewSymbolOverview: React.FC<TradindViewSymbolOverviewProps> = ({
-    ticker,
+    ticker, exchange
 }) => {
     const container = useRef<HTMLDivElement>(null)
 
@@ -17,7 +18,7 @@ const pTradingViewSymbolOverview: React.FC<TradindViewSymbolOverviewProps> = ({
         script.async = true
         script.innerHTML = `
       {
-          "symbols": [ [ "NASDAQ:${ticker}|1D" ] ],
+          "symbols": [ [ "${exchange}:${ticker}|1D" ] ],
           "chartOnly": false,
           "locale": "en",
           "colorTheme": "light",

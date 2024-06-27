@@ -48,7 +48,7 @@ export const TickerPage: React.FC = () => {
             <h1 className="text-center">{data.name}</h1>
             <div>
                 <h3 className="bg-primary p-2">{t('ticker.market.title')}</h3>
-                <TradingViewSymbolOverview ticker={ticker || ''} />
+                <TradingViewSymbolOverview ticker={ticker || ''} exchange={data.exchange || ''} />
             </div>
             <IndicatorsGraph data={data} />
             <InvDataViewer data={data} />
