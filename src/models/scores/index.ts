@@ -2,26 +2,26 @@ import { attach, createEffect, createEvent, createStore, sample } from 'effector
 import { ScoreData, ScoresData } from './types';
 import { api } from '../../api/invData';
 
-const $ticker = createStore<string>('');
-const setTicker = createEvent<string>();
-$ticker.on(setTicker, (_, state) => state);
+const $cik = createStore<number>(0);
+const setCik = createEvent<number>();
+$cik.on(setCik, (_, state) => state);
 
-const getScoresForActiveTickerFx = attach({
-    source: $ticker,
-    mapParams: ( _params: unknown, ticker: string ) => ({ ticker }),
-    effect: createEffect(async ({ ticker }: { ticker: string }) => {
-        const res = await api(`invData/scores/${ticker}`)
+const getScoresForActiveCikFx = attach({
+    source: $cik,
+    mapParams: ( _params: unknown, cik: number ) => ({ cik }),
+    effect: createEffect(async ({ cik }: { cik: number }) => {
+        const res = await api(`invData/companies/${cik}/metrics/scores`)
         return res.json();
     })
 })
 
 const saveScoreFx = attach({
-    source: $ticker,
-    mapParams: ( params: ScoreData, ticker: string ) => ({ ...params, ticker }),
-    effect: createEffect(({ ticker, graphKey, value }: { ticker: string, graphKey: string, value: number }) => {
-        api(`invData/scores`, {
+    source: $cik,
+    mapParams: ( params: ScoreData, cik: number ) => ({ ...params, cik }),
+    effect: createEffect(({ cik, graphKey, value }: { cik: number, graphKey: string, value: number }) => {
+        api(`invData/companies/${cik}/metrics/scores`, {
             method: 'POST',
-            body: JSON.stringify({ ticker, graphKey, value }),
+            body: JSON.stringify({ graphKey, value }),
         })
     })
 })
@@ -29,13 +29,13 @@ const saveScoreFx = attach({
 const $scores = createStore<ScoresData | null>(null);
 const setScore = createEvent<ScoreData>();
 $scores
-    .on(getScoresForActiveTickerFx.doneData, (_, state) => state)
+    .on(getScoresForActiveCikFx.doneData, (_, state) => state)
     .on(setScore, (current, state) => ({ ...current, ...{ [state.graphKey]: state }}));
 
 sample({
-    source: $ticker, 
-    fn: ticker => ({ ticker }),
-    target: getScoresForActiveTickerFx
+    source: $cik, 
+    fn: cik => ({ cik }),
+    target: getScoresForActiveCikFx
 })
 
 sample({
@@ -49,10 +49,10 @@ export const scoresStores = {
 }
 
 export const scoresEvents = {
-    setTicker
+    setCik
 }
 
 export const scoresEffects = {
-    getScoresForActiveTickerFx,
+    getScoresForActiveCikFx,
     saveScoreFx
 }

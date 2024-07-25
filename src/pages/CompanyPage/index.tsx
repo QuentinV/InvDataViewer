@@ -9,26 +9,26 @@ import { TradingViewSymbolOverview } from '../../components/tradingView/SymbolOv
 import { scoresEvents } from '../../models/scores';
 import { ProgressSpinner } from 'primereact/progressspinner'
 
-export const TickerPage: React.FC = () => {
+export const CompanyPage: React.FC = () => {
     const { t } = useTranslation()
-    const { ticker } = useParams()
+    const { cik } = useParams()
     const [data, setData] = useState<InvData | undefined | null>()
 
     useEffect(() => {
-        if (!ticker) return;
+        if (!cik) return;
 
-        const getTicker = async () => {
-            const res = await api(`invData/fundamentals/${ticker}`)
+        const getCompany = async () => {
+            const res = await api(`invData/companies/${cik}`)
             if (res.status === 404) {
                 setData(null)
             } else {
                 setData(await res.json())
             }
         }
-        getTicker()
+        getCompany()
 
-        scoresEvents.setTicker(ticker);
-    }, [ticker])
+        scoresEvents.setCik(Number(cik));
+    }, [cik])
 
     if (data === undefined) {
         return <div className='text-center'><ProgressSpinner /></div>;
@@ -37,7 +37,7 @@ export const TickerPage: React.FC = () => {
     if (data === null) {
         return (
             <div className="m-5 text-center">
-                <h2>{ticker}</h2>
+                <h2>{cik}</h2>
                 <div className="text-orange-500">Data not found</div>
             </div>
         )
@@ -48,7 +48,7 @@ export const TickerPage: React.FC = () => {
             <h1 className="text-center">{data.name}</h1>
             <div>
                 <h3 className="bg-primary p-2">{t('ticker.market.title')}</h3>
-                <TradingViewSymbolOverview ticker={ticker || ''} exchange={data.exchange || ''} />
+                <TradingViewSymbolOverview ticker={data?.tickers?.[0]?.ticker || ''} exchange={data?.tickers?.[0]?.exchange || ''} />
             </div>
             <IndicatorsGraph data={data} />
             <InvDataViewer data={data} />

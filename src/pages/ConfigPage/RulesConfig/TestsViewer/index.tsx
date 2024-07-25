@@ -15,7 +15,7 @@ export const TestsViewer: React.FC = () => {
         setPending(true)
         for (const ticker of value) {
             const resp = await api(
-                `invData/config/fundamentals/rules/tests/${ticker}`
+                `invData/companies/${ticker}/fundamentals/rules/tests`
             )
             const data = (await resp.json()) as InvData
             res.push(data)

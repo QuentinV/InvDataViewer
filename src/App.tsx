@@ -3,7 +3,7 @@ import 'primereact/resources/themes/mira/theme.css'
 import 'primeflex/primeflex.css'
 import 'primeicons/primeicons.css'
 import { HashRouter, Route, Routes } from 'react-router-dom'
-import { TickerPage } from './pages/TickerPage'
+import { CompanyPage } from './pages/CompanyPage'
 import { HomePage } from './pages/HomePage'
 import { LoginPage } from './pages/LoginPage'
 import { ProtectedRoute } from './components/routes/ProtectedRoute'
@@ -27,10 +27,10 @@ function App() {
                         }
                     />
                     <Route
-                        path="/company/:ticker"
+                        path="/company/:cik"
                         element={
                             <ProtectedRoute>
-                                <TickerPage />
+                                <CompanyPage />
                             </ProtectedRoute>
                         }
                     />

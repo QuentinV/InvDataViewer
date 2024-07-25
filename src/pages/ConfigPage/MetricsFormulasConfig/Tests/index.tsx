@@ -16,12 +16,12 @@ export const Tests: React.FC<TestsProps> = ({ profile }) => {
     const [activeConfig, setActiveConfig] = useState<TestConfig | undefined>();
 
     const getConfigs = async () => {
-        const res = await api(`invData/config/metrics/formulas/tests`)
+        const res = await api(`invData/companies/metrics/formulas`)
         setList(await res.json())
     }
 
     const save = async ( config: TestConfig ) => {
-        await api(`invData/config/metrics/formulas/tests`, {
+        await api(`invData/companies/metrics/formulas`, {
             method: 'POST',
             body: JSON.stringify(config),
         });
@@ -30,7 +30,7 @@ export const Tests: React.FC<TestsProps> = ({ profile }) => {
     }
 
     const execute = async( config: TestConfig ) => {
-        await api(`invData/config/metrics/formulas/testruns`, {
+        await api(`invData/companies/metrics/formulas/testruns`, {
             method: 'POST',
             body: JSON.stringify({ id : config._id, profile }),
         });
@@ -38,7 +38,7 @@ export const Tests: React.FC<TestsProps> = ({ profile }) => {
     }
 
     const remove = async( config: TestConfig ) => {
-        await api(`invData/config/metrics/formulas/tests`, {
+        await api(`invData/companies/metrics/formulas/tests`, {
             method: 'DELETE',
             body: JSON.stringify({ id : config._id }),
         });

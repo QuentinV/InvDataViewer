@@ -1,11 +1,16 @@
+export interface Ticker {
+    currencyCode?: string
+    exchange?: string
+    ticker: string
+}
+
 export interface InvData {
     cik?: string
     name?: string
-    currencyCode?: string
-    exchange?: string
     type?: string
     years?: { [key: string]: Data }
     metrics: GlobalMetrics
+    tickers: Ticker[]
 }
 
 export interface Data {
