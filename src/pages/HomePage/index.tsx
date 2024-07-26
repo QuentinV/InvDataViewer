@@ -22,7 +22,7 @@ export const HomePage: React.FC = () => {
     useEffect(() => {
         const getTickers = async () => {
             const res = await api(
-                `invData/tickers?first=${opts.first}&rows=${opts.rows}&q=${filter.toLocaleLowerCase()}`
+                `invData/companies?first=${opts.first}&rows=${opts.rows}&q=${filter.toLocaleLowerCase()}`
             )
             const data = await res.json()
             setCompanies(data.data)
