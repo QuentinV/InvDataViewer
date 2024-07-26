@@ -51,7 +51,7 @@ export const ChartsMetricsConfig: React.FC = () => {
                     </div>
                 </div>)
             }
-            <ConfigEditor endpoint='config/metrics/charts' />
+            <ConfigEditor endpoint='companies/metrics/charts/rules' />
         </>
     )
 }
