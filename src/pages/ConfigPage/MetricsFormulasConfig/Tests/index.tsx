@@ -16,12 +16,12 @@ export const Tests: React.FC<TestsProps> = ({ profile }) => {
     const [activeConfig, setActiveConfig] = useState<TestConfig | undefined>();
 
     const getConfigs = async () => {
-        const res = await api(`invData/companies/metrics/formulas`)
+        const res = await api(`invData/companies/metrics/formulas/tests`)
         setList(await res.json())
     }
 
     const save = async ( config: TestConfig ) => {
-        await api(`invData/companies/metrics/formulas`, {
+        await api(`invData/companies/metrics/formulas/tests`, {
             method: 'POST',
             body: JSON.stringify(config),
         });
