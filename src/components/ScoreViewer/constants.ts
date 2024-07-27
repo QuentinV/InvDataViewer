@@ -1,3 +1,5 @@
+export const MIN = -2;
+export const MAX = 2;
 
 export const chartOptions = {
     
@@ -12,8 +14,8 @@ export const chartOptions = {
         }
     },
     scale: {
-        min: -2,
-        max: 2
+        min: MIN,
+        max: MAX
     },
     scales: {
         r: {

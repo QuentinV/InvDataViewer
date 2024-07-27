@@ -51,6 +51,7 @@ export interface ScoreDetailsConfig {
 export interface ScoreCategoryConfig {
     value: number;
     details: { [key:string]: ScoreDetailsConfig };
+    areas: number[];
 }
 
 export interface ScoreConfig {

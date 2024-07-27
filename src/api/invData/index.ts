@@ -1,5 +1,4 @@
-//export const HOST = 'http://localhost:3005';
-export const HOST = 'https://mymovies.freeboxos.fr:3005';
+export const HOST = process.env.REACT_APP_API_HOST;
 
 export const api = (url: string, init?: RequestInit): Promise<Response> => {
     return fetch(`${HOST}/${url}`, {
