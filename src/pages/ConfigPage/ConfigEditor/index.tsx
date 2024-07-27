@@ -17,9 +17,8 @@ export const ConfigEditor: React.FC<ConfigEditorProps> = ({ endpoint, profile })
 
     useEffect(() => {
         const getConfigs = async () => {
-            const res = await api(`invData/${endpoint}?limit=1${profile ? `&profile=${profile}` : ''}`)
-            const value = await res.json();
-            const r = value[0]?.rules || {};
+            const value = await api(`invData/${endpoint}?limit=1${profile ? `&profile=${profile}` : ''}`)
+            const r = value?.[0]?.rules || {};
             setRules(r)
             instance?.jsonEditor?.set(r);
         }

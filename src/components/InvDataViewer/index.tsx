@@ -19,8 +19,8 @@ export const InvDataViewer: React.FC<InvDataViewerProps> = ({
 
     useEffect(() => {
         const getConfig = async () => {
-            const res = await api(`invData/companies/fundamentals/rules/display`)
-            setConfigs(await res.json())
+            const data = await api(`invData/companies/fundamentals/rules/display`)
+            setConfigs(data)
         }
         getConfig()
     }, [])

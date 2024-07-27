@@ -22,9 +22,8 @@ export const CompanySelector: React.FC<CompanySelectorProps> = ({
     const [value, setValue] = useState('')
 
     const search = async (event: AutoCompleteCompleteEvent) => {
-        const res = await api(`invData/tickers?first=0&rows=5&q=${event.query}`)
-        const data = await res.json()
-        setTickers(data.map((i: Company) => i.ticker))
+        const data = await api(`invData/tickers?first=0&rows=5&q=${event.query}`)
+        setTickers((data?.data || []).map((i: Company) => i.ticker))
     }
 
     return (

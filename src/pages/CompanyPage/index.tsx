@@ -18,12 +18,8 @@ export const CompanyPage: React.FC = () => {
         if (!cik) return;
 
         const getCompany = async () => {
-            const res = await api(`invData/companies/${cik}`)
-            if (res.status === 404) {
-                setData(null)
-            } else {
-                setData(await res.json())
-            }
+            const data = await api(`invData/companies/${cik}`)
+            setData(data)
         }
         getCompany()
 

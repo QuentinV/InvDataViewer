@@ -9,10 +9,7 @@ $cik.on(setCik, (_, state) => state);
 const getScoresForActiveCikFx = attach({
     source: $cik,
     mapParams: ( _params: unknown, cik: number ) => ({ cik }),
-    effect: createEffect(async ({ cik }: { cik: number }) => {
-        const res = await api(`invData/companies/${cik}/metrics/scores`)
-        return res.json();
-    })
+    effect: createEffect(async ({ cik }: { cik: number }) => api(`invData/companies/${cik}/metrics/scores`))
 })
 
 const saveScoreFx = attach({

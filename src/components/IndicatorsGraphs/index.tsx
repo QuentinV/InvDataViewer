@@ -18,8 +18,8 @@ export const IndicatorsGraph: React.FC<IndicatorsGraphProps> = ({ data }) => {
 
     useEffect(() => {
         const getData = async () => {
-            const res = await api(`invData/companies/metrics/charts/rules?limit=1`)
-            setConfig((await res.json())[0].rules);
+            const data = await api(`invData/companies/metrics/charts/rules?limit=1`)
+            setConfig(data?.[0]?.rules);
         }
         getData()
     }, []);

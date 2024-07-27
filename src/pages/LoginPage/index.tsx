@@ -18,11 +18,10 @@ export const LoginPage: React.FC = () => {
     } = useForm<Inputs>()
 
     const onSubmit: SubmitHandler<Inputs> = async (data: Inputs) => {
-        const res = await api('login', {
+        const json = await api('invData/login', {
             method: 'POST',
             body: JSON.stringify(data),
         })
-        const json = await res.json()
         if (json?.token) {
             localStorage.setItem('token', json.token)
             setHasToken(true)

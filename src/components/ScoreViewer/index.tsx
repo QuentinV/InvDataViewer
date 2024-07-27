@@ -22,8 +22,8 @@ export const ScoreViewer: React.FC = () => {
 
     useEffect(() => {
         const getConfigs = async () => {
-            const res = await api(`invData/companies/metrics/scores/rules?limit=1`)
-            setConfig((await res.json())[0].rules || {})
+            const data = await api(`invData/companies/metrics/scores/rules?limit=1`)
+            setConfig(data?.[0]?.rules || {})
         }
         getConfigs()
     }, [])

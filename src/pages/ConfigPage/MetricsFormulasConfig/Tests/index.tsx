@@ -17,7 +17,7 @@ export const Tests: React.FC<TestsProps> = ({ profile }) => {
 
     const getConfigs = async () => {
         const res = await api(`invData/companies/metrics/formulas/tests`)
-        setList(await res.json())
+        setList(res)
     }
 
     const save = async ( config: TestConfig ) => {

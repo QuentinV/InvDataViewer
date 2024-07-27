@@ -21,12 +21,11 @@ export const HomePage: React.FC = () => {
 
     useEffect(() => {
         const getTickers = async () => {
-            const res = await api(
+            const data = await api(
                 `invData/companies?first=${opts.first}&rows=${opts.rows}&q=${filter.toLocaleLowerCase()}`
             )
-            const data = await res.json()
-            setCompanies(data.data)
-            setTotal(data.total)
+            setCompanies(data?.data || [])
+            setTotal(data?.total)
         }
         getTickers()
     }, [opts, filter])
