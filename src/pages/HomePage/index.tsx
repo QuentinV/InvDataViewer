@@ -7,7 +7,7 @@ import { api } from '../../api/invData'
 import { useTranslation } from 'react-i18next'
 
 interface Company {
-    ticker: string
+    cik: number
     title: string
 }
 
@@ -22,7 +22,7 @@ export const HomePage: React.FC = () => {
     useEffect(() => {
         const getTickers = async () => {
             const res = await api(
-                `invData/tickers?first=${opts.first}&rows=${opts.rows}&q=${filter.toLocaleLowerCase()}`
+                `invData/companies?first=${opts.first}&rows=${opts.rows}&q=${filter.toLocaleLowerCase()}`
             )
             const data = await res.json()
             setCompanies(data.data)
@@ -43,13 +43,13 @@ export const HomePage: React.FC = () => {
         if ( !company ) 
             return null;
 
-        const { title, ticker } = company;
+        const { title, cik } = company;
         const name = title.toLowerCase()
         return (
             <div
                 className="w-20rem h-3rem pt-5 pb-5 pl-2 pr-2 bg-blue-50 hover:bg-blue-100 text-center cursor-pointer align-items-center justify-content-center flex"
-                key={ticker}
-                onClick={() => navigate({ pathname: `/company/${ticker}` })}
+                key={cik}
+                onClick={() => navigate({ pathname: `/company/${cik}` })}
             >
                 {name[0].toUpperCase() + name.slice(1)}
             </div>

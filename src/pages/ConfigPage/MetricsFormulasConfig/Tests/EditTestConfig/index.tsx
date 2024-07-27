@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { TestConfig } from '../types'
 import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
-import { api } from '../../../../../api/invData'
 // @ts-expect-error no type
 import { JsonEditor as Editor } from 'jsoneditor-react'
 import 'jsoneditor-react/es/editor.min.css'

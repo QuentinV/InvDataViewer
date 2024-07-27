@@ -5,7 +5,7 @@ import { ConfigEditor } from '../ConfigEditor'
 export const RulesConfig: React.FC = () => {
     return (
         <>
-            <ConfigEditor endpoint='config/fundamentals/rules' />
+            <ConfigEditor endpoint='companies/fundamentals/rules' />
             <TestsViewer />
         </>
     )

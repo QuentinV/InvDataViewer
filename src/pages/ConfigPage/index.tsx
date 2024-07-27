@@ -27,7 +27,7 @@ export const ConfigPage: React.FC = () => {
             <TabPanel header="Metrics scores">
                 <div className="m-0">
                     <div className='mb-2'>&#123; [<b>metric group key</b>]: &#123; value: number (percent); details: &#123; [<b>metric chart key</b>]: &#123; value: number (percent); &#125; &#125; &#125; &#125;</div>
-                    <ConfigEditor endpoint='config/voting' />
+                    <ConfigEditor endpoint='companies/metrics/scores/rules' />
                 </div>
             </TabPanel>
         </TabView>

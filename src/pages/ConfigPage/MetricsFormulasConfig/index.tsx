@@ -45,7 +45,7 @@ export const MetricsFormulasConfig: React.FC = () => {
                     </div>
                 </div>
             </div>}
-            <ConfigEditor endpoint='config/metrics/formulas' profile={profile.name} />
+            <ConfigEditor endpoint='companies/metrics/formulas' profile={profile.name} />
             <Sidebar visible={displaySidebarTests} position="right" onHide={() => setDisplaySidebarTests(false)}>
                 <Tests profile={profile.name} />
             </Sidebar>
