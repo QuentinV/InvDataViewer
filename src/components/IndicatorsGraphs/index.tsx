@@ -33,7 +33,7 @@ export const IndicatorsGraph: React.FC<IndicatorsGraphProps> = ({ data }) => {
                 : (<div>
                     <TabView>
                         <TabPanel header={t('ticker.metrics.categories.score')}>
-                            <ScoreViewer />
+                            <ScoreViewer cik={Number(data.cik)} />
                         </TabPanel>
                         {!!data && Object.keys(config).map( key => (
                             <TabPanel

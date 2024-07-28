@@ -1,17 +1,11 @@
 import { TFunction } from "i18next";
-import { ScoreConfig } from "../../models/types";
-import { ScoresData } from "../../models/scores/types";
+import { MetricsScores, ScoreConfig } from "../../models/types";
 import { MIN } from "./constants";
 
-export const getScoreChartData = ({ t, config, data } : { t: TFunction, config: ScoreConfig; data: ScoresData }) => {
-    const scores = Object.keys(config).map( k => {
-        const value = config[k].value || 0;
-        const details = config[k].details;
-        return Number((Object.keys(details)
-                     .reduce( (prev, kv) => prev += ((details[kv].value/100) * (data[kv]?.value || 0)), 0 ) * value / 100).toFixed(2));
-    });
-    const area1 = Object.keys(config).map( k => config[k].areas[0] );
-    const area2 = Object.keys(config).map( k => config[k].areas[1] );
+export const getScoreChartData = ({ t, config, data } : { t: TFunction, config: ScoreConfig; data: MetricsScores }) => {
+    const scores = Object.keys(data.details).map( k => data.details[k] );
+    const area1 = Object.keys(data.details).map( k => config[k].areas[0] );
+    const area2 = Object.keys(data.details).map( k => config[k].areas[1] );
     return {
         labels: Object.keys(config).map( k => t(`ticker.metrics.categories.${k}`)),
         datasets: [

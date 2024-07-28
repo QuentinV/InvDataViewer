@@ -11,6 +11,7 @@ export interface InvData {
     years?: { [key: string]: Data }
     metrics: GlobalMetrics
     tickers: Ticker[]
+    scores: Scores
 }
 
 export interface Data {
@@ -42,6 +43,15 @@ export interface BalanceSheet {
 
 export interface CashFlow {
     NET_CASH_PROVIDED_BY_OPERATING_ACTIVITIES?: number
+}
+
+export interface Scores {
+    metrics: MetricsScores
+}
+
+export interface MetricsScores {
+    details: { [key: string]: number };
+    value: number;
 }
 
 export interface ScoreDetailsConfig {

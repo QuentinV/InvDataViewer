@@ -28,3 +28,11 @@ export const chartOptions = {
         }
     }
 };
+
+export const metricsGlobalScoreSettings = [
+    { symbol: '--', color: 'red' },
+    { symbol: '-', color: 'yellow' },
+    { symbol: 'O', color: 'green' },
+    { symbol: '+', color: 'purple' },
+    { symbol: '++', color: 'blue' }
+];

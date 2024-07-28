@@ -15,6 +15,10 @@ export const api = async (url: string, init?: RequestInit): Promise<any> => {
         navs.setNavigateTo('/login');
         return;
     }
+
+    if ( res.status === 204 ) {
+        return;
+    }
     
     return res.json();
 }

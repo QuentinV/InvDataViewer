@@ -41,12 +41,25 @@ sample({
     target: setScore
 })
 
+const $reloadGlobalScore = createStore<boolean>(true);
+const setReloadGlobalScore = createEvent<boolean>();
+$reloadGlobalScore.on(setReloadGlobalScore, (_, state) => state).on(setScore, () => true);
+
+sample({
+    source: $cik,
+    fn: () => true,
+    target: setReloadGlobalScore
+})
+
+
 export const scoresStores = {
-    $scores
+    $scores,
+    $reloadGlobalScore
 }
 
 export const scoresEvents = {
-    setCik
+    setCik,
+    setReloadGlobalScore
 }
 
 export const scoresEffects = {
