@@ -289,6 +289,17 @@
                 "CASH_PAID_FOR_INCOME_TAXES": "Bargeld für Einkommensteuern gezahlt",
                 "CASH_PAID_FOR_INTEREST": "Bargeld für Zinsen gezahlt"
             }
+        },
+        "businessmodel": {
+            "title": "Bewertung des Geschäftsmodells",
+            "select": "Was passt am besten?",
+            "options": {
+                "-2": "(--) nicht vorhersehbar < 1 Jahr",
+                "-1": "(-) schwer vorhersehbar 1-3 Jahre",
+                "0": "(O) schwer vorhersehbar bis max. 5 Jahre",
+                "1": "(+) einfach zu verstehen und vorhersehbar für 10 Jahre",
+                "2": "(++) einfach zu verstehen und vorhersehbar für 20 Jahre"
+            }
         }
     }
 }

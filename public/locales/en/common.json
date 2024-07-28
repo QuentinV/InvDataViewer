@@ -288,6 +288,17 @@
                 "CASH_PAID_FOR_INCOME_TAXES": "Cash paid for income taxes",
                 "CASH_PAID_FOR_INTEREST": "Cash paid for interest"
             }
+        },
+        "businessmodel": {
+            "title": "Business model",
+            "select": "What fits the best ?",
+            "options": {
+                "-2": "(--) not predictable < 1 year",
+                "-1": "(-) difficult to predict 1-3 years",
+                "0": "(O) difficult to predict up to 5 years",
+                "1": "(+) easy to understand and predictable for 10 years",
+                "2": "(++) easy to understand and predictable for 20 years"
+            }
         }
     }
 }

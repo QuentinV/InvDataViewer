@@ -30,6 +30,11 @@ export const ConfigPage: React.FC = () => {
                     <ConfigEditor endpoint='companies/metrics/scores/rules' />
                 </div>
             </TabPanel>
+            <TabPanel header="Business model questions">
+                <div className='m-0'>
+                    <ConfigEditor endpoint='companies/businessmodels/questions' />
+                </div>
+            </TabPanel>
         </TabView>
     );
 };

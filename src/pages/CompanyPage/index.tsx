@@ -8,6 +8,7 @@ import { useTranslation } from 'react-i18next'
 import { TradingViewSymbolOverview } from '../../components/tradingView/SymbolOverview'
 import { scoresEvents } from '../../models/scores';
 import { ProgressSpinner } from 'primereact/progressspinner'
+import { BusinessModel } from './BusinessModel'
 
 export const CompanyPage: React.FC = () => {
     const { t } = useTranslation()
@@ -48,6 +49,7 @@ export const CompanyPage: React.FC = () => {
             </div>
             <IndicatorsGraph data={data} />
             <InvDataViewer data={data} />
+            <BusinessModel cik={Number(data.cik)} />
         </div>
     )
 }
