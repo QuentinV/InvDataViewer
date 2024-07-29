@@ -11,7 +11,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
         with:
-          persistCredentials: true
+          persist-credentials: true
       - name: Set Git user info
         run: |
           git config --global user.email "auto@deploy.com"
