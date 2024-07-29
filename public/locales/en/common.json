@@ -138,7 +138,7 @@
                 "rdMargin": {
                     "title": "R&D Margin",
                     "dataset1": "R&D/Net income"
-                }
+                },
                 "bookValue":{
                     "title": "Book Value",
                     "dataset1": "Book Value"
