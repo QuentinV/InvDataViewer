@@ -22,15 +22,15 @@ export const InvDataViewerTable: React.FC<InvDataViewerTableProps> = ({
     const { t } = useTranslation()
     const { years } = data || {}
     const yearsKeys = Object.keys(years || []).slice(-10)
-    const dt: any = useRef(null)
+        const dt: any = useRef(null)
     const [numberFormatIndex, setNumberFormatIndex] = useState<number>(2)
 
     const d = structure.map((ld) => {
         return {
             ...ld,
             label: t(`ticker.fundamentals.${dataKey}.${ld.name}`),
-            ...yearsKeys.reduce((prev: any, current) => {
-                const c: any = years?.[current]
+                        ...yearsKeys.reduce((prev: any, current) => {
+                                const c: any = years?.[current]
                 const fundData = c?.[dataKey]
                 const v = fundData ? fundData?.[ld.name] : undefined
                 prev[current] = ld.avoidFormat
@@ -41,7 +41,7 @@ export const InvDataViewerTable: React.FC<InvDataViewerTableProps> = ({
         }
     })
 
-    const renderLabel = (data: any) => {
+        const renderLabel = (data: any) => {
         return (
             <span
                 style={{

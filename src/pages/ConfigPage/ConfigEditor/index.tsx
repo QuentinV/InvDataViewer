@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { api } from '../../../api/invData'
 // @ts-expect-error no type
 import { JsonEditor as Editor } from 'jsoneditor-react'

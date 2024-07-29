@@ -65,7 +65,29 @@ export const Tests: React.FC<TestsProps> = ({ profile }) => {
                         </Button>
                     </div>
                 </div>            
-                {typeof result?.errorMessage === "string" && <div className='text-orange-500 mt-2'>{result?.errorMessage.split('\n').map(k => <div key={k}>{k}</div>)}</div>}
+                {typeof result?.errorMessage === "string" && 
+                    <div className='mt-2 text-orange-500'>
+                        <div className='underline'>Following issues occured: </div>
+                        <div className='mt-2 ml-2'>
+                            {result?.errorMessage.split('\n').map(v => {
+                                try {
+                                    const json = JSON.parse(v);
+                                    return Object.keys(json).map( k => (
+                                        <div key={k}>
+                                            <div className='font-bold'>{k}</div>
+                                            <div className='mt-1 mb-2 flex justify-content-around align-items-center'>
+                                                <div><div className='text-sm text-center'>Calculated</div><div className='font-medium text-pink-700'>{json[k].calc || 'undefined'}</div></div>
+                                                <div><div className='text-sm text-center'>Expected</div><div className='font-medium text-green-700'>{json[k].expected || 'undefined'}</div></div>
+                                            </div>
+                                        </div>    
+                                    ) )
+                                } catch (e) {
+                                    return (<div key={v}>{v}</div>)
+                                }
+                            })}
+                        </div>
+                    </div>
+                }
             </div>
         )
     }

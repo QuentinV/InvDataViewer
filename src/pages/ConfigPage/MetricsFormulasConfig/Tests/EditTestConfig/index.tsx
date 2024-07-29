@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { TestConfig } from '../types'
 import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';

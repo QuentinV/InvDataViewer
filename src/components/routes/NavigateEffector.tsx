@@ -1,5 +1,5 @@
 import { useUnit } from 'effector-react'
-import React, { ReactNode, useEffect, useState } from 'react'
+import React from 'react'
 import { navs } from '../../models/routes';
 import { Navigate } from 'react-router'
 

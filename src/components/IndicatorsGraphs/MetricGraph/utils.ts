@@ -84,7 +84,7 @@ const getDatasets = ({ labels, tKeyPrefix, config, data, t } : { labels: string[
     
         if ( c.constant ) {
             const constant = c.constant;
-            dataset = labels.map( _ => constant );
+            dataset = labels.map( () => constant );
         } else if ( c.metric ) {
             const metricKey = c.metric; 
             dataset = labels.map( k => dataYears?.[k]?.metrics?.[metricKey] )
