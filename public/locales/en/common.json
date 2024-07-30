@@ -141,7 +141,8 @@
                 },
                 "bookValue":{
                     "title": "Book Value",
-                    "dataset1": "Book Value"
+                    "dataset1": "Book Value",
+                    "cagrBookValue": "CAGR Book Value" 
                 }
             }
         },
