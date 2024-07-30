@@ -5,7 +5,8 @@
     "menu": {
         "home": "Home",
         "config": "Config",
-        "lang": "Language"
+        "lang": "Language",
+        "changelog": "Changelog"
     },
     "controls": {
         "search": "Search..."
