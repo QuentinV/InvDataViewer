@@ -117,12 +117,13 @@
                 "roe": {
                     "title": "ROE",
                     "dataset1": "ROE",
-                    "dataset2": "> 20% is ist sehr gut"
+                    "dataset2": "> 20% is ist sehr gut",
+                    "tenYAvgRoe": "10J-AVG ROE"
                 },
                 "invMargin": {
                     "title": "Investment Margin",
                     "dataset1": "Investitionen/Operating Income",
-                    "tenYAvgInvMargin": "10-AV Inv Margin"
+                    "tenYAvgInvMargin": "10J-AVG Inv Margin"
                 },
                 "daMargin": {
                     "title": "D&A Margin",
