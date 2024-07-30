@@ -18,7 +18,10 @@ const write = async() => {
 
         let tag = 'last';
         if ( message.startsWith('(' ) ) {
-            tag = message.substring(1, message.indexOf(')')).split(', ').find( v => v.startsWith('tag:')).substring(5);
+            const potentialTag = message.substring(1, message.indexOf(')')).split(', ').find( v => v.startsWith('tag:'));
+            if (potentialTag) {
+                tag = potentialTag.substring(5);
+            }
             message = message.substring(message.indexOf(')') + 2 );
             activeVersion = { version : tag, list: [] };
             versions.push(activeVersion);
