@@ -5,7 +5,6 @@ import { InputText } from 'primereact/inputtext'
 import { useNavigate } from 'react-router'
 import { api } from '../../api/invData'
 import { useTranslation } from 'react-i18next'
-import { ReleaseNotes } from '../../components/ReleaseNotes'
 
 interface Company {
     cik: number
@@ -95,7 +94,6 @@ export const HomePage: React.FC = () => {
                     header={header()}
                 />
             </div>
-            <ReleaseNotes />
         </div>
     )
 }
