@@ -5,7 +5,8 @@
     "menu": {
         "home": "Startseite",
         "config": "Konfiguration",
-        "lang": "Sprache"
+        "lang": "Sprache",
+        "changelog": "Änderungsprotokoll"
     },
     "controls": {
         "search": "Suche..."
