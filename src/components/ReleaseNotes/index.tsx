@@ -32,9 +32,10 @@ export const ReleaseNotes = () => {
     };
 
     const customizedContent = ({ version, list }: Logs) => {
-        
+        const start = new Date(list[list.length-1].date * 1000).toLocaleDateString();
+        const end = new Date(list[0].date * 1000).toLocaleDateString(); 
         return (
-            <Card title={version}>
+            <Card title={version} subTitle={!!list?.length && <div className='text-xs'>{start !== end ? `${start} ~ ${end}`: end}</div>}>
                { list.map( ({message, type}, i) => {
                    const bColor = type === 'feat' ? 'bg-blue-200' : type === 'fix' ? 'bg-indigo-700	' : 'bg-green-200';
                    return (
