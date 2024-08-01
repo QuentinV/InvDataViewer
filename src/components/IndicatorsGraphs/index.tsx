@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { InvData } from '../../models/types'
 import { MetricsGraph } from './MetricGraph'
 import { TabPanel, TabView } from 'primereact/tabview'
@@ -7,6 +7,7 @@ import { ScoreViewer } from '../ScoreViewer'
 import { api } from '../../api/invData'
 import { ChartsConfig } from './types'
 import { ProgressSpinner } from 'primereact/progressspinner'
+import { navs } from '../../models/routes'
 
 interface IndicatorsGraphProps {
     data?: InvData;
@@ -15,8 +16,10 @@ interface IndicatorsGraphProps {
 export const IndicatorsGraph: React.FC<IndicatorsGraphProps> = ({ data }) => {
     const { t } = useTranslation();
     const [ config, setConfig ] = useState<ChartsConfig | null>(null);
+    const titleRef = useRef(null);
 
     useEffect(() => {
+        navs.setRef({ key: 'metricsRef', ref: titleRef });
         const getData = async () => {
             const data = await api(`invData/companies/metrics/charts/rules?limit=1`)
             setConfig(data?.[0]?.rules);
@@ -26,7 +29,7 @@ export const IndicatorsGraph: React.FC<IndicatorsGraphProps> = ({ data }) => {
 
     return (
         <div>
-            <h3 className="bg-primary p-2">{t('ticker.metrics.title')}</h3>
+            <h3 className="bg-primary p-2" ref={titleRef}><i className='pi pi-chart-scatter mr-2' />{t('ticker.metrics.title')}</h3>
             {
                 !data || !config 
                 ? (<div><ProgressSpinner /></div>)

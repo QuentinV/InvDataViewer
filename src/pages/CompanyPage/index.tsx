@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { InvDataViewer } from '../../components/InvDataViewer'
 import { IndicatorsGraph } from '../../components/IndicatorsGraphs'
 import { useParams } from 'react-router'
@@ -9,11 +9,17 @@ import { TradingViewSymbolOverview } from '../../components/tradingView/SymbolOv
 import { scoresEvents } from '../../models/scores';
 import { ProgressSpinner } from 'primereact/progressspinner'
 import { BusinessModel } from './BusinessModel'
+import { navs } from '../../models/routes'
 
 export const CompanyPage: React.FC = () => {
     const { t } = useTranslation()
     const { cik } = useParams()
     const [data, setData] = useState<InvData | undefined | null>()
+    const priceOverviewRef = useRef(null);
+
+    useEffect(() => {
+        navs.setRef({ key: 'priceOverviewRef', ref: priceOverviewRef });
+    }, []);
 
     useEffect(() => {
         if (!cik) return;
@@ -44,7 +50,7 @@ export const CompanyPage: React.FC = () => {
         <div className="ml-4 pr-4 pb-4 overflow-auto h-full">
             <h1 className="text-center">{data.name}</h1>
             <div>
-                <h3 className="bg-primary p-2">{t('ticker.market.title')}</h3>
+                <h3 className="bg-primary p-2" ref={priceOverviewRef}><i className='pi pi-tag mr-2' />{t('ticker.market.title')}</h3>
                 <TradingViewSymbolOverview ticker={data?.tickers?.[0]?.ticker || ''} exchange={data?.tickers?.[0]?.exchange || ''} />
             </div>
             <IndicatorsGraph data={data} />

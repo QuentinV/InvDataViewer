@@ -1,9 +1,10 @@
 import { Dropdown } from 'primereact/dropdown';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next';
 import { BusinessModelQuestion } from './types';
 import { api } from '../../../api/invData';
 import { InputTextarea } from 'primereact/inputtextarea';
+import { navs } from '../../../models/routes';
 
 interface BusinessModelProps {
     cik: number;
@@ -16,8 +17,11 @@ export const BusinessModel: React.FC<BusinessModelProps> = ({ cik }) => {
     const [value, setValue] = useState<number>();
     const [questions, setQuestions] = useState<BusinessModelQuestion[]>([]);
     const [answers, setAnswers] = useState<{[key: string]: string}>({});
+    const titleRef = useRef(null);
 
     useEffect(() => {
+        navs.setRef({ key: 'businessModelRef', ref: titleRef });
+
         const getData = async () => {
             const res = (await api('invData/companies/businessmodels/questions?limit=1'))?.[0]?.rules?.questions || [];
             setQuestions(res);
@@ -61,7 +65,7 @@ export const BusinessModel: React.FC<BusinessModelProps> = ({ cik }) => {
 
     return (
         <div>
-            <h3 className="bg-primary p-2">{t('ticker.businessmodel.title')}</h3>
+            <h3 className="bg-primary p-2" ref={titleRef}><i className='pi pi-briefcase mr-2' />{t('ticker.businessmodel.title')}</h3>
             <div className='text-center'>
                 <span>{t('ticker.businessmodel.select')}</span>
                 <Dropdown 
