@@ -46,12 +46,12 @@ export const ScoreViewer: React.FC<ScoreViewerProps> = ({ cik }) => {
             {
                 chartData.labels.map( (k: string, i: number) => (<div key={k} className='flex m-4'>
                     <div className='w-8rem'>{k}</div>
-                    <div className='text-primary font-bold'>{values[i]}</div>
+                    <div className='text-primary font-bold'>{values[i] !== null ? values[i] : 'undefined'}</div>
                 </div>))
             }
         </div>
         <div className='flex-none align-content-center text-3xl'>
-            <span style={{ color: `${globalScoreSettings.color}`}}>{globalScoreSettings.symbol}</span>
+            {globalScore !== null && <span style={{ color: `${globalScoreSettings.color}`}}>{globalScoreSettings.symbol}</span>}
         </div>
     </div>)
 }
