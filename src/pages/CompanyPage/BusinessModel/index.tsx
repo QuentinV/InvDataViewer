@@ -9,8 +9,6 @@ interface BusinessModelProps {
     cik: number;
 }
 
-const timeouts: {[key: string]: any} = {};
-
 export const BusinessModel: React.FC<BusinessModelProps> = ({ cik }) => {
     const { t } = useTranslation();
     const [value, setValue] = useState<number>();

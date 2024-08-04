@@ -67,6 +67,7 @@ export const Header: React.FC = () => {
                             <i className='pi pi-chart-scatter cursor-pointer hover:text-primary' onClick={() => scrollToItem('metricsRef')}  />
                             <i className='pi pi-database cursor-pointer hover:text-primary' onClick={() => scrollToItem('fundamentalsRef')}  />
                             <i className='pi pi-briefcase cursor-pointer hover:text-primary' onClick={() => scrollToItem('businessModelRef')}  />
+                            <i className='pi pi-chart-line cursor-pointer hover:text-primary' onClick={() => scrollToItem('moatRef')}  />
                         </div>
                     } />
             </Routes>

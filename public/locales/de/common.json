@@ -305,6 +305,12 @@
                 "1": "(+) einfach zu verstehen und vorhersehbar für 10 Jahre",
                 "2": "(++) einfach zu verstehen und vorhersehbar für 20 Jahre"
             }
+        },
+        "moat": {
+            "title": "MOAT",
+            "moat": "Moat",
+            "trend": "Trend",
+            "result": "Punktzahl"
         }
     }
 }

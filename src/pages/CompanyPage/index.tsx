@@ -10,6 +10,7 @@ import { scoresEvents } from '../../models/scores';
 import { ProgressSpinner } from 'primereact/progressspinner'
 import { BusinessModel } from './BusinessModel'
 import { navs } from '../../models/routes'
+import { Moat } from './Moat'
 
 export const CompanyPage: React.FC = () => {
     const { t } = useTranslation()
@@ -56,6 +57,7 @@ export const CompanyPage: React.FC = () => {
             <IndicatorsGraph data={data} />
             <InvDataViewer data={data} />
             <BusinessModel cik={Number(data.cik)} />
+            <Moat cik={Number(data.cik)} />
         </div>
     )
 }
