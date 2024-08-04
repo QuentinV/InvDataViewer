@@ -31,19 +31,17 @@ export const Moat: React.FC<MoatProps> = ({ cik }) => {
     }, []);
 
     const save = async ({ moat, trend }: MoatScores) => {
-        const s = { ...scores };
+        const s = {...scores};
         if ( moat !== undefined ) s.moat = moat;
         if ( trend !== undefined ) s.trend = trend;
-        setScores(s);
-
         const res = await api(`invData/companies/${cik}/scores`, {
             method: 'PUT',
             body: JSON.stringify({
-                moat: { moat, trend }
+                moat: s
             })
         });
 
-        setScores(res);
+        setScores({ scores, ...res.moat });
     }
 
     const iconTemplate = (option: { icon: string}) => {
@@ -69,7 +67,7 @@ export const Moat: React.FC<MoatProps> = ({ cik }) => {
                 <div className='text-center'>{t('ticker.moat.trend')}</div>
                     <SelectButton 
                         pt={{ button: { className: "pt-1 pb-1 pl-4 pr-4 text-sm border-gray-100" } }}
-                        value={scores.moat} 
+                        value={scores.trend} 
                         onChange={(e) => save({ trend: e.value })} 
                         itemTemplate={iconTemplate}
                         options={trendItems} 
