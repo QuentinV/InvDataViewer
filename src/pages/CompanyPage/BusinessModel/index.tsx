@@ -1,10 +1,9 @@
 import { Dropdown } from 'primereact/dropdown';
 import React, { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next';
-import { BusinessModelQuestion } from './types';
 import { api } from '../../../api/invData';
-import { InputTextarea } from 'primereact/inputtextarea';
 import { navs } from '../../../models/routes';
+import { QuestionsAnswers } from '../../../components/QuestionsAnswers';
 
 interface BusinessModelProps {
     cik: number;
@@ -15,24 +14,12 @@ const timeouts: {[key: string]: any} = {};
 export const BusinessModel: React.FC<BusinessModelProps> = ({ cik }) => {
     const { t } = useTranslation();
     const [value, setValue] = useState<number>();
-    const [questions, setQuestions] = useState<BusinessModelQuestion[]>([]);
-    const [answers, setAnswers] = useState<{[key: string]: string}>({});
     const titleRef = useRef(null);
 
     useEffect(() => {
         navs.setRef({ key: 'businessModelRef', ref: titleRef });
 
         const getData = async () => {
-            const res = (await api('invData/companies/businessmodels/questions?limit=1'))?.[0]?.rules?.questions || [];
-            setQuestions(res);
-
-            const data = (await api(`invData/companies/${cik}/businessmodels/questions/answers`))
-                    .reduce((prev: {[key: string]: string}, c: { questionKey: string, answer: string }) => {
-                        prev[c.questionKey] = c.answer;
-                        return prev;
-                    }, {});
-            setAnswers(data);
-
             const finalChoice = (await api(`invData/companies/${cik}/scores`))?.businessModel;
             setValue(finalChoice);
         }
@@ -49,20 +36,6 @@ export const BusinessModel: React.FC<BusinessModelProps> = ({ cik }) => {
         });
     }
 
-    const save = (questionKey: string, answer: string) => {
-        setAnswers({ ...answers, [questionKey]: answer });
-
-        clearTimeout(timeouts[questionKey]);
-        timeouts[questionKey] = setTimeout(() => {
-            api(`invData/companies/${cik}/businessmodels/questions/answers`, {
-                method: 'POST',
-                body: JSON.stringify({
-                    questionKey, answer
-                })
-            });
-        }, 750 );
-    }
-
     return (
         <div>
             <h3 className="bg-primary p-2" ref={titleRef}><i className='pi pi-briefcase mr-2' />{t('ticker.businessmodel.title')}</h3>
@@ -75,23 +48,12 @@ export const BusinessModel: React.FC<BusinessModelProps> = ({ cik }) => {
                     onChange={event => saveFinalChoice(event.value)}
                 />
             </div>
-            <div>
-                {
-                    questions.map( ({ key, value }) => {
-                        return (
-                        <div key={key} className='w-full'>
-                            <h4>{value}</h4>
-                            <InputTextarea 
-                                autoResize 
-                                name={key} 
-                                className='w-full' 
-                                onChange={event => save(key, event.target.value)} 
-                                value={answers[key] || ''}
-                            />
-                        </div>
-                    ) } )
-                }
-            </div>
+            <QuestionsAnswers 
+                apiUrls={{
+                    questions: 'invData/companies/businessmodels/questions',
+                    answers: `invData/companies/${cik}/businessmodels/questions/answers`
+                }} 
+            />
         </div>
     );
 }
