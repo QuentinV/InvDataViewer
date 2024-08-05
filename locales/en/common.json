@@ -304,6 +304,12 @@
                 "1": "(+) easy to understand and predictable for 10 years",
                 "2": "(++) easy to understand and predictable for 20 years"
             }
+        },
+        "moat": {
+            "title": "MOAT",
+            "moat": "Moat",
+            "trend": "Trend",
+            "result": "Score"
         }
     }
 }
