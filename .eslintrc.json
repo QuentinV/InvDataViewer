@@ -21,5 +21,5 @@
     },
     "root": true,
     "parser": "@typescript-eslint/parser",
-    "ignorePatterns": ["*.svg", "*.css"]
+    "ignorePatterns": ["*.svg", "*.css", "src/changelog.js"]
 }

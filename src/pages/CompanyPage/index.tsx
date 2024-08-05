@@ -6,7 +6,7 @@ import { InvData } from '../../models/types'
 import { api } from '../../api/invData'
 import { useTranslation } from 'react-i18next'
 import { TradingViewSymbolOverview } from '../../components/tradingView/SymbolOverview'
-import { scoresEvents } from '../../models/scores';
+import { metricsScoresEvents } from '../../models/metricsScores';
 import { ProgressSpinner } from 'primereact/progressspinner'
 import { BusinessModel } from './BusinessModel'
 import { navs } from '../../models/routes'
@@ -31,7 +31,7 @@ export const CompanyPage: React.FC = () => {
         }
         getCompany()
 
-        scoresEvents.setCik(Number(cik));
+        metricsScoresEvents.setCik(Number(cik));
     }, [cik])
 
     if (data === undefined) {

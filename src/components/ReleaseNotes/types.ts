@@ -6,5 +6,5 @@ export interface Logs {
 export interface Log {
     date: number;
     message: string;
-    type: 'feat'|'fix'|'improv';
+    type: 'feat'|'fix'|'improv'|'refactor';
 }

@@ -52,17 +52,17 @@ sample({
 })
 
 
-export const scoresStores = {
+export const metricsScoresStores = {
     $scores,
     $reloadGlobalScore
 }
 
-export const scoresEvents = {
+export const metricsScoresEvents = {
     setCik,
     setReloadGlobalScore
 }
 
-export const scoresEffects = {
+export const metricsScoresEffects = {
     getScoresForActiveCikFx,
     saveScoreFx
 }

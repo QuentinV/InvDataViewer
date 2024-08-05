@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next'
 import { chartOptions, metricsGlobalScoreSettings } from './constants';
 import { api } from '../../api/invData';
 import { getScoreChartData } from './effects';
-import { scoresStores, scoresEvents } from '../../models/scores';
+import { metricsScoresStores, metricsScoresEvents } from '../../models/metricsScores';
 import { ProgressSpinner } from 'primereact/progressspinner';
 import { $chartData, setChartData, $globalScore, setGlobalScore } from './stores';
 import { MetricsScores } from '../../models/types';
@@ -16,7 +16,7 @@ interface ScoreViewerProps {
 
 export const ScoreViewer: React.FC<ScoreViewerProps> = ({ cik }) => {
     const { t } = useTranslation()
-    const reloadGlobalScore = useUnit(scoresStores.$reloadGlobalScore);
+    const reloadGlobalScore = useUnit(metricsScoresStores.$reloadGlobalScore);
     const chartData = useUnit($chartData);
     const globalScore = useUnit($globalScore);
 
@@ -30,7 +30,7 @@ export const ScoreViewer: React.FC<ScoreViewerProps> = ({ cik }) => {
             setChartData(getScoreChartData({ t, config, data }));
             setGlobalScore(data.value);
 
-            scoresEvents.setReloadGlobalScore(false);
+            metricsScoresEvents.setReloadGlobalScore(false);
         }
         exec()        
     }, [reloadGlobalScore])

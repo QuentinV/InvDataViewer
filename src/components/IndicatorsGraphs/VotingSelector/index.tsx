@@ -1,7 +1,7 @@
 import React from 'react'
 import { SelectButton } from 'primereact/selectbutton'
 import { useStoreMap } from 'effector-react';
-import { scoresEffects, scoresStores } from '../../../models/scores';
+import { metricsScoresEffects, metricsScoresStores } from '../../../models/metricsScores';
 
 interface VotingSelectorProps {
     graphKey: string;
@@ -10,9 +10,9 @@ interface VotingSelectorProps {
 const items = [-2, -1, 0, 1, 2].map( k => ({ name: String(k), value: k }));
 
 export const VotingSelector: React.FC<VotingSelectorProps> = ({ graphKey }) => {
-    const value = useStoreMap(scoresStores.$scores, state => state?.[graphKey]?.value)
+    const value = useStoreMap(metricsScoresStores.$scores, state => state?.[graphKey]?.value)
 
-    const setVal = (v : number) => scoresEffects.saveScoreFx({ graphKey, value: v });
+    const setVal = (v : number) => metricsScoresEffects.saveScoreFx({ graphKey, value: v });
 
     return (
         <SelectButton 

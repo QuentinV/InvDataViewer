@@ -32,11 +32,13 @@ const write = async() => {
             type = 'fix';
         } else if ( message.startsWith('improv ') || message.startsWith('improv: ') || message.startsWith('adjust ') || message.startsWith('improve ') ) {
             type = 'improv';
+        } else if ( message.startsWith('refactor: ') ) {
+            type = 'refactor';
         } else {
             type = 'feat';
         }
 
-        message = message.replace(/^(fix|feat|improv)(:)? /, '');
+        message = message.replace(/^(fix|feat|improv|refactor)(:)? /, '');
         message = message.replace(/ \(#[0-9]+\)$/, '');
         message = message.trim();
 
