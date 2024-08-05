@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
+import '../../models/companyScores/init';
 import { InvDataViewer } from '../../components/InvDataViewer'
 import { IndicatorsGraph } from '../../components/IndicatorsGraphs'
 import { useParams } from 'react-router'
