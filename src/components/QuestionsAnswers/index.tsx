@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Question } from './types';
 import { api } from '../../api/invData';
 import { InputTextarea } from 'primereact/inputtextarea';
