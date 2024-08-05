@@ -1,11 +1,13 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next';
 import { navs } from '../../../models/routes';
-import { MoatScores } from './types';
-import { api } from '../../../api/invData';
 import { SelectButton } from 'primereact/selectbutton';
 import { moatItems, trendItems } from './constants';
 import { QuestionsAnswers } from '../../../components/QuestionsAnswers';
+import { useUnit } from 'effector-react';
+import { companyScoresEffects, companyScoresStores } from '../../../models/companyScores';
+import { MoatScores } from '../../../models/companyScores/types';
+import { ScoreText } from '../../../components/ScoreText';
 
 interface MoatProps {
     cik: number;
@@ -13,41 +15,23 @@ interface MoatProps {
 
 export const Moat: React.FC<MoatProps> = ({ cik }) => {
     const { t } = useTranslation();
-    const [scores, setScores] = useState<MoatScores>({});
+    const scores = useUnit(companyScoresStores.$scores)?.moat || {};
     const titleRef = useRef(null);
     
     useEffect(() => {
         navs.setRef({ key: 'moatRef', ref: titleRef });
-
-        const getData = async () => {
-            const scores = (await api(`invData/companies/${cik}/scores`)).moat;
-            setScores({
-                moat: scores?.moat,
-                trend: scores?.trend,
-                result: scores?.result
-            });
-        }
-        getData();
     }, []);
 
     const save = async ({ moat, trend }: MoatScores) => {
         const s = {...scores};
         if ( moat !== undefined ) s.moat = moat;
         if ( trend !== undefined ) s.trend = trend;
-        const res = await api(`invData/companies/${cik}/scores`, {
-            method: 'PUT',
-            body: JSON.stringify({
-                moat: s
-            })
-        });
-
-        setScores({ scores, ...res.moat });
+        companyScoresEffects.saveScoresFx({ moat: s })
     }
 
     const iconTemplate = (option: { icon: string}) => {
         return <i className={option.icon}></i>;
     }
-
 
     return (
         <div>
@@ -75,8 +59,8 @@ export const Moat: React.FC<MoatProps> = ({ cik }) => {
                 </div>
                 <div className='flex flex-column'>
                     <div className='text-center flex-none'>{t('ticker.moat.result')}</div>
-                    <div className={`text-center align-content-center flex-auto font-bold text-xl text-${scores.result === 1 ? 'green-500' : scores.result === -1 ? 'orange-400' : 'primary'}`}>
-                        {scores.result !== undefined ? scores.result === 1 ? '+' : scores.result === -1 ? '-' : 'O' : 'none'}
+                    <div className='align-content-center flex-auto text-center text-xl'>
+                        <ScoreText value={scores.result} />
                     </div>
                 </div>
             </div>

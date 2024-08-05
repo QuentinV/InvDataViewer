@@ -3,7 +3,7 @@ import { InvData } from '../../models/types'
 import { MetricsGraph } from './MetricGraph'
 import { TabPanel, TabView } from 'primereact/tabview'
 import { useTranslation } from 'react-i18next'
-import { ScoreViewer } from '../ScoreViewer'
+import { MetricsScoreViewer } from '../MetricsScoreViewer'
 import { api } from '../../api/invData'
 import { ChartsConfig } from './types'
 import { ProgressSpinner } from 'primereact/progressspinner'
@@ -36,7 +36,7 @@ export const IndicatorsGraph: React.FC<IndicatorsGraphProps> = ({ data }) => {
                 : (<div>
                     <TabView>
                         <TabPanel header={t('ticker.metrics.categories.score')}>
-                            <ScoreViewer cik={Number(data.cik)} />
+                            <MetricsScoreViewer cik={Number(data.cik)} />
                         </TabPanel>
                         {!!data && Object.keys(config).map( key => (
                             <TabPanel

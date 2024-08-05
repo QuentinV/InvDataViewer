@@ -1,9 +1,10 @@
 import { Dropdown } from 'primereact/dropdown';
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next';
-import { api } from '../../../api/invData';
 import { navs } from '../../../models/routes';
 import { QuestionsAnswers } from '../../../components/QuestionsAnswers';
+import { useUnit } from 'effector-react';
+import { companyScoresEffects, companyScoresStores } from '../../../models/companyScores';
 
 interface BusinessModelProps {
     cik: number;
@@ -11,28 +12,12 @@ interface BusinessModelProps {
 
 export const BusinessModel: React.FC<BusinessModelProps> = ({ cik }) => {
     const { t } = useTranslation();
-    const [value, setValue] = useState<number>();
+    const value = useUnit(companyScoresStores.$scores)?.businessModel;
     const titleRef = useRef(null);
 
     useEffect(() => {
         navs.setRef({ key: 'businessModelRef', ref: titleRef });
-
-        const getData = async () => {
-            const finalChoice = (await api(`invData/companies/${cik}/scores`))?.businessModel;
-            setValue(finalChoice);
-        }
-        getData();
     }, []);
-
-    const saveFinalChoice = async (value: number) => {
-        setValue(value);
-        await api(`invData/companies/${cik}/scores`, {
-            method: 'PUT',
-            body: JSON.stringify({
-                businessModel: value
-            })
-        });
-    }
 
     return (
         <div>
@@ -43,7 +28,7 @@ export const BusinessModel: React.FC<BusinessModelProps> = ({ cik }) => {
                     className='ml-2'
                     value={value}
                     options={[...Array(5)].map( (_, k) => ({ value: k-2, label: t(`ticker.businessmodel.options.${k-2}`) }))} 
-                    onChange={event => saveFinalChoice(event.value)}
+                    onChange={event => companyScoresEffects.saveScoresFx({ businessModel: event.value })}
                 />
             </div>
             <QuestionsAnswers 

@@ -10,11 +10,11 @@ import { ProgressSpinner } from 'primereact/progressspinner';
 import { $chartData, setChartData, $globalScore, setGlobalScore } from './stores';
 import { MetricsScores } from '../../models/types';
 
-interface ScoreViewerProps {
+interface MetricsScoreViewerProps {
     cik: number;
 }
 
-export const ScoreViewer: React.FC<ScoreViewerProps> = ({ cik }) => {
+export const MetricsScoreViewer: React.FC<MetricsScoreViewerProps> = ({ cik }) => {
     const { t } = useTranslation()
     const reloadGlobalScore = useUnit(metricsScoresStores.$reloadGlobalScore);
     const chartData = useUnit($chartData);

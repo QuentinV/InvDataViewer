@@ -11,6 +11,8 @@ import { ProgressSpinner } from 'primereact/progressspinner'
 import { BusinessModel } from './BusinessModel'
 import { navs } from '../../models/routes'
 import { Moat } from './Moat'
+import { CompanyScore } from './CompanyScore'
+import { companyScoresEvents } from '../../models/companyScores'
 
 export const CompanyPage: React.FC = () => {
     const { t } = useTranslation()
@@ -32,6 +34,7 @@ export const CompanyPage: React.FC = () => {
         getCompany()
 
         metricsScoresEvents.setCik(Number(cik));
+        companyScoresEvents.setCik(Number(cik));
     }, [cik])
 
     if (data === undefined) {
@@ -49,7 +52,8 @@ export const CompanyPage: React.FC = () => {
 
     return (
         <div className="ml-4 pr-4 pb-4 overflow-auto h-full">
-            <h1 className="text-center">{data.name}</h1>
+            <h1 className="text-center mb-0">{data.name}</h1>
+            <div className="mt-0 mb-2"><CompanyScore /></div>
             <div>
                 <h3 className="bg-primary p-2" ref={priceOverviewRef}><i className='pi pi-tag mr-2' />{t('ticker.market.title')}</h3>
                 <TradingViewSymbolOverview ticker={data?.tickers?.[0]?.ticker || ''} exchange={data?.tickers?.[0]?.exchange || ''} />
