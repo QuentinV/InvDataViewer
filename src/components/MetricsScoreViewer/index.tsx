@@ -2,13 +2,14 @@ import { Chart } from 'primereact/chart'
 import React, { useEffect } from 'react'
 import { useUnit } from 'effector-react';
 import { useTranslation } from 'react-i18next'
-import { chartOptions, metricsGlobalScoreSettings } from './constants';
+import { chartOptions } from './constants';
 import { api } from '../../api/invData';
 import { getScoreChartData } from './effects';
 import { metricsScoresStores, metricsScoresEvents } from '../../models/metricsScores';
 import { ProgressSpinner } from 'primereact/progressspinner';
 import { $chartData, setChartData, $globalScore, setGlobalScore } from './stores';
 import { MetricsScores } from '../../models/types';
+import { ScoreText } from '../ScoreText';
 
 interface MetricsScoreViewerProps {
     cik: number;
@@ -38,7 +39,6 @@ export const MetricsScoreViewer: React.FC<MetricsScoreViewerProps> = ({ cik }) =
     if ( !chartData ) return <div className='text-center'><ProgressSpinner /></div>;
 
     const values = chartData.datasets[0].data;
-    const globalScoreSettings = metricsGlobalScoreSettings[globalScore+2];
 
     return (<div className='flex justify-content-center gap-7'>
         <Chart type='radar' data={chartData} options={chartOptions} className='w-30rem' />
@@ -51,7 +51,7 @@ export const MetricsScoreViewer: React.FC<MetricsScoreViewerProps> = ({ cik }) =
             }
         </div>
         <div className='flex-none align-content-center text-3xl'>
-            {globalScore !== null && <span style={{ color: `${globalScoreSettings.color}`}}>{globalScoreSettings.symbol}</span>}
+            {globalScore !== null && <ScoreText value={globalScore} />}
         </div>
     </div>)
 }

@@ -2,7 +2,6 @@ export const MIN = -2;
 export const MAX = 2;
 
 export const chartOptions = {
-    
     plugins: {
         legend: {
             display: false
@@ -28,11 +27,3 @@ export const chartOptions = {
         }
     }
 };
-
-export const metricsGlobalScoreSettings = [
-    { symbol: '--', color: 'red' },
-    { symbol: '-', color: 'yellow' },
-    { symbol: 'O', color: 'green' },
-    { symbol: '+', color: 'purple' },
-    { symbol: '++', color: 'blue' }
-];
