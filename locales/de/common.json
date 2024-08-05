@@ -12,6 +12,9 @@
         "search": "Suche..."
     },
     "ticker": {
+        "score": {
+            "unknown": "Noch keine Punktzahl"
+        },
         "market": {
             "title": "Marktanteilspreis"
         },

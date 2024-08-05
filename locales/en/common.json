@@ -12,6 +12,9 @@
         "search": "Search..."
     },
     "ticker": {
+        "score": {
+            "unknown": "no score yet"
+        },
         "market": {
             "title": "Market share price"
         },
