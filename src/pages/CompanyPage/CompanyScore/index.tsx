@@ -2,16 +2,23 @@ import React from 'react'
 import { useUnit } from 'effector-react'
 import { companyScoresStores } from '../../../models/companyScores'
 import { ScoreText } from '../../../components/ScoreText';
+import { useTranslation } from 'react-i18next';
 
 export const CompanyScore: React.FC = () => {
+    const { t } = useTranslation();
     const score = useUnit(companyScoresStores.$scores)?.score ?? undefined;
-    if ( score === undefined ) return null;
     return (
         <div className='flex align-items-center justify-content-center'>
-            <i className='pi pi-verified text-lg mr-2 text-500'></i>
-            <div className='text-3xl'>
-                <ScoreText value={score} />
-            </div>            
+            <i className={`pi text-lg mr-2 ${score !== undefined ? `text-500 ${score > 0 ? 'pi-thumbs-up' : 'pi-thumbs-down'}` : 'text-red-700 pi-exclamation-triangle'}`}></i>
+            {
+                score !== undefined ? 
+                (
+                    <div className='text-3xl'>
+                        <ScoreText value={score} />
+                    </div>
+                ) : 
+                (<div>{t('ticker.score.unknown')}</div>)
+            }         
         </div>
     );
 }
