@@ -75,7 +75,9 @@ export const Moat: React.FC<MoatProps> = ({ cik }) => {
                 </div>
                 <div className='flex flex-column'>
                     <div className='text-center flex-none'>{t('ticker.moat.result')}</div>
-                    <div className='text-center align-content-center flex-auto font-bold'>{scores.result !== undefined ? scores.result === 1 ? '+' : scores.result === -1 ? '-' : 'O' : 'none'}</div>
+                    <div className={`text-center align-content-center flex-auto font-bold text-xl text-${scores.result === 1 ? 'green-500' : scores.result === -1 ? 'orange-400' : 'primary'}`}>
+                        {scores.result !== undefined ? scores.result === 1 ? '+' : scores.result === -1 ? '-' : 'O' : 'none'}
+                    </div>
                 </div>
             </div>
             <QuestionsAnswers 
