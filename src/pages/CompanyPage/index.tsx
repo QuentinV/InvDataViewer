@@ -14,6 +14,7 @@ import { navs } from '../../models/routes'
 import { Moat } from './Moat'
 import { CompanyScore } from './CompanyScore'
 import { companyScoresEvents } from '../../models/companyScores'
+import { CompanyValue } from './CompanyValue';
 
 export const CompanyPage: React.FC = () => {
     const { t } = useTranslation()
@@ -56,13 +57,14 @@ export const CompanyPage: React.FC = () => {
             <h1 className="text-center mb-0">{data.name}</h1>
             <div className="mt-0 mb-2"><CompanyScore /></div>
             <div>
-                <h3 className="bg-primary p-2" ref={priceOverviewRef}><i className='pi pi-tag mr-2' />{t('ticker.market.title')}</h3>
+                <h3 className="bg-primary p-2" ref={priceOverviewRef}><i className='pi pi-dollar mr-2' />{t('ticker.market.title')}</h3>
                 <TradingViewSymbolOverview ticker={data?.tickers?.[0]?.ticker || ''} exchange={data?.tickers?.[0]?.exchange || ''} />
             </div>
             <IndicatorsGraph data={data} />
             <InvDataViewer data={data} />
             <BusinessModel cik={Number(data.cik)} />
             <Moat cik={Number(data.cik)} />
+            <CompanyValue cik={Number(data.cik)} />
         </div>
     )
 }

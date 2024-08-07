@@ -40,6 +40,11 @@ export const ConfigPage: React.FC = () => {
                     <ConfigEditor endpoint='companies/moat/questions' />
                 </div>
             </TabPanel>
+            <TabPanel header="Company value">
+                <div className='m-0'>
+                    <ConfigEditor endpoint='companies/values/rules' />
+                </div>
+            </TabPanel>
         </TabView>
     );
 };
