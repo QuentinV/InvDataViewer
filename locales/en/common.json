@@ -313,6 +313,43 @@
             "moat": "Moat",
             "trend": "Trend",
             "result": "Score"
+        },
+        "value": {
+            "title": "Company value",
+            "levels": {
+                "0": "Tatsächlich",
+                "1": "Konservativ",
+                "2": "Wahrscheinlich",
+                "3": "Optimistisch"
+            },
+            "categories": {
+                "netTangiblesAssets": {
+                    "title": "Net tangible assets",
+                    "cash": "Cash",
+                    "accountsReceivable": "Accounts receivable",
+                    "inventories": "Inventories",
+                    "propertyAndEquipment": "Property and equipment",
+                    "others": "Others"
+                },
+                "adjustedIntagibles": {
+                    "title": "Adj. Intangible Assets",
+                    "goodwill": "Goodwill",
+                    "intangibleAssets": "Intagible assets",
+                    "others": "Others"
+                },
+                "bookvalueGrowth": {
+                    "title": "Szenarien book value growth",
+                    "futureGrowthRate": "Future growth rate",
+                    "discountRate": "Discount rate",
+                    "years": "# Years"
+                },
+                "dividendGrowth": {
+                    "title": "Szenarien Dividenden Growth",
+                    "futureGrowth": "Future growth",
+                    "discountRate": "Discount rate",
+                    "years": "# Years"
+                }
+            }
         }
     }
 }
