@@ -1,6 +1,6 @@
 import React from 'react'
 import { useUnit } from 'effector-react'
-import { companyScoresStores } from '../../../models/companyScores'
+import { companyScoresStores } from '../../../models/company/scores'
 import { ScoreText } from '../../../components/ScoreText';
 import { useTranslation } from 'react-i18next';
 

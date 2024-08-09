@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { navs } from '../../../models/routes';
 import { QuestionsAnswers } from '../../../components/QuestionsAnswers';
 import { useUnit } from 'effector-react';
-import { companyScoresEffects, companyScoresStores } from '../../../models/companyScores';
+import { companyScoresEffects, companyScoresStores } from '../../../models/company/scores';
 
 interface BusinessModelProps {
     cik: number;

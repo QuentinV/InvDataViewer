@@ -42,7 +42,7 @@ const write = async() => {
         message = message.replace(/ \(#[0-9]+\)$/, '');
         message = message.trim();
 
-        if ( message === prevMessage ) {
+        if ( message === prevMessage || type === 'refactor' ) {
             return;
         }
         prevMessage = message;

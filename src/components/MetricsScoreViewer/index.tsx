@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next'
 import { chartOptions } from './constants';
 import { api } from '../../api/invData';
 import { getScoreChartData } from './effects';
-import { metricsScoresStores, metricsScoresEvents } from '../../models/metricsScores';
+import { metricsScoresStores, metricsScoresEvents } from '../../models/company/metricsScores';
 import { ProgressSpinner } from 'primereact/progressspinner';
 import { $chartData, setChartData, $globalScore, setGlobalScore } from './stores';
 import { MetricsScores } from '../../models/types';

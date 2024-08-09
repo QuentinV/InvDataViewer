@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import '../../models/companyScores/init';
+import '../../models/company/scores/init';
 import { InvDataViewer } from '../../components/InvDataViewer'
 import { IndicatorsGraph } from '../../components/IndicatorsGraphs'
 import { useParams } from 'react-router'
@@ -7,13 +7,13 @@ import { InvData } from '../../models/types'
 import { api } from '../../api/invData'
 import { useTranslation } from 'react-i18next'
 import { TradingViewSymbolOverview } from '../../components/tradingView/SymbolOverview'
-import { metricsScoresEvents } from '../../models/metricsScores';
+import { metricsScoresEvents } from '../../models/company/metricsScores';
 import { ProgressSpinner } from 'primereact/progressspinner'
 import { BusinessModel } from './BusinessModel'
 import { navs } from '../../models/routes'
 import { Moat } from './Moat'
 import { CompanyScore } from './CompanyScore'
-import { companyScoresEvents } from '../../models/companyScores'
+import { companyScoresEvents } from '../../models/company/scores'
 import { CompanyValue } from './CompanyValue';
 
 export const CompanyPage: React.FC = () => {

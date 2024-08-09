@@ -1,5 +1,5 @@
 import { attach, createEffect, createEvent, createStore, sample } from 'effector';
-import { api } from '../../api/invData';
+import { api } from '../../../api/invData';
 import { CompanyScores, MoatScores } from './types';
 
 const $cik = createStore<number>(0);

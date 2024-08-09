@@ -1,7 +1,7 @@
 import React from 'react'
 import { SelectButton } from 'primereact/selectbutton'
 import { useStoreMap } from 'effector-react';
-import { metricsScoresEffects, metricsScoresStores } from '../../../models/metricsScores';
+import { metricsScoresEffects, metricsScoresStores } from '../../../models/company/metricsScores';
 
 interface VotingSelectorProps {
     graphKey: string;

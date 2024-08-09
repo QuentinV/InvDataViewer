@@ -1,6 +1,6 @@
 import { attach, createEffect, createEvent, createStore, sample } from 'effector';
 import { ScoreData, ScoresData } from './types';
-import { api } from '../../api/invData';
+import { api } from '../../../api/invData';
 
 const $cik = createStore<number>(0);
 const setCik = createEvent<number>();

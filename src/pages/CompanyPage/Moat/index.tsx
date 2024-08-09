@@ -5,8 +5,8 @@ import { SelectButton } from 'primereact/selectbutton';
 import { moatItems, trendItems } from './constants';
 import { QuestionsAnswers } from '../../../components/QuestionsAnswers';
 import { useUnit } from 'effector-react';
-import { companyScoresEffects, companyScoresStores } from '../../../models/companyScores';
-import { MoatScores } from '../../../models/companyScores/types';
+import { companyScoresEffects, companyScoresStores } from '../../../models/company/scores';
+import { MoatScores } from '../../../models/company/scores/types';
 import { ScoreText } from '../../../components/ScoreText';
 
 interface MoatProps {
