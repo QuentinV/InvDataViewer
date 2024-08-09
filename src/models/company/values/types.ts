@@ -1,0 +1,1 @@
+export type CompanyValue = {[key: string]: number};

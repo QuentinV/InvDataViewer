@@ -15,6 +15,7 @@ import { Moat } from './Moat'
 import { CompanyScore } from './CompanyScore'
 import { companyScoresEvents } from '../../models/company/scores'
 import { CompanyValue } from './CompanyValue';
+import { companyValuesEvents } from '../../models/company/values';
 
 export const CompanyPage: React.FC = () => {
     const { t } = useTranslation()
@@ -37,6 +38,7 @@ export const CompanyPage: React.FC = () => {
 
         metricsScoresEvents.setCik(Number(cik));
         companyScoresEvents.setCik(Number(cik));
+        companyValuesEvents.setCik(Number(cik));
     }, [cik])
 
     if (data === undefined) {
