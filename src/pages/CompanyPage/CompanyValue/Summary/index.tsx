@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { companyValuesStores } from '../../../../models/company/values';
 import { CompanyValue } from '../../../../models/company/values/types';
 
-export const CompanyValueDisplay: React.FC = () => {
+export const CompanyValueSummary: React.FC = () => {
     const { t } = useTranslation();
     const values = useUnit(companyValuesStores.$values) || [];
     
