@@ -9,6 +9,8 @@ interface CompanyValueConfigsProps {
     cik: number;
 }
 
+let timeout: any = null;
+
 export const CompanyValueConfigs: React.FC<CompanyValueConfigsProps> = ({ cik }) => {
     const { t } = useTranslation();
     const [config, setConfig] = useState<CompanyValueConfig|null>(null);
@@ -25,11 +27,15 @@ export const CompanyValueConfigs: React.FC<CompanyValueConfigsProps> = ({ cik })
         const newConfig = { ...config };
         newConfig[cat][key][index] = value;
         setConfig(newConfig);
-        await api(`invData/companies/${cik}/values/configs`, {
-            method: 'POST',
-            body: JSON.stringify(newConfig)
-        })
-        companyValuesEvents.refresh();
+
+        clearTimeout(timeout);
+        timeout = setTimeout(async () => {
+            await api(`invData/companies/${cik}/values/configs`, {
+                method: 'POST',
+                body: JSON.stringify(newConfig)
+            })
+            companyValuesEvents.refresh();
+        }, 750);
     }
     
     return (
