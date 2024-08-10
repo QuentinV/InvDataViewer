@@ -76,8 +76,8 @@ export const Tests: React.FC<TestsProps> = ({ profile }) => {
                                         <div key={k}>
                                             <div className='font-bold'>{k}</div>
                                             <div className='mt-1 mb-2 flex justify-content-around align-items-center'>
-                                                <div><div className='text-sm text-center'>Calculated</div><div className='font-medium text-pink-700'>{json[k].calc || 'undefined'}</div></div>
-                                                <div><div className='text-sm text-center'>Expected</div><div className='font-medium text-green-700'>{json[k].expected || 'undefined'}</div></div>
+                                                <div><div className='text-sm text-center'>Calculated</div><div className='font-medium text-pink-700'>{(json[k].calc ?? undefined) !== undefined ? JSON.stringify(json[k].calc) : 'undefined'}</div></div>
+                                                <div><div className='text-sm text-center'>Expected</div><div className='font-medium text-green-700'>{(json[k].expected ?? undefined) !== undefined ? JSON.stringify(json[k].expected) : 'undefined'}</div></div>
                                             </div>
                                         </div>    
                                     ) )
