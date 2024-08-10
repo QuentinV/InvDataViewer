@@ -12,6 +12,9 @@
         "search": "Suche..."
     },
     "ticker": {
+        "intrinsicValue": {
+            "title": "Intrinsic value"
+        },
         "score": {
             "unknown": "Noch keine Punktzahl"
         },

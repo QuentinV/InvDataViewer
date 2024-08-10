@@ -6,7 +6,7 @@ import { CompanyValue } from '../../../../models/company/values/types';
 
 export const CompanyValueSummary: React.FC = () => {
     const { t } = useTranslation();
-    const values = useUnit(companyValuesStores.$values) || [];
+    const values = useUnit(companyValuesStores.$values)?.values || [];
     
     const valuesByKey = values.reduce((prev: {[key: string]: number[]}, v: CompanyValue) => {
         Object.keys(v).forEach( (k: string) => {
@@ -22,7 +22,7 @@ export const CompanyValueSummary: React.FC = () => {
     return (
         <div>
             <h3 className='mt-5 mb-2'>{t(`ticker.value.summary`)}</h3>
-            <table className='ml-5'>
+            <table className='m-auto'>
                 <thead>
                     <tr>
                         <th></th>
