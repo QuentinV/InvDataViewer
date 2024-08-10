@@ -144,6 +144,11 @@
                     "title": "Buchwert",
                     "dataset1": "Buchwert"
                     "cagrBookValue": "CAGR Buchwertwachstum"
+                },
+                "operatingBookValue":{
+                    "title": "Operativer Buchwert",
+                    "dataset1": "Operativer Buchwert",
+                    "cagrBookValue": "CAGR operatives Buchwertwachstum" 
                 }
             }
         },
