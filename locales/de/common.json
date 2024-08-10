@@ -12,6 +12,9 @@
         "search": "Suche..."
     },
     "ticker": {
+        "intrinsicValue": {
+            "title": "Intrinsic value"
+        },
         "score": {
             "unknown": "Noch keine Punktzahl"
         },
@@ -317,6 +320,7 @@
         },
         "value": {
             "title": "Unternehmenswert",
+            "summary": "Zusammenfassung",
             "levels": {
                 "0": "Tatsächlich",
                 "1": "Konservativ",
@@ -349,7 +353,13 @@
                     "futureGrowth": "Future growth",
                     "discountRate": "Discount rate",
                     "years": "# Years"
+                },
+                "value": {
+                    "title": "Sum"
                 }
+            },
+            "config": {
+                "title": "Konfiguration"
             }
         }
     }
