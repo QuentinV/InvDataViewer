@@ -144,6 +144,11 @@
                     "title": "Book Value",
                     "dataset1": "Book Value",
                     "cagrBookValue": "CAGR Book Value" 
+                },
+                "operatingBookValue":{
+                    "title": "Operating Book Value",
+                    "dataset1": "Operating Book Value",
+                    "cagrBookValue": "CAGR Operating Book Value" 
                 }
             }
         },
