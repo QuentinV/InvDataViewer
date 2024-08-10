@@ -29,6 +29,7 @@ export const CompanyPage: React.FC = () => {
     useEffect(() => {
         navs.setRef({ key: 'companyTitleRef', ref: titleRef });
         navs.setRef({ key: 'priceOverviewRef', ref: priceOverviewRef });
+        document.title = "Wait for it ...";
     }, []);
 
     useEffect(() => {
@@ -40,6 +41,8 @@ export const CompanyPage: React.FC = () => {
 
             if ( !data ) return;
 
+            document.title = data.name;
+        
             metricsScoresEvents.setCik(Number(cik));
             companyScoresEvents.setCik(Number(cik));
             companyValuesEvents.setCik(Number(cik));

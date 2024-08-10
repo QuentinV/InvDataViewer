@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { TabView, TabPanel } from 'primereact/tabview'
 import { RulesConfig } from './RulesConfig';
 import { ConfigEditor } from './ConfigEditor';
@@ -7,6 +7,10 @@ import { ChartsMetricsConfig } from './ChartsMetricsConfig';
 
 
 export const ConfigPage: React.FC = () => {
+    useEffect(() => {
+        document.title = "Everything is possible";
+    }, []);
+    
     return (
       <TabView panelContainerStyle={{ height: 'calc(100% - 50px)' }} panelContainerClassName='overflow-auto' className='h-full'>
             <TabPanel header="Fundamentals">

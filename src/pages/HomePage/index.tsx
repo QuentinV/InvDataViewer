@@ -20,6 +20,10 @@ export const HomePage: React.FC = () => {
     const { t } = useTranslation()
 
     useEffect(() => {
+        document.title = "Map of wonders";
+    }, []);
+
+    useEffect(() => {
         const getTickers = async () => {
             const data = await api(
                 `invData/companies?first=${opts.first}&rows=${opts.rows}&q=${filter.toLocaleLowerCase()}`
