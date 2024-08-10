@@ -62,7 +62,7 @@ export const Header: React.FC = () => {
                 <Route 
                     path="/company/:cik" 
                     element={
-                        <div className='flex flex-1 h-2rem align-content-center justify-content-end flex-wrap gap-4 flex-auto ml-auto pr-6'>
+                        <div className='flex flex-none h-2rem align-content-center justify-content-end flex-wrap gap-4 flex-auto ml-auto pr-6'>
                             <i className='pi pi-caret-up cursor-pointer hover:text-primary' onClick={() => scrollToItem('companyTitleRef')} />
                             <i className='pi pi-compass cursor-pointer hover:text-primary' onClick={() => scrollToItem('companyIntrinsicValueRef')} />
                             <i className='pi pi-dollar cursor-pointer hover:text-primary' onClick={() => scrollToItem('priceOverviewRef')} />
