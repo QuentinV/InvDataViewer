@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { Navigate } from 'react-router'
 import { api } from '../../api/invData'
@@ -10,6 +10,10 @@ type Inputs = {
 
 export const LoginPage: React.FC = () => {
     const [hasToken, setHasToken] = useState<boolean>(false)
+
+    useEffect(() => {
+        document.title = "Dive deep into your memory"
+    }, []);
 
     const {
         register,
