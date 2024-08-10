@@ -36,11 +36,10 @@ export const CompanyPage: React.FC = () => {
 
         const getCompany = async () => {
             const data = await api(`invData/companies/${cik}`)
-            console.log(data);
             setData(data)
 
             if ( !data ) return;
-            
+
             metricsScoresEvents.setCik(Number(cik));
             companyScoresEvents.setCik(Number(cik));
             companyValuesEvents.setCik(Number(cik));
