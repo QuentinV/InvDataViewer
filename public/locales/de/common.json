@@ -13,7 +13,14 @@
     },
     "ticker": {
         "intrinsicValue": {
-            "title": "Intrinsic value"
+            "title": "Intrinsic value",
+            "areas": {
+                "0": "sehr günstig",
+                "1": "günstig",
+                "2": "fair",
+                "3": "teuer",
+                "4": "sehr teuer"
+            }
         },
         "score": {
             "unknown": "Noch keine Punktzahl"
