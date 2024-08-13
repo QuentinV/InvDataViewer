@@ -6,6 +6,7 @@ import { useUnit } from 'effector-react';
 import { companyValuesStores } from '../../../models/company/values';
 import { api } from '../../../api/invData';
 import { SelectButton } from 'primereact/selectbutton';
+import { downloadSvg, downloadSvgAsPng } from './utils';
 
 interface IntrinsicValueProps {
     ticker: string;
@@ -14,6 +15,7 @@ interface IntrinsicValueProps {
 export const IntrinsicValue: React.FC<IntrinsicValueProps> = ({ ticker }) => {
     const { t } = useTranslation();
     const titleRef = useRef(null);
+    const svgRef = useRef<any>(null);
     const companyValues = useUnit(companyValuesStores.$values);
     const [price, setPrice] = useState<number>(0);
     const [level, setLevel] = useState<number>(2);
@@ -38,8 +40,9 @@ export const IntrinsicValue: React.FC<IntrinsicValueProps> = ({ ticker }) => {
     return (
         <div>
             <h3 className="bg-primary p-2" ref={titleRef}><i className='pi pi-compass mr-2' />{t('ticker.intrinsicValue.title')}</h3>
+            <div className='flex mb-3'>
             {!!items && 
-                (<div className='mb-3'>
+                (<div>
                     <SelectButton 
                         pt={{ button: { className: "pt-1 pb-1 pl-4 pr-4 border-gray-100 text-sm font-bold" } }}
                         value={level} 
@@ -49,8 +52,14 @@ export const IntrinsicValue: React.FC<IntrinsicValueProps> = ({ ticker }) => {
                     />
                 </div>)
             }
+                <div className='ml-auto align-items-center flex mr-3'>
+                    <i className='pi pi-download cursor-pointer' onClick={() => downloadSvg(svgRef.current, `${ticker}.intrinsicValue-level${level}.svg`)}></i>
+                    <i className='ml-3 pi pi-file-import cursor-pointer' onClick={() => downloadSvgAsPng(svgRef.current, `${ticker}.intrinsicValue-level${level}.png`)}></i>
+                </div>
+            </div>
+            
             <div>
-                {<IntrinsicValueGraph areas={areas} value={price} />}
+                {<IntrinsicValueGraph areas={areas} value={price} ref={svgRef} />}
             </div>
         </div>
     )

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { useTranslation } from 'react-i18next';
 
 interface IntrinsicValueGraphProps {
@@ -10,7 +10,7 @@ interface IntrinsicValueGraphProps {
 const colors = [ '#758B98', '#9CA9B3', '#E5D9CD', '#AB8886', '#8C5A58' ];
 const defaultAreas = [ 20, 40, 60, 80, 100 ];
 
-export const IntrinsicValueGraph: React.FC<IntrinsicValueGraphProps> = ({ areas, value, height = 150 }) => {
+export const IntrinsicValueGraph = forwardRef<null, IntrinsicValueGraphProps>(({ areas, value, height = 150 }, ref) => {
     const { t } = useTranslation();
     const myAreas = areas || defaultAreas;
     const lastAreaValue = myAreas[myAreas.length-1];
@@ -21,7 +21,7 @@ export const IntrinsicValueGraph: React.FC<IntrinsicValueGraphProps> = ({ areas,
     let prevX = 0;
     let prevXLegend = 20;
     return (
-    <svg width="100%" height={height} overflow="visible">
+    <svg width="100%" height={height} overflow="visible" ref={ref}>
         {!!areas && <text x="0" y={height-38} fill="black" fontSize="12">0</text>}
         {myAreas.slice(0, 4).map((limit, index) => {
             if ( limit < 0 ) 
@@ -106,4 +106,6 @@ export const IntrinsicValueGraph: React.FC<IntrinsicValueGraphProps> = ({ areas,
         )}
     </svg>
     );
-};
+});
+
+IntrinsicValueGraph.displayName = "IntrinsicValueGraph";
