@@ -88,7 +88,7 @@ export const MetricsGraph: React.FC<MetricsGraphProps> = ({ config, data }) => {
                                                 key={i}
                                                 className="text-right p-1"
                                             >
-                                                {v.toLocaleString(undefined, {
+                                                {v?.toLocaleString(undefined, {
                                                     minimumFractionDigits: 2,
                                                     maximumFractionDigits: 2,
                                                 })}
