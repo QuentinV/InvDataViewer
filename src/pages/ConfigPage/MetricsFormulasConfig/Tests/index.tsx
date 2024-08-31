@@ -5,6 +5,7 @@ import { Button } from 'primereact/button';
 import { DataView } from 'primereact/dataview';
 import { TestConfig } from './types';
 import { EditTestConfig } from './EditTestConfig';
+import { removeActiveConfigFx, saveActiveConfigFx, setActiveConfig } from './state';
 
 interface TestsProps {
     profile: string;
@@ -13,18 +14,14 @@ interface TestsProps {
 export const Tests: React.FC<TestsProps> = ({ profile }) => {
     const [displaySidebarTestConfig, setDisplaySidebarTestConfig] = useState<boolean>(false);
     const [list, setList] = useState<TestConfig[]>([]);
-    const [activeConfig, setActiveConfig] = useState<TestConfig | undefined>();
 
     const getConfigs = async () => {
         const res = await api(`invData/companies/metrics/formulas/tests`)
         setList(res)
     }
 
-    const save = async ( config: TestConfig ) => {
-        await api(`invData/companies/metrics/formulas/tests`, {
-            method: 'POST',
-            body: JSON.stringify(config),
-        });
+    const save = async () => {
+        await saveActiveConfigFx(undefined);
         setDisplaySidebarTestConfig(false);
         getConfigs();
     }
@@ -37,11 +34,8 @@ export const Tests: React.FC<TestsProps> = ({ profile }) => {
         getConfigs();
     }
 
-    const remove = async( config: TestConfig ) => {
-        await api(`invData/companies/metrics/formulas/tests`, {
-            method: 'DELETE',
-            body: JSON.stringify({ id : config._id }),
-        });
+    const remove = async() => {
+        await removeActiveConfigFx(undefined);
         setDisplaySidebarTestConfig(false);
         getConfigs();
     }
@@ -98,7 +92,7 @@ export const Tests: React.FC<TestsProps> = ({ profile }) => {
         <>
             <h2 className='mt-0 flex align-items-center'>
                 <div>Tests</div> 
-                <Button className='ml-3 h-2rem' onClick={() => { setActiveConfig(undefined); setDisplaySidebarTestConfig(true); } }>Add</Button>
+                <Button className='ml-3 h-2rem' onClick={() => { setActiveConfig(null); setDisplaySidebarTestConfig(true); } }>Add</Button>
             </h2>
             
             <DataView value={list} listTemplate={listTemplate}  />
@@ -107,16 +101,21 @@ export const Tests: React.FC<TestsProps> = ({ profile }) => {
                 visible={displaySidebarTestConfig} 
                 position="right" 
                 className='w-11'
+                header={
+                    <div className='mt-0 flex align-items-center w-full'>
+                        <h2 className='m-0'>Test config</h2>
+                        <div className='ml-auto mr-8'>
+                            <Button severity='danger' onClick={() => remove()}>Remove</Button>
+                            <Button onClick={() => save()} className='ml-8'>Save</Button>
+                            <Button onClick={() => {
+                                setDisplaySidebarTestConfig(false); 
+                                getConfigs();
+                            }} className='ml-2'>Cancel</Button>
+                        </div>
+                    </div>
+                }
                 onHide={() => setDisplaySidebarTestConfig(false)}>
-                <EditTestConfig 
-                    config={activeConfig} 
-                    onClose={() => {
-                        setDisplaySidebarTestConfig(false); 
-                        getConfigs();
-                    }}
-                    onSave={config => save(config)}
-                    onDelete={config => remove(config)}
-                />
+                <EditTestConfig />
             </Sidebar>
         </>
     );
