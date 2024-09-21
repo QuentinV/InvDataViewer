@@ -32,6 +32,14 @@
                     "title": "Operating income",
                     "dataset1": "OIPS"
                 },
+                "bookValue": {
+                    "cagrBookValue": "10-AVG Book Value"
+                },
+                "operatingBookValue"{
+                    "title": "Operating Book Value",
+                    "dataset1": "Operating Book Value",
+                    "cagrOperatingBookValue": "10Y-AVG Operating Book Value"
+                },
                 "ownersEarningsGrowth": {
                     "title": "Owners Earnings Growth",
                     "dataset1": "OE Growth",
@@ -59,6 +67,25 @@
                     "title": "SgaA margin",
                     "dataset1": "V&V/Revenue (%)",
                     "dataset2": "30% is good"
+                },
+                "roe": {
+                    "tenYAvgRoe": "10Y-AVG ROE"
+                },
+                "dividendPayoutRatio": {
+                    "title": "Dividend Payout Ratio",
+                    "dataset1": "Dividend Payout Ratio"
+                },
+                "roic": {
+                    "title": "ROIC",
+                    "dataset1": "ROIC"
+                },
+                "decompositionOfRoe": {
+                    "title": "Decomposition of ROE",
+                    "dataset1": "Taxes", 
+                    "dataset2": "Financing",
+                    "dataset3": "Operating Profit",
+                    "dataset4": "Turnover",
+                    "dataset5": "Leverage"
                 }
             }
         },
