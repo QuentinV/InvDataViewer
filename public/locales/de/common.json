@@ -24,7 +24,7 @@
                 "epsGrowth": {
                     "title": "Gewinn Wachstum",
                     "dataset1": "Bereinigter Gewinn",
-                    "cagrAdjustedProfit": "CAGR angepasster Gewinn",
+                    "cagrAdjustedProfit": "CAGR bereinigter Gewinn",
                     "cagrEarningsPerShare": "CAGR Gewinn je Aktie",
                     "10yAvgEarningsPerShare": "10J-AVG Gewinn je Aktie"
                 },
@@ -56,9 +56,36 @@
                     "dataset2": "40 % ist gut"
                 },
                 "sgaAMargin": {
-                    "title": "SgaA-Marge",
+                    "title": "Vertriebs- und Verwaltungskosten-Marge",
                     "dataset1": "V&V/Umsatz (%)",
                     "dataset2": "30 % ist gut"
+                }, 
+                "roe": {
+                    "tenYAvgRoe": "10J-AVG ROE"
+                }, 
+                "decompositionOfRoe": {
+                    "title": "Aufteilung des ROE",
+                    "dataset1": "Anteil Steuern",
+                    "dataset2": "Anteil Zinsen",
+                    "dataset3": "Anteil operativer Ergebnis",
+                    "dataset4": "Anteil Absatz",
+                    "dataset5": "Anteil Verschuldung"
+                },
+                "bookValue": {
+                    "cagrBookValue": "10J Wachstumsrate Buchwert"
+                }, 
+                "operatingBookValue": {
+                    "title": "Operativer Buchwert",
+                    "dataset1": "Operativer Buchwert",
+                    "cagrOperatingBookValue": "10J Wachstumsrate Buchwert"
+                }, 
+                "dividendPayoutRatio": {
+                    "title": "Ausschüttungsquote",
+                    "dataset1": "Ausschüttungsquote"
+                }, 
+                "roic": {
+                    "title": "Rendite auf investiertes Kapital",
+                    "dataset1": "ROIC"
                 }
             }
         },
