@@ -75,7 +75,7 @@ export const CompanyPage: React.FC = () => {
                 <TradingViewSymbolOverview ticker={data?.tickers?.[0]?.ticker || ''} exchange={data?.tickers?.[0]?.exchange || ''} />
             </div>
             <IndicatorsGraph data={data} />
-            <InvDataViewer data={data} />
+            <InvDataViewer cik={cikN} />
             <BusinessModel cik={cikN} />
             <Moat cik={cikN} />
             <CompanyValue cik={cikN} />

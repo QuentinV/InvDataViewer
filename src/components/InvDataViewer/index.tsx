@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { InvData } from '../../models/types'
 import { InvDataViewerTable } from './InvDataViewerTable'
 import { useTranslation } from 'react-i18next'
 import { Config } from './types'
@@ -9,12 +8,10 @@ import { Accordion, AccordionTab } from 'primereact/accordion'
 import { navs } from '../../models/routes'
 
 interface InvDataViewerProps {
-    data?: InvData
+    cik: number;
 }
 
-export const InvDataViewer: React.FC<InvDataViewerProps> = ({
-    data
-}) => {
+export const InvDataViewer: React.FC<InvDataViewerProps> = ({ cik }) => {
     const { t } = useTranslation();
     const [configs, setConfigs] = useState<Config[] | undefined>()
     const titleRef = useRef(null);
@@ -39,9 +36,9 @@ export const InvDataViewer: React.FC<InvDataViewerProps> = ({
             {configs.map((c, i) => (
                 <AccordionTab key={i} header={t(`ticker.fundamentals.${c.name}.title`)}>
                     <InvDataViewerTable
+                        cik={cik}
                         dataKey={c.name}
                         structure={c.children}
-                        data={data}
                     />
                 </AccordionTab>
             ))}
