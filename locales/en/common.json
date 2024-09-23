@@ -12,6 +12,7 @@
         "search": "Search..."
     },
     "ticker": {
+        "loader": "Retrieving and verifying data.\nGrab a coffee, it might take a few seconds.",
         "intrinsicValue": {
             "title": "Intrinsic value",
             "areas": {
