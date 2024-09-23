@@ -8,6 +8,7 @@ import { LabelData } from '../types'
 import { useTranslation } from 'react-i18next'
 import { api } from '../../../api/invData'
 import { InputText } from 'primereact/inputtext'
+import { ProgressSpinner } from 'primereact/progressspinner'
 
 interface InvDataViewerTableProps {
     cik: number;
@@ -22,11 +23,11 @@ export const InvDataViewerTable: React.FC<InvDataViewerTableProps> = ({
     dataKey,
     structure
 }) => {
-    const { t } = useTranslation()
+    const { t } = useTranslation();
     const [years, setYears] = useState<yearsType>();
     const yearsKeys = Object.keys(years || {}).slice(-10)
     const dt: any = useRef(null);
-    const [numberFormatIndex, setNumberFormatIndex] = useState<number>(2)
+    const [numberFormatIndex, setNumberFormatIndex] = useState<number>(2);
 
     useEffect(() => {
         (async () => {
@@ -36,7 +37,10 @@ export const InvDataViewerTable: React.FC<InvDataViewerTableProps> = ({
     }, [cik, dataKey]);
 
     if ( !years ) {
-        return null;
+        return (<div className='text-center'>
+            <ProgressSpinner />
+            <div style={{ whiteSpace: 'pre-line' }}>{t('ticker.loader')}</div>
+        </div>);
     }
 
     const updateValue = async (value: { [year: string]: {[dataKey: string]: { [key: string]: number|null|undefined } } }) => 

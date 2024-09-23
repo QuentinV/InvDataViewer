@@ -51,7 +51,10 @@ export const CompanyPage: React.FC = () => {
     }, [cik])
 
     if (data === undefined) {
-        return <div className='text-center'><ProgressSpinner /></div>;
+        return (<div className='text-center'>
+            <ProgressSpinner />
+            <div style={{ whiteSpace: 'pre-line' }}>{t('ticker.loader')}</div>
+        </div>);
     }
 
     if (data === null) {
