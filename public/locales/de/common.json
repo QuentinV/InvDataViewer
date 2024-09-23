@@ -132,12 +132,13 @@
                 "roe": {
                     "title": "ROE",
                     "dataset1": "ROE",
-                    "dataset2": "> 20% is ist sehr gut"
+                    "dataset2": "> 20% is ist sehr gut",
+                    "tenYAvgRoe": "10J-AVG ROE"
                 },
                 "invMargin": {
                     "title": "Investment Margin",
                     "dataset1": "Investitionen/Operating Income",
-                    "tenYAvgInvMargin": "10-AV Inv Margin"
+                    "tenYAvgInvMargin": "10J-AVG Inv Margin"
                 },
                 "daMargin": {
                     "title": "D&A Margin",
@@ -157,6 +158,12 @@
                 "bookValue":{
                     "title": "Buchwert",
                     "dataset1": "Buchwert"
+                    "cagrBookValue": "CAGR Buchwertwachstum"
+                },
+                "operatingBookValue":{
+                    "title": "Operativer Buchwert",
+                    "dataset1": "Operativer Buchwert",
+                    "cagrBookValue": "CAGR operatives Buchwertwachstum" 
                 }
             }
         },
@@ -191,7 +198,8 @@
                 "TITLE_WEIGHTED_AVG_PER_SHARE_OUT": "Gewichteter Durchschnitt der ausstehenden Aktien",
                 "WEIGHTED_AVERAGE_SHARES_OUTSTANDING_BASIC": "Basis",
                 "WEIGHTED_AVERAGE_SHARES_OUTSTANDING_DILUTED": "Verwässert",
-                "CASH_DIVIDENDS_PER_SHARE": "Bargelddividenden je Aktie"
+                "CASH_DIVIDENDS_PER_SHARE": "Bargelddividenden je Aktie", 
+				"EBITDA": "EBITDA"
             },
             "BALANCE_SHEET": {
                 "title": "Bilanz",
@@ -224,8 +232,6 @@
                 "TOTAL_LIABILITIES": "Gesamtverbindlichkeiten",
                 "TOTAL_CURRENT_LIABILITIES": "Gesamte laufende Verbindlichkeiten",
                 "SHORT_TERM_LIABILITIES": "Kurzfristige Verbindlichkeiten",
-                "LONG_TERM_LIABILITIES": "Langfristige Verbindlichkeiten",
-                "SHORT_TERM_DEBT": "Kurzfristige Schulden",
                 "CAPITAL_LEASES_CURRENT_LIABILITIES": "Kapital-Leasingverbindlichkeiten",
                 "ACCOUNTS_PAYABLE": "Verbindlichkeiten aus Lieferungen und Leistungen",
                 "TAXES_PAYABLE": "Steuerverbindlichkeiten",
@@ -235,7 +241,7 @@
                 "EMPLOYEE_COMPENSATION_AND_BENEFITS": "Vergütung und Leistungen für Mitarbeiter",
                 "OTHER_CURRENT_LIABILITIES": "Andere laufende Verbindlichkeiten",
                 "TOTAL_NON_CURRENT_LIABILITIES": "Gesamte nicht laufende Verbindlichkeiten",
-                "LONG_TERM_DEBT": "Langfristige Schulden",
+				"LONG_TERM_LIABILITIES": "Langfristige Verbindlichkeiten",
                 "CAPITAL_LEASES_NON_CURRENT_LIABILITIES": "Kapital-Leasingverbindlichkeiten",
                 "DEFERRED_TAXES_LIABILITIES": "Zurückgestellte Steuerverbindlichkeiten",
                 "DEFERRED_REVENUES_NON_CURRENT_LIABILITIES": "Zurückgestellte Erträge",
@@ -371,4 +377,4 @@
             }
         }
     }
-}
+} 
