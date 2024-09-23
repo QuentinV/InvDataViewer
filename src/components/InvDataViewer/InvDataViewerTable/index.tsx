@@ -130,16 +130,28 @@ export const InvDataViewerTable: React.FC<InvDataViewerTableProps> = ({
     }
 
     const cellEditor = (options: ColumnEditorOptions) => {
-        return <InputText 
-            className='w-7rem p-0 text-right'
-            type="string" 
-            value={options.value} 
-            onChange={(e: any) => options?.editorCallback?.(e.target.value)} 
-            onKeyDown={(e) => e.stopPropagation()} 
-        />;
+        return (
+            <div>
+                <span className='pi pi-check mr-1' onClick={() => {
+                    dt.current.validated = { rowIndex: options.rowIndex, year: options.field };
+                    dt.current.getTable().click();
+                }}></span>
+                <InputText 
+                    className='w-7rem p-0 text-right'
+                    type="string" 
+                    value={options.value} 
+                    onChange={(e: any) => options?.editorCallback?.(e.target.value)} 
+                    onKeyDown={(e) => e.stopPropagation()} 
+                />
+            </div>
+        );
     };
 
     const onCellEditComplete = async (e: ColumnEvent) => {
+        if ( dt.current?.validated?.rowIndex !== e.rowIndex || dt.current?.validated?.year !== e.field ) {
+            dt.current.validated = undefined;
+            return; 
+        }
         const config = structure[e.rowIndex];
         const key = config?.name;
         const ref = years[e.field]?.[dataKey];
