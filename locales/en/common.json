@@ -120,6 +120,22 @@
                     "dataset1": "V&V/Revenue (%)",
                     "dataset2": "30% is good"
                 },
+                "dividendPayoutRatio": {
+                    "title": "Dividend Payout Ratio",
+                    "dataset1": "Dividend Payout Ratio"
+                },
+                "roic": {
+                    "title": "ROIC",
+                    "dataset1": "ROIC"
+                },
+                "decompositionOfRoe": {
+                    "title": "Decomposition of ROE",
+                    "dataset1": "Taxes", 
+                    "dataset2": "Financing",
+                    "dataset3": "Operating Profit",
+                    "dataset4": "Turnover",
+                    "dataset5": "Leverage"
+                },
                 "assetTurnover": {
                     "title": "Asset turnover",
                     "dataset1": "Asset turnover"
@@ -163,7 +179,7 @@
                 "operatingBookValue":{
                     "title": "Operating Book Value",
                     "dataset1": "Operating Book Value",
-                    "cagrBookValue": "CAGR Operating Book Value" 
+                    "cagrOperatingBookValue": "CAGR Operating Book Value" 
                 }
             }
         },
