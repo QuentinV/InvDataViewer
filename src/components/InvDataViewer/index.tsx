@@ -1,24 +1,48 @@
-import React from 'react'
-import { InvData } from '../../models/types'
-import { InvDataViewerTable } from './InvDataViewerTable';
-import { useTranslation } from 'react-i18next';
-import { Config } from './types';
+import React, { useEffect, useRef, useState } from 'react'
+import { InvDataViewerTable } from './InvDataViewerTable'
+import { useTranslation } from 'react-i18next'
+import { Config } from './types'
+import { api } from '../../api/invData'
+import { ProgressSpinner } from 'primereact/progressspinner'
+import { Accordion, AccordionTab } from 'primereact/accordion'
+import { navs } from '../../models/routes'
 
 interface InvDataViewerProps {
-    data?: InvData;
-    configs: Config[];
+    cik: number;
 }
 
-export const InvDataViewer: React.FC<InvDataViewerProps> = ({ data, configs }) => {
+export const InvDataViewer: React.FC<InvDataViewerProps> = ({ cik }) => {
     const { t } = useTranslation();
+    const [configs, setConfigs] = useState<Config[] | undefined>()
+    const titleRef = useRef(null);
+
+    useEffect(() => {
+        navs.setRef({ key: 'fundamentalsRef', ref: titleRef });
+        const getConfig = async () => {
+            const data = await api(`invData/companies/fundamentals/rules/display`)
+            setConfigs(data)
+        }
+        getConfig()
+    }, [])
+
+    if ( !configs ) {
+        return <div className='text-center'><ProgressSpinner /></div>;
+    }
+    
     return (
         <div>
-            {
-                configs.map( ( c, i ) => <div key={i}>
-                    <h3 className="bg-primary p-2">{t(`ticker.fundamentals.${c.name}.title`)}</h3>
-                    <InvDataViewerTable dataKey={c.name} structure={c.children} data={data} />
-                </div> )
-            }
+            <h3 className="bg-primary p-2" ref={titleRef}><i className='pi pi-database mr-2' />{t('ticker.fundamentals.title')}</h3>
+            <Accordion multiple>
+            {configs.map((c, i) => (
+                <AccordionTab key={i} header={t(`ticker.fundamentals.${c.name}.title`)}>
+                    <InvDataViewerTable
+                        cik={cik}
+                        dataKey={c.name}
+                        structure={c.children}
+                    />
+                </AccordionTab>
+            ))}
+            </Accordion>
         </div>
     )
 }

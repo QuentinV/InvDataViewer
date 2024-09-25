@@ -5,58 +5,110 @@
     "menu": {
         "home": "Home",
         "config": "Config",
-        "lang": "Language"
+        "lang": "Language",
+        "changelog": "Changelog"
     },
     "controls": {
         "search": "Search..."
     },
     "ticker": {
+        "loader": "Retrieving and verifying data.\nGrab a coffee, it might take a few seconds.",
+        "intrinsicValue": {
+            "title": "Intrinsic value",
+            "areas": {
+                "0": "pretty cheap",
+                "1": "cheap",
+                "2": "fair",
+                "3": "expensive",
+                "4": "pretty expensive"
+            }
+        },
+        "score": {
+            "unknown": "no score yet"
+        },
+        "market": {
+            "title": "Market share price"
+        },
         "metrics": {
             "title": "Metrics",
             "categories": {
+                "score": "Score",
                 "growth": "Growth",
                 "liquidity": "Liquidity",
                 "debt": "Debt",
-                "profitability": "Profitability",
-                "miscs": "Miscs"
+                "profitability": "Profitability"
             },
             "charts": {
                 "epsGrowth": {
                     "title": "EPS Growth",
-                    "dataset1": "Adjusted net income",
+                    "dataset1": "Adjusted net income per share",
                     "cagrAdjustedProfit": "CAGR Adjusted profit",
                     "cagrEarningsPerShare": "CAGR Earnings per share",
-                    "10yAvgEarningsPerShare": "10Y-AVG earnings per share"
+                    "tenYAvgEarningsPerShare": "10Y-AVG earnings per share"
                 },
                 "operatingIncome": {
                     "title": "Operating income",
-                    "dataset1": "OIPS"
-                },
-                "bookValue": {
-                    "cagrBookValue": "10-AVG Book Value"
-                },
-                "operatingBookValue"{
-                    "title": "Operating Book Value",
-                    "dataset1": "Operating Book Value",
-                    "cagrOperatingBookValue": "10Y-AVG Operating Book Value"
-                },
-                "ownersEarningsGrowth": {
-                    "title": "Owners Earnings Growth",
-                    "dataset1": "OE Growth",
-                    "dataset2": "6.5% is good"
-                },
-                "ownersEarningsPerShare": {
-                    "title": "Owners Earnings per share",
-                    "dataset1": "Owners Earnings per share"
+                    "dataset1": "Operating income per share",
+                    "cagrOperatingIncome": "CAGR operating income",
+                    "cagrOperatingIncomePerShare": "CAGR operating income per share",
+                    "tenYAvgEbitPerShare": "10Y-AVG EBIT per share"
                 },
                 "revenueGrowthVsCOGSGrowth": {
-                    "title": "Revenue Growth vs COGS Growth",
-                    "dataset1": "Revenue Growth (%)",
-                    "dataset2": "COGS Growth (%)"
+                    "title": "Revenue and Costs Growth",
+                    "dataset1": "Revenue per share",
+                    "dataset2": "Costs per share",
+                    "cagrRevenue": "CAGR Revenue",
+                    "cagrRevenuePerShare": "CAGR Revenue per share"
                 },
                 "cashEquivalents": {
                     "title": "Cash & Equivalents",
-                    "dataset1": "Cash & Equivalents"
+                    "dataset1": "Cash & Equivalents",
+                    "cashToShortTermDebtRatio": "Cash to short-term debt ratio"
+                },
+                "cashflowToLongTermDebtRatio": {
+                    "title": "Cashflow to long-term debt ratio",
+                    "dataset1": "Free Cash Flow",
+                    "dataset2": "Long-term Liabilities"
+                },
+                "cashflowRatio": {
+                    "title": "Cashflow Ratio",
+                    "dataset1": "CFR"
+                },
+                "freeCashflow": {
+                    "title": "Free Cashflow",
+                    "dataset1": "Free Cash Flow"
+                },
+                "freeCashflowToRevenueRatio": {
+                    "title": "Free Cashflow to Revenue Ratio",
+                    "dataset1": "FCF/Revenue (%)"
+                },
+                "workingCapitalRatio": {
+                    "title": "Working Capital Ratio",
+                    "dataset1": "Working capital ratio",
+                    "dataset2": "WCR > 1.2",
+                    "dataset3": "WCR < 2.0"
+                },
+                "debtToEquityRatio": {
+                    "title": "Debt to equity ratio",
+                    "dataset1": "Debt/Equity",
+                    "dataset2": "<= 100% is good",
+                    "dataset3": "<= 50% is really good"
+                },
+                "ltDebtToEquityRatio": {
+                    "title": "Long term debt to equity ratio",
+                    "dataset1": "LT Debt/Equity",
+                    "dataset2": "<= 35% is good"
+                },
+                "ltDebtToOpIncomeRatio": {
+                    "title": "Longterm debt to operating income ratio",
+                    "dataset1": "Operating income",
+                    "dataset2": "Long-term liabilities",
+                    "ltDebtToOpIncomeRatio": "LT debt/OI ratio"
+                },
+                "interestExpenseMargin": {
+                    "title": "Interest expense margin",
+                    "dataset1": "Interest expense / EBIT",
+                    "dataset2": "< 15 % is good"
                 },
                 "grossProfitMargin": {
                     "title": "Gross Profit Margin (%)",
@@ -67,9 +119,6 @@
                     "title": "SgaA margin",
                     "dataset1": "V&V/Revenue (%)",
                     "dataset2": "30% is good"
-                },
-                "roe": {
-                    "tenYAvgRoe": "10Y-AVG ROE"
                 },
                 "dividendPayoutRatio": {
                     "title": "Dividend Payout Ratio",
@@ -86,10 +135,56 @@
                     "dataset3": "Operating Profit",
                     "dataset4": "Turnover",
                     "dataset5": "Leverage"
+                },
+                "assetTurnover": {
+                    "title": "Asset turnover",
+                    "dataset1": "Asset turnover"
+                },
+                "operatingMargin": {
+                    "title": "Operating Margin",
+                    "dataset1": "Operating Margin",
+                    "dataset2": "AVG OM S&P500"
+                },
+                "roe": {
+                    "title": "ROE",
+                    "dataset1": "ROE",
+                    "dataset2": "> 20% is is super good",
+                     "tenYAvgRoe": "10Y-AVG ROE"
+                },
+                "invMargin": {
+                    "title": "Investment Margin",
+                    "dataset1": "Investitionen/Operating Income",
+                    "tenYAvgInvMargin": "10Y-AVG Inv Margin"
+                },
+                "daMargin": {
+                    "title": "D&A Margin",
+                    "dataset1": "Depreciation and Amortization by gross profit",
+                    "dataset2": "8% is good"
+                },
+                "rdRevenueMargin": {
+                    "title": "R&D Revenue Margin",
+                    "dataset1": "R&D Revenue",
+                    "dataset2": "Obere Grenze",
+                    "dataset3": "Untere Grenze"
+                },
+                "rdMargin": {
+                    "title": "R&D Margin",
+                    "dataset1": "R&D/Net income"
+                },
+                "bookValue":{
+                    "title": "Book Value",
+                    "dataset1": "Book Value",
+                    "cagrBookValue": "CAGR Book Value" 
+                },
+                "operatingBookValue":{
+                    "title": "Operating Book Value",
+                    "dataset1": "Operating Book Value",
+                    "cagrOperatingBookValue": "CAGR Operating Book Value" 
                 }
             }
         },
         "fundamentals": {
+            "title": "Fundamentals",
             "INCOME_STATEMENT": {
                 "title": "Income Statement",
                 "REVENUE": "Revenue",
@@ -152,7 +247,7 @@
                 "TOTAL_LIABILITIES_AND_STOCKHOLDERS_EQUITY": "Total liabilities and stockholders' equity",
                 "TOTAL_LIABILITIES": "Total liabilities",
                 "TOTAL_CURRENT_LIABILITIES": "Total current liabilities",
-                "SHORT_TERM_DEBT": "Short-term debt",
+                "SHORT_TERM_LIABILITIES": "Short-term liabilities",
                 "CAPITAL_LEASES_CURRENT_LIABILITIES": "Capital leases",
                 "ACCOUNTS_PAYABLE": "Accounts payable",
                 "TAXES_PAYABLE": "Taxes payable",
@@ -162,7 +257,7 @@
                 "EMPLOYEE_COMPENSATION_AND_BENEFITS": "Employee compensation and benefits",
                 "OTHER_CURRENT_LIABILITIES": "Other current liabilities",
                 "TOTAL_NON_CURRENT_LIABILITIES": "Total non-current liabilities",
-                "LONG_TERM_DEBT": "Long-term debt",
+                "LONG_TERM_LIABILITIES": "Langfristige Verbindlichkeiten",
                 "CAPITAL_LEASES_NON_CURRENT_LIABILITIES": "Capital leases",
                 "DEFERRED_TAXES_LIABILITIES": "Deferred taxes liabilities",
                 "DEFERRED_REVENUES_NON_CURRENT_LIABILITIES": "Deferred revenues",
@@ -234,6 +329,67 @@
                 "CAPITAL_EXPENDITURE_CASH_FLOW": "Capital expenditure",
                 "CASH_PAID_FOR_INCOME_TAXES": "Cash paid for income taxes",
                 "CASH_PAID_FOR_INTEREST": "Cash paid for interest"
+            }
+        },
+        "businessmodel": {
+            "title": "Business model",
+            "select": "What fits the best ?",
+            "options": {
+                "-2": "(--) not predictable < 1 year",
+                "-1": "(-) difficult to predict 1-3 years",
+                "0": "(O) difficult to predict up to 5 years",
+                "1": "(+) easy to understand and predictable for 10 years",
+                "2": "(++) easy to understand and predictable for 20 years"
+            }
+        },
+        "moat": {
+            "title": "MOAT",
+            "moat": "Moat",
+            "trend": "Trend",
+            "result": "Score"
+        },
+        "value": {
+            "title": "Company value",
+            "summary": "Summary",
+            "levels": {
+                "0": "Tatsächlich",
+                "1": "Konservativ",
+                "2": "Wahrscheinlich",
+                "3": "Optimistisch"
+            },
+            "categories": {
+                "netTangiblesAssets": {
+                    "title": "Net tangible assets",
+                    "cash": "Cash",
+                    "accountsReceivable": "Accounts receivable",
+                    "inventories": "Inventories",
+                    "propertyAndEquipment": "Property and equipment",
+                    "others": "Others"
+                },
+                "adjustedIntagibles": {
+                    "title": "Adj. Intangible Assets",
+                    "goodwill": "Goodwill",
+                    "intangibleAssets": "Intagible assets",
+                    "others": "Others"
+                },
+                "bookvalueGrowth": {
+                    "title": "Szenarien book value growth",
+                    "futureGrowthRate": "Future growth rate",
+                    "discountRate": "Discount rate",
+                    "years": "# Years"
+                },
+                "dividendGrowth": {
+                    "title": "Szenarien Dividenden Growth",
+                    "futureGrowth": "Future growth",
+                    "discountRate": "Discount rate",
+                    "years": "# Years"
+                },
+                "value": {
+                    "title": "Sum"
+                }
+            },
+            "config": {
+                "title": "Configuration"
             }
         }
     }

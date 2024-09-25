@@ -1,0 +1,1 @@
+export type CompanyValueConfig = {[key: string]: { [key: string]: number[]}};

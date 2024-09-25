@@ -5,20 +5,38 @@
     "menu": {
         "home": "Startseite",
         "config": "Konfiguration",
-        "lang": "Sprache"
+        "lang": "Sprache",
+        "changelog": "Änderungsprotokoll"
     },
     "controls": {
         "search": "Suche..."
     },
     "ticker": {
+        "loader": "Daten abrufen und überprüfen.\nHol dir einen Kaffee, es könnte ein paar Sekunden dauern.",
+        "intrinsicValue": {
+            "title": "Intrinsic value",
+            "areas": {
+                "0": "sehr günstig",
+                "1": "günstig",
+                "2": "fair",
+                "3": "teuer",
+                "4": "sehr teuer"
+            }
+        },
+        "score": {
+            "unknown": "Noch keine Punktzahl"
+        },
+        "market": {
+            "title": "Marktanteilspreis"
+        },
         "metrics": {
             "title": "Fundamentaldaten",
             "categories": {
+                "score": "Score",
                 "growth": "Wachstum",
                 "liquidity": "Liquidität",
                 "debt": "Verschuldungsgrad",
-                "profitability": "Profitabilität",
-                "miscs": "Sonstiges"
+                "profitability": "Profitabilität"
             },
             "charts": {
                 "epsGrowth": {
@@ -26,29 +44,71 @@
                     "dataset1": "Bereinigter Gewinn",
                     "cagrAdjustedProfit": "CAGR bereinigter Gewinn",
                     "cagrEarningsPerShare": "CAGR Gewinn je Aktie",
-                    "10yAvgEarningsPerShare": "10J-AVG Gewinn je Aktie"
+                    "tenYAvgEarningsPerShare": "10J-AVG Gewinn je Aktie"
                 },
                 "operatingIncome": {
                     "title": "Operatives Ergebnis Wachstum (EBIT)",
-                    "dataset1": "EBIT je Aktie"
-                },
-                "ownersEarningsGrowth": {
-                    "title": "Ertragswachstum der Eigentümer",
-                    "dataset1": "OE Growth",
-                    "dataset2": "6,5 % ist gut"
-                },
-                "ownersEarningsPerShare": {
-                    "title": "Eigentümergewinn je Aktie",
-                    "dataset1": "Eigentümergewinn je Aktie"
+                    "dataset1": "EBIT je Aktie",
+                    "cagrOperatingIncome": "CAGR operatives Ergebnis",
+                    "cagrOperatingIncomePerShare": "CAGR operatives Ergebnis je Aktie",
+                    "tenYAvgEbitPerShare": "10J-AVG operatives Ergebnis je Aktie"
                 },
                 "revenueGrowthVsCOGSGrowth": {
                     "title": "Umsatzwachstum vs. COGS-Wachstum",
-                    "dataset1": "Umsatzwachstum (%)",
-                    "dataset2": "COGS-Wachstum (%)"
+                    "dataset1": "Umsatz je Aktie",
+                    "dataset2": "Umsatzkosten je Aktie",
+                    "cagrRevenue": "CAGR Umsatz",
+                    "cagrRevenuePerShare": "CAGR Umsatz je Aktie"
                 },
                 "cashEquivalents": {
                     "title": "Bargeld & Äquivalente",
-                    "dataset1": "Bargeld & Äquivalente"
+                    "dataset1": "Bargeld & Äquivalente",
+                    "cashToShortTermDebtRatio": "Verhältnis Cashflow zu Verschuldung"
+                },
+                "cashflowToLongTermDebtRatio": {
+                    "title": "Cashflow zu langfristiger Verschuldungsquote",
+                    "dataset1": "Freier Cashflow",
+                    "dataset2": "Langfristige Verbindlichkeiten"
+                },
+                "cashflowRatio": {
+                    "title": "Cashflow Ratio",
+                    "dataset1": "CFR"
+                },
+                "freeCashflow": {
+                    "title": "Free Cashflow",
+                    "dataset1": "Free Cash Flow (%)"
+                },
+                "freeCashflowToRevenueRatio": {
+                    "title": "Verhältnis von freiem Cashflow zu Umsatz",
+                    "dataset1": "FCF/Umsatz"
+                },
+                "workingCapitalRatio": {
+                    "title": "Liquiditätsgrad",
+                    "dataset1": "Liquiditätsgrad",
+                    "dataset2": "WCR > 1.2",
+                    "dataset3": "WCR < 2.0"
+                },
+                "debtToEquityRatio": {
+                    "title": "Debt to equity ratio",
+                    "dataset1": "Debt/Equity",
+                    "dataset2": "<= 100% is good",
+                    "dataset3": "<= 50% is really good"
+                },
+                "ltDebtToEquityRatio": {
+                    "title": "Long term debt to equity ratio",
+                    "dataset1": "LT Debt/Equity",
+                    "dataset2": "<= 35% is good"
+                },
+                "ltDebtToOpIncomeRatio": {
+                    "title": "Longterm debt to operating income ratio",
+                    "dataset1": "Operating income",
+                    "dataset2": "Long-term liabilities",
+                    "ltDebtToOpIncomeRatio": "LT debt/OI ratio"
+                },
+                "interestExpenseMargin": {
+                    "title": "Interest expense margin",
+                    "dataset1": "Interest expense / EBIT",
+                    "dataset2": "< 15 % is good"
                 },
                 "grossProfitMargin": {
                     "title": "Bruttogewinnmarge (%)",
@@ -60,9 +120,6 @@
                     "dataset1": "V&V/Umsatz (%)",
                     "dataset2": "30 % ist gut"
                 }, 
-                "roe": {
-                    "tenYAvgRoe": "10J-AVG ROE"
-                }, 
                 "decompositionOfRoe": {
                     "title": "Aufteilung des ROE",
                     "dataset1": "Anteil Steuern",
@@ -71,14 +128,7 @@
                     "dataset4": "Anteil Absatz",
                     "dataset5": "Anteil Verschuldung"
                 },
-                "bookValue": {
-                    "cagrBookValue": "10J Wachstumsrate Buchwert"
-                }, 
-                "operatingBookValue": {
-                    "title": "Operativer Buchwert",
-                    "dataset1": "Operativer Buchwert",
-                    "cagrOperatingBookValue": "10J Wachstumsrate Buchwert"
-                }, 
+
                 "dividendPayoutRatio": {
                     "title": "Ausschüttungsquote",
                     "dataset1": "Ausschüttungsquote"
@@ -86,10 +136,56 @@
                 "roic": {
                     "title": "Rendite auf investiertes Kapital",
                     "dataset1": "ROIC"
+                },
+                "assetTurnover": {
+                    "title": "Asset turnover",
+                    "dataset1": "Asset turnover"
+                },
+                "operatingMargin": {
+                    "title": "Operating Margin",
+                    "dataset1": "Operating Margin",
+                    "dataset2": "AVG OM S&P500"
+                },
+                "roe": {
+                    "title": "ROE",
+                    "dataset1": "ROE",
+                    "dataset2": "> 20% is ist sehr gut",
+                    "tenYAvgRoe": "10J-AVG ROE"
+                },
+                "invMargin": {
+                    "title": "Investment Margin",
+                    "dataset1": "Investitionen/Operating Income",
+                    "tenYAvgInvMargin": "10J-AVG Inv Margin"
+                },
+                "daMargin": {
+                    "title": "D&A Margin",
+                    "dataset1": "Depreciation and Amortization by gross profit",
+                    "dataset2": "8% is good"
+                },
+                "rdRevenueMargin": {
+                    "title": "R&D Revenue Margin",
+                    "dataset1": "R&D Revenue",
+                    "dataset2": "Obere Grenze",
+                    "dataset3": "Untere Grenze"
+                },
+                "rdMargin": {
+                    "title": "R&D Margin",
+                    "dataset1": "R&D/Net income"
+                },
+                "bookValue":{
+                    "title": "Buchwert",
+                    "dataset1": "Buchwert"
+                    "cagrBookValue": "CAGR Buchwertwachstum"
+                },
+                "operatingBookValue":{
+                    "title": "Operativer Buchwert",
+                    "dataset1": "Operativer Buchwert",
+                    "cagrOperatingBookValue": "CAGR operatives Buchwertwachstum"            
                 }
             }
         },
         "fundamentals": {
+            "title": "Fundamentals",
             "INCOME_STATEMENT": {
                 "title": "Gewinn- und Verlustrechnung",
                 "REVENUE": "Umsatz",
@@ -151,9 +247,7 @@
                 "TOTAL_LIABILITIES_AND_STOCKHOLDERS_EQUITY": "Summe Passiva",
                 "TOTAL_LIABILITIES": "Gesamtverbindlichkeiten",
                 "TOTAL_CURRENT_LIABILITIES": "Summe kurzfristiger Verbindlichkeiten",
-                "SHORT_TERM_LIABILITIES": "Kurzfristige Finanzschulden",
-                "LONG_TERM_LIABILITIES": "Langfristige Finanzschulden",
-                "SHORT_TERM_DEBT": "Kurzfristige Finanzschulden",
+                "SHORT_TERM_LIABILITIES": "Kurzfristige Verbindlichkeiten",
                 "CAPITAL_LEASES_CURRENT_LIABILITIES": "Kapital-Leasingverbindlichkeiten",
                 "ACCOUNTS_PAYABLE": "Verbindlichkeiten aus Lieferungen und Leistungen",
                 "TAXES_PAYABLE": "Steuerverbindlichkeiten",
@@ -164,6 +258,7 @@
                 "OTHER_CURRENT_LIABILITIES": "Übrige kurzfristige Verbindlichkeiten",
                 "TOTAL_NON_CURRENT_LIABILITIES": "Summe langfristiger Verbindlichkeiten",
                 "LONG_TERM_DEBT": "Langfristige Schulden",
+				        "LONG_TERM_LIABILITIES": "Langfristige Verbindlichkeiten",
                 "CAPITAL_LEASES_NON_CURRENT_LIABILITIES": "Kapital-Leasingverbindlichkeiten",
                 "DEFERRED_TAXES_LIABILITIES": "Passive latente Steuern",
                 "DEFERRED_REVENUES_NON_CURRENT_LIABILITIES": "Zurückgestellte Erträge",
@@ -236,6 +331,67 @@
                 "CASH_PAID_FOR_INCOME_TAXES": "Bargeld für Einkommensteuern gezahlt",
                 "CASH_PAID_FOR_INTEREST": "Bargeld für Zinsen gezahlt"
             }
+        },
+        "businessmodel": {
+            "title": "Bewertung des Geschäftsmodells",
+            "select": "Was passt am besten?",
+            "options": {
+                "-2": "(--) nicht vorhersehbar < 1 Jahr",
+                "-1": "(-) schwer vorhersehbar 1-3 Jahre",
+                "0": "(O) schwer vorhersehbar bis max. 5 Jahre",
+                "1": "(+) einfach zu verstehen und vorhersehbar für 10 Jahre",
+                "2": "(++) einfach zu verstehen und vorhersehbar für 20 Jahre"
+            }
+        },
+        "moat": {
+            "title": "MOAT",
+            "moat": "Moat",
+            "trend": "Trend",
+            "result": "Punktzahl"
+        },
+        "value": {
+            "title": "Unternehmenswert",
+            "summary": "Zusammenfassung",
+            "levels": {
+                "0": "Tatsächlich",
+                "1": "Konservativ",
+                "2": "Wahrscheinlich",
+                "3": "Optimistisch"
+            },
+            "categories": {
+                "netTangiblesAssets": {
+                    "title": "Net tangible assets",
+                    "cash": "Cash",
+                    "accountsReceivable": "Accounts receivable",
+                    "inventories": "Inventories",
+                    "propertyAndEquipment": "Property and equipment",
+                    "others": "Others"
+                },
+                "adjustedIntagibles": {
+                    "title": "Adj. Intangible Assets",
+                    "goodwill": "Goodwill",
+                    "intangibleAssets": "Intagible assets",
+                    "others": "Others"
+                },
+                "bookvalueGrowth": {
+                    "title": "Szenarien book value growth",
+                    "futureGrowthRate": "Future growth rate",
+                    "discountRate": "Discount rate",
+                    "years": "# Years"
+                },
+                "dividendGrowth": {
+                    "title": "Szenarien Dividenden Growth",
+                    "futureGrowth": "Future growth",
+                    "discountRate": "Discount rate",
+                    "years": "# Years"
+                },
+                "value": {
+                    "title": "Sum"
+                }
+            },
+            "config": {
+                "title": "Konfiguration"
+            }
         }
     }
-}
+} 
