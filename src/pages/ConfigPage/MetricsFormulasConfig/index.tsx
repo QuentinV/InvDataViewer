@@ -20,17 +20,18 @@ export const MetricsFormulasConfig: React.FC = () => {
             </div>
             { displayDoc && 
             <div className='ml-1 mb-1'>
-                <div className='mb-3'><b>Data will be calculated for the last 10 years maximum</b>. Available formula at <a href="https://formulajs.info/functions/" rel='noreferrer' target='_blank'>https://formulajs.info/functions/</a>.</div>
+                <div className='mb-3'><b>Global metrics will be calculated if at last 10 years are available and yearly metrics depends on required parameters.</b>. Available formula at <a href="https://formulajs.info/functions/" rel='noreferrer' target='_blank'>https://formulajs.info/functions/</a>.</div>
                 <div className='flex'>
                     <div className='w-6'>
                         <div>Global metrics (metrics)</div>
                         <ul className='mt-1'>
                             <li><b className='text-primary'>f</b>: access any formula. Ex: <b>f.ROUND( 2.25, 1 )</b></li>
                             <li><b className='text-primary'>metrics</b>: Read any previously calculated gobal metrics</li>
-                            <li><b className='text-primary'>firstYear</b> and <b className='text-primary'>lastYear</b>: Get year as number</li>
-                            <li><b className='text-primary'>fy</b> and <b className='text-primary'>ly</b>: Access data of first or last year. Ex: <b>fy.metrics</b></li>
-                            <li><b className='text-primary'>years</b>: array of all years - [ 2014, 2015, 2016, .., 2024 ]</li>
-                            <li><b className='text-primary'>row</b>: function to return array of data for a field or metric useful for <b>f.SUM</b><br /><span className='ml-5'>Ex: <b>f.SUM(row(&apos;metrics.investmentMargin&apos;))</b></span></li>
+                            <li><b className='text-primary'>ly</b>: Access data of last year. Ex: <b>ly.metrics</b></li>
+                            <li><b className='text-primary'>lym0 .. lym15</b>: Access data of last year minus 0 to 15. Ex: <b>lym9.metrics</b> = 10 years ago</li>
+                            <li><b className='text-primary'>lastYear</b>: Get last year as number. Ex: 2023</li>
+                            <li><b className='text-primary'>lastYearM0 .. lastYearM15</b>: Get last year minus 0 to 15 as number. Ex: <b>lastYearM9</b> = 2014</li>
+                            <li><b className='text-primary'>row</b>: function to return array of data for a field or metric useful for <b>f.SUM</b>. Key and amount of years.<br /><span className='ml-5'>Ex: <b>f.SUM(row(&apos;metrics.investmentMargin&apos;, 10))</b></span></li>
                         </ul>
                     </div>
                     <div className='w-6'>
@@ -39,7 +40,7 @@ export const MetricsFormulasConfig: React.FC = () => {
                             <li><b className='text-primary'>f</b>: access any formula. Ex: <b>f.ROUND( 2.25, 1 )</b></li>
                             <li><b className='text-primary'>INCOME_STATEMENT</b>, ... : Data from fundamentals</li>
                             <li><b className='text-primary'>metrics</b>: Read any previously calculated metrics for the same year</li>
-                            <li><b className='text-primary'>firstYear</b> and <b className='text-primary'>lastYear</b>: Get year as number</li>
+                            
                             <li><b className='text-primary'>py</b>: Get values of previous year. <br /><span className='ml-4'>Ex: <b>py.INCOME_STATEMENT</b>, ...</span></li>
                         </ul>
                     </div>
