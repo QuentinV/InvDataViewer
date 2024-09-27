@@ -6,6 +6,7 @@ import { DataView } from 'primereact/dataview';
 import { TestConfig } from './types';
 import { EditTestConfig } from './EditTestConfig';
 import { removeActiveConfigFx, saveActiveConfigFx, setActiveConfig } from './state';
+import { Results } from './Results';
 
 interface TestsProps {
     profile: string;
@@ -13,6 +14,7 @@ interface TestsProps {
 
 export const Tests: React.FC<TestsProps> = ({ profile }) => {
     const [displaySidebarTestConfig, setDisplaySidebarTestConfig] = useState<boolean>(false);
+    const [displaySidebarTestResult, setDisplaySidebarTestResult] = useState<boolean>(false);
     const [list, setList] = useState<TestConfig[]>([]);
 
     const getConfigs = async () => {
@@ -51,37 +53,17 @@ export const Tests: React.FC<TestsProps> = ({ profile }) => {
                 <div className='flex gap-4 align-items-center'>
                     <div>{item.name}</div>
                     <div className='ml-auto'>
-                        <Button className='mr-2' severity='help' onClick={() => { setActiveConfig(item); setDisplaySidebarTestConfig(true);}}>
+                        <Button className='mr-2 p-2' severity='help' onClick={() => { setActiveConfig(item); setDisplaySidebarTestConfig(true);}}>
                             <i className='pi pi-pencil'></i>
                         </Button>
-                        <Button severity={result?.pass === true ? 'success' : result?.pass === false ? 'danger' : 'secondary'} onClick={() => execute(item)}>
+                        {result?.errors && <Button className='mr-2 p-2' severity='warning' onClick={() => { setActiveConfig(item); setDisplaySidebarTestResult(true);}}>
+                            <i className='pi pi-exclamation-triangle'></i>
+                        </Button>}
+                        <Button className='p-2' severity={result?.pass === true ? 'success' : result?.pass === false ? 'danger' : 'secondary'} onClick={() => execute(item)}>
                             <i className='pi pi-play'></i>
                         </Button>
                     </div>
                 </div>            
-                {typeof result?.errorMessage === "string" && 
-                    <div className='mt-2 text-orange-500'>
-                        <div className='underline'>Following issues occured: </div>
-                        <div className='mt-2 ml-2'>
-                            {result?.errorMessage.split('\n').map(v => {
-                                try {
-                                    const json = JSON.parse(v);
-                                    return Object.keys(json).map( k => (
-                                        <div key={k}>
-                                            <div className='font-bold'>{k}</div>
-                                            <div className='mt-1 mb-2 flex justify-content-around align-items-center'>
-                                                <div><div className='text-sm text-center'>Calculated</div><div className='font-medium text-pink-700'>{(json[k].calc ?? undefined) !== undefined ? JSON.stringify(json[k].calc) : 'undefined'}</div></div>
-                                                <div><div className='text-sm text-center'>Expected</div><div className='font-medium text-green-700'>{(json[k].expected ?? undefined) !== undefined ? JSON.stringify(json[k].expected) : 'undefined'}</div></div>
-                                            </div>
-                                        </div>    
-                                    ) )
-                                } catch (e) {
-                                    return (<div key={v}>{v}</div>)
-                                }
-                            })}
-                        </div>
-                    </div>
-                }
             </div>
         )
     }
@@ -116,6 +98,22 @@ export const Tests: React.FC<TestsProps> = ({ profile }) => {
                 }
                 onHide={() => setDisplaySidebarTestConfig(false)}>
                 <EditTestConfig />
+            </Sidebar>
+
+            <Sidebar
+                visible={displaySidebarTestResult}
+                position="right"
+                className='w-11'
+                header={
+                    <div className='mt-0 flex align-items-center w-full'>
+                        <h2 className='m-0'>Following issues occured</h2>
+                        <div className='ml-auto mr-8'>
+                            <Button onClick={() => { setDisplaySidebarTestResult(false); }} className='ml-2'>Close</Button>
+                        </div>
+                    </div>
+                }
+                onHide={() => setDisplaySidebarTestResult(false)}>
+                <Results profile={profile} />
             </Sidebar>
         </>
     );
