@@ -9,6 +9,7 @@ import { useTranslation } from 'react-i18next'
 import { api } from '../../../api/invData'
 import { InputText } from 'primereact/inputtext'
 import { ProgressSpinner } from 'primereact/progressspinner'
+import { parseNumber } from '../../../utils/parseNumber'
 
 interface InvDataViewerTableProps {
     cik: number;
@@ -155,7 +156,7 @@ export const InvDataViewerTable: React.FC<InvDataViewerTableProps> = ({
         const config = structure[e.rowIndex];
         const key = config?.name;
         const ref = years[e.field]?.[dataKey];
-        let newValue = parseFloat(e.newValue.replace(/\s/g, '').replace(',', '.'));
+        let newValue = parseNumber(e.newValue);
         if (!config.avoidFormat) {
             newValue = newValue * Math.pow(10, numberFormatIndex * 3)
         }
