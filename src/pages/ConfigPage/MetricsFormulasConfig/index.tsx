@@ -8,7 +8,7 @@ import { Dropdown } from 'primereact/dropdown';
 const profiles = [{ name: 'dev'}, { name: 'prod'}];
 
 export const MetricsFormulasConfig: React.FC = () => {
-    const [displayDoc, setDisplayDoc] = useState<boolean>(false);
+    const [displayDoc, setDisplayDoc] = useState<boolean>(true);
     const [displaySidebarTests, setDisplaySidebarTests] = useState<boolean>(false);
     const [profile, setProfile] = useState<{ name: string}>({ name: 'dev' });
     return (

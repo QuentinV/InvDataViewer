@@ -3,7 +3,7 @@ import { ConfigEditor } from '../ConfigEditor'
 import { Button } from 'primereact/button';
 
 export const ChartsMetricsConfig: React.FC = () => {
-    const [displayDoc, setDisplayDoc] = useState<boolean>(false);
+    const [displayDoc, setDisplayDoc] = useState<boolean>(true);
     return (
         <>
             <div className='flex mb-3 gap-3'>
