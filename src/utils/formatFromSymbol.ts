@@ -8,5 +8,5 @@ const defaultFormat = (value?: number) =>
 
 export const formatFromSymbol = (symbol?: string, value?: number) => {
     const v = symbol === '%' ? formatPercent(value) : value;
-    return `${defaultFormat(v)}${symbol === '%' || symbol === '$' ? symbol : '' }`;
+    return `${defaultFormat(v)}${(symbol?.indexOf('%') ?? -1) !== -1 ? '%' : symbol === '$' ? '$' : '' }`;
 }

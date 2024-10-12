@@ -29,7 +29,9 @@ export const ChartsMetricsConfig: React.FC = () => {
                                     <div className='ml-3'>
                                         <div><b>key</b>: identifier (for translation key)</div>
                                         <div><b>metric</b>: global metric to use (not yearly!)</div>
-                                        <div><b>symbol</b>: format (<b>%</b> or <b>d%</b> or <b>$</b>)</div>
+                                        <div><b>symbol</b>: (optional) display symbol after number. If no values then display nothing.
+                                            <div className='ml-3'>Possible values: <b>%</b> (divid by 100 and display %), <b>d%</b> (display %), <b>$</b> (display currency)</div>
+                                        </div>
                                     </div>
                                 </li>
                             </ul>
