@@ -52,7 +52,7 @@ export const ConfigEditor: React.FC<ConfigEditorProps> = ({ endpoint, profile })
                     }
                 />
             </div>
-            <div className="mt-2 mb-8 text-center">
+            <div className="mt-2 mb-3 text-center">
                 <Button label="Save" onClick={save} />
             </div>
         </>
