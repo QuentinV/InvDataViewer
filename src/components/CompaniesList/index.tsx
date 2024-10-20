@@ -50,7 +50,7 @@ export const CompaniesList: React.FC<CompaniesListProps> = ({ onLoad }) => {
                 key={cik}
                 onClick={() => navigate({ pathname: `/company/${cik}` })}
             >
-                {name[0].toUpperCase() + name.slice(1)}
+                {name ? name[0].toUpperCase() + name.slice(1) : ''}
             </div>
         )
     }
