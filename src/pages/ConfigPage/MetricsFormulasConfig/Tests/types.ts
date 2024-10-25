@@ -16,6 +16,15 @@ export interface TestConfigResult {
             compare: { [key: string]: TestConfigResultCompare }
         }[];
     };
+    formulasWithData?: {
+        metrics?: {[key: string]: TestConfigResultFormulaData};
+        years?: {[key: string]: { metrics: {[key: string]: TestConfigResultFormulaData} } };
+    }
+}
+
+export interface TestConfigResultFormulaData {
+    replaced: string; 
+    formula: string;
 }
 
 export interface TestConfigResultCompare {
