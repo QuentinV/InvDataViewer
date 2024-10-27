@@ -174,7 +174,7 @@
                 },
                 "bookValue":{
                     "title": "Buchwert",
-                    "dataset1": "Buchwert"
+                    "dataset1": "Buchwert",
                     "cagrBookValue": "CAGR Buchwertwachstum"
                 },
                 "operatingBookValue":{
