@@ -44,7 +44,7 @@ export const InvDataViewerTable: React.FC<InvDataViewerTableProps> = ({
         </div>);
     }
 
-    const updateValue = async (value: { [year: string]: {[dataKey: string]: { [key: string]: number|null|undefined } } }) => 
+    const updateValue = async (value: { [year: string]: {[dataKey: string]: { [key: string]: { value: number|null|undefined; isValid: 'SURE' | 'UNSURE' | undefined } } } }) => 
         api(
             `invData/companies/${cik}/fundamentals/${dataKey}`, 
             {
@@ -123,7 +123,7 @@ export const InvDataViewerTable: React.FC<InvDataViewerTableProps> = ({
             <div 
                 className='w-full h-full'
                 style={{ 
-                    borderBottom: config?.isValid ? `thin solid green` : (config?.isValid === false) ? 'thin solid orange' : 'none'
+                    borderBottom: config?.isValid === 'SURE' ? `thin solid green` : (config?.isValid === 'UNSURE') ? 'thin solid orange' : 'none'
                 }}>
                     {row?.[options.field]}
             </div>
@@ -133,8 +133,12 @@ export const InvDataViewerTable: React.FC<InvDataViewerTableProps> = ({
     const cellEditor = (options: ColumnEditorOptions) => {
         return (
             <div>
-                <span className='pi pi-check mr-1' onClick={() => {
-                    dt.current.validated = { rowIndex: options.rowIndex, year: options.field };
+                <span className='pi pi-check mr-2 text-green-400' onClick={() => {
+                    dt.current.validated = { rowIndex: options.rowIndex, year: options.field, isValid: 'SURE' };
+                    dt.current.getTable().click();
+                }}></span>
+                <span className='pi pi-asterisk mr-2 text-orange-400' onClick={() => {
+                    dt.current.validated = { rowIndex: options.rowIndex, year: options.field, isValid: 'UNSURE' };
                     dt.current.getTable().click();
                 }}></span>
                 <InputText 
@@ -165,7 +169,10 @@ export const InvDataViewerTable: React.FC<InvDataViewerTableProps> = ({
         await updateValue({
             [e.field]: {
                 [dataKey]: {
-                    [key]: newValue
+                    [key]: {
+                        value: newValue,
+                        isValid: dt.current?.validated?.isValid
+                    }
                 }
             }
         })
