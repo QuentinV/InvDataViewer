@@ -43,7 +43,7 @@ export const CompaniesList: React.FC<CompaniesListProps> = ({ onLoad }) => {
             return null;
 
         const { title, cik } = company;
-        const name = title.toLowerCase()
+        const name = title?.toLowerCase()
         return (
             <div
                 className="w-20rem h-3rem pt-5 pb-5 pl-2 pr-2 bg-blue-50 hover:bg-blue-100 text-center cursor-pointer align-items-center justify-content-center flex"
