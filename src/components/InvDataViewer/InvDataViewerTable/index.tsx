@@ -62,7 +62,13 @@ export const InvDataViewerTable: React.FC<InvDataViewerTableProps> = ({
                 const fundData = c?.[dataKey]
                 const v = fundData ? fundData?.[ld.name]?.value : undefined
                 prev[current] = ld.avoidFormat
-                    ? v
+                    ? v?.toLocaleString(
+                        undefined,
+                        {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2,
+                        }
+                    )
                     : formatLargeNumber(v, numberFormatIndex)
                 return prev
             }, {})
@@ -160,6 +166,7 @@ export const InvDataViewerTable: React.FC<InvDataViewerTableProps> = ({
         const config = structure[e.rowIndex];
         const key = config?.name;
         const ref = years[e.field]?.[dataKey];
+        console.log('new value ', e.newValue);
         let newValue = parseNumber(e.newValue);
         if (!config.avoidFormat) {
             newValue = newValue * Math.pow(10, numberFormatIndex * 3)

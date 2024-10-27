@@ -6,13 +6,6 @@ export const formatLargeNumber = (
         return ''
     }
 
-    if (number > -1000 && number < 1000) {
-        return number.toLocaleString(undefined, {
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2,
-        })
-    }
-
     const abbreviations = ['', 'K', 'M', 'B', 'T']
     let log1000 =
         indexAbbreviation == undefined || indexAbbreviation === -1
