@@ -92,6 +92,8 @@ export const InvDataViewerTable: React.FC<InvDataViewerTableProps> = ({
         dt.current?.exportCSV?.({ selectionOnly: false })
     }
 
+    const getConfigFromOptions = ({ field, rowIndex }: { field: string; rowIndex: number }) => (years[field] as any)?.[dataKey]?.[structure[rowIndex]?.name];
+
     const header = (
         <div className="flex align-items-center gap-2">
             <div className="card flex justify-content-center">
@@ -121,7 +123,7 @@ export const InvDataViewerTable: React.FC<InvDataViewerTableProps> = ({
     )
     
     const body = (options: ColumnBodyOptions, row: any) => {
-        const config = (years[options.field] as any)?.[dataKey]?.[structure[options.rowIndex]?.name];
+        const config = getConfigFromOptions(options);
         if ( (config?.value ?? null) === null ) {
             return null;
         }
@@ -137,22 +139,28 @@ export const InvDataViewerTable: React.FC<InvDataViewerTableProps> = ({
     }
 
     const cellEditor = (options: ColumnEditorOptions) => {
+        const isValid = getConfigFromOptions(options)?.isValid;
         return (
             <div>
+                {isValid === 'UNSURE' && (
                 <span className='pi pi-check mr-2 text-green-400' onClick={() => {
                     dt.current.validated = { rowIndex: options.rowIndex, year: options.field, isValid: 'SURE' };
                     dt.current.getTable().click();
                 }}></span>
+                )}
+                {!isValid && (
                 <span className='pi pi-asterisk mr-2 text-orange-400' onClick={() => {
-                    dt.current.validated = { rowIndex: options.rowIndex, year: options.field, isValid: 'UNSURE' };
+                    dt.current.validated = { rowIndex: options.rowIndex, year: options.field, isValid: 'UNSURE' };  
                     dt.current.getTable().click();
                 }}></span>
+                )}
                 <InputText 
                     className='w-7rem p-0 text-right'
                     type="string" 
                     value={options.value} 
                     onChange={(e: any) => options?.editorCallback?.(e.target.value)} 
                     onKeyDown={(e) => e.stopPropagation()} 
+                    disabled={isValid === "SURE"}
                 />
             </div>
         );
@@ -166,20 +174,23 @@ export const InvDataViewerTable: React.FC<InvDataViewerTableProps> = ({
         const config = structure[e.rowIndex];
         const key = config?.name;
         const ref = years[e.field]?.[dataKey];
-        console.log('new value ', e.newValue);
+        
         let newValue = parseNumber(e.newValue);
         if (!config.avoidFormat) {
             newValue = newValue * Math.pow(10, numberFormatIndex * 3)
         }
         d[e.rowIndex][e.field] = e.newValue;
-        ref[key] = { value: newValue, isValid: true };
+
+        const newObj = {
+            value: newValue,
+            isValid: dt.current?.validated?.isValid
+        };
+
+        ref[key] = newObj;
         await updateValue({
             [e.field]: {
                 [dataKey]: {
-                    [key]: {
-                        value: newValue,
-                        isValid: dt.current?.validated?.isValid
-                    }
+                    [key]: newObj
                 }
             }
         })
