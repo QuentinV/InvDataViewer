@@ -53,6 +53,15 @@ export const InvDataViewerTable: React.FC<InvDataViewerTableProps> = ({
             }
         )
 
+    const removeOverwrite = async (value: { [year: string]: {[dataKey: string]: string[] } }) => 
+        api(
+            `invData/companies/${cik}/fundamentals/${dataKey}/overwrites`, 
+            {
+                method: 'DELETE',
+                body: JSON.stringify(value)
+            }
+        )
+
     const d = structure.map((ld) => {
         return {
             ...ld,
@@ -129,7 +138,8 @@ export const InvDataViewerTable: React.FC<InvDataViewerTableProps> = ({
         }
         return (
             <div 
-                className='w-full h-full'
+                className={`w-full h-full ${config?.isValid === 'ROLLBACK' ? 'line-through' : ''}`}
+                title={`${config?.isValid === 'ROLLBACK' ? 'This value will be reloaded from rules with next refresh' : ''}`}
                 style={{ 
                     borderBottom: config?.isValid === 'SURE' ? `thin solid green` : (config?.isValid === 'UNSURE') ? 'thin solid orange' : 'none'
                 }}>
@@ -142,6 +152,12 @@ export const InvDataViewerTable: React.FC<InvDataViewerTableProps> = ({
         const isValid = getConfigFromOptions(options)?.isValid;
         return (
             <div>
+                {!!isValid && (
+                    <span className='pi pi-history mr-2 text-red-400' onClick={() => {
+                        dt.current.validated = { rowIndex: options.rowIndex, year: options.field, isValid: 'ROLLBACK' };  
+                        dt.current.getTable().click();
+                    }}></span>
+                )}
                 {isValid === 'UNSURE' && (
                 <span className='pi pi-check mr-2 text-green-400' onClick={() => {
                     dt.current.validated = { rowIndex: options.rowIndex, year: options.field, isValid: 'SURE' };
@@ -187,13 +203,22 @@ export const InvDataViewerTable: React.FC<InvDataViewerTableProps> = ({
         };
 
         ref[key] = newObj;
-        await updateValue({
-            [e.field]: {
-                [dataKey]: {
-                    [key]: newObj
+        if ( newObj.isValid === "ROLLBACK") {
+            await removeOverwrite({
+                [e.field]: {
+                    [dataKey]: [key]
                 }
-            }
-        })
+            })
+        } else {
+            await updateValue({
+                [e.field]: {
+                    [dataKey]: {
+                        [key]: newObj
+                    }
+                }
+            })
+        }
+        
     };
 
     return (
