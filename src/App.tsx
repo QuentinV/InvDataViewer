@@ -1,5 +1,6 @@
 import React from 'react'
 import 'primereact/resources/themes/mira/theme.css'
+import './theme.css'
 import 'primeflex/primeflex.css'
 import 'primeicons/primeicons.css'
 import { HashRouter, Route, Routes } from 'react-router-dom'
