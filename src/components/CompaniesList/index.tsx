@@ -6,8 +6,9 @@ import { useNavigate } from 'react-router'
 import { useTranslation } from 'react-i18next'
 
 interface Company {
-    cik: number
-    title: string
+    cik: number;
+    title: string;
+    timestamp?: number;
 }
 
 interface CompaniesListProps {
@@ -42,15 +43,16 @@ export const CompaniesList: React.FC<CompaniesListProps> = ({ onLoad }) => {
         if ( !company ) 
             return null;
 
-        const { title, cik } = company;
+        const { title, cik, timestamp } = company;
         const name = title?.toLowerCase()
         return (
             <div
-                className="w-20rem h-3rem pt-5 pb-5 pl-2 pr-2 bg-blue-50 hover:bg-blue-100 text-center cursor-pointer align-items-center justify-content-center flex"
+                className="w-20rem h-3rem pt-5 pb-5 pl-2 pr-2 bg-blue-50 hover:bg-blue-100 text-center cursor-pointer align-items-center justify-content-center flex flex-column"
                 key={cik}
                 onClick={() => navigate({ pathname: `/company/${cik}` })}
             >
-                {name ? name[0].toUpperCase() + name.slice(1) : ''}
+                <div>{name ? name[0].toUpperCase() + name.slice(1) : ''}</div>
+                {!!timestamp && (<div className='text-sm flex align-items-center mt-2'><i className='pi pi-sync mr-2'></i>{new Date(timestamp).toLocaleString()}</div>)}
             </div>
         )
     }
