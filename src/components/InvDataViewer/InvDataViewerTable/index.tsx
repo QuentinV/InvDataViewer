@@ -19,6 +19,14 @@ interface InvDataViewerTableProps {
 
 type yearsType = { [year: string]: {[dataKey: string]: { [key: string]: { value: number|null|undefined, isValid?: boolean } } } };
 
+enum NumberFormat {
+    AUTO = -1,
+    K = 1,
+    M = 2,
+    B = 3,
+    T = 4
+}
+
 export const InvDataViewerTable: React.FC<InvDataViewerTableProps> = ({
     cik,
     dataKey,
@@ -28,7 +36,7 @@ export const InvDataViewerTable: React.FC<InvDataViewerTableProps> = ({
     const [years, setYears] = useState<yearsType>();
     const yearsKeys = Object.keys(years || {}).slice(-10)
     const dt: any = useRef(null);
-    const [numberFormatIndex, setNumberFormatIndex] = useState<number>(2);
+    const [numberFormatIndex, setNumberFormatIndex] = useState<NumberFormat>(NumberFormat.K);
 
     useEffect(() => {
         (async () => {
@@ -234,7 +242,7 @@ export const InvDataViewerTable: React.FC<InvDataViewerTableProps> = ({
                 pt={{
                     header: { style: { background: 'none', border: 'none' } },
                 }}
-                editMode="cell"
+                editMode={numberFormatIndex === NumberFormat.K ? "cell" : undefined}
             >
                 <Column
                     field="label"
