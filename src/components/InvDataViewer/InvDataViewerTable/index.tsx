@@ -70,7 +70,7 @@ export const InvDataViewerTable: React.FC<InvDataViewerTableProps> = ({
                 const c: any = years?.[current]
                 const fundData = c?.[dataKey]
                 const v = fundData ? fundData?.[ld.name]?.value : undefined
-                prev[current] = ld.avoidFormat
+                prev[current] = ld.avoidScaling
                     ? v?.toLocaleString(
                         undefined,
                         {
@@ -192,7 +192,7 @@ export const InvDataViewerTable: React.FC<InvDataViewerTableProps> = ({
         const ref = years[e.field]?.[dataKey];
         
         let newValue = parseNumber(e.newValue);
-        if (!config.avoidFormat) {
+        if (!config.avoidScaling) {
             newValue = newValue * Math.pow(10, numberFormatIndex * 3)
         }
         d[e.rowIndex][e.field] = e.newValue;
