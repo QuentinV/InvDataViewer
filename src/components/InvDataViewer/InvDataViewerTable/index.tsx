@@ -34,7 +34,7 @@ export const InvDataViewerTable: React.FC<InvDataViewerTableProps> = ({
 }) => {
     const { t } = useTranslation();
     const [years, setYears] = useState<yearsType>();
-    const yearsKeys = Object.keys(years || {}).slice(-10)
+    const yearsKeys = Object.keys(years || {}).slice(-11)
     const dt: any = useRef(null);
     const [numberFormatIndex, setNumberFormatIndex] = useState<NumberFormat>(NumberFormat.K);
 

@@ -10,7 +10,6 @@ interface ResultsProps {
 export const Results: React.FC<ResultsProps> = ({ profile }) => {
     const errors = useUnit($activeConfig)?.results?.[profile]?.errors;
     const [selected, setSelected] = useState<string>();
-    console.log(selected)
 
     if ( !errors )
         return null;
