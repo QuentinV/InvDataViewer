@@ -65,7 +65,7 @@ export const AnalysisPage: React.FC = () => {
                 />
                 {!!data && (<span className='ml-2'>{data.totalMissing} ouf of {data.total} ~ {(data.totalMissing * 100 / data.total).toFixed(2)}%</span>)}
             </div>
-            {!data && (<h2>...Loading data...</h2>)}
+            {!data && (<h2 className='text-center'>...Loading data please wait...</h2>)}
             <div className='mt-2'>
                 <Accordion multiple={true}>
                     {data?.totalMissing ? Object.keys(data.data).map( k => (
