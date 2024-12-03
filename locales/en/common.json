@@ -6,7 +6,8 @@
         "home": "Home",
         "config": "Config",
         "lang": "Language",
-        "changelog": "Changelog"
+        "changelog": "Changelog",
+        "analysis": "Data analysis"
     },
     "controls": {
         "search": "Search..."
@@ -395,5 +396,8 @@
                 "title": "Configuration"
             }
         }
+    },
+    "analysis": {
+        "title": "Companies where one of important fundamentals are missing"
     }
 }

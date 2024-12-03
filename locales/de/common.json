@@ -6,7 +6,8 @@
         "home": "Startseite",
         "config": "Konfiguration",
         "lang": "Sprache",
-        "changelog": "Änderungsprotokoll"
+        "changelog": "Änderungsprotokoll",
+        "analysis": "Datenanalyse"
     },
     "controls": {
         "search": "Suche..."
@@ -396,5 +397,8 @@
                 "title": "Konfiguration"
             }
         }
+    },
+    "analysis": {
+        "title": "Unternehmen, bei denen eines der wichtigen Fundamente fehlt"
     }
 } 
