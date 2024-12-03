@@ -23,7 +23,7 @@ export const ReleaseNotes = () => {
             prev[i.type] = (prev[i.type]||0) + 1; 
             return prev; 
         }, {} as {[key: string]: number});
-        const maxKey = Object.keys(counts).reduce((a, b) => (counts[a] > counts[b] ? a : b)) as 'feat'|'improv'|'fix'|'refactor';
+        const maxKey = Object.keys(counts).reduce((a, b) => (counts[a] > counts[b] ? a : b), 'feat') as 'feat'|'improv'|'fix'|'refactor';
         return (
             <span className="flex w-2rem h-2rem align-items-center justify-content-center border-circle z-1 shadow-1">
                 <i className={`pi ${icons[maxKey] || 'pi-box'}`}></i>
