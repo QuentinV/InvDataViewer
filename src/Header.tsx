@@ -31,6 +31,11 @@ export const Header: React.FC = () => {
             command: () => navigate('/config'),
         },
         {
+            label: t('menu.analysis'),
+            icon: 'pi pi-check-circle',
+            command: () => navigate('/analysis'),
+        },
+        {
             label: t('menu.changelog'),
             icon: 'pi pi-clock',
             command: () => setVisibleChangelog(true),

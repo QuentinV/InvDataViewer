@@ -10,6 +10,7 @@ import { LoginPage } from './pages/LoginPage'
 import { ProtectedRoute } from './components/routes/ProtectedRoute'
 import { Header } from './Header'
 import { ConfigPage } from './pages/ConfigPage'
+import { AnalysisPage } from './pages/AnalysisPage'
 
 function App() {
     return (
@@ -40,6 +41,14 @@ function App() {
                         element={
                             <ProtectedRoute>
                                 <ConfigPage />
+                            </ProtectedRoute>
+                        }
+                    />
+                    <Route
+                        path="/analysis"
+                        element={
+                            <ProtectedRoute>
+                                <AnalysisPage />
                             </ProtectedRoute>
                         }
                     />
