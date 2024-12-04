@@ -28,7 +28,7 @@ export const getChartOptions = ({ titleText, config } : { titleText: string, con
     if ( !config.hideScales ) {
         res.scales = {
             x: {
-                stacked: !!res.stacked,
+                stacked: !!config.stacked,
                 ticks: {
                     color: textColorSecondary,
                 },
@@ -38,7 +38,7 @@ export const getChartOptions = ({ titleText, config } : { titleText: string, con
                 },
             },
             y: {
-                stacked: !!res.stacked,
+                stacked: !!config.stacked,
                 ticks: {
                     color: textColorSecondary,
                 },
