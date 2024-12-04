@@ -12,6 +12,7 @@ export interface InvData {
     metrics: GlobalMetrics
     tickers: Ticker[]
     scores: Scores
+    timestamp: number
 }
 
 export interface Data {
