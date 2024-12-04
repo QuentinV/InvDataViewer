@@ -38,7 +38,7 @@ export const ChartsMetricsConfig: React.FC = () => {
                         </div>
                         <div className='w-6'>
                             <ul className='mt-1'>
-                                <li>
+                                <li className='mb-2'>
                                     <b className='text-primary'>datasets</b>: Define different Y lines
                                     <div className='ml-3'>
                                         <div>- <b>constant</b>: to set a contant for each year</div>
@@ -47,6 +47,15 @@ export const ChartsMetricsConfig: React.FC = () => {
                                         <div>- <b>formula</b>: to define basic math & javascript to execute for each year. <div className='ml-8'>Does not support the formula lib yet</div></div>
                                         <div>- <b>borderColor</b>: color of line</div>
                                     </div>
+                                </li>
+                                <li className='mb-2'>
+                                    <b className='text-primary'>type</b>: Define type of chart line - <b>line</b>, <b>bar</b>, <b>pie</b>, <b>doughnut</b>, <b>polarArea</b>. Default line.
+                                </li>
+                                <li className='mb-2'>
+                                    <b className='text-primary'>stacked</b>: stacked y axis if type supports it. Default false.
+                                </li>
+                                <li>
+                                    <b className='text-primary'>hideScales</b>: if <b>true</b> then will hide the scales lines (axis x, y). Default false.
                                 </li>
                             </ul>
                         </div>

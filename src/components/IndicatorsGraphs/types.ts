@@ -3,6 +3,9 @@ export interface ChartOptions {
     labels: string | string[];
     datasets: ChartDatasetsDef[];
     additionalData: ChartAdditionalDataDef[];
+    type?: string;
+    stacked?: boolean;
+    hideScales?: boolean;
 }
 
 export interface ChartDatasetsDef {

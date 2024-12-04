@@ -8,41 +8,48 @@ import {
 } from '../constants'
 import { formatPercent } from "../../../utils/formatPercent";
 
-export const getChartOptions = (titleText: string) => ({
-    maintainAspectRatio: false,
-    aspectRatio: 0.8,
-    responsive: true,
-    plugins: {
-        legend: {
-            labels: {
-                color: textColor,
+export const getChartOptions = ({ titleText, config } : { titleText: string, config: ChartOptions }) => {
+    const res: any = {
+        maintainAspectRatio: false,
+        aspectRatio: 0.8,
+        responsive: true,
+        plugins: {
+            legend: {
+                labels: {
+                    color: textColor,
+                },
             },
-        },
-        title: {
-            display: true,
-            text: titleText,
-        },
-    },
-    scales: {
-        x: {
-            ticks: {
-                color: textColorSecondary,
+            title: {
+                display: true,
+                text: titleText,
             },
-            grid: {
-                display: false,
-                color: surfaceBorder,
+        }
+    }
+    if ( !config.hideScales ) {
+        res.scales = {
+            x: {
+                stacked: !!res.stacked,
+                ticks: {
+                    color: textColorSecondary,
+                },
+                grid: {
+                    display: false,
+                    color: surfaceBorder,
+                },
             },
-        },
-        y: {
-            ticks: {
-                color: textColorSecondary,
+            y: {
+                stacked: !!res.stacked,
+                ticks: {
+                    color: textColorSecondary,
+                },
+                grid: {
+                    color: surfaceBorder,
+                },
             },
-            grid: {
-                color: surfaceBorder,
-            },
-        },
-    },
-})
+        };
+    }
+    return res;
+}
 
 const getValue = (v: any, keys: string[]): any => {
     if ( !v ) return v;
@@ -118,6 +125,7 @@ const getDatasets = ({ labels, tKeyPrefix, config, data, t } : { labels: string[
         }
 
         return {
+            type: config?.type || 'line',
             label: t(`${tKeyPrefix}.dataset${index+1}`),
             borderColor: c.borderColor,
             data: dataset
@@ -146,7 +154,7 @@ export const getData = ({ config, data, t } : { config: ChartOptions, data: InvD
     const tp = `ticker.metrics.charts.${config.key}`;
     const labels = getLabels(config, data);
     return {
-        options: getChartOptions(t(`${tp}.title`)),
+        options: getChartOptions({ titleText: t(`${tp}.title`), config }),
         data: {
             labels,
             datasets: getDatasets({ labels, config, data, t, tKeyPrefix: tp })
