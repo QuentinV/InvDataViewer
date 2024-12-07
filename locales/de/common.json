@@ -381,7 +381,10 @@
                     "title": "Szenarien book value growth",
                     "futureGrowthRate": "Future growth rate",
                     "discountRate": "Discount rate",
-                    "years": "# Years"
+                    "years": "# Years",
+                    "display": {
+                        "currentCAGRBookValue": "Current CAGR Book Value"
+                    }
                 },
                 "dividendGrowth": {
                     "title": "Szenarien Dividenden Growth",
