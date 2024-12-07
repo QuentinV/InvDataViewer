@@ -38,7 +38,7 @@ const write = async() => {
             type = 'feat';
         }
 
-        message = message.replace(/^(fix|feat|improv|refactor)((\([a-z0-9]+\))?:)? /i, '');
+        message = message.replace(/^(fix|feat|improv|refactor)((\([a-z0-9 ]+\))?:)? /i, '');
         message = message.replace(/ \(#[0-9]+\)$/, '');
         message = message.trim();
 
