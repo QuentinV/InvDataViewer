@@ -76,8 +76,8 @@ export const CompanyValueConfigs: React.FC<CompanyValueConfigsProps> = ({ cik, m
                                                 value={v} 
                                                 className='sm-input'
                                                 onValueChange={event => save(cat, k, i, event.value ?? 0) }
-                                                minFractionDigits={configs[k].digits} 
-                                                maxFractionDigits={configs[k].digits} 
+                                                minFractionDigits={configs[k].decimals} 
+                                                maxFractionDigits={configs[k].decimals} 
                                                 showButtons 
                                                 buttonLayout="horizontal" 
                                                 step={0.25}
