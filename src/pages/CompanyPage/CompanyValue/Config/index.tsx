@@ -80,7 +80,7 @@ export const CompanyValueConfigs: React.FC<CompanyValueConfigsProps> = ({ cik, m
                                                 maxFractionDigits={configs[k].decimals} 
                                                 showButtons 
                                                 buttonLayout="horizontal" 
-                                                step={0.25}
+                                                step={configs[k].decimals ? 0.25 : 1}
                                                 incrementButtonIcon="pi pi-plus" 
                                                 decrementButtonIcon="pi pi-minus"
                                                 locale={navigator.language}
