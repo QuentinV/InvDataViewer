@@ -82,7 +82,7 @@ export const CompanyPage: React.FC = () => {
             <InvDataViewer cik={cikN} />
             <BusinessModel cik={cikN} />
             <Moat cik={cikN} />
-            <CompanyValue cik={cikN} />
+            <CompanyValue cik={cikN} metrics={data.metrics} />
         </div>
     )
 }

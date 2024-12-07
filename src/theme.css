@@ -1,3 +1,7 @@
 .p-datatable tr:hover {
     background: #d2e6f9;
 }
+
+.sm-input .p-inputnumber-input {
+    max-width: 5rem;
+}
