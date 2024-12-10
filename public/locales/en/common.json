@@ -389,7 +389,10 @@
                     "title": "Szenarien Dividenden Growth",
                     "futureGrowth": "Future growth",
                     "discountRate": "Discount rate",
-                    "years": "# Years"
+                    "years": "# Years",
+                    "display": {
+                        "currentCAGRDividendGrowth": "Current CAGR Dividend Growth"
+                    }
                 },
                 "value": {
                     "title": "Sum"
