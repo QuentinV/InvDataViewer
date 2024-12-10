@@ -383,15 +383,19 @@
                     "discountRate": "Discount rate",
                     "years": "# Years",
                     "display": {
-                        "currentCAGRBookValue": "Current CAGR Book Value"
+                        "currentCAGRBookValue": "Aktuelles CAGR Buchwertwachstum"
                     }
                 },
                 "dividendGrowth": {
                     "title": "Szenarien Dividenden Growth",
                     "futureGrowth": "Future growth",
                     "discountRate": "Discount rate",
-                    "years": "# Years"
+                    "years": "# Years",
+		    "display": {
+			"currentCAGRDividendGrowth": "Aktuelles CAGR Dividendenwachstum"
+		    }
                 },
+		"
                 "value": {
                     "title": "Sum"
                 }
