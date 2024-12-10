@@ -391,6 +391,9 @@
                     "discountRate": "Discount rate",
                     "years": "# Years"
                 },
+                "currentCAGRDividendGrowth": {
+                    "title": "Current CAGR Dividend Growth"
+                },
                 "value": {
                     "title": "Sum"
                 }
