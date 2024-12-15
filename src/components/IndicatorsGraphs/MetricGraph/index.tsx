@@ -16,11 +16,25 @@ interface MetricsGraphProps {
 export const MetricsGraph: React.FC<MetricsGraphProps> = ({ config, data }) => {
     const { t } = useTranslation();
     const [value, setValue] = useState<ChartSettings | null>(null)
+    const [error, setError] = useState<string | null>(null);
     const [tableVisible, setTableVisible] = useState<boolean>(false)
 
     useEffect(() => {
-        setValue(getData({ config, data, t }))
+        setValue(null);
+        setError(null);
+        try {
+            setValue(getData({ config, data, t }))
+        } catch( e: any ) {
+            setError(e);
+        }
     }, [config, data])
+
+    if ( error ) {
+        return (<div className='text-center'>
+            <div>{t('ticker.metrics.error')}</div>
+            <div>{error}</div>
+        </div>);
+    }
 
     if (!value) {
         return (

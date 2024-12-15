@@ -102,26 +102,28 @@ const getDatasets = ({ labels, tKeyPrefix, config, data, t } : { labels: string[
             dataset = evalFormulaForYear(config.key, c.formula, data);
         }
 
-        if (c.symbol === '%') {
-            dataset = dataset.map( (d?: number) => formatPercent(d) );
-        } else {
-            const min = Math.min(...dataset.map((v: number) => Math.round(v)))
-            const log1000 = Math.floor(Math.log10(Math.abs(min) || 1) / 3)
-            dataset = dataset.map((k: number) => {
-                if (k === 0) return 0
-                const roundedNumber = (
-                    k / Math.pow(1000, log1000)
-                ).toFixed(2)
-                return Number(
-                    roundedNumber.substring( 0,
-                        roundedNumber.endsWith('00')
-                            ? roundedNumber.length - 3
-                            : roundedNumber.endsWith('0')
-                                ? roundedNumber.length - 1
-                                : roundedNumber.length
+        if (dataset) {
+            if (c.symbol === '%') {
+                dataset = dataset.map( (d?: number) => formatPercent(d) );
+            } else {
+                const min = Math.min(...dataset.map((v: number) => Math.round(v)))
+                const log1000 = Math.floor(Math.log10(Math.abs(min) || 1) / 3)
+                dataset = dataset.map((k: number) => {
+                    if (k === 0) return 0
+                    const roundedNumber = (
+                        k / Math.pow(1000, log1000)
+                    ).toFixed(2)
+                    return Number(
+                        roundedNumber.substring( 0,
+                            roundedNumber.endsWith('00')
+                                ? roundedNumber.length - 3
+                                : roundedNumber.endsWith('0')
+                                    ? roundedNumber.length - 1
+                                    : roundedNumber.length
+                        )
                     )
-                )
-            })
+                })
+            }
         }
 
         return {
@@ -137,7 +139,7 @@ const getAdditionalData = ({ tKeyPrefix, config, data, t } : { tKeyPrefix: strin
     return config.additionalData?.map( c => {
         let value: number | undefined = undefined;
         if ( c.metric ) {
-            value = data.metrics[c.key];
+            value = data?.metrics?.[c.key];
         } else if ( c.formula ) {
             value = evalFormulaForYear( c.key, c.formula, data );
         }
