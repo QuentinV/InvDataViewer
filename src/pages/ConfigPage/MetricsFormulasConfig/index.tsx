@@ -21,6 +21,7 @@ export const MetricsFormulasConfig: React.FC = () => {
             { displayDoc && 
             <div className='ml-1 mb-1'>
                 <div className='mb-3'><b>Global metrics will be calculated if at last 10 years are available and yearly metrics depends on required parameters.</b>. Available formula at <a href="https://formulajs.info/functions/" rel='noreferrer' target='_blank'>https://formulajs.info/functions/</a>.</div>
+                <div className='mb-3'>The <b>prod</b> profile is used for the companies. The <b>dev</b> profile is for testing with the tests. Tests are common but results are based on profile.</div>
                 <div className='flex'>
                     <div className='w-6'>
                         <div>Global metrics (metrics)</div>
