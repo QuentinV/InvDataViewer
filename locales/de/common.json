@@ -39,6 +39,7 @@
                 "debt": "Verschuldungsgrad",
                 "profitability": "Profitabilität"
             },
+            "error": "Ein Fehler ist aufgetreten: ",
             "charts": {
                 "epsGrowth": {
                     "title": "Gewinn Wachstum",
