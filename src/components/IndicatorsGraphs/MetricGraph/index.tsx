@@ -29,7 +29,7 @@ export const MetricsGraph: React.FC<MetricsGraphProps> = ({ config, data }) => {
         }
     }, [config, data])
 
-    if ( error ) {
+    if ( error || data?.metricsErrors?.some( o => o?.key === config?.key ) ) {
         return (<div className='text-center'>
             <div>{t('ticker.metrics.error')}</div>
             <div>{error}</div>
@@ -69,11 +69,11 @@ export const MetricsGraph: React.FC<MetricsGraphProps> = ({ config, data }) => {
                     <div className="flex-none align-self-center">
                         {!!value.additionalData &&
                             value.additionalData.map((ad, k) => (
-                                <div key={k} className="mt-4 mb-4 ml-3">
-                                    <div className="text-primary font-bold">
+                                <div key={k} className={`mt-4 mb-4 ml-3 ${data?.metricsErrors?.some( o => o?.key === ad?.key ) ? 'text-red-500': 'text-primary'}`}>
+                                    <div className="font-bold">
                                         {ad.label}
                                     </div>
-                                    <div className="text-primary">
+                                    <div>
                                         {formatFromSymbol(ad.symbol, ad.value)}
                                     </div>
                                 </div>

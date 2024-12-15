@@ -32,6 +32,7 @@ export interface ChartAdditionalData {
     label: string
     value?: number
     symbol: string
+    key: string
 }
 
 export interface ChartSettings {

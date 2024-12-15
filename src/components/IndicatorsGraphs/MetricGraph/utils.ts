@@ -147,7 +147,8 @@ const getAdditionalData = ({ tKeyPrefix, config, data, t } : { tKeyPrefix: strin
         return {
             label: t(`${tKeyPrefix}.${c.key}`),
             symbol: c.symbol,
-            value
+            value,
+            key: c.key
         }
     })
 }
