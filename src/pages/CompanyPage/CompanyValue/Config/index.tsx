@@ -53,7 +53,7 @@ export const CompanyValueConfigs: React.FC<CompanyValueConfigsProps> = ({ cik, m
         <div>
             <h3 className='mt-5 mb-2'>{t(`ticker.value.config.title`)}</h3>
             <div className='ml-5'>
-            {config && (
+            {config && metrics && (
                 Object.keys(config).map( cat => {
                     const { configs, display } = config[cat];
                     return (
