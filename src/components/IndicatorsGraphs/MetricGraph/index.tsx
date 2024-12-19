@@ -29,7 +29,7 @@ export const MetricsGraph: React.FC<MetricsGraphProps> = ({ config, data }) => {
         }
     }, [config, data])
 
-    if ( error === null || data?.metricsErrors?.some( o => o?.key === config?.key ) ) {
+    if ( error || data?.metricsErrors?.some( o => o?.key === config?.key ) ) {
         return (<div className='text-center'>
             <div>{t('ticker.metrics.error')} ~ <b>{config?.key}</b></div>
             <div>{error}</div>
