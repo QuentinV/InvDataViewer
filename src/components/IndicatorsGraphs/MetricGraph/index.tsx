@@ -14,7 +14,7 @@ interface MetricsGraphProps {
 }
 
 export const MetricsGraph: React.FC<MetricsGraphProps> = ({ config, data }) => {
-    const { t } = useTranslation();
+    const { t, i18n: { language } } = useTranslation();
     const [value, setValue] = useState<ChartSettings | null>(null)
     const [error, setError] = useState<string | null>(null);
     const [tableVisible, setTableVisible] = useState<boolean>(false)
@@ -74,7 +74,7 @@ export const MetricsGraph: React.FC<MetricsGraphProps> = ({ config, data }) => {
                                         {ad.label}
                                     </div>
                                     <div>
-                                        {formatFromSymbol(ad.symbol, ad.value)}
+                                        {formatFromSymbol(language, ad.symbol, ad.value)}
                                     </div>
                                 </div>
                             ))}
@@ -102,7 +102,7 @@ export const MetricsGraph: React.FC<MetricsGraphProps> = ({ config, data }) => {
                                                 key={i}
                                                 className="text-right p-1"
                                             >
-                                                {v?.toLocaleString(undefined, {
+                                                {v?.toLocaleString(language, {
                                                     minimumFractionDigits: 2,
                                                     maximumFractionDigits: 2,
                                                 })}
