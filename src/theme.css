@@ -4,4 +4,10 @@
 
 .sm-input .p-inputnumber-input {
     max-width: 5rem;
+    text-align: right;
+}
+
+.md-input .p-inputnumber-input {
+    max-width: 8rem;
+    text-align: right;
 }

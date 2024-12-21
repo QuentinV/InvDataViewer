@@ -15,7 +15,7 @@ interface CompanyValueConfigsProps {
 let timeout: any = null;
 
 export const CompanyValueConfigs: React.FC<CompanyValueConfigsProps> = ({ cik, metrics }) => {
-    const { t } = useTranslation();
+    const { t, i18n: { language } } = useTranslation();
     const [config, setConfig] = useState<CompanyValueConfig|null>(null);
 
     useEffect(() => {
@@ -83,7 +83,7 @@ export const CompanyValueConfigs: React.FC<CompanyValueConfigsProps> = ({ cik, m
                                                 step={configs[k].decimals ? 0.25 : 1}
                                                 incrementButtonIcon="pi pi-plus" 
                                                 decrementButtonIcon="pi pi-minus"
-                                                locale={navigator.language}
+                                                locale={language}
                                             />
                                         </td>
                                     ))}

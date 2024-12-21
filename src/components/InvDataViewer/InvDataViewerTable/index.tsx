@@ -7,9 +7,8 @@ import { SelectButton } from 'primereact/selectbutton'
 import { LabelData } from '../types'
 import { useTranslation } from 'react-i18next'
 import { api } from '../../../api/invData'
-import { InputText } from 'primereact/inputtext'
 import { ProgressSpinner } from 'primereact/progressspinner'
-import { parseNumber } from '../../../utils/parseNumber'
+import { InputNumber } from 'primereact/inputnumber'
 
 interface InvDataViewerTableProps {
     cik: number;
@@ -20,7 +19,6 @@ interface InvDataViewerTableProps {
 type yearsType = { [year: string]: {[dataKey: string]: { [key: string]: { value: number|null|undefined, isValid?: boolean } } } };
 
 enum NumberFormat {
-    AUTO = -1,
     K = 1,
     M = 2,
     B = 3,
@@ -32,7 +30,7 @@ export const InvDataViewerTable: React.FC<InvDataViewerTableProps> = ({
     dataKey,
     structure
 }) => {
-    const { t } = useTranslation();
+    const { t, i18n: { language } } = useTranslation();
     const [years, setYears] = useState<yearsType>();
     const yearsKeys = Object.keys(years || {}).slice(-11)
     const dt: any = useRef(null);
@@ -80,13 +78,13 @@ export const InvDataViewerTable: React.FC<InvDataViewerTableProps> = ({
                 const v = fundData ? fundData?.[ld.name]?.value : undefined
                 prev[current] = ld.avoidScaling
                     ? v?.toLocaleString(
-                        undefined,
+                        language,
                         {
                             minimumFractionDigits: 2,
                             maximumFractionDigits: 2,
                         }
                     )
-                    : formatLargeNumber(v, numberFormatIndex)
+                    : formatLargeNumber(language, v, numberFormatIndex)
                 return prev
             }, {})
         }
@@ -119,7 +117,6 @@ export const InvDataViewerTable: React.FC<InvDataViewerTableProps> = ({
                     onChange={(e) => setNumberFormatIndex(e.value)}
                     optionLabel="name"
                     options={[
-                        { name: 'Auto', value: -1 },
                         { name: 'K', value: 1 },
                         { name: 'M', value: 2 },
                         { name: 'B', value: 3 },
@@ -157,34 +154,37 @@ export const InvDataViewerTable: React.FC<InvDataViewerTableProps> = ({
     }
 
     const cellEditor = (options: ColumnEditorOptions) => {
-        const isValid = getConfigFromOptions(options)?.isValid;
+        const conf = getConfigFromOptions(options);
+        const isValid = conf?.isValid;
+        const value = conf?.value;  
+        const onClick = (isValid: string) => {
+            if (typeof options.value === 'string') {
+                options?.editorCallback?.(value / Math.pow(10, numberFormatIndex * 3));
+            }
+            dt.current.validated = { rowIndex: options.rowIndex, year: options.field, isValid };
+            dt.current.getTable().click();
+        }
+
         return (
             <div>
                 {!!isValid && (
-                    <span className='pi pi-history mr-2 text-red-400' onClick={() => {
-                        dt.current.validated = { rowIndex: options.rowIndex, year: options.field, isValid: 'ROLLBACK' };  
-                        dt.current.getTable().click();
-                    }}></span>
+                    <span className='pi pi-history mr-2 text-red-400' onClick={() => { onClick('ROLLBACK'); }}></span>
                 )}
                 {isValid === 'UNSURE' && (
-                <span className='pi pi-check mr-2 text-green-400' onClick={() => {
-                    dt.current.validated = { rowIndex: options.rowIndex, year: options.field, isValid: 'SURE' };
-                    dt.current.getTable().click();
-                }}></span>
+                <span className='pi pi-check mr-2 text-green-400' onClick={() => { onClick('SURE'); }}></span>
                 )}
                 {!isValid && (
-                <span className='pi pi-asterisk mr-2 text-orange-400' onClick={() => {
-                    dt.current.validated = { rowIndex: options.rowIndex, year: options.field, isValid: 'UNSURE' };  
-                    dt.current.getTable().click();
-                }}></span>
+                <span className='pi pi-asterisk mr-2 text-orange-400' onClick={() => { onClick('UNSURE'); }}></span>
                 )}
-                <InputText 
-                    className='w-7rem p-0 text-right'
-                    type="string" 
-                    value={options.value} 
-                    onChange={(e: any) => options?.editorCallback?.(e.target.value)} 
+                <InputNumber 
+                    className='w-7rem p-0 text-right md-input'
+                    value={value / Math.pow(10, numberFormatIndex * 3)} 
                     onKeyDown={(e) => e.stopPropagation()} 
                     disabled={isValid === "SURE"}
+                    onValueChange={e => options?.editorCallback?.(e.value)}
+                    minFractionDigits={numberFormatIndex === NumberFormat.K ? 0 : 2} 
+                    maxFractionDigits={numberFormatIndex === NumberFormat.K ? 0 : 2} 
+                    locale={language}
                 />
             </div>
         );
@@ -199,16 +199,20 @@ export const InvDataViewerTable: React.FC<InvDataViewerTableProps> = ({
         const key = config?.name;
         const ref = years[e.field]?.[dataKey];
         
-        let newValue = parseNumber(e.newValue);
-        if (!config.avoidScaling) {
-            newValue = newValue * Math.pow(10, numberFormatIndex * 3)
-        }
-        d[e.rowIndex][e.field] = e.newValue;
-
         const newObj = {
-            value: newValue,
+            value: config.avoidScaling ? e.newValue : (e.newValue * Math.pow(10, numberFormatIndex * 3)),
             isValid: dt.current?.validated?.isValid
         };
+
+        d[e.rowIndex][e.field] = config.avoidScaling
+            ? newObj.value?.toLocaleString(
+                language,
+                {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2,
+                }
+            )
+            : formatLargeNumber(language, newObj.value, numberFormatIndex);
 
         ref[key] = newObj;
         if ( newObj.isValid === "ROLLBACK") {
