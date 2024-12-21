@@ -5,7 +5,7 @@ import { companyValuesStores } from '../../../../models/company/values';
 import { CompanyValue } from '../../../../models/company/values/types';
 
 export const CompanyValueSummary: React.FC = () => {
-    const { t } = useTranslation();
+    const { t, i18n: { language } } = useTranslation();
     const values = useUnit(companyValuesStores.$values)?.values || [];
     
     const valuesByKey = values.reduce((prev: {[key: string]: number[]}, v: CompanyValue) => {
@@ -36,7 +36,7 @@ export const CompanyValueSummary: React.FC = () => {
                         {valuesByKey[k].map( (v, i) => (
                             <td key={`${k}_${i}`} className={`text-right p-1 pr-3 pl-3 ${keys.length-1 === ik ? 'pt-3 font-bold': ''}`}>
                                 {
-                                    v?.toLocaleString(undefined, {
+                                    v?.toLocaleString(language, {
                                         minimumFractionDigits: 2,
                                         maximumFractionDigits: 2
                                     })

@@ -94,7 +94,7 @@ export const CompanyValueConfigs: React.FC<CompanyValueConfigsProps> = ({ cik, m
                         {display && Object.keys(display).map( k => {
                             return (<div key={k} className='flex ml-5 mt-2'>
                                 <div className='w-15rem'>{t(`ticker.value.categories.${cat}.display.${k}`)}</div>
-                                <div className='w-10rem text-center'>{formatFromSymbol(display[k].symbol, metrics[display[k].metric])}</div>
+                                <div className='w-10rem text-center'>{formatFromSymbol(language, display[k].symbol, metrics[display[k].metric])}</div>
                             </div>);    
                         })}
                     </div>
