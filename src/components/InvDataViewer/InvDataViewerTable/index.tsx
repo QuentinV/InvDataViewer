@@ -155,12 +155,12 @@ export const InvDataViewerTable: React.FC<InvDataViewerTableProps> = ({
 
     const cellEditor = (options: ColumnEditorOptions) => {
         const conf = getConfigFromOptions(options);
+        const avoidScaling = structure[options.rowIndex]?.avoidScaling;
         const isValid = conf?.isValid;
         const value = conf?.value;  
         const onClick = (isValid: string) => {
-            console.log(options)
             if (typeof options.value === 'string') {
-                options?.editorCallback?.(value / Math.pow(10, numberFormatIndex * 3));
+                options?.editorCallback?.(avoidScaling ? value : (value / Math.pow(10, numberFormatIndex * 3)));
             }
             dt.current.validated = { rowIndex: options.rowIndex, year: options.field, isValid };
             dt.current.getTable().click();
@@ -179,7 +179,7 @@ export const InvDataViewerTable: React.FC<InvDataViewerTableProps> = ({
                 )}
                 <InputNumber 
                     className='w-7rem p-0 text-right md-input'
-                    value={value ? (value / Math.pow(10, numberFormatIndex * 3)) : null} 
+                    value={value ? (avoidScaling ? value : (value / Math.pow(10, numberFormatIndex * 3))) : null} 
                     onKeyDown={(e) => e.stopPropagation()} 
                     disabled={isValid === "SURE"}
                     onValueChange={e => options?.editorCallback?.(e.value)}
