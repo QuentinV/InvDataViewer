@@ -158,6 +158,7 @@ export const InvDataViewerTable: React.FC<InvDataViewerTableProps> = ({
         const isValid = conf?.isValid;
         const value = conf?.value;  
         const onClick = (isValid: string) => {
+            console.log(options)
             if (typeof options.value === 'string') {
                 options?.editorCallback?.(value / Math.pow(10, numberFormatIndex * 3));
             }
@@ -178,12 +179,12 @@ export const InvDataViewerTable: React.FC<InvDataViewerTableProps> = ({
                 )}
                 <InputNumber 
                     className='w-7rem p-0 text-right md-input'
-                    value={value / Math.pow(10, numberFormatIndex * 3)} 
+                    value={value ? (value / Math.pow(10, numberFormatIndex * 3)) : null} 
                     onKeyDown={(e) => e.stopPropagation()} 
                     disabled={isValid === "SURE"}
                     onValueChange={e => options?.editorCallback?.(e.value)}
-                    minFractionDigits={numberFormatIndex === NumberFormat.K ? 0 : 2} 
-                    maxFractionDigits={numberFormatIndex === NumberFormat.K ? 0 : 2} 
+                    minFractionDigits={0} 
+                    maxFractionDigits={2} 
                     locale={language}
                 />
             </div>
