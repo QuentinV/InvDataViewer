@@ -25,7 +25,7 @@ export const AnalysisPage: React.FC = () => {
     const [data, setData] = useState<Data|null>(null);
 
     useEffect(() => {
-        document.title = "Find the key in the grass";
+        document.title = "InvData - Analysis";
     }, []);
 
     useEffect(() => {

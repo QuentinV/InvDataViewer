@@ -8,7 +8,7 @@ import { ChartsMetricsConfig } from './ChartsMetricsConfig';
 
 export const ConfigPage: React.FC = () => {
     useEffect(() => {
-        document.title = "Everything is possible";
+        document.title = "InvData - Configuration";
     }, []);
     
     return (

@@ -61,6 +61,8 @@ function evalFormulaForYear(key: string, formula: string, data: InvData) {
     const years = Object.keys(data.years || {});
     // eslint-disable-next-line
     const ly = data?.years?.[Number(years[years.length-1])] || {};
+    // eslint-disable-next-line
+    const metrics = data?.metrics ?? {};
 
     try {
         return eval(formula);

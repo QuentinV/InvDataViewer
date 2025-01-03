@@ -9,7 +9,7 @@ export const HomePage: React.FC = () => {
     const { t } = useTranslation()
     
     useEffect(() => {
-        document.title = "Map of wonders";
+        document.title = "InvData - Home";
     }, []);
 
     return (
