@@ -5,6 +5,7 @@ import { InputText } from 'primereact/inputtext'
 import { useNavigate } from 'react-router'
 import { useTranslation } from 'react-i18next'
 import { CompanyFavorite } from '../CompanyFavorite'
+import { Link } from 'react-router-dom'
 
 interface Company {
     cik: number;
@@ -49,15 +50,18 @@ export const CompaniesList: React.FC<CompaniesListProps> = ({ onLoad }) => {
         const { title, cik, timestamp, favorite } = company;
         const name = title?.toLowerCase()
         return (
-            <div
-                className="relative w-20rem h-4rem pt-1 pb-1 pl-4 pr-4 bg-blue-50 hover:bg-blue-100 text-center cursor-pointer align-items-center justify-content-center flex flex-column"
+            <Link
+                style={{ textDecoration: 'none' }}
+                className="relative w-20rem h-4rem pt-1 pb-1 pl-4 pr-4 bg-blue-50 hover:bg-blue-100 text-gray-600 text-center align-items-center justify-content-center flex flex-column"
                 key={cik}
-                onClick={() => navigate({ pathname: `/company/${cik}` })}
+                to={`/company/${cik}`}
+                target="_blank"
+                rel="noopener noreferrer"
             >
                 <div className=' absolute top-0 right-0 pr-1 pt-1'><CompanyFavorite cik={cik} favorite={favorite} /></div>
                 <div>{name ? name[0].toUpperCase() + name.slice(1) : ''}</div>
                 {!!timestamp && (<div className='text-sm flex align-items-center mt-2'><i className='pi pi-sync mr-2'></i>{new Date(timestamp).toLocaleString()}</div>)}
-            </div>
+            </Link>
         )
     }
 
