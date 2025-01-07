@@ -24,7 +24,6 @@ export const CompaniesList: React.FC<CompaniesListProps> = ({ onLoad }) => {
     const [total, setTotal] = useState(0)
     const [filter, setFilter] = useState('')
     const [showFavorites, setShowFavorites] = useState<boolean>(false);
-    const navigate = useNavigate()
     const { t } = useTranslation()
 
     useEffect(() => {
