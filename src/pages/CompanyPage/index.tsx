@@ -69,9 +69,10 @@ export const CompanyPage: React.FC = () => {
     const cikN = Number(cik);
 
     return (
-        <div className="ml-4 pr-4 pb-4 overflow-auto h-full" >
+        <div className="ml-4 pr-4 pb-4 overflow-auto h-full">
+            <div ref={titleRef}></div>
             <div className='flex align-items-center justify-content-center mb-2 z-5 sticky bg-white top-0'>
-                <h1 className="text-center mt-0 mb-0" ref={titleRef}>{data.name}</h1>
+                <h1 className="text-center mt-0 mb-0">{data.name}</h1>
                 <div className='ml-3'><CompanyScore /></div>
                 {!!data.timestamp && (<div className='text-sm flex align-items-center justify-content-center ml-3'><i className='pi pi-sync mr-2'></i>{new Date(data.timestamp).toLocaleString()}</div>)}
             </div>
