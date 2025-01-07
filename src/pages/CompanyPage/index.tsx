@@ -70,9 +70,11 @@ export const CompanyPage: React.FC = () => {
 
     return (
         <div className="ml-4 pr-4 pb-4 overflow-auto h-full" >
-            <h1 className="text-center mb-0" ref={titleRef}>{data.name}</h1>
-            {!!data.timestamp && (<div className='text-sm flex align-items-center justify-content-center'><i className='pi pi-sync mr-2'></i>{new Date(data.timestamp).toLocaleString()}</div>)}
-            <div className="mt-0 mb-2"><CompanyScore /></div>
+            <div className='flex align-items-center justify-content-center mb-2 z-5 sticky bg-white top-0'>
+                <h1 className="text-center mt-0 mb-0" ref={titleRef}>{data.name}</h1>
+                <div className='ml-3'><CompanyScore /></div>
+                {!!data.timestamp && (<div className='text-sm flex align-items-center justify-content-center ml-3'><i className='pi pi-sync mr-2'></i>{new Date(data.timestamp).toLocaleString()}</div>)}
+            </div>
             <IntrinsicValue ticker={data?.tickers[0]?.ticker || ''} />
             <div>
                 <h3 className="bg-primary p-2" ref={priceOverviewRef}><i className='pi pi-dollar mr-2' />{t('ticker.market.title')}</h3>
