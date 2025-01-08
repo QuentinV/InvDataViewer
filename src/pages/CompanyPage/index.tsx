@@ -18,6 +18,7 @@ import { companyScoresEvents } from '../../models/company/scores'
 import { CompanyValue } from './CompanyValue';
 import { companyValuesEvents } from '../../models/company/values';
 import { IntrinsicValue } from './IntrinsicValue';
+import { ConfidenceLevels } from './ConfidenceLevels';
 
 export const CompanyPage: React.FC = () => {
     const { t } = useTranslation()
@@ -76,6 +77,7 @@ export const CompanyPage: React.FC = () => {
                 <div className='ml-3'><CompanyScore /></div>
                 {!!data.timestamp && (<div className='text-sm flex align-items-center justify-content-center ml-3'><i className='pi pi-sync mr-2'></i>{new Date(data.timestamp).toLocaleString()}</div>)}
             </div>
+            <ConfidenceLevels />
             <IntrinsicValue ticker={data?.tickers[0]?.ticker || ''} />
             <div>
                 <h3 className="bg-primary p-2" ref={priceOverviewRef}><i className='pi pi-dollar mr-2' />{t('ticker.market.title')}</h3>
