@@ -400,6 +400,12 @@
             "config": {
                 "title": "Konfiguration"
             }
+        },
+        "confidence": {
+            "title": "Vertrauen",
+            "main": "Haupt",
+            "sure": "Genehmigt (grün)",
+            "unsure": "Unsicher (gelb)"
         }
     },
     "analysis": {

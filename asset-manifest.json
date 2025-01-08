@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/InvDataViewer/static/css/main.20b306b0.css",
-    "main.js": "/InvDataViewer/static/js/main.1fe3560c.js",
+    "main.css": "/InvDataViewer/static/css/main.6887f20a.css",
+    "main.js": "/InvDataViewer/static/js/main.8e325754.js",
     "static/js/384.6e84fde5.chunk.js": "/InvDataViewer/static/js/384.6e84fde5.chunk.js",
     "static/js/592.60527fa6.chunk.js": "/InvDataViewer/static/js/592.60527fa6.chunk.js",
     "static/media/primeicons.svg": "/InvDataViewer/static/media/primeicons.6ed59f962963a4a73af2.svg",
@@ -20,13 +20,13 @@
     "static/media/jsoneditor-icons.svg": "/InvDataViewer/static/media/jsoneditor-icons.15f2789dd231f36d43a4.svg",
     "index.html": "/InvDataViewer/index.html",
     "static/media/getFetch.cjs": "/InvDataViewer/static/media/getFetch.40f37ddea2378391108f.cjs",
-    "main.20b306b0.css.map": "/InvDataViewer/static/css/main.20b306b0.css.map",
-    "main.1fe3560c.js.map": "/InvDataViewer/static/js/main.1fe3560c.js.map",
+    "main.6887f20a.css.map": "/InvDataViewer/static/css/main.6887f20a.css.map",
+    "main.8e325754.js.map": "/InvDataViewer/static/js/main.8e325754.js.map",
     "384.6e84fde5.chunk.js.map": "/InvDataViewer/static/js/384.6e84fde5.chunk.js.map",
     "592.60527fa6.chunk.js.map": "/InvDataViewer/static/js/592.60527fa6.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.20b306b0.css",
-    "static/js/main.1fe3560c.js"
+    "static/css/main.6887f20a.css",
+    "static/js/main.8e325754.js"
   ]
 }

@@ -399,6 +399,12 @@
             "config": {
                 "title": "Configuration"
             }
+        },
+        "confidence": {
+            "title": "Confidence levels",
+            "main": "Main",
+            "sure": "Approved (green)",
+            "unsure": "Unsure (yellow)"
         }
     },
     "analysis": {
