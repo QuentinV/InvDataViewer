@@ -11,3 +11,7 @@
     max-width: 8rem;
     text-align: right;
 }
+
+.p-submenu-list {
+    z-index: 10;
+}
