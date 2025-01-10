@@ -81,7 +81,7 @@ export const ConfidenceLevels: React.FC<ConfidenceLevelsProps> = ({ timeframe: p
                 <div className='flex gap-4 flex-wrap ml-4 mr-4 mt-3'>
                     {data.data.map( d => (<div key={d.key} className='text-center bg-blue-50 pt-2 pb-2 pr-4 pl-4'>
                         <div>{t(`ticker.fundamentals.${d.cat}.${d.key}`)}</div>
-                        <div className='font-bold'>{(d as any)[displayDetails].toLocaleString( language, { minimumFractionDigits: 2, maximumFractionDigits: 2 } )}%</div>
+                        <div className={`font-bold ${(d as any)[displayDetails] !== 100 ? 'text-red-600' : 'text-gray-300'}`}>{(d as any)[displayDetails].toLocaleString( language, { minimumFractionDigits: 2, maximumFractionDigits: 2 } )}%</div>
                     </div>))}
                 </div>
             )}
