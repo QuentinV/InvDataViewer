@@ -10,11 +10,21 @@ interface Data {
     global: { main: number; sure: number; unsure: number; }
 }
 
-export const ConfidenceLevels: React.FC = () => {
+interface Timeframe {
+    startYear: number;
+    endYear: number;
+}
+
+interface ConfidenceLevelsProps {
+    timeframe: Timeframe;
+}
+
+export const ConfidenceLevels: React.FC<ConfidenceLevelsProps> = ({ timeframe: parentTimeframe }) => {
     const { t, i18n: { language } } = useTranslation();
     const { cik } = useParams()
     const [data, setData] = useState<Data | null>();
     const [displayDetails, setDisplayDetails] = useState<string | null>(null);
+    const [timeframe, setTimeframe] = useState<Timeframe>(parentTimeframe);
     const titleRef = useRef(null);
 
     useEffect(() => {
@@ -24,7 +34,7 @@ export const ConfidenceLevels: React.FC = () => {
     useEffect(() => {
         if (!cik) return;
         (async () => {
-            const data = await api(`invData/companies/${cik}/fundamentals/confidences`);
+            const data = await api(`invData/companies/${cik}/fundamentals/confidences?startYear=${timeframe.startYear}&endYear=${timeframe.endYear}`);
             const result = data.data.reduce((p: any, entry: any) => {
                 p.main += entry.main;
                 p.sure += entry.sure;
@@ -34,28 +44,37 @@ export const ConfidenceLevels: React.FC = () => {
             data.global = { main: result.main / data.total, sure: result.sure / data.total, unsure: result.unsure / data.total };
             setData(data);
         })();
-    }, [cik])
+    }, [cik, timeframe.startYear, timeframe.endYear])
 
     return (
         <div>
-            <h3 className="bg-primary p-2" ref={titleRef}><i className='pi pi-check-circle mr-2' />{t('ticker.confidence.title')}</h3>
+            <h3 className="bg-primary p-2 flex align-items-center" ref={titleRef}>
+                <div><i className='pi pi-check-circle mr-2' />{t('ticker.confidence.title')}</div>
+                <div className='ml-2 flex gap-1'>
+                    <input className='w-4rem text-center' type='number' value={timeframe.startYear} onChange={e => setTimeframe({ ...timeframe, startYear: parseInt(e.currentTarget.value as any || 0) }) } />
+                    <div>/</div>
+                    <input className='w-4rem text-center' type='number' value={timeframe.endYear} onChange={e => setTimeframe({ ...timeframe, endYear: parseInt(e.currentTarget.value as any || 0)})} />
+                </div>
+            </h3>
             {!data && (
                 <div className='text-center'>
                     <ProgressSpinner />
                 </div>
             )}
             {!!data?.global && (
-                <div className='flex gap-4 justify-content-center'>
-                    {Object.keys(data.global).map( key => (
-                        <div 
-                            key={key} 
-                            className={'cursor-pointer select-none ' + (key === 'sure' ? 'text-green-500' : key === 'unsure' ? 'text-yellow-500' : '') + (key === displayDetails ? ' font-bold' : '')}
-                            onClick={() => setDisplayDetails(displayDetails === key ? null : key)}
-                        >
-                            {t(`ticker.confidence.${key}`)}: {(data.global as any)[key].toLocaleString( language, { minimumFractionDigits: 2, maximumFractionDigits: 2 } )}% 
-                            <i className='pi pi-angle-down'></i>
-                        </div>
-                    ))}
+                <div>
+                    <div className='flex gap-4 justify-content-center'>
+                        {Object.keys(data.global).map( key => (
+                            <div 
+                                key={key} 
+                                className={'cursor-pointer select-none ' + (key === 'sure' ? 'text-green-500' : key === 'unsure' ? 'text-yellow-500' : '') + (key === displayDetails ? ' font-bold' : '')}
+                                onClick={() => setDisplayDetails(displayDetails === key ? null : key)}
+                            >
+                                {t(`ticker.confidence.${key}`)}: {(data.global as any)[key].toLocaleString( language, { minimumFractionDigits: 2, maximumFractionDigits: 2 } )}% 
+                                <i className='pi pi-angle-down'></i>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             )}
             {!!displayDetails && !!data && (

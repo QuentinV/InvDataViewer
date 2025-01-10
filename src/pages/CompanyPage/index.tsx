@@ -68,6 +68,7 @@ export const CompanyPage: React.FC = () => {
     }
 
     const cikN = Number(cik);
+    const yearsKeys = Object.keys(data?.years || {});
 
     return (
         <div className="ml-4 pr-4 pb-4 overflow-auto h-full">
@@ -77,7 +78,7 @@ export const CompanyPage: React.FC = () => {
                 <div className='ml-3'><CompanyScore /></div>
                 {!!data.timestamp && (<div className='text-sm flex align-items-center justify-content-center ml-3'><i className='pi pi-sync mr-2'></i>{new Date(data.timestamp).toLocaleString()}</div>)}
             </div>
-            <ConfidenceLevels />
+            <ConfidenceLevels timeframe={{ startYear: parseInt(yearsKeys.slice(-11)[0]), endYear: parseInt(yearsKeys[yearsKeys.length-1]) }} />
             <IntrinsicValue ticker={data?.tickers[0]?.ticker || ''} />
             <div>
                 <h3 className="bg-primary p-2" ref={priceOverviewRef}><i className='pi pi-dollar mr-2' />{t('ticker.market.title')}</h3>
