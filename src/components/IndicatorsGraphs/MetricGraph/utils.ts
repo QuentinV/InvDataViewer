@@ -8,8 +8,9 @@ import {
 } from '../constants'
 import { formatPercent } from "../../../utils/formatPercent";
 
-export const getChartOptions = ({ titleText, config } : { titleText: string, config: ChartOptions }) => {
+export const getChartOptions = ({ titleText, config, language } : { titleText: string, config: ChartOptions, language: string }) => {
     const res: any = {
+        locale: language,
         maintainAspectRatio: false,
         aspectRatio: 0.8,
         responsive: true,
@@ -155,11 +156,11 @@ const getAdditionalData = ({ tKeyPrefix, config, data, t } : { tKeyPrefix: strin
     })
 }
 
-export const getData = ({ config, data, t } : { config: ChartOptions, data: InvData, t: TFunction }): ChartSettings => {
+export const getData = ({ config, data, t, language } : { config: ChartOptions, data: InvData, t: TFunction, language: string }): ChartSettings => {
     const tp = `ticker.metrics.charts.${config.key}`;
     const labels = getLabels(config, data);
     return {
-        options: getChartOptions({ titleText: t(`${tp}.title`), config }),
+        options: getChartOptions({ titleText: t(`${tp}.title`), config, language }),
         data: {
             labels,
             datasets: getDatasets({ labels, config, data, t, tKeyPrefix: tp })

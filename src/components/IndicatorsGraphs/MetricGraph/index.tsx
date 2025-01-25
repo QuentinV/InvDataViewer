@@ -23,7 +23,7 @@ export const MetricsGraph: React.FC<MetricsGraphProps> = ({ config, data }) => {
         setValue(null);
         setError(null);
         try {
-            setValue(getData({ config, data, t }))
+            setValue(getData({ config, data, t, language }))
         } catch( e: any ) {
             setError(e);
         }
