@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Question } from './types';
 import { api } from '../../api/invData';
 import { InputTextarea } from 'primereact/inputtextarea';
+import { Tooltip } from 'primereact/tooltip';
 
 interface QuestionsAnswersProps {
     /**
@@ -14,7 +15,7 @@ const timeouts: {[key: string]: any} = {};
 
 export const QuestionsAnswers: React.FC<QuestionsAnswersProps> = ({ apiUrls }) => {
     const [questions, setQuestions] = useState<Question[]>([]);
-    const [answers, setAnswers] = useState<{[key: string]: string}>({});
+    const [answers, setAnswers] = useState<{[key: string]: { answer: string; timestamp?: number; }}>({});
 
     useEffect(() => {
         const getData = async () => {
@@ -22,17 +23,18 @@ export const QuestionsAnswers: React.FC<QuestionsAnswersProps> = ({ apiUrls }) =
             setQuestions(res);
 
             const data = (await api(apiUrls.answers))
-                    .reduce((prev: {[key: string]: string}, c: { questionKey: string, answer: string }) => {
-                        prev[c.questionKey] = c.answer;
+                    .reduce((prev: {[key: string]: { answer: string; timestamp?: number; }}, c: { questionKey: string, answer: string, timestamp?: number; }) => {
+                        prev[c.questionKey] = { answer: c.answer, timestamp: c.timestamp };
                         return prev;
                     }, {});
             setAnswers(data);
         }
         getData();
     }, []);
+    console.log(questions)
     
     const save = (questionKey: string, answer: string) => {
-        setAnswers({ ...answers, [questionKey]: answer });
+        setAnswers({ ...answers, [questionKey]: { answer, timestamp: Date.now() } });
 
         clearTimeout(timeouts[questionKey]);
         timeouts[questionKey] = setTimeout(() => {
@@ -49,15 +51,24 @@ export const QuestionsAnswers: React.FC<QuestionsAnswersProps> = ({ apiUrls }) =
         <div>
             {
                 questions.map( ({ key, value }) => {
+                    const timestamp = answers[key]?.timestamp;
                     return (
                     <div key={key} className='w-full'>
-                        <h4>{value}</h4>
+                        <Tooltip target={`.info-${key}`} className='w-12rem'>
+                            {timestamp && (<div className='text-sm flex align-items-center mb-1'><i className='pi pi-pencil mr-2'></i>{new Date(timestamp).toLocaleString()}</div>)}
+                        </Tooltip>
+                        <h4 className="p-2 flex">
+                            <div>{value}</div>
+                            <div className='ml-auto mr-2 '>
+                                <i className={`pi pi-info-circle info-${key}`} />
+                            </div>
+                        </h4>
                         <InputTextarea 
                             autoResize 
                             name={key} 
                             className='w-full' 
                             onChange={event => save(key, event.target.value)} 
-                            value={answers[key] || ''}
+                            value={answers[key]?.answer || ''}
                         />
                     </div>
                 ) } )

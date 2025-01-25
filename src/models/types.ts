@@ -13,6 +13,8 @@ export interface InvData {
     tickers: Ticker[]
     scores: Scores
     timestamp: number
+    overwriteTimestamp: number
+    metricsTimestamp: number
     metricsErrors?: { key: string }[]
 }
 

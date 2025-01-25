@@ -7,6 +7,7 @@ import { companyValuesStores } from '../../../models/company/values';
 import { api } from '../../../api/invData';
 import { SelectButton } from 'primereact/selectbutton';
 import { downloadSvg, downloadSvgAsPng } from './utils';
+import { Tooltip } from 'primereact/tooltip';
 
 interface IntrinsicValueProps {
     ticker: string;
@@ -17,6 +18,7 @@ export const IntrinsicValue: React.FC<IntrinsicValueProps> = ({ ticker }) => {
     const titleRef = useRef(null);
     const svgRef = useRef<any>(null);
     const companyValues = useUnit(companyValuesStores.$values);
+    const { timestamp } = useUnit(companyValuesStores.$timestamps);
     const [price, setPrice] = useState<number>(0);
     const [level, setLevel] = useState<number>(2);
     
@@ -39,7 +41,17 @@ export const IntrinsicValue: React.FC<IntrinsicValueProps> = ({ ticker }) => {
 
     return (
         <div>
-            <h3 className="bg-primary p-2" ref={titleRef}><i className='pi pi-compass mr-2' />{t('ticker.intrinsicValue.title')}</h3>
+            <Tooltip target=".infoIntrinsicValue" className='w-12rem'>
+                {timestamp && (<div className='text-sm flex align-items-center mb-1'><i className='pi pi-sync mr-2'></i>{new Date(timestamp).toLocaleString()}</div>)}
+            </Tooltip>
+            <h3 className="bg-primary p-2 flex" ref={titleRef}>
+                <div>
+                    <i className='pi pi-compass mr-2' />{t('ticker.intrinsicValue.title')}
+                </div>
+                <div className='ml-auto mr-2 '>
+                    <i className='pi pi-info-circle infoIntrinsicValue' />
+                </div>
+            </h3>
             <div className='flex mb-3'>
             {!!items && 
                 (<div>

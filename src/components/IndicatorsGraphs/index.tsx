@@ -7,6 +7,7 @@ import { MetricsScoreViewer } from '../MetricsScoreViewer'
 import { api } from '../../api/invData'
 import { ChartsConfig } from './types'
 import { ProgressSpinner } from 'primereact/progressspinner'
+import { Tooltip } from 'primereact/tooltip'
 import { navs } from '../../models/routes'
 
 interface IndicatorsGraphProps {
@@ -29,7 +30,17 @@ export const IndicatorsGraph: React.FC<IndicatorsGraphProps> = ({ data }) => {
 
     return (
         <div>
-            <h3 className="bg-primary p-2" ref={titleRef}><i className='pi pi-chart-scatter mr-2' />{t('ticker.metrics.title')}</h3>
+            <Tooltip target=".infoMetrics" className='w-12rem'>
+                {data?.metricsTimestamp && (<div className='text-sm flex align-items-center mb-1'><i className='pi pi-sync mr-2'></i>{new Date(data.metricsTimestamp).toLocaleString()}</div>)}
+            </Tooltip>
+            <h3 className="bg-primary p-2 flex" ref={titleRef}>
+                <div>
+                    <i className='pi pi-chart-scatter mr-2' />{t('ticker.metrics.title')}
+                </div>
+                <div className='ml-auto mr-2 '>
+                    <i className='pi pi-info-circle infoMetrics' />
+                </div>
+            </h3>
             {
                 !data || !config 
                 ? (<div><ProgressSpinner /></div>)

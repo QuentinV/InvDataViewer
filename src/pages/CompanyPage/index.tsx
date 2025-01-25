@@ -76,16 +76,15 @@ export const CompanyPage: React.FC = () => {
             <div className='flex align-items-center justify-content-center mb-2 z-5 sticky bg-white top-0'>
                 <h1 className="text-center mt-0 mb-0">{data.name}</h1>
                 <div className='ml-3'><CompanyScore /></div>
-                {!!data.timestamp && (<div className='text-sm flex align-items-center justify-content-center ml-3'><i className='pi pi-sync mr-2'></i>{new Date(data.timestamp).toLocaleString()}</div>)}
             </div>
-            <ConfidenceLevels timeframe={{ startYear: parseInt(yearsKeys.slice(-11)[0]), endYear: parseInt(yearsKeys[yearsKeys.length-1]) }} />
+            <ConfidenceLevels timeframe={{ startYear: parseInt(yearsKeys.slice(-11)[0]), endYear: parseInt(yearsKeys[yearsKeys.length-1]) }} overwriteTimestamp={data?.overwriteTimestamp} />
             <IntrinsicValue ticker={data?.tickers[0]?.ticker || ''} />
             <div>
                 <h3 className="bg-primary p-2" ref={priceOverviewRef}><i className='pi pi-dollar mr-2' />{t('ticker.market.title')}</h3>
                 <TradingViewSymbolOverview ticker={data?.tickers?.[0]?.ticker || ''} exchange={data?.tickers?.[0]?.exchange || ''} />
             </div>
             <IndicatorsGraph data={data} />
-            <InvDataViewer cik={cikN} />
+            <InvDataViewer cik={cikN} syncTimestamp={data?.timestamp} overwriteTimestamp={data?.overwriteTimestamp} />
             <BusinessModel cik={cikN} />
             <Moat cik={cikN} />
             <CompanyValue cik={cikN} metrics={data.metrics} />
