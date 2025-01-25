@@ -216,7 +216,7 @@ export const InvDataViewerTable: React.FC<InvDataViewerTableProps> = ({
 
         if ( !years[e.field] ) years[e.field] = {};
         if ( !years[e.field][dataKey] ) years[e.field][dataKey] = {};
-        years[e.field][dataKey] = newObj;
+        years[e.field][dataKey][key] = newObj;
         
         if ( newObj.isValid === "ROLLBACK") {
             await removeOverwrite({
