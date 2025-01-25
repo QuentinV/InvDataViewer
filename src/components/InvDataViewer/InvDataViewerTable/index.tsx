@@ -198,7 +198,6 @@ export const InvDataViewerTable: React.FC<InvDataViewerTableProps> = ({
         }
         const config = structure[e.rowIndex];
         const key = config?.name;
-        const ref = years[e.field]?.[dataKey];
         
         const newObj = {
             value: config.avoidScaling ? e.newValue : (e.newValue * Math.pow(10, numberFormatIndex * 3)),
@@ -215,7 +214,10 @@ export const InvDataViewerTable: React.FC<InvDataViewerTableProps> = ({
             )
             : formatLargeNumber(language, newObj.value, numberFormatIndex);
 
-        ref[key] = newObj;
+        if ( !years[e.field] ) years[e.field] = {};
+        if ( !years[e.field][dataKey] ) years[e.field][dataKey] = {};
+        years[e.field][dataKey] = newObj;
+        
         if ( newObj.isValid === "ROLLBACK") {
             await removeOverwrite({
                 [e.field]: {
