@@ -7,14 +7,21 @@ import {
     textColorSecondary,
 } from '../constants'
 import { formatPercent } from "../../../utils/formatPercent";
+import { getDisplayedSymbol } from "../../../utils/formatFromSymbol";
 
 export const getChartOptions = ({ titleText, config, language } : { titleText: string, config: ChartOptions, language: string }) => {
+    const axisSymbol = getDisplayedSymbol(config.datasets?.[0]?.symbol);
     const res: any = {
         locale: language,
         maintainAspectRatio: false,
         aspectRatio: 0.8,
         responsive: true,
         plugins: {
+            tooltip: {
+                callbacks: {
+                    label: ({ formattedValue, datasetIndex }: { formattedValue: string, datasetIndex: number }) => formattedValue + getDisplayedSymbol(config.datasets[datasetIndex].symbol)
+                }
+            },
             legend: {
                 labels: {
                     color: textColor,
@@ -42,6 +49,7 @@ export const getChartOptions = ({ titleText, config, language } : { titleText: s
                 stacked: !!config.stacked,
                 ticks: {
                     color: textColorSecondary,
+                    callback: (value?: number) => (value?.toLocaleString(language)??'') + axisSymbol
                 },
                 grid: {
                     color: surfaceBorder,

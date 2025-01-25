@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Chart } from 'primereact/chart'
-import { formatFromSymbol } from '../../../utils/formatFromSymbol'
+import { formatFromSymbol, getDisplayedSymbol } from '../../../utils/formatFromSymbol'
 import { VotingSelector } from '../VotingSelector'
 import { ChartOptions, ChartSettings } from '../types'
 import { InvData } from '../../../models/types'
@@ -102,10 +102,10 @@ export const MetricsGraph: React.FC<MetricsGraphProps> = ({ config, data }) => {
                                                 key={i}
                                                 className="text-right p-1"
                                             >
-                                                {v?.toLocaleString(language, {
+                                                {`${v?.toLocaleString(language, {
                                                     minimumFractionDigits: 2,
                                                     maximumFractionDigits: 2,
-                                                })}
+                                                })}${getDisplayedSymbol(config.datasets[k].symbol)}`}
                                             </td>
                                         ))}
                                     </tr>
