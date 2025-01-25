@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/InvDataViewer/static/css/main.6887f20a.css",
-    "main.js": "/InvDataViewer/static/js/main.2a2c2ff8.js",
-    "static/js/384.6e84fde5.chunk.js": "/InvDataViewer/static/js/384.6e84fde5.chunk.js",
+    "main.css": "/InvDataViewer/static/css/main.049f6c8d.css",
+    "main.js": "/InvDataViewer/static/js/main.4ea8909e.js",
+    "static/js/960.3ac266f9.chunk.js": "/InvDataViewer/static/js/960.3ac266f9.chunk.js",
     "static/js/592.60527fa6.chunk.js": "/InvDataViewer/static/js/592.60527fa6.chunk.js",
     "static/media/primeicons.svg": "/InvDataViewer/static/media/primeicons.6ed59f962963a4a73af2.svg",
     "static/media/Inter-SemiBold.woff": "/InvDataViewer/static/media/Inter-SemiBold.ff53c7406a23717b16a8.woff",
@@ -20,13 +20,13 @@
     "static/media/jsoneditor-icons.svg": "/InvDataViewer/static/media/jsoneditor-icons.15f2789dd231f36d43a4.svg",
     "index.html": "/InvDataViewer/index.html",
     "static/media/getFetch.cjs": "/InvDataViewer/static/media/getFetch.40f37ddea2378391108f.cjs",
-    "main.6887f20a.css.map": "/InvDataViewer/static/css/main.6887f20a.css.map",
-    "main.2a2c2ff8.js.map": "/InvDataViewer/static/js/main.2a2c2ff8.js.map",
-    "384.6e84fde5.chunk.js.map": "/InvDataViewer/static/js/384.6e84fde5.chunk.js.map",
+    "main.049f6c8d.css.map": "/InvDataViewer/static/css/main.049f6c8d.css.map",
+    "main.4ea8909e.js.map": "/InvDataViewer/static/js/main.4ea8909e.js.map",
+    "960.3ac266f9.chunk.js.map": "/InvDataViewer/static/js/960.3ac266f9.chunk.js.map",
     "592.60527fa6.chunk.js.map": "/InvDataViewer/static/js/592.60527fa6.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.6887f20a.css",
-    "static/js/main.2a2c2ff8.js"
+    "static/css/main.049f6c8d.css",
+    "static/js/main.4ea8909e.js"
   ]
 }
