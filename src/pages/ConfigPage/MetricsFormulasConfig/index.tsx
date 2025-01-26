@@ -4,18 +4,21 @@ import { Button } from 'primereact/button';
 import { Sidebar } from 'primereact/sidebar';
 import { Tests } from './Tests';
 import { Dropdown } from 'primereact/dropdown';
+import { DetailedFormula } from './DetailedFormula';
 
 const profiles = [{ name: 'dev'}, { name: 'prod'}];
 
 export const MetricsFormulasConfig: React.FC = () => {
     const [displayDoc, setDisplayDoc] = useState<boolean>(true);
     const [displaySidebarTests, setDisplaySidebarTests] = useState<boolean>(false);
+    const [displayDetailedFormula, setDisplayDetailedFormula] = useState<boolean>(false);
     const [profile, setProfile] = useState<{ name: string}>({ name: 'dev' });
     return (
         <>
             <div className='flex mb-3 gap-3'>
                 <Button onClick={() => setDisplayDoc(!displayDoc)}>Toggle documentation</Button>
                 <Button onClick={() => setDisplaySidebarTests(true)}>Tests</Button>
+                <Button onClick={() => setDisplayDetailedFormula(true)}>Detailed formula</Button>
                 <div>Profile <Dropdown options={profiles} optionLabel='name' value={profile} onChange={e => setProfile(e.value)} /></div>
             </div>
             { displayDoc && 
@@ -48,6 +51,9 @@ export const MetricsFormulasConfig: React.FC = () => {
                 </div>
             </div>}
             <ConfigEditor endpoint='companies/metrics/formulas' profile={profile.name} />
+            <Sidebar visible={displayDetailedFormula} position="right" onHide={() => setDisplayDetailedFormula(false)} className='w-10' showCloseIcon={false}>
+                <DetailedFormula profile={profile.name} />
+            </Sidebar>
             <Sidebar visible={displaySidebarTests} position="right" onHide={() => setDisplaySidebarTests(false)} className='w-24rem'>
                 <Tests profile={profile.name} />
             </Sidebar>
