@@ -31,7 +31,6 @@ export const QuestionsAnswers: React.FC<QuestionsAnswersProps> = ({ apiUrls }) =
         }
         getData();
     }, []);
-    console.log(questions)
     
     const save = (questionKey: string, answer: string) => {
         setAnswers({ ...answers, [questionKey]: { answer, timestamp: Date.now() } });

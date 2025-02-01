@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import '../../models/company/scores/init';
 import '../../models/company/values/init';
+import { Sidebar } from 'primereact/sidebar';
 import { InvDataViewer } from '../../components/InvDataViewer'
 import { IndicatorsGraph } from '../../components/IndicatorsGraphs'
 import { useParams } from 'react-router'
@@ -19,9 +20,13 @@ import { CompanyValue } from './CompanyValue';
 import { companyValuesEvents } from '../../models/company/values';
 import { IntrinsicValue } from './IntrinsicValue';
 import { ConfidenceLevels } from './ConfidenceLevels';
+import { ChatAssistant } from '../../components/ChatAssistant';
+import { Avatar } from '@chatscope/chat-ui-kit-react'
+import { Tooltip } from 'primereact/tooltip'
 
 export const CompanyPage: React.FC = () => {
     const { t } = useTranslation()
+    const [isVisibleAssistant, setIsVisibleAssistant] = useState<boolean>(false);
     const { cik } = useParams()
     const [data, setData] = useState<InvData | undefined | null>()
     const titleRef = useRef(null);
@@ -88,6 +93,13 @@ export const CompanyPage: React.FC = () => {
             <BusinessModel cik={cikN} />
             <Moat cik={cikN} />
             <CompanyValue cik={cikN} metrics={data.metrics} />
+            <Sidebar visible={isVisibleAssistant} position='right' className='w-10' showCloseIcon={true} onHide={() => setIsVisibleAssistant(false)}>
+                <ChatAssistant companyCik={cikN} companyName={data?.name ?? ''} />
+            </Sidebar>
+            <Tooltip target=".assistantIcon" content="Hey, I'm Charlie :) How may I help you?" position='left' />
+            <div className='fixed p-1 bg-white border-circle' style={{ zIndex: 20, bottom: '1rem', right: '1rem', border: '1px solid #ccc' }}>
+                <Avatar className='cursor-pointer assistantIcon' src={`${process.env.PUBLIC_URL}/charlie_120.png`} onClick={() => setIsVisibleAssistant(true)} />
+            </div>
         </div>
     )
 }

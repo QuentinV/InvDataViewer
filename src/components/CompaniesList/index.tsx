@@ -48,18 +48,29 @@ export const CompaniesList: React.FC<CompaniesListProps> = ({ onLoad }) => {
         const { title, cik, timestamp, favorite } = company;
         const name = title?.toLowerCase()
         return (
-            <Link
-                style={{ textDecoration: 'none' }}
+            <div
                 className="relative w-20rem h-4rem pt-1 pb-1 pl-4 pr-4 bg-blue-50 hover:bg-blue-100 text-gray-600 text-center align-items-center justify-content-center flex flex-column"
                 key={cik}
-                to={`/company/${cik}`}
-                target="_blank"
-                rel="noopener noreferrer"
             >
-                <div className=' absolute top-0 right-0 pr-1 pt-1'><CompanyFavorite cik={cik} favorite={favorite} /></div>
-                <div>{name ? name[0].toUpperCase() + name.slice(1) : ''}</div>
+                <Link 
+                    style={{ textDecoration: 'none' }}
+                    className='text-gray-600 absolute bottom-0 right-0 pr-1 pt-1 hover:text-primary'
+                    to={`/company/${cik}`}
+                    rel="noopener noreferrer"
+                    target='_blank'
+                >
+                    <i className='pi pi-external-link'></i>
+                </Link>
+                <div className='absolute top-0 right-0 pr-1 pt-1 hover:text-primary'><CompanyFavorite cik={cik} favorite={favorite} /></div>
+                <Link
+                    style={{ textDecoration: 'none' }}
+                    className='text-gray-600 hover:text-primary'
+                    to={`/company/${cik}`}
+                >
+                    {name ? name[0].toUpperCase() + name.slice(1) : ''}
+                </Link>
                 {!!timestamp && (<div className='text-sm flex align-items-center mt-2'><i className='pi pi-sync mr-2'></i>{new Date(timestamp).toLocaleString()}</div>)}
-            </Link>
+            </div>
         )
     }
 

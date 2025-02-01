@@ -1,6 +1,7 @@
 import { navs } from "../../models/routes";
 
 export const HOST = process.env.REACT_APP_API_HOST;
+export const WS_HOST = process.env.REACT_APP_WS_HOST ?? '';
 
 export const api = async (url: string, init?: RequestInit): Promise<any> => {
     const res = await fetch(`${HOST}/${url}`, {
