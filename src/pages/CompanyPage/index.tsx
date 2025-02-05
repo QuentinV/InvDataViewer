@@ -79,7 +79,7 @@ export const CompanyPage: React.FC = () => {
         <div className="ml-4 pr-4 pb-4 overflow-auto h-full">
             <div ref={titleRef}></div>
             <div className='flex align-items-center justify-content-center mb-2 z-5 sticky bg-white top-0'>
-                <div className={`companyLogo48 t-logo-${data?.tickers?.[0]?.ticker} mr-2`}></div>
+                <div className={`companyLogo48 ${data?.tickers?.map( t => 't-logo-' + t ).join(' ')} mr-2`}></div>
                 <h1 className="text-center mt-0 mb-0">{data.name}</h1>
                 <div className='ml-3'><CompanyScore /></div>
             </div>

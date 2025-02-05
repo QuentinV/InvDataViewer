@@ -69,7 +69,7 @@ export const CompaniesList: React.FC<CompaniesListProps> = ({ onLoad }) => {
                     to={`/company/${cik}`}
                 >
                     <div className='flex align-items-center'>
-                        <div className={`companyLogo48 t-logo-${tickers?.[0]}`}></div>
+                        <div className={`companyLogo48 ${tickers?.map( t => 't-logo-' + t ).join(' ')}`}></div>
                         <div className='flex-1 text-center'>{name ? name[0].toUpperCase() + name.slice(1) : ''}</div>
                     </div>                    
                 </Link>
