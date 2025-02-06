@@ -20,7 +20,7 @@ export const IndicatorsGraph: React.FC<IndicatorsGraphProps> = ({ data }) => {
     const { t } = useTranslation();
     const [ config, setConfig ] = useState<ChartsConfig | null>(null);
     const titleRef = useRef(null);    
-    const timestampLastEdit = useUnit(metricsScoresStores.$timestampLastEdit);
+    const timestampLastEdit = useUnit(metricsScoresStores.$timestampLastEdit) ?? undefined;
 
     useEffect(() => {
         navs.setRef({ key: 'metricsRef', ref: titleRef });
