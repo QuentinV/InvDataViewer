@@ -46,7 +46,7 @@ const setReloadGlobalScore = createEvent<boolean>();
 $reloadGlobalScore.on(setReloadGlobalScore, (_, state) => state).on(setScore, () => true);
 
 const $timestampLastEdit = createStore<number|null>(null);
-$timestampLastEdit.on($scores.updates, (_, state) => Object.values(state??{}).sort((a, b) => a.timestamp < b.timestamp ? 1 : -1 )[0].timestamp);
+$timestampLastEdit.on($scores.updates, (_, state) => Object.values(state??{}).sort((a, b) => a.timestamp < b.timestamp ? 1 : -1 )?.[0]?.timestamp??null);
 
 sample({
     source: $cik,

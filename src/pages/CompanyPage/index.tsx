@@ -21,14 +21,19 @@ import { companyValuesEvents } from '../../models/company/values';
 import { IntrinsicValue } from './IntrinsicValue';
 import { ConfidenceLevels } from './ConfidenceLevels';
 import { ChatAssistant } from '../../components/ChatAssistant';
-import { Avatar } from '@chatscope/chat-ui-kit-react'
-import { Tooltip } from 'primereact/tooltip'
+import { Avatar } from '@chatscope/chat-ui-kit-react';
+import { Dialog } from 'primereact/dialog';
+import { Tooltip } from 'primereact/tooltip';
+import { InputText } from 'primereact/inputtext';
+import { Button } from 'primereact/button';
 
 export const CompanyPage: React.FC = () => {
-    const { t } = useTranslation()
+    const { t } = useTranslation();
     const [isVisibleAssistant, setIsVisibleAssistant] = useState<boolean>(false);
-    const { cik } = useParams()
-    const [data, setData] = useState<InvData | undefined | null>()
+    const [isVisibleEditCompanyName, setIsVisibleEditCompanyName] = useState<boolean>(false);
+    const { cik } = useParams();
+    const [name, setName] = useState<string>('');
+    const [data, setData] = useState<InvData | undefined | null>();
     const titleRef = useRef(null);
     const priceOverviewRef = useRef(null);
 
@@ -44,6 +49,7 @@ export const CompanyPage: React.FC = () => {
         const getCompany = async () => {
             const data = await api(`invData/companies/${cik}`)
             setData(data)
+            setName(data.name);
 
             if ( !data ) return;
 
@@ -75,12 +81,21 @@ export const CompanyPage: React.FC = () => {
     const cikN = Number(cik);
     const yearsKeys = Object.keys(data?.years || {});
 
+    const saveCompanyName = async () => {
+        await api(`invData/companies/${cik}`, {
+            method: 'PUT',
+            body: JSON.stringify({ name })
+        });
+        setIsVisibleEditCompanyName(false);
+    }
+
     return (
+        <>
         <div className="ml-4 pr-4 pb-4 overflow-auto h-full">
             <div ref={titleRef}></div>
             <div className='flex align-items-center justify-content-center mb-2 z-5 sticky bg-white top-0'>
                 <div className={`companyLogo48 ${data?.tickers?.map( t => 't-logo-' + t.ticker ).join(' ')} mr-2`}></div>
-                <h1 className="text-center mt-0 mb-0">{data.name}</h1>
+                <h1 className="text-center mt-0 mb-0">{name} <i className='pi pi-pencil vertical-align-top text-xs cursor-pointer' onClick={() => setIsVisibleEditCompanyName(true)} /></h1>
                 <div className='ml-3'><CompanyScore /></div>
             </div>
             <ConfidenceLevels timeframe={{ startYear: parseInt(yearsKeys.slice(-11)[0]), endYear: parseInt(yearsKeys[yearsKeys.length-1]) }} overwriteTimestamp={data?.overwriteTimestamp} />
@@ -102,5 +117,11 @@ export const CompanyPage: React.FC = () => {
                 <Avatar className='cursor-pointer assistantIcon' src={`${process.env.PUBLIC_URL}/charlie_120.png`} onClick={() => setIsVisibleAssistant(true)} />
             </div>
         </div>
+        <Dialog header="Edit company name" visible={isVisibleEditCompanyName} onHide={() => setIsVisibleEditCompanyName(false)} className='w-5'>
+            <div className='flex'>
+                <InputText value={name} className='flex-1' onChange={e => setName(e.target.value)} /><Button className='ml-2' onClick={() => saveCompanyName()}>Save</Button>
+            </div>
+        </Dialog>
+        </>
     )
 }
