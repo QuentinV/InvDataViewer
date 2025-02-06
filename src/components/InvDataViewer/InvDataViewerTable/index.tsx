@@ -257,6 +257,7 @@ export const InvDataViewerTable: React.FC<InvDataViewerTableProps> = ({
                     body={renderLabel}
                     bodyStyle={{ border: 0, padding: '3px' }}
                     headerStyle={{ border: 0 }}
+                    frozen
                 ></Column>
                 {yearsKeys.map((year) => (
                     <Column
