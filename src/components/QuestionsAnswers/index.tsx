@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Question } from './types';
 import { api } from '../../api/invData';
 import { InputTextarea } from 'primereact/inputtextarea';
-import { Tooltip } from 'primereact/tooltip';
+import { InfoIcon } from '../InfoIcon';
 
 interface QuestionsAnswersProps {
     /**
@@ -53,13 +53,10 @@ export const QuestionsAnswers: React.FC<QuestionsAnswersProps> = ({ apiUrls }) =
                     const timestamp = answers[key]?.timestamp;
                     return (
                     <div key={key} className='w-full'>
-                        <Tooltip target={`.info-${key}`} className='w-12rem'>
-                            {timestamp && (<div className='text-sm flex align-items-center mb-1'><i className='pi pi-pencil mr-2'></i>{new Date(timestamp).toLocaleString()}</div>)}
-                        </Tooltip>
                         <h4 className="p-2 flex">
                             <div>{value}</div>
                             <div className='ml-auto mr-2 '>
-                                <i className={`pi pi-info-circle info-${key}`} />
+                                <InfoIcon editTimestamp={timestamp} />
                             </div>
                         </h4>
                         <InputTextarea 

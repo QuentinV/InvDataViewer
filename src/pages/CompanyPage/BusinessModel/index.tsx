@@ -5,6 +5,7 @@ import { navs } from '../../../models/routes';
 import { QuestionsAnswers } from '../../../components/QuestionsAnswers';
 import { useUnit } from 'effector-react';
 import { companyScoresEffects, companyScoresStores } from '../../../models/company/scores';
+import { InfoIcon } from '../../../components/InfoIcon';
 
 interface BusinessModelProps {
     cik: number;
@@ -12,7 +13,7 @@ interface BusinessModelProps {
 
 export const BusinessModel: React.FC<BusinessModelProps> = ({ cik }) => {
     const { t } = useTranslation();
-    const value = useUnit(companyScoresStores.$scores)?.businessModel;
+    const businessModel = useUnit(companyScoresStores.$scores)?.businessModel;
     const titleRef = useRef(null);
 
     useEffect(() => {
@@ -26,10 +27,11 @@ export const BusinessModel: React.FC<BusinessModelProps> = ({ cik }) => {
                 <span>{t('ticker.businessmodel.select')}</span>
                 <Dropdown 
                     className='ml-2'
-                    value={value}
+                    value={businessModel?.val}
                     options={[...Array(5)].map( (_, k) => ({ value: k-2, label: t(`ticker.businessmodel.options.${k-2}`) }))} 
-                    onChange={event => companyScoresEffects.saveScoresFx({ businessModel: event.value })}
+                    onChange={event => companyScoresEffects.saveScoresFx({ businessModel: { val: event.value } })}
                 />
+                <span className='ml-2'><InfoIcon editTimestamp={businessModel?.timestamp} /></span>
             </div>
             <QuestionsAnswers 
                 apiUrls={{

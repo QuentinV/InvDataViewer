@@ -5,8 +5,8 @@ import { Config } from './types'
 import { api } from '../../api/invData'
 import { ProgressSpinner } from 'primereact/progressspinner'
 import { Accordion, AccordionTab } from 'primereact/accordion'
-import { Tooltip } from 'primereact/tooltip'
 import { navs } from '../../models/routes'
+import { InfoIcon } from '../InfoIcon'
 
 interface InvDataViewerProps {
     cik: number;
@@ -34,16 +34,12 @@ export const InvDataViewer: React.FC<InvDataViewerProps> = ({ cik, syncTimestamp
     
     return (
         <div>
-            <Tooltip target=".infoFundamentals" className='w-12rem'>
-                {syncTimestamp && (<div className='text-sm flex align-items-center mb-1'><i className='pi pi-sync mr-2'></i>{new Date(syncTimestamp).toLocaleString()}</div>)}
-                {overwriteTimestamp && (<div className='text-sm flex align-items-center'><i className='pi pi-pencil mr-2'></i>{new Date(overwriteTimestamp).toLocaleString()}</div>)}
-            </Tooltip>
             <h3 className="bg-primary p-2 flex" ref={titleRef}>
                 <div>
                     <i className='pi pi-database mr-2' />{t('ticker.fundamentals.title')}
                 </div>
                 <div className='ml-auto mr-2 '>
-                    <i className='pi pi-info-circle infoFundamentals' />
+                    <InfoIcon syncTimestamp={syncTimestamp} editTimestamp={overwriteTimestamp} />
                 </div>
             </h3>
             <Accordion multiple>

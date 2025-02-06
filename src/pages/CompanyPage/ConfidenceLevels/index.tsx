@@ -4,7 +4,7 @@ import { api } from '../../../api/invData'
 import { useTranslation } from 'react-i18next'
 import { ProgressSpinner } from 'primereact/progressspinner'
 import { navs } from '../../../models/routes';
-import { Tooltip } from 'primereact/tooltip'
+import { InfoIcon } from '../../../components/InfoIcon'
 
 interface Data {
     data: { cat: string; key: string; main: number; sure: number; unsure: number; }[];
@@ -50,9 +50,6 @@ export const ConfidenceLevels: React.FC<ConfidenceLevelsProps> = ({ timeframe: p
 
     return (
         <div>
-             <Tooltip target=".infoConfidenceLevels" className='w-12rem'>
-                {overwriteTimestamp && (<div className='text-sm flex align-items-center'><i className='pi pi-pencil mr-2'></i>{new Date(overwriteTimestamp).toLocaleString()}</div>)}
-            </Tooltip>
             <h3 className="bg-primary p-2 flex align-items-center" ref={titleRef}>
                 <div><i className='pi pi-check-circle mr-2' />{t('ticker.confidence.title')}</div>
                 <div className='ml-2 flex gap-1'>
@@ -61,7 +58,7 @@ export const ConfidenceLevels: React.FC<ConfidenceLevelsProps> = ({ timeframe: p
                     <input className='w-4rem text-center' type='number' value={timeframe.endYear} onChange={e => setTimeframe({ ...timeframe, endYear: parseInt(e.currentTarget.value as any || 0)})} />
                 </div>
                 <div className='ml-auto mr-2 '>
-                    <i className='pi pi-info-circle infoConfidenceLevels' />
+                    <InfoIcon editTimestamp={overwriteTimestamp} />
                 </div>
             </h3>
             {!data && (

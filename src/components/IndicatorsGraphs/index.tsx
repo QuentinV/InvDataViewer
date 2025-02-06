@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
+import { useUnit } from 'effector-react'
 import { InvData } from '../../models/types'
 import { MetricsGraph } from './MetricGraph'
 import { TabPanel, TabView } from 'primereact/tabview'
@@ -7,8 +8,9 @@ import { MetricsScoreViewer } from '../MetricsScoreViewer'
 import { api } from '../../api/invData'
 import { ChartsConfig } from './types'
 import { ProgressSpinner } from 'primereact/progressspinner'
-import { Tooltip } from 'primereact/tooltip'
 import { navs } from '../../models/routes'
+import { InfoIcon } from '../InfoIcon'
+import { metricsScoresStores } from '../../models/company/metricsScores';
 
 interface IndicatorsGraphProps {
     data?: InvData;
@@ -17,7 +19,8 @@ interface IndicatorsGraphProps {
 export const IndicatorsGraph: React.FC<IndicatorsGraphProps> = ({ data }) => {
     const { t } = useTranslation();
     const [ config, setConfig ] = useState<ChartsConfig | null>(null);
-    const titleRef = useRef(null);
+    const titleRef = useRef(null);    
+    const timestampLastEdit = useUnit(metricsScoresStores.$timestampLastEdit);
 
     useEffect(() => {
         navs.setRef({ key: 'metricsRef', ref: titleRef });
@@ -30,15 +33,12 @@ export const IndicatorsGraph: React.FC<IndicatorsGraphProps> = ({ data }) => {
 
     return (
         <div>
-            <Tooltip target=".infoMetrics" className='w-12rem'>
-                {data?.metricsTimestamp && (<div className='text-sm flex align-items-center mb-1'><i className='pi pi-sync mr-2'></i>{new Date(data.metricsTimestamp).toLocaleString()}</div>)}
-            </Tooltip>
             <h3 className="bg-primary p-2 flex" ref={titleRef}>
                 <div>
                     <i className='pi pi-chart-scatter mr-2' />{t('ticker.metrics.title')}
                 </div>
                 <div className='ml-auto mr-2 '>
-                    <i className='pi pi-info-circle infoMetrics' />
+                    <InfoIcon syncTimestamp={data?.metricsTimestamp} editTimestamp={timestampLastEdit} />
                 </div>
             </h3>
             {

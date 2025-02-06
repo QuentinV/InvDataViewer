@@ -1,7 +1,7 @@
-import { Chart } from 'primereact/chart'
-import React, { useEffect } from 'react'
+import { Chart } from 'primereact/chart';
+import React, { useEffect } from 'react';
 import { useUnit } from 'effector-react';
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next';
 import { chartOptions } from './constants';
 import { api } from '../../api/invData';
 import { getScoreChartData } from './effects';

@@ -7,7 +7,7 @@ import { companyValuesStores } from '../../../models/company/values';
 import { api } from '../../../api/invData';
 import { SelectButton } from 'primereact/selectbutton';
 import { downloadSvg, downloadSvgAsPng } from './utils';
-import { Tooltip } from 'primereact/tooltip';
+import { InfoIcon } from '../../../components/InfoIcon';
 
 interface IntrinsicValueProps {
     ticker: string;
@@ -41,15 +41,12 @@ export const IntrinsicValue: React.FC<IntrinsicValueProps> = ({ ticker }) => {
 
     return (
         <div>
-            <Tooltip target=".infoIntrinsicValue" className='w-12rem'>
-                {timestamp && (<div className='text-sm flex align-items-center mb-1'><i className='pi pi-sync mr-2'></i>{new Date(timestamp).toLocaleString()}</div>)}
-            </Tooltip>
             <h3 className="bg-primary p-2 flex" ref={titleRef}>
                 <div>
                     <i className='pi pi-compass mr-2' />{t('ticker.intrinsicValue.title')}
                 </div>
                 <div className='ml-auto mr-2 '>
-                    <i className='pi pi-info-circle infoIntrinsicValue' />
+                    <InfoIcon syncTimestamp={timestamp} />
                 </div>
             </h3>
             <div className='flex mb-3'>

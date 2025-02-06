@@ -8,6 +8,7 @@ import { useUnit } from 'effector-react';
 import { companyScoresEffects, companyScoresStores } from '../../../models/company/scores';
 import { MoatScores } from '../../../models/company/scores/types';
 import { ScoreText } from '../../../components/ScoreText';
+import { InfoIcon } from '../../../components/InfoIcon';
 
 interface MoatProps {
     cik: number;
@@ -37,6 +38,9 @@ export const Moat: React.FC<MoatProps> = ({ cik }) => {
         <div>
             <h3 className="bg-primary p-2" ref={titleRef}><i className='pi pi-chart-line mr-2' />{t('ticker.moat.title')}</h3>
             <div className='flex gap-5 justify-content-end'>
+                <div className='align-self-center'>
+                    <InfoIcon editTimestamp={scores.timestamp} />
+                </div>
                 <div>
                     <div className='text-center'>{t('ticker.moat.moat')}</div>
                     <SelectButton 
