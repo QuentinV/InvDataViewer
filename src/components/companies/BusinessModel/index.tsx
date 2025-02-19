@@ -2,10 +2,10 @@ import { Dropdown } from 'primereact/dropdown';
 import React, { useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next';
 import { navs } from '../../../models/routes';
-import { QuestionsAnswers } from '../../../components/QuestionsAnswers';
+import { QuestionsAnswers } from '../../QuestionsAnswers';
 import { useUnit } from 'effector-react';
 import { companyScoresEffects, companyScoresStores } from '../../../models/company/scores';
-import { InfoIcon } from '../../../components/InfoIcon';
+import { InfoIcon } from '../../InfoIcon';
 
 interface BusinessModelProps {
     cik: number;

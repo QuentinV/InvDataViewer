@@ -6,7 +6,7 @@ import { CompanyValueSummary } from './Summary';
 import { GlobalMetrics } from '../../../models/types';
 import { useUnit } from 'effector-react';
 import { companyValuesStores } from '../../../models/company/values';
-import { InfoIcon } from '../../../components/InfoIcon';
+import { InfoIcon } from '../../InfoIcon';
 
 interface CompanyValueProps {
     cik: number;

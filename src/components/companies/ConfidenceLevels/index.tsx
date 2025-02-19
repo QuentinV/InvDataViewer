@@ -4,7 +4,7 @@ import { api } from '../../../api/invData'
 import { useTranslation } from 'react-i18next'
 import { ProgressSpinner } from 'primereact/progressspinner'
 import { navs } from '../../../models/routes';
-import { InfoIcon } from '../../../components/InfoIcon'
+import { InfoIcon } from '../../InfoIcon'
 
 interface Data {
     data: { cat: string; key: string; main: number; sure: number; unsure: number; }[];

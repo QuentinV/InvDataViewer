@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router'
 import { useTranslation } from 'react-i18next';
 import { InputText } from 'primereact/inputtext';
 import { Accordion, AccordionTab } from 'primereact/accordion';
+import { BaseLayout } from '../../BaseLayout';
 
 interface Company {
     title: string; cik: string; timestamp: number;
@@ -54,6 +55,7 @@ export const AnalysisPage: React.FC = () => {
     }
 
     return (
+    <BaseLayout>
         <div className="ml-2 m-auto flex flex-column w-full overflow-auto">
             <h3 className="text-center">{t('analysis.title')}</h3>
             <div className='ml-5'>
@@ -78,5 +80,6 @@ export const AnalysisPage: React.FC = () => {
                 </Accordion>
             </div>
         </div>
+    </BaseLayout>
     );
 }
