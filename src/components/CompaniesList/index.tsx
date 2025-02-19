@@ -47,7 +47,6 @@ export const CompaniesList: React.FC<CompaniesListProps> = ({ onLoad }) => {
             return null;
 
         const { title, cik, timestamp, favorite, tickers } = company;
-        const name = title?.toLowerCase()
         return (
             <div
                 className="relative w-20rem h-4rem pt-1 pb-1 pl-2 pr-4 bg-blue-50 hover:bg-blue-100 text-gray-600 justify-content-center flex flex-column"
@@ -70,7 +69,7 @@ export const CompaniesList: React.FC<CompaniesListProps> = ({ onLoad }) => {
                 >
                     <div className='flex align-items-center'>
                         <div className={`companyLogo48 ${tickers?.map( t => 't-logo-' + t ).join(' ')}`}></div>
-                        <div className='flex-1 text-center'>{name ? name[0].toUpperCase() + name.slice(1) : ''}</div>
+                        <div className='flex-1 text-center'>{title ?? ''}</div>
                     </div>                    
                 </Link>
                 {!!timestamp && (<div className='text-sm flex align-items-center mt-2'><i className='pi pi-sync mr-2'></i>{new Date(timestamp).toLocaleString()}</div>)}
