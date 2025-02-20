@@ -3,6 +3,10 @@ import '../../../models/company/scores/init';
 import '../../../models/company/values/init';
 import { InvData } from '../../../models/types'
 // import { useTranslation } from 'react-i18next'
+import { Menubar } from 'primereact/menubar';
+import { InputText } from 'primereact/inputtext';
+import { Badge } from 'primereact/badge';
+import { Avatar } from 'primereact/avatar'; 
 import { BusinessModel } from '../../../components/companies/BusinessModel'
 import { Moat } from '../../../components/companies/Moat'
 import { CompanyScore } from '../../../components/companies/CompanyScore'
@@ -11,6 +15,7 @@ import { IntrinsicValue } from '../../../components/companies/IntrinsicValue';
 import { ConfidenceLevels } from '../../../components/companies/ConfidenceLevels';
 import { InvDataViewer } from '../../../components/InvDataViewer'
 import { IndicatorsGraph } from '../../../components/IndicatorsGraphs'
+import { Image } from 'primereact/image';
 
 interface CompanyPageEditProps {
     cik: number;
@@ -24,23 +29,40 @@ export const CompanyPageView: React.FC<CompanyPageEditProps> = ({ cik, name, dat
 
     const yearsKeys = Object.keys(data?.years || {});
 
+    const items = [
+        {
+            label: 'Ubersicht'
+        },
+        {
+            label: 'Diagramme'
+        },
+        {
+            label: 'Geschaftsmodell'
+        },
+        {
+            label: 'Bewertung'
+        }
+    ];
+
+    const start = <img alt="logo" src={`${process.env.PUBLIC_URL}/logo.png`} height="40" className="mr-2" />;
+    const end = (
+        <div className="flex align-items-center gap-2">
+            <InputText placeholder="Search" type="text" className="w-8rem sm:w-auto" />
+            <Avatar image="https://primefaces.org/cdn/primereact/images/avatar/amyelsner.png" shape="circle" />
+        </div>
+    );
+
     return (
         <>
-        <div className="ml-4 pr-4 pb-4 overflow-auto h-full">
-            <div ref={titleRef}></div>
-            <div className='flex align-items-center justify-content-center mb-2 z-5 sticky bg-white top-0'>
-                <div className={`companyLogo48 ${data?.tickers?.map( t => 't-logo-' + t.ticker ).join(' ')} mr-2`}></div>
-                <h1 className="text-center mt-0 mb-0">{name}</h1>
-                <div className='ml-3'><CompanyScore /></div>
-            </div>
-            <ConfidenceLevels timeframe={{ startYear: parseInt(yearsKeys.slice(-11)[0]), endYear: parseInt(yearsKeys[yearsKeys.length-1]) }} overwriteTimestamp={data?.overwriteTimestamp} />
-            <IntrinsicValue ticker={data?.tickers[0]?.ticker || ''} />
-            <IndicatorsGraph data={data} />
-            <InvDataViewer cik={cik} syncTimestamp={data?.timestamp} overwriteTimestamp={data?.overwriteTimestamp} />
-            <BusinessModel cik={cik} />
-            <Moat cik={cik} />
-            <CompanyValue cik={cik} metrics={data.metrics} />
+        <div className="card">
+            <Menubar model={items} start={start} end={end} />
+        </div>
+        <div className='flex gap-4'>
+            <div>{name}</div>
+            <div><CompanyScore /></div>
+            <div>Last price: 111.1 USD</div>
         </div>
         </>
+        
     )
 }
