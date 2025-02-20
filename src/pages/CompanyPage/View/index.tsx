@@ -6,15 +6,14 @@ import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import { Menubar } from 'primereact/menubar';
 import { InputText } from 'primereact/inputtext';
-import { Badge } from 'primereact/badge';
 import { Avatar } from 'primereact/avatar'; 
 import { BusinessModel } from '../../../components/companies/BusinessModel'
 import { CompanyScore } from '../../../components/companies/CompanyScore'
 import { CompanyValueSummary } from '../../../components/companies/CompanyValue/Summary';
 import { InvDataViewer } from '../../../components/InvDataViewer'
 import { IndicatorsGraph } from '../../../components/IndicatorsGraphs'
-import { Image } from 'primereact/image';
 import { MetricsScoreViewer } from '../../../components/MetricsScoreViewer';
+import { Price } from '../../../components/companies/Price';
 
 interface CompanyPageEditProps {
     cik: number;
@@ -64,7 +63,7 @@ export const CompanyPageView: React.FC<CompanyPageEditProps> = ({ cik, name, dat
         </div>
         <div className='flex gap-4'>
             <div className='flex-1'><CompanyScore /></div>
-            <div className=''>Last price: 111.1 USD</div>
+            <div className=''><Price ticker={data?.tickers?.[0]?.ticker} /></div>
         </div>
         <div className='flex flex-wrap col-12'>
             <div className='lg:col-9 md:col-12'>
