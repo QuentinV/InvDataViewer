@@ -24,7 +24,7 @@ function App() {
                     }
                 />
                 <Route
-                    path="/company/:cik/:mode?"
+                    path="/company/:cik/:mode?/*"
                     element={
                         <ProtectedRoute>
                             <CompanyPage />

@@ -32,6 +32,7 @@ export const CompanyValue: React.FC<CompanyValueProps> = ({ cik, metrics }) => {
                     <InfoIcon syncTimestamp={timestamp} editTimestamp={configTimestamp} />
                 </div>
             </h3>
+            <h3 className='mt-5 mb-2'>{t(`ticker.value.summary`)}</h3>
             <CompanyValueSummary />
             <CompanyValueConfigs cik={cik} metrics={metrics} />
         </div>

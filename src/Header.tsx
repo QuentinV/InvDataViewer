@@ -65,7 +65,7 @@ export const Header: React.FC = () => {
             </div>
             <Routes>
                 <Route 
-                    path="/company/:cik" 
+                    path="/company/:cik/edit" 
                     element={
                         <div className='flex flex-none h-2rem align-content-center justify-content-end flex-wrap gap-4 flex-auto ml-auto pr-6'>
                             <i className='pi pi-caret-up cursor-pointer hover:text-primary' onClick={() => scrollToItem('companyTitleRef')} />

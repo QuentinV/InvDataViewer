@@ -12,9 +12,10 @@ interface InvDataViewerProps {
     cik: number;
     syncTimestamp?: number;
     overwriteTimestamp?: number;
+    readonly?: boolean;
 }
 
-export const InvDataViewer: React.FC<InvDataViewerProps> = ({ cik, syncTimestamp, overwriteTimestamp }) => {
+export const InvDataViewer: React.FC<InvDataViewerProps> = ({ cik, syncTimestamp, overwriteTimestamp, readonly }) => {
     const { t } = useTranslation();
     const [configs, setConfigs] = useState<Config[] | undefined>()
     const titleRef = useRef(null);
@@ -34,13 +35,13 @@ export const InvDataViewer: React.FC<InvDataViewerProps> = ({ cik, syncTimestamp
     
     return (
         <div>
-            <h3 className="bg-primary p-2 flex" ref={titleRef}>
+            <h3 className={`${!readonly && 'bg-primary'} p-2 flex`} ref={titleRef}>
                 <div>
                     <i className='pi pi-database mr-2' />{t('ticker.fundamentals.title')}
                 </div>
-                <div className='ml-auto mr-2 '>
+                {(syncTimestamp || overwriteTimestamp) && (<div className='ml-auto mr-2 '>
                     <InfoIcon syncTimestamp={syncTimestamp} editTimestamp={overwriteTimestamp} />
-                </div>
+                </div>)}
             </h3>
             <Accordion multiple>
             {configs.map((c, i) => (

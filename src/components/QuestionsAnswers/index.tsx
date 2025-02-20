@@ -9,11 +9,12 @@ interface QuestionsAnswersProps {
      * API for questions config and answers per cik usually
      */
     apiUrls: { questions: string; answers: string };
+    readonly?: boolean;
 }
 
 const timeouts: {[key: string]: any} = {};
 
-export const QuestionsAnswers: React.FC<QuestionsAnswersProps> = ({ apiUrls }) => {
+export const QuestionsAnswers: React.FC<QuestionsAnswersProps> = ({ apiUrls, readonly }) => {
     const [questions, setQuestions] = useState<Question[]>([]);
     const [answers, setAnswers] = useState<{[key: string]: { answer: string; timestamp?: number; }}>({});
 
@@ -55,17 +56,23 @@ export const QuestionsAnswers: React.FC<QuestionsAnswersProps> = ({ apiUrls }) =
                     <div key={key} className='w-full'>
                         <h4 className="p-2 flex">
                             <div>{value}</div>
-                            <div className='ml-auto mr-2 '>
+                            {!readonly && (<div className='ml-auto mr-2 '>
                                 <InfoIcon editTimestamp={timestamp} />
-                            </div>
+                            </div>)}
                         </h4>
-                        <InputTextarea 
-                            autoResize 
-                            name={key} 
-                            className='w-full' 
-                            onChange={event => save(key, event.target.value)} 
-                            value={answers[key]?.answer || ''}
-                        />
+                        {
+                            readonly ? 
+                            (<div className='pl-3'>{answers[key]?.answer || ''}</div>) : 
+                            (
+                            <InputTextarea 
+                                autoResize 
+                                name={key} 
+                                className='w-full' 
+                                onChange={event => save(key, event.target.value)} 
+                                value={answers[key]?.answer || ''}
+                            />
+                            )
+                        }
                     </div>
                 ) } )
             }

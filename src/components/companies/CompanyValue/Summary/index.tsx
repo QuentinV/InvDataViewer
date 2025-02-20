@@ -21,7 +21,6 @@ export const CompanyValueSummary: React.FC = () => {
 
     return (
         <div>
-            <h3 className='mt-5 mb-2'>{t(`ticker.value.summary`)}</h3>
             <table className='m-auto'>
                 <thead>
                     <tr>
