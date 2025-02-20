@@ -16,6 +16,7 @@ import { ConfidenceLevels } from '../../../components/companies/ConfidenceLevels
 import { InvDataViewer } from '../../../components/InvDataViewer'
 import { IndicatorsGraph } from '../../../components/IndicatorsGraphs'
 import { Image } from 'primereact/image';
+import { MetricsScoreViewer } from '../../../components/MetricsScoreViewer';
 
 interface CompanyPageEditProps {
     cik: number;
@@ -44,7 +45,12 @@ export const CompanyPageView: React.FC<CompanyPageEditProps> = ({ cik, name, dat
         }
     ];
 
-    const start = <img alt="logo" src={`${process.env.PUBLIC_URL}/logo.png`} height="40" className="mr-2" />;
+    const start = (
+        <div className='flex align-items-center gap-2'>
+            <img alt="logo" src={`${process.env.PUBLIC_URL}/logo.png`} height="40" className="mr-2" />
+            <div className='text-primary font-bold'>{name}</div>
+        </div>
+    );
     const end = (
         <div className="flex align-items-center gap-2">
             <InputText placeholder="Search" type="text" className="w-8rem sm:w-auto" />
@@ -58,9 +64,32 @@ export const CompanyPageView: React.FC<CompanyPageEditProps> = ({ cik, name, dat
             <Menubar model={items} start={start} end={end} />
         </div>
         <div className='flex gap-4'>
-            <div>{name}</div>
             <div><CompanyScore /></div>
             <div>Last price: 111.1 USD</div>
+        </div>
+        <div className='flex gap-4'>
+            <MetricsScoreViewer cik={cik} displayDetails={false} />
+            <div>
+                <h3>Firmenprofil</h3>
+                <div>
+                    Bla bbla bla bla<br />
+                    Bla bbla bla bla<br />
+                    Bla bbla bla bla<br />
+                    Bla bbla bla bla<br />
+                    Bla bbla bla bla<br />
+                    Bla bbla bla bla<br />
+                    Bla bbla bla bla<br />
+                    Bla bbla bla bla<br />
+                    Bla bbla bla bla<br />
+                </div>
+            </div>
+        </div>
+        <div>
+            <h3>Aktuelle Einschatzung</h3>
+            <div>
+                Bla bbla bla bla Bla bbla bla bla Bla bbla bla bla Bla bbla bla bla Bla bbla bla bla Bla bbla bla bla Bla bbla bla bla Bla bbla bla bla Bla bbla bla bla <br />
+                Bla bbla bla bla Bla bbla bla bla Bla bbla bla bla Bla bbla bla bla Bla bbla bla bla Bla bbla bla bla Bla bbla bla bla Bla bbla bla bla Bla bbla bla bla
+            </div>
         </div>
         </>
         
