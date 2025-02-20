@@ -14,6 +14,7 @@ interface InvDataViewerTableProps {
     cik: number;
     dataKey: string
     structure: LabelData[];
+    readonly?: boolean;
 }
 
 type yearsType = { [year: string]: {[dataKey: string]: { [key: string]: { value: number|null|undefined, isValid?: boolean } } } };
@@ -28,7 +29,8 @@ enum NumberFormat {
 export const InvDataViewerTable: React.FC<InvDataViewerTableProps> = ({
     cik,
     dataKey,
-    structure
+    structure,
+    readonly
 }) => {
     const { t, i18n: { language } } = useTranslation();
     const [years, setYears] = useState<yearsType>();
@@ -146,7 +148,7 @@ export const InvDataViewerTable: React.FC<InvDataViewerTableProps> = ({
                 className={`w-full h-full ${config?.isValid === 'ROLLBACK' ? 'line-through' : ''}`}
                 title={`${config?.isValid === 'ROLLBACK' ? 'This value will be reloaded from rules with next refresh' : ''}`}
                 style={{ 
-                    borderBottom: config?.isValid === 'SURE' ? `thin solid green` : (config?.isValid === 'UNSURE') ? 'thin solid orange' : 'none'
+                    borderBottom: readonly ? 'none' : config?.isValid === 'SURE' ? `thin solid green` : (config?.isValid === 'UNSURE') ? 'thin solid orange' : 'none'
                 }}>
                     {row?.[options.field]}
             </div>
@@ -249,7 +251,7 @@ export const InvDataViewerTable: React.FC<InvDataViewerTableProps> = ({
                 pt={{
                     header: { style: { background: 'none', border: 'none' } },
                 }}
-                editMode={numberFormatIndex === NumberFormat.K ? "cell" : undefined}
+                editMode={!readonly && numberFormatIndex === NumberFormat.K ? "cell" : undefined}
             >
                 <Column
                     field="label"

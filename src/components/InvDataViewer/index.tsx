@@ -50,6 +50,7 @@ export const InvDataViewer: React.FC<InvDataViewerProps> = ({ cik, syncTimestamp
                         cik={cik}
                         dataKey={c.name}
                         structure={c.children}
+                        readonly={readonly}
                     />
                 </AccordionTab>
             ))}
