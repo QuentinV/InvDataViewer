@@ -61,9 +61,10 @@ export const CompanyPageView: React.FC<CompanyPageEditProps> = ({ cik, name, dat
         <div className="card z-5 sticky top-0">
             <Menubar model={items} start={start} end={end} />
         </div>
-        <div className='flex gap-4'>
-            <div className='flex-1'><CompanyScore /></div>
-            <div className=''><Price ticker={data?.tickers?.[0]?.ticker} /></div>
+        <div className='flex flex-wrap align-items-center'>
+            <h1 className='col-7 text-center text-primary'>{name}</h1>
+            <div className='col-2'><CompanyScore /></div>
+            <div className='col-3'><Price ticker={data?.tickers?.[0]?.ticker} /></div>
         </div>
         <div className='flex flex-wrap col-12'>
             <div className='lg:col-9 md:col-12'>

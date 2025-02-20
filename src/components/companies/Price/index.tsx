@@ -18,6 +18,6 @@ export const Price: React.FC<PriceProps> = ({ ticker }) => {
     }
 
     return (
-        <div>{priceData.price}$</div>
+        <div>Last price: {priceData.price}$</div>
     )
 }
