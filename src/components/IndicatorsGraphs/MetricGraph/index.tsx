@@ -11,9 +11,10 @@ import { ProgressSpinner } from 'primereact/progressspinner'
 interface MetricsGraphProps {
     config: ChartOptions;
     data: InvData;
+    readonly?: boolean;
 }
 
-export const MetricsGraph: React.FC<MetricsGraphProps> = ({ config, data }) => {
+export const MetricsGraph: React.FC<MetricsGraphProps> = ({ config, data, readonly }) => {
     const { t, i18n: { language } } = useTranslation();
     const [value, setValue] = useState<ChartSettings | null>(null)
     const [error, setError] = useState<string | null>(null);
@@ -59,12 +60,12 @@ export const MetricsGraph: React.FC<MetricsGraphProps> = ({ config, data }) => {
                         >
                             <i className="pi pi-table" />
                         </div>
-                        <div
+                        {!readonly && (<div
                             className="absolute"
                             style={{ left: '15px', top: '10px' }}
                         >
                             <VotingSelector graphKey={config.key} />
-                        </div>
+                        </div>)}
                     </div>
                     <div className="flex-none align-self-center">
                         {!!value.additionalData &&

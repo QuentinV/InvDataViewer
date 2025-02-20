@@ -61,7 +61,7 @@ export const CompanyPageEdit: React.FC<CompanyPageEditProps> = ({ cik, name: def
                 <h3 className="bg-primary p-2" ref={priceOverviewRef}><i className='pi pi-dollar mr-2' />{t('ticker.market.title')}</h3>
                 <TradingViewSymbolOverview ticker={data?.tickers?.[0]?.ticker || ''} exchange={data?.tickers?.[0]?.exchange || ''} />
             </div>
-            <IndicatorsGraph data={data} />
+            <IndicatorsGraph data={data} includeScore />
             <InvDataViewer cik={cik} syncTimestamp={data?.timestamp} overwriteTimestamp={data?.overwriteTimestamp} />
             <BusinessModel cik={cik} />
             <Moat cik={cik} />

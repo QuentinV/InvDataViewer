@@ -91,6 +91,9 @@ export const CompanyPageView: React.FC<CompanyPageEditProps> = ({ cik, name, dat
                 Bla bbla bla bla Bla bbla bla bla Bla bbla bla bla Bla bbla bla bla Bla bbla bla bla Bla bbla bla bla Bla bbla bla bla Bla bbla bla bla Bla bbla bla bla
             </div>
         </div>
+        <div>
+            <IndicatorsGraph data={data} view='endless' readonly />
+        </div>
         </>
         
     )

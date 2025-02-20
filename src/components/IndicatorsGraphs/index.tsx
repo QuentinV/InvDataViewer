@@ -14,9 +14,13 @@ import { metricsScoresStores } from '../../models/company/metricsScores';
 
 interface IndicatorsGraphProps {
     data?: InvData;
+    view?: 'endless' | 'tabs';
+    includeScore?: boolean;
+    withTitle?: boolean;
+    readonly?: boolean;
 }
 
-export const IndicatorsGraph: React.FC<IndicatorsGraphProps> = ({ data }) => {
+export const IndicatorsGraph: React.FC<IndicatorsGraphProps> = ({ data, view = 'tabs', includeScore, withTitle, readonly }) => {
     const { t } = useTranslation();
     const [ config, setConfig ] = useState<ChartsConfig | null>(null);
     const titleRef = useRef(null);    
@@ -30,25 +34,43 @@ export const IndicatorsGraph: React.FC<IndicatorsGraphProps> = ({ data }) => {
         }
         getData()
     }, []);
+    
+    const template = (key: string) => {
+        if ( !config || !data ) return null;
+        return config[key].map((e, i) => (
+            <div
+                key={i}
+                className="flex justify-content-around gap-2"
+                style={{ marginBottom: '75px' }}
+            >
+                <MetricsGraph
+                    config={e}
+                    data={data}
+                    readonly={readonly}
+                />
+            </div>
+        ))
+    }
 
     return (
         <div>
-            <h3 className="bg-primary p-2 flex" ref={titleRef}>
+            {withTitle && (<h3 className="bg-primary p-2 flex" ref={titleRef}>
                 <div>
                     <i className='pi pi-chart-scatter mr-2' />{t('ticker.metrics.title')}
                 </div>
                 <div className='ml-auto mr-2 '>
                     <InfoIcon syncTimestamp={data?.metricsTimestamp} editTimestamp={timestampLastEdit} />
                 </div>
-            </h3>
+            </h3>)}
             {
                 !data || !config 
                 ? (<div><ProgressSpinner /></div>)
                 : (<div>
+                    {view === 'tabs' ? (
                     <TabView>
-                        <TabPanel header={t('ticker.metrics.categories.score')}>
+                        {includeScore && (<TabPanel header={t('ticker.metrics.categories.score')}>
                             <MetricsScoreViewer cik={Number(data.cik)} />
-                        </TabPanel>
+                        </TabPanel>)}
                         {!!data && Object.keys(config).map( key => (
                             <TabPanel
                                 header={t(
@@ -56,21 +78,21 @@ export const IndicatorsGraph: React.FC<IndicatorsGraphProps> = ({ data }) => {
                                 )}
                                 key={key}
                             >
-                                {config[key].map((e, i) => (
-                                    <div
-                                        key={i}
-                                        className="flex justify-content-around gap-2"
-                                        style={{ marginBottom: '75px' }}
-                                    >
-                                        <MetricsGraph
-                                            config={e}
-                                            data={data}
-                                        />
-                                    </div>
-                                ))}
+                                {template(key)}
                             </TabPanel>
                         ))}
                     </TabView>
+                    ) : (
+                    <>
+                        {includeScore && (<MetricsScoreViewer cik={Number(data.cik)} />)}
+                        {!!data && Object.keys(config).map( key => (
+                            <div key={key}>
+                                <h4>{t(`ticker.metrics.categories.${key}`)}</h4>
+                                {template(key)}
+                            </div>
+                        ))}
+                    </>
+                )}
                 </div>)
             }
         </div>
