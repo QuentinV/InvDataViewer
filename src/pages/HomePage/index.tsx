@@ -15,7 +15,7 @@ export const HomePage: React.FC = () => {
 
     return (
         <BaseLayout>
-            <div className="m-auto flex flex-column w-full overflow-auto">
+            <div className="m-auto flex flex-column w-full h-full overflow-auto">
                 <h3 className="text-center">{t('home.title')}</h3>
                 <CompaniesList onLoad={getCompanies} />
             </div>
