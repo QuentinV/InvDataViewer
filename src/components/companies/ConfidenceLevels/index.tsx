@@ -50,7 +50,7 @@ export const ConfidenceLevels: React.FC<ConfidenceLevelsProps> = ({ timeframe: p
 
     return (
         <div>
-            <h3 className="bg-primary p-2 flex align-items-center" ref={titleRef}>
+            <h3 className="bg-primary p-2 flex align-items-center scrollMarginTop" ref={titleRef}>
                 <div><i className='pi pi-check-circle mr-2' />{t('ticker.confidence.title')}</div>
                 <div className='ml-2 flex gap-1'>
                     <input className='w-4rem text-center' type='number' value={timeframe.startYear} onChange={e => setTimeframe({ ...timeframe, startYear: parseInt(e.currentTarget.value as any || 0) }) } />

@@ -23,7 +23,7 @@ export const BusinessModel: React.FC<BusinessModelProps> = ({ cik, readonly }) =
 
     return (
         <div>
-            <h3 className={`${!readonly && 'bg-primary'} p-2`} ref={titleRef}><i className='pi pi-briefcase mr-2' />{t('ticker.businessmodel.title')}</h3>
+            <h3 className={`${!readonly && 'bg-primary'} p-2 scrollMarginTop`} ref={titleRef}><i className='pi pi-briefcase mr-2' />{t('ticker.businessmodel.title')}</h3>
             {
                 readonly ?
                 (<span>{t(`ticker.businessmodel.options.${businessModel?.val}`)}</span>) :

@@ -41,7 +41,7 @@ export const IntrinsicValue: React.FC<IntrinsicValueProps> = ({ ticker }) => {
 
     return (
         <div>
-            <h3 className="bg-primary p-2 flex" ref={titleRef}>
+            <h3 className="bg-primary p-2 flex scrollMarginTop" ref={titleRef}>
                 <div>
                     <i className='pi pi-compass mr-2' />{t('ticker.intrinsicValue.title')}
                 </div>

@@ -54,7 +54,7 @@ export const Header: React.FC = () => {
 
     const scrollToItem = ( key: string ) => {
         refs[key]?.current?.scrollIntoView({ behavior: 'smooth' });
-      };
+    };
 
     return (<>
         <div className='h-2rem flex'>

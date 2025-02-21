@@ -54,7 +54,7 @@ export const IndicatorsGraph: React.FC<IndicatorsGraphProps> = ({ data, view = '
 
     return (
         <div>
-            {withTitle && (<h3 className="bg-primary p-2 flex" ref={titleRef}>
+            {withTitle && (<h3 className="bg-primary p-2 flex scrollMarginTop" ref={titleRef}>
                 <div>
                     <i className='pi pi-chart-scatter mr-2' />{t('ticker.metrics.title')}
                 </div>

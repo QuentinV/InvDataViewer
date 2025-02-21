@@ -36,7 +36,7 @@ export const Moat: React.FC<MoatProps> = ({ cik }) => {
 
     return (
         <div>
-            <h3 className="bg-primary p-2" ref={titleRef}><i className='pi pi-chart-line mr-2' />{t('ticker.moat.title')}</h3>
+            <h3 className="bg-primary p-2 scrollMarginTop" ref={titleRef}><i className='pi pi-chart-line mr-2' />{t('ticker.moat.title')}</h3>
             <div className='flex gap-5 justify-content-end'>
                 <div className='align-self-center'>
                     <InfoIcon editTimestamp={scores.timestamp} />

@@ -49,7 +49,7 @@ export const CompanyPageEdit: React.FC<CompanyPageEditProps> = ({ cik, name: def
     return (
     <BaseLayout>
         <div className="ml-4 pr-4 pb-4 overflow-auto h-full">
-            <div ref={titleRef}></div>
+            <div ref={titleRef} className='scrollMarginTop'></div>
             <div className='flex align-items-center justify-content-center mb-2 z-5 sticky bg-white top-0'>
                 <div className={`companyLogo48 ${data?.tickers?.map( t => 't-logo-' + t.ticker ).join(' ')} mr-2`}></div>
                 <h1 className="text-center mt-0 mb-0">{name} <i className='pi pi-pencil vertical-align-top text-xs cursor-pointer' onClick={() => setIsVisibleEditCompanyName(true)} /></h1>

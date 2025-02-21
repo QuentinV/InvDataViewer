@@ -35,7 +35,7 @@ export const InvDataViewer: React.FC<InvDataViewerProps> = ({ cik, syncTimestamp
     
     return (
         <div>
-            <h3 className={`${!readonly && 'bg-primary'} p-2 flex`} ref={titleRef}>
+            <h3 className={`${!readonly && 'bg-primary'} p-2 flex scrollMarginTop`} ref={titleRef}>
                 <div>
                     <i className='pi pi-database mr-2' />{t('ticker.fundamentals.title')}
                 </div>

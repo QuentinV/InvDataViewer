@@ -24,7 +24,7 @@ export const CompanyValue: React.FC<CompanyValueProps> = ({ cik, metrics }) => {
     
     return (
         <div>
-            <h3 className="bg-primary p-2 flex" ref={titleRef}>
+            <h3 className="bg-primary p-2 flex scrollMarginTop" ref={titleRef}>
                 <div>
                     <i className='pi pi-tag mr-2' />{t('ticker.value.title')}
                 </div>
