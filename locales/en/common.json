@@ -13,6 +13,7 @@
         "search": "Search..."
     },
     "ticker": {
+        "overview": "Overview",
         "loader": "Retrieving and verifying data.\nGrab a coffee, it might take a few seconds.",
         "intrinsicValue": {
             "title": "Intrinsic value",
@@ -31,7 +32,7 @@
             "title": "Market share price"
         },
         "metrics": {
-            "title": "Metrics",
+            "title": "Diagrams",
             "error": "An error occupered",
             "categories": {
                 "score": "Score",
@@ -186,7 +187,7 @@
             }
         },
         "fundamentals": {
-            "title": "Fundamentals",
+            "title": "Data",
             "INCOME_STATEMENT": {
                 "title": "Income Statement",
                 "REVENUE": "Revenue",
@@ -354,7 +355,7 @@
             "result": "Score"
         },
         "value": {
-            "title": "Company value",
+            "title": "Valuation",
             "summary": "Summary",
             "levels": {
                 "0": "Tatsächlich",
