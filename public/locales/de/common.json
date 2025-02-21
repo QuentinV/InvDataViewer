@@ -13,7 +13,7 @@
         "search": "Suche..."
     },
     "ticker": {
-        "overview": "Overview",
+        "overview": "Übersicht",
         "loader": "Daten abrufen und überprüfen.\nHol dir einen Kaffee, es könnte ein paar Sekunden dauern.",
         "intrinsicValue": {
             "title": "Intrinsic value",
