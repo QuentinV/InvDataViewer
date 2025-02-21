@@ -1,13 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next';
 import { navs } from '../../../models/routes';
-import { IntrinsicValueGraph } from '../../../components/IntrinsicValueGraph';
+import { IntrinsicValueGraph } from '../../IntrinsicValueGraph';
 import { useUnit } from 'effector-react';
 import { companyValuesStores } from '../../../models/company/values';
 import { api } from '../../../api/invData';
 import { SelectButton } from 'primereact/selectbutton';
 import { downloadSvg, downloadSvgAsPng } from './utils';
-import { InfoIcon } from '../../../components/InfoIcon';
+import { InfoIcon } from '../../InfoIcon';
 
 interface IntrinsicValueProps {
     ticker: string;
@@ -41,7 +41,7 @@ export const IntrinsicValue: React.FC<IntrinsicValueProps> = ({ ticker }) => {
 
     return (
         <div>
-            <h3 className="bg-primary p-2 flex" ref={titleRef}>
+            <h3 className="bg-primary p-2 flex scrollMarginTop" ref={titleRef}>
                 <div>
                     <i className='pi pi-compass mr-2' />{t('ticker.intrinsicValue.title')}
                 </div>

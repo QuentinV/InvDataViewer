@@ -13,6 +13,7 @@
         "search": "Suche..."
     },
     "ticker": {
+        "overview": "Übersicht",
         "loader": "Daten abrufen und überprüfen.\nHol dir einen Kaffee, es könnte ein paar Sekunden dauern.",
         "intrinsicValue": {
             "title": "Intrinsic value",
@@ -31,7 +32,7 @@
             "title": "Marktanteilspreis"
         },
         "metrics": {
-            "title": "Fundamentaldaten",
+            "title": "Diagramme",
             "categories": {
                 "score": "Score",
                 "growth": "Wachstum",
@@ -187,7 +188,7 @@
             }
         },
         "fundamentals": {
-            "title": "Fundamentals",
+            "title": "Daten",
             "INCOME_STATEMENT": {
                 "title": "Gewinn- und Verlustrechnung",
                 "REVENUE": "Umsatz",
@@ -338,7 +339,7 @@
             }
         },
         "businessmodel": {
-            "title": "Bewertung des Geschäftsmodells",
+            "title": "Geschaftsmodell",
             "select": "Was passt am besten?",
             "options": {
                 "-2": "(--) nicht vorhersehbar < 1 Jahr",
@@ -355,7 +356,7 @@
             "result": "Punktzahl"
         },
         "value": {
-            "title": "Unternehmenswert",
+            "title": "Bewertung",
             "summary": "Zusammenfassung",
             "levels": {
                 "0": "Tatsächlich",

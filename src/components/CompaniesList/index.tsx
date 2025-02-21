@@ -49,29 +49,37 @@ export const CompaniesList: React.FC<CompaniesListProps> = ({ onLoad }) => {
         const { title, cik, timestamp, favorite, tickers } = company;
         return (
             <div
-                className="relative w-20rem h-4rem pt-1 pb-1 pl-2 pr-4 bg-blue-50 hover:bg-blue-100 text-gray-600 justify-content-center flex flex-column"
+                className="relative w-20rem h-6rem pt-1 pb-1 pl-2 pr-4 bg-blue-50 hover:bg-blue-100 text-gray-600 justify-content-center flex flex-column"
                 key={cik}
             >
-                <Link 
-                    style={{ textDecoration: 'none' }}
-                    className='text-gray-600 absolute bottom-0 right-0 pr-1 pt-1 hover:text-primary'
-                    to={`/company/${cik}`}
-                    rel="noopener noreferrer"
-                    target='_blank'
-                >
-                    <i className='pi pi-external-link'></i>
-                </Link>
+                <div className='flex align-items-center h-full'>
+                    <div className={`companyLogo48 ${tickers?.map( t => 't-logo-' + t ).join(' ')}`}></div>
+                    <div className='flex flex-column flex-1 h-full'>
+                        <div className='flex-1 mt-1 text-center text-primary align-content-center'>{title ?? ''}</div>
+                        <div className='flex justify-content-center gap-3 mt-auto'>
+                            <Link style={{ textDecoration: 'none' }} className='text-gray-400 hover:text-primary' to={`/company/${cik}`}><i className='pi pi-eye mr-1' />View</Link>
+                            <Link 
+                                style={{ textDecoration: 'none' }}
+                                className='text-gray-400 hover:text-primary'
+                                to={`/company/${cik}/edit`}
+                                rel="noopener noreferrer"
+                                target='_blank'
+                            >
+                                <i className='pi pi-pencil mr-1' />Edit
+                            </Link>
+                            <Link 
+                                style={{ textDecoration: 'none' }}
+                                className='text-gray-400 hover:text-primary'
+                                to={`/company/${cik}`}
+                                rel="noopener noreferrer"
+                                target='_blank'
+                            >
+                                <i className='pi pi-external-link mr-1' />Tab
+                            </Link>
+                        </div>
+                    </div>
+                </div>
                 <div className='absolute top-0 right-0 pr-1 pt-1 hover:text-primary'><CompanyFavorite cik={cik} favorite={favorite} /></div>
-                <Link
-                    style={{ textDecoration: 'none' }}
-                    className='text-gray-600 hover:text-primary inline-block w-full'
-                    to={`/company/${cik}`}
-                >
-                    <div className='flex align-items-center'>
-                        <div className={`companyLogo48 ${tickers?.map( t => 't-logo-' + t ).join(' ')}`}></div>
-                        <div className='flex-1 text-center'>{title ?? ''}</div>
-                    </div>                    
-                </Link>
                 {!!timestamp && (<div className='text-sm flex align-items-center mt-2'><i className='pi pi-sync mr-2'></i>{new Date(timestamp).toLocaleString()}</div>)}
             </div>
         )
@@ -109,7 +117,7 @@ export const CompaniesList: React.FC<CompaniesListProps> = ({ onLoad }) => {
                     pt={{
                         grid: {
                             className:
-                                'gap-3 align-content-start h-30rem overflow-auto overflow-x-hidden justify-content-center',
+                                'gap-3 align-content-start h-31 rem overflow-auto overflow-x-hidden justify-content-center',
                         },
                         header: { className: 'bg-white border-none' },
                     }}

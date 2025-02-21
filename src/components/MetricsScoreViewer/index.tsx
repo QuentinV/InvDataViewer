@@ -13,9 +13,10 @@ import { ScoreText } from '../ScoreText';
 
 interface MetricsScoreViewerProps {
     cik: number;
+    displayDetails?: boolean;
 }
 
-export const MetricsScoreViewer: React.FC<MetricsScoreViewerProps> = ({ cik }) => {
+export const MetricsScoreViewer: React.FC<MetricsScoreViewerProps> = ({ cik, displayDetails = true }) => {
     const { t } = useTranslation()
     const reloadGlobalScore = useUnit(metricsScoresStores.$reloadGlobalScore);
     const chartData = useUnit($chartData);
@@ -42,6 +43,8 @@ export const MetricsScoreViewer: React.FC<MetricsScoreViewerProps> = ({ cik }) =
 
     return (<div className='flex justify-content-center gap-7'>
         <Chart type='radar' data={chartData} options={chartOptions} className='w-30rem' />
+        {displayDetails && (
+        <>
         <div className='flex-none align-content-center'>
             {
                 chartData.labels.map( (k: string, i: number) => (<div key={k} className='flex m-4'>
@@ -53,5 +56,7 @@ export const MetricsScoreViewer: React.FC<MetricsScoreViewerProps> = ({ cik }) =
         <div className='flex-none align-content-center text-3xl'>
             {globalScore !== null && <ScoreText value={globalScore} />}
         </div>
+        </>
+        )}
     </div>)
 }

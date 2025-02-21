@@ -6,7 +6,7 @@ import { CompanyValueSummary } from './Summary';
 import { GlobalMetrics } from '../../../models/types';
 import { useUnit } from 'effector-react';
 import { companyValuesStores } from '../../../models/company/values';
-import { InfoIcon } from '../../../components/InfoIcon';
+import { InfoIcon } from '../../InfoIcon';
 
 interface CompanyValueProps {
     cik: number;
@@ -24,7 +24,7 @@ export const CompanyValue: React.FC<CompanyValueProps> = ({ cik, metrics }) => {
     
     return (
         <div>
-            <h3 className="bg-primary p-2 flex" ref={titleRef}>
+            <h3 className="bg-primary p-2 flex scrollMarginTop" ref={titleRef}>
                 <div>
                     <i className='pi pi-tag mr-2' />{t('ticker.value.title')}
                 </div>
@@ -32,6 +32,7 @@ export const CompanyValue: React.FC<CompanyValueProps> = ({ cik, metrics }) => {
                     <InfoIcon syncTimestamp={timestamp} editTimestamp={configTimestamp} />
                 </div>
             </h3>
+            <h3 className='mt-5 mb-2'>{t(`ticker.value.summary`)}</h3>
             <CompanyValueSummary />
             <CompanyValueConfigs cik={cik} metrics={metrics} />
         </div>
