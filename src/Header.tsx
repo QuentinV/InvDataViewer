@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Route, Routes, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { Menubar } from 'primereact/menubar'
 import i18next from 'i18next'
 import { useTranslation } from 'react-i18next'
