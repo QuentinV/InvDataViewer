@@ -1,5 +1,5 @@
 import React from 'react'
-import 'primereact/resources/themes/mira/theme.css'
+import { PrimeReactProvider } from 'primereact/api';
 import './theme.css'
 import 'primeflex/primeflex.css'
 import 'primeicons/primeicons.css'
@@ -13,6 +13,7 @@ import { AnalysisPage } from './pages/AnalysisPage'
 
 function App() {
     return (
+    <PrimeReactProvider>
         <HashRouter>
             <Routes>
                 <Route
@@ -50,6 +51,7 @@ function App() {
                 <Route path="/login" element={<LoginPage />} />
             </Routes>
         </HashRouter>
+    </PrimeReactProvider>
     )
 }
 
