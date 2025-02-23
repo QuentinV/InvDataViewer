@@ -1,18 +1,10 @@
 {
   "files": {
-    "main.css": "/InvDataViewer/static/css/main.33e8be61.css",
-    "main.js": "/InvDataViewer/static/js/main.bfa82b00.js",
+    "main.css": "/InvDataViewer/static/css/main.081b7e6f.css",
+    "main.js": "/InvDataViewer/static/js/main.a8343f3b.js",
     "static/js/960.3ac266f9.chunk.js": "/InvDataViewer/static/js/960.3ac266f9.chunk.js",
     "static/js/592.60527fa6.chunk.js": "/InvDataViewer/static/js/592.60527fa6.chunk.js",
     "static/media/primeicons.svg": "/InvDataViewer/static/media/primeicons.6ed59f962963a4a73af2.svg",
-    "static/media/Inter-SemiBold.woff": "/InvDataViewer/static/media/Inter-SemiBold.ff53c7406a23717b16a8.woff",
-    "static/media/Inter-Regular.woff": "/InvDataViewer/static/media/Inter-Regular.bafbd62f86d686bb65d0.woff",
-    "static/media/Inter-Bold.woff": "/InvDataViewer/static/media/Inter-Bold.b755d2e570b1329b527d.woff",
-    "static/media/Inter-Medium.woff": "/InvDataViewer/static/media/Inter-Medium.19051ee52164b5e67119.woff",
-    "static/media/Inter-SemiBold.woff2": "/InvDataViewer/static/media/Inter-SemiBold.57fcd36069589ac94692.woff2",
-    "static/media/Inter-Regular.woff2": "/InvDataViewer/static/media/Inter-Regular.1619ff46967e77779ac6.woff2",
-    "static/media/Inter-Bold.woff2": "/InvDataViewer/static/media/Inter-Bold.36a650f426faae9edc53.woff2",
-    "static/media/Inter-Medium.woff2": "/InvDataViewer/static/media/Inter-Medium.d5afc4bd2dfa4a0c724a.woff2",
     "static/media/primeicons.eot": "/InvDataViewer/static/media/primeicons.ff0c4cd79b2ffca2de54.eot",
     "static/media/primeicons.woff": "/InvDataViewer/static/media/primeicons.8931fda1930c3bd21e96.woff",
     "static/media/primeicons.ttf": "/InvDataViewer/static/media/primeicons.a5c2a53d1ff7a9ff5933.ttf",
@@ -20,13 +12,13 @@
     "static/media/jsoneditor-icons.svg": "/InvDataViewer/static/media/jsoneditor-icons.15f2789dd231f36d43a4.svg",
     "index.html": "/InvDataViewer/index.html",
     "static/media/getFetch.cjs": "/InvDataViewer/static/media/getFetch.40f37ddea2378391108f.cjs",
-    "main.33e8be61.css.map": "/InvDataViewer/static/css/main.33e8be61.css.map",
-    "main.bfa82b00.js.map": "/InvDataViewer/static/js/main.bfa82b00.js.map",
+    "main.081b7e6f.css.map": "/InvDataViewer/static/css/main.081b7e6f.css.map",
+    "main.a8343f3b.js.map": "/InvDataViewer/static/js/main.a8343f3b.js.map",
     "960.3ac266f9.chunk.js.map": "/InvDataViewer/static/js/960.3ac266f9.chunk.js.map",
     "592.60527fa6.chunk.js.map": "/InvDataViewer/static/js/592.60527fa6.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.33e8be61.css",
-    "static/js/main.bfa82b00.js"
+    "static/css/main.081b7e6f.css",
+    "static/js/main.a8343f3b.js"
   ]
 }
