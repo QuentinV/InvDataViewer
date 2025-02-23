@@ -53,3 +53,32 @@
 .scrollMarginTop {
     scroll-margin-top: 4rem;
 }
+
+/** JSON Editor **/
+.jsoneditor-tree {
+    background-color: var(--surface-card)!important;
+    color: var(--text-color)!important;
+}
+
+.jsoneditor-frame input {
+    color: var(--text-color)!important;
+}
+
+.jsoneditor-navigation-bar {
+    background-color: var(--surface-100)!important;
+    color: var(--text-color)!important;
+}
+
+.jsoneditor-menu {
+    background-color: var(--surface-300)!important;
+    color: var(--text-color)!important;
+}
+
+.jsoneditor-field {
+    color: var(--text-color)!important;
+}
+
+.jsoneditor-field:hover {
+    color: var(--highlight-text-color)!important;
+    background-color: var(--surface-hover)!important;
+}

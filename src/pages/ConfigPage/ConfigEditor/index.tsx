@@ -47,9 +47,11 @@ export const ConfigEditor: React.FC<ConfigEditorProps> = ({ endpoint, profile })
                     navigationBar={true}
                     statusBar={true}
                     allowedModes={['tree', 'view', 'form', 'code', 'text']}
-                    innerRef={(ref: HTMLElement) =>
-                        ref?.classList?.add('flex-auto')
-                    }
+                    innerRef={(ref: HTMLElement) => {
+                        const claList = ref?.classList;
+                        claList?.add('flex-auto');
+                        claList?.add('blablab');
+                    }}
                 />
             </div>
             <div className="mt-2 mb-3 text-center">
