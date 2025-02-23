@@ -44,7 +44,7 @@ export const AnalysisPage: React.FC = () => {
         const name = title?.toLowerCase()
         return (
             <div
-                className="w-20rem h-3rem pt-5 pb-5 pl-2 pr-2 bg-blue-50 hover:bg-blue-100 text-center cursor-pointer align-items-center justify-content-center flex flex-column"
+                className="w-20rem h-3rem pt-5 pb-5 pl-2 pr-2 hover:surface-hover text-center cursor-pointer align-items-center justify-content-center flex flex-column"
                 key={cik}
                 onClick={() => navigate({ pathname: `/company/${cik}` })}
             >

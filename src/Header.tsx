@@ -8,6 +8,7 @@ import { ReleaseNotes } from './components/ReleaseNotes'
 import { useUnit } from 'effector-react'
 import { useParams } from 'react-router'
 import { navs } from './models/routes'
+import { ThemeMenu } from './components/ThemeMenu'
 
 export const Header: React.FC = () => {
     const navigate = useNavigate()
@@ -58,12 +59,15 @@ export const Header: React.FC = () => {
 
     return (<>
         <div className='h-2rem flex'>
-            <div className='flex-1' >
+            <div className='flex-1 flex align-items-center' >
                 <Menubar
                     model={items}
                     className="h-2rem border-transparent flex-1"
                     style={{ background: 'none' }}
                 />
+                <div className='mr-5'>
+                    <ThemeMenu />
+                </div>
             </div>
             {!!cik && !!mode && (
             <div className='flex flex-none h-2rem align-content-center justify-content-end flex-wrap gap-4 flex-auto ml-auto pr-6'>

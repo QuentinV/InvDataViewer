@@ -5,6 +5,7 @@ import { InputText } from 'primereact/inputtext'
 import { useTranslation } from 'react-i18next'
 import { CompanyFavorite } from '../CompanyFavorite'
 import { Link } from 'react-router-dom'
+import { Card } from 'primereact/card';
 
 interface Company {
     cik: number;
@@ -48,9 +49,10 @@ export const CompaniesList: React.FC<CompaniesListProps> = ({ onLoad }) => {
 
         const { title, cik, timestamp, favorite, tickers } = company;
         return (
-            <div
-                className="relative w-20rem h-6rem pt-1 pb-1 pl-2 pr-4 bg-blue-50 hover:bg-blue-100 text-gray-600 justify-content-center flex flex-column"
+            <Card
+                className="hover:surface-hover relative w-20rem h-6rem pl-2 pr-4"
                 key={cik}
+                pt={{ body: { className: 'p-0 h-full' }, content: { className: 'p-0 pt-1 pb-1 h-full' } }}
             >
                 <div className='flex align-items-center h-full'>
                     <div className={`companyLogo48 ${tickers?.map( t => 't-logo-' + t ).join(' ')}`}></div>
@@ -81,7 +83,7 @@ export const CompaniesList: React.FC<CompaniesListProps> = ({ onLoad }) => {
                 </div>
                 <div className='absolute top-0 right-0 pr-1 pt-1 hover:text-primary'><CompanyFavorite cik={cik} favorite={favorite} /></div>
                 {!!timestamp && (<div className='text-sm flex align-items-center mt-2'><i className='pi pi-sync mr-2'></i>{new Date(timestamp).toLocaleString()}</div>)}
-            </div>
+            </Card>
         )
     }
 
@@ -89,7 +91,7 @@ export const CompaniesList: React.FC<CompaniesListProps> = ({ onLoad }) => {
         return (
             <div className="flex">
                 <Paginator
-                    className="w-max ml-8 bg-white border-none"
+                    className="w-max ml-8 border-none"
                     first={opts.first}
                     rows={opts.rows}
                     totalRecords={total}
@@ -110,19 +112,19 @@ export const CompaniesList: React.FC<CompaniesListProps> = ({ onLoad }) => {
 
     return (
         <div className="card pl-5 pr-5 w-full">
-                <DataView
-                    value={companies}
-                    rows={50}
-                    itemTemplate={itemTemplate}
-                    pt={{
-                        grid: {
-                            className:
-                                'gap-3 align-content-start h-31 rem overflow-auto overflow-x-hidden justify-content-center',
-                        },
-                        header: { className: 'bg-white border-none' },
-                    }}
-                    header={header()}
-                />
-            </div>
+            <DataView
+                value={companies}
+                rows={50}
+                itemTemplate={itemTemplate}
+                pt={{
+                    grid: {
+                        className:
+                            'gap-4 align-content-start overflow-auto overflow-x-hidden justify-content-center p-1',
+                    },
+                    header: { className: 'border-none' },
+                }}
+                header={header()}
+            />
+        </div>
     )
 }

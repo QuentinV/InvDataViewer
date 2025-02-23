@@ -24,6 +24,10 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>1, 2, 3 .. Aim for the moon</title>
+    <link id="theme-link" rel="stylesheet" href="" />
+    <script type="text/javascript">
+        document.getElementById('theme-link').href = `%PUBLIC_URL%/themes/${localStorage.getItem('theme') ?? 'mira'}/theme.css`;
+    </script>
     <style>
       html, body, #root {
         width: 100%;
