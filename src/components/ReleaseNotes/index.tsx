@@ -10,7 +10,7 @@ export const ReleaseNotes = () => {
 
     useEffect(() => {
         const getLogs = async() => {
-            const res = await fetch('/InvDataViewer/changelog.json');
+            const res = await fetch(`/viewer/changelog.json`);
             setData(await res.json());
         }
         getLogs();
