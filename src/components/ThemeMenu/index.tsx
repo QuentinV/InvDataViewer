@@ -4,7 +4,6 @@ import { Menu } from 'primereact/menu';
 
 const themes = [
     { label: 'Light', value: 'value-more-light' },
-    { label: 'Dark', value: 'value-more-dark' },
     { label: 'Mira', value: 'mira' }
 ]
 
