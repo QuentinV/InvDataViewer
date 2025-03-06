@@ -12,7 +12,7 @@ export const api = async (url: string, init?: RequestInit): Promise<any> => {
     if ( res.status === 404 )
         return null;
 
-    if ( res.status === 403 ) {
+    if ( res.status === 401 ) {
         navs.setNavigateTo('/login');
         return;
     }
