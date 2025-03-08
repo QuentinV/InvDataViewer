@@ -11,6 +11,7 @@ import { IndicatorsGraph } from '../../../components/IndicatorsGraphs'
 import { MetricsScoreViewer } from '../../../components/MetricsScoreViewer';
 import { Price } from '../../../components/companies/Price';
 import { BaseLayout } from '../../../BaseLayout';
+import { CompanyFavorite } from '../../../components/CompanyFavorite';
 
 interface CompanyPageEditProps {
     cik: number;
@@ -45,7 +46,10 @@ export const CompanyPageView: React.FC<CompanyPageEditProps> = ({ cik, name, dat
         <div className='overflow-auto h-full'>
             <div className='flex flex-wrap align-items-center' >
                 <h1 className='col-7 text-center text-primary scrollMarginTop' ref={refs.overview}>{name}</h1>
-                <div className='col-2'><CompanyScore /></div>
+                <div className='col-2 flex gap-2 align-items-center'>
+                    <CompanyScore />
+                    <CompanyFavorite favorite={data.favorite} cik={cik} />
+                </div>
                 <div className='col-3'><Price ticker={data?.tickers?.[0]?.ticker} /></div>
             </div>
             <div className='flex flex-wrap col-12' >

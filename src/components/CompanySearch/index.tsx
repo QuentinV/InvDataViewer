@@ -34,6 +34,7 @@ export const CompanySearch: React.FC = () => {
                 completeMethod={search}
                 onChange={(e) => setValue(e.value)}
                 onSelect={(e) => { setValue(''); navigate(`/company/${e.value.cik}`); } }
+                autoHighlight={true}
             />
         </span>
     )
