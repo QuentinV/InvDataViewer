@@ -3,7 +3,8 @@
         "title": "Unternehmen"
     },
     "controls": {
-        "search": "Suche..."
+        "search": "Suche...",
+        "companySearch": "Firma suchen"
     },
     "ticker": {
         "overview": "Übersicht",

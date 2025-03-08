@@ -4,13 +4,11 @@ import { Menubar } from 'primereact/menubar'
 import i18next from 'i18next'
 import { Sidebar } from 'primereact/sidebar'
 import { ReleaseNotes } from './components/ReleaseNotes'
-import { useUnit } from 'effector-react'
-import { navs } from './models/routes'
 import { ThemeMenu } from './components/ThemeMenu'
-import { InputText } from 'primereact/inputtext';
 import { Avatar } from 'primereact/avatar';
 import { MenuItem } from 'primereact/menuitem';
 import { IconMenu } from './components/IconMenu'
+import { CompanySearch } from './components/CompanySearch'
 
 interface HeaderProps {
     menu?: MenuItem[];
@@ -19,7 +17,6 @@ interface HeaderProps {
 export const Header: React.FC<HeaderProps> = ({ menu }) => {
     const navigate = useNavigate()
     const [visibleChangelog, setVisibleChangelog] = useState<boolean>();
-    const refs = useUnit(navs.$refs);
 
     const changeLanguage = (lang: string) => {
         localStorage.setItem('lng', lang)
@@ -39,7 +36,7 @@ export const Header: React.FC<HeaderProps> = ({ menu }) => {
 
     const end = (
         <div className="flex align-items-center gap-2">
-            <InputText placeholder="Search" type="text" className="w-8rem sm:w-auto" />
+            <CompanySearch />
             <div className='flex gap-3 mr-2 ml-2'>
                 <i className='pi pi-bell'></i>
                 <IconMenu icon='language' menu={languageMenuItems} />
