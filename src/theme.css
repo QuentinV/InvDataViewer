@@ -7,6 +7,15 @@ body {
     background-color: var(--background-color);    
 }
 
+.text-warning {
+    color: #c25d1a;
+}
+
+.border-warning {
+    border-color: #c25d1a;
+    border-style: dashed !important;
+}
+
 .p-datatable tr:hover {
     background: #d2e6f9;
 }
