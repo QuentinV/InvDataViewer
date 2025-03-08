@@ -5,8 +5,6 @@ import { InvData } from '../../../models/types'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import { Menubar } from 'primereact/menubar';
-// import { InputText } from 'primereact/inputtext';
-// import { Avatar } from 'primereact/avatar'; 
 import { BusinessModel } from '../../../components/companies/BusinessModel'
 import { CompanyScore } from '../../../components/companies/CompanyScore'
 import { CompanyValueSummary } from '../../../components/companies/CompanyValue/Summary';
@@ -50,13 +48,6 @@ export const CompanyPageView: React.FC<CompanyPageEditProps> = ({ cik, name, dat
             <div className='text-primary font-bold'>{name}</div>
         </div>
     );
-
-    /*const end = (
-        <div className="flex align-items-center gap-2">
-            <InputText placeholder="Search" type="text" className="w-8rem sm:w-auto" />
-            <Avatar image="https://primefaces.org/cdn/primereact/images/avatar/amyelsner.png" shape="circle" />
-        </div>
-    );*/
 
     return (
     <div className='overflow-auto h-full'>

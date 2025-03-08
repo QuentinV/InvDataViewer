@@ -3,6 +3,10 @@ body {
     color: var(--text-color);
 }
 
+.bg-default {
+    background-color: var(--background-color);    
+}
+
 .p-datatable tr:hover {
     background: #d2e6f9;
 }

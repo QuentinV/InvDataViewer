@@ -2,13 +2,6 @@
     "home": {
         "title": "Unternehmen"
     },
-    "menu": {
-        "home": "Startseite",
-        "config": "Konfiguration",
-        "lang": "Sprache",
-        "changelog": "Änderungsprotokoll",
-        "analysis": "Datenanalyse"
-    },
     "controls": {
         "search": "Suche..."
     },

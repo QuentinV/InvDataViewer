@@ -2,13 +2,6 @@
     "home": {
         "title": "Companies"
     },
-    "menu": {
-        "home": "Home",
-        "config": "Config",
-        "lang": "Language",
-        "changelog": "Changelog",
-        "analysis": "Data analysis"
-    },
     "controls": {
         "search": "Search..."
     },
