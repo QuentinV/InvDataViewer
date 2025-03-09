@@ -8,6 +8,7 @@ export interface InvData {
     cik?: string
     name?: string
     type?: string
+    favorite: boolean
     years?: { [key: string]: Data }
     metrics: GlobalMetrics
     tickers: Ticker[]

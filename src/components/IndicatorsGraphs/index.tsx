@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useUnit } from 'effector-react'
 import { InvData } from '../../models/types'
 import { MetricsGraph } from './MetricGraph'
@@ -8,7 +8,6 @@ import { MetricsScoreViewer } from '../MetricsScoreViewer'
 import { api } from '../../api/invData'
 import { ChartsConfig } from './types'
 import { ProgressSpinner } from 'primereact/progressspinner'
-import { navs } from '../../models/routes'
 import { InfoIcon } from '../InfoIcon'
 import { metricsScoresStores } from '../../models/company/metricsScores';
 
@@ -16,18 +15,16 @@ interface IndicatorsGraphProps {
     data?: InvData;
     view?: 'endless' | 'tabs';
     includeScore?: boolean;
-    withTitle?: boolean;
+    withIcon?: boolean;
     readonly?: boolean;
 }
 
-export const IndicatorsGraph: React.FC<IndicatorsGraphProps> = ({ data, view = 'tabs', includeScore, withTitle, readonly }) => {
+export const IndicatorsGraph: React.FC<IndicatorsGraphProps> = ({ data, view = 'tabs', includeScore, withIcon, readonly }) => {
     const { t } = useTranslation();
     const [ config, setConfig ] = useState<ChartsConfig | null>(null);
-    const titleRef = useRef(null);    
     const timestampLastEdit = useUnit(metricsScoresStores.$timestampLastEdit) ?? undefined;
 
     useEffect(() => {
-        navs.setRef({ key: 'metricsRef', ref: titleRef });
         const getData = async () => {
             const data = await api(`invData/companies/metrics/charts/rules?limit=1`)
             setConfig(data?.[0]?.rules);
@@ -51,26 +48,28 @@ export const IndicatorsGraph: React.FC<IndicatorsGraphProps> = ({ data, view = '
             </div>
         ))
     }
-
+    
     return (
         <div>
-            {withTitle && (<h3 className="bg-primary p-2 flex scrollMarginTop" ref={titleRef}>
+            <h2 className={`${readonly ? '' : 'bg-primary'} p-2 flex`}>
                 <div>
-                    <i className='pi pi-chart-scatter mr-2' />{t('ticker.metrics.title')}
+                    {!!withIcon && (<i className='pi pi-chart-scatter mr-2' />)}{t('ticker.metrics.title')}
                 </div>
-                <div className='ml-auto mr-2 '>
+                {!readonly && (<div className='ml-auto mr-2 '>
                     <InfoIcon syncTimestamp={data?.metricsTimestamp} editTimestamp={timestampLastEdit} />
-                </div>
-            </h3>)}
+                </div>)}
+            </h2>
             {
                 !data || !config 
                 ? (<div><ProgressSpinner /></div>)
-                : (<div>
+                : (<>
                     {view === 'tabs' ? (
-                    <TabView>
-                        {includeScore && (<TabPanel header={t('ticker.metrics.categories.score')}>
+                    <TabView activeIndex={includeScore ? 0 : 1} pt={{ navContainer: { className: `z-4 sticky ${withIcon ? 'top-3': 'top-5'}` }}}>
+                        {!!includeScore && (
+                        <TabPanel header={t('ticker.metrics.categories.score')}>
                             <MetricsScoreViewer cik={Number(data.cik)} />
-                        </TabPanel>)}
+                        </TabPanel>
+                        )}
                         {!!data && Object.keys(config).map( key => (
                             <TabPanel
                                 header={t(
@@ -93,7 +92,7 @@ export const IndicatorsGraph: React.FC<IndicatorsGraphProps> = ({ data, view = '
                         ))}
                     </>
                 )}
-                </div>)
+                </>)
             }
         </div>
     )

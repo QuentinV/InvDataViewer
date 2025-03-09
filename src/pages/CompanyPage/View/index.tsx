@@ -1,19 +1,18 @@
 import React, { useRef } from 'react'
 import '../../../models/company/scores/init';
 import '../../../models/company/values/init';
-import { InvData } from '../../../models/types'
-import { useTranslation } from 'react-i18next'
-import { useNavigate } from 'react-router-dom'
-import { Menubar } from 'primereact/menubar';
-// import { InputText } from 'primereact/inputtext';
-// import { Avatar } from 'primereact/avatar'; 
+import { InvData } from '../../../models/types';
+import { useTranslation } from 'react-i18next';
 import { BusinessModel } from '../../../components/companies/BusinessModel'
 import { CompanyScore } from '../../../components/companies/CompanyScore'
-import { CompanyValueSummary } from '../../../components/companies/CompanyValue/Summary';
 import { InvDataViewer } from '../../../components/InvDataViewer'
 import { IndicatorsGraph } from '../../../components/IndicatorsGraphs'
 import { MetricsScoreViewer } from '../../../components/MetricsScoreViewer';
 import { Price } from '../../../components/companies/Price';
+import { BaseLayout } from '../../../BaseLayout';
+import { CompanyFavorite } from '../../../components/CompanyFavorite';
+import { CompanyValue } from '../../../components/companies/CompanyValue';
+import { CompanyProfile } from '../../../components/CompanyProfile';
 
 interface CompanyPageEditProps {
     cik: number;
@@ -23,7 +22,6 @@ interface CompanyPageEditProps {
 
 export const CompanyPageView: React.FC<CompanyPageEditProps> = ({ cik, name, data }) => {
     const { t } = useTranslation();
-    const navigate = useNavigate();
     const refs: {[key: string]: React.MutableRefObject<null>} = {
         overview: useRef(null),
         diagrams: useRef(null),
@@ -44,68 +42,52 @@ export const CompanyPageView: React.FC<CompanyPageEditProps> = ({ cik, name, dat
         (refs[key]?.current as any)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     };
 
-    const start = (
-        <div className='flex align-items-center gap-2 mr-2'>
-            <img alt="logo" src={`${process.env.PUBLIC_URL}/logo.png`} height="40" className="mr-2 cursor-pointer" onClick={() => navigate({ pathname: '/' })} />
-            <div className='text-primary font-bold'>{name}</div>
-        </div>
-    );
-
-    /*const end = (
-        <div className="flex align-items-center gap-2">
-            <InputText placeholder="Search" type="text" className="w-8rem sm:w-auto" />
-            <Avatar image="https://primefaces.org/cdn/primereact/images/avatar/amyelsner.png" shape="circle" />
-        </div>
-    );*/
-
     return (
-    <div className='overflow-auto h-full'>
-        <div className="card z-5 sticky top-0">
-            <Menubar model={items} start={start} />
-        </div>
-        <div className='flex flex-wrap align-items-center' >
-            <h1 className='col-7 text-center text-primary scrollMarginTop' ref={refs.overview}>{name}</h1>
-            <div className='col-2'><CompanyScore /></div>
-            <div className='col-3'><Price ticker={data?.tickers?.[0]?.ticker} /></div>
-        </div>
-        <div className='flex flex-wrap col-12' >
-            <div className='lg:col-9 md:col-12'>
-                <MetricsScoreViewer cik={cik} displayDetails={false} />
-            </div>
-            <div className='lg:col-3 md:col-12'>
-                <h3>Firmenprofil</h3>
-                <div>
-                    Bla bbla bla bla<br />
-                    Bla bbla bla bla<br />
-                    Bla bbla bla bla<br />
-                    Bla bbla bla bla<br />
-                    Bla bbla bla bla<br />
-                    Bla bbla bla bla<br />
-                    Bla bbla bla bla<br />
-                    Bla bbla bla bla<br />
-                    Bla bbla bla bla<br />
+    <BaseLayout menu={items}>
+        <div className='overflow-auto h-full pl-5 pr-5'>
+            <div ref={refs.overview}></div>
+            <div className='flex flex-wrap align-items-center bg-default sticky top-0 z-5'>
+                <h1 className='col-7 scrollMarginTop'>{name}</h1>
+                <div className='col-2 flex gap-3 align-items-center'>
+                    <CompanyScore />
+                    <CompanyFavorite favorite={data.favorite} cik={cik} size='xl' />
+                </div>
+                <div className='col-3 flex align-items-center gap-3 p-0 mt-1'>
+                    <div><i className='pi pi-bell text-xl' /></div>
+                    <div className='text-xs'><Price ticker={data?.tickers?.[0]?.ticker} /></div>
                 </div>
             </div>
-        </div>
-        <div>
-            <h3>Aktuelle Einschatzung</h3>
-            <div>
-                Bla bbla bla bla Bla bbla bla bla Bla bbla bla bla Bla bbla bla bla Bla bbla bla bla Bla bbla bla bla Bla bbla bla bla Bla bbla bla bla Bla bbla bla bla <br />
-                Bla bbla bla bla Bla bbla bla bla Bla bbla bla bla Bla bbla bla bla Bla bbla bla bla Bla bbla bla bla Bla bbla bla bla Bla bbla bla bla Bla bbla bla bla
+            <div className='flex flex-wrap col-12' >
+                <div className='lg:col-9 md:col-12 pr-5'>
+                    <div className='border-1 border-solid'>
+                        <MetricsScoreViewer cik={cik} displayDetails={false} />
+                    </div>
+                </div>
+                <div className='lg:col-3 md:col-12'>
+                    <h2 className='mt-0'>Firmenprofil</h2>
+                    <CompanyProfile cik={cik} />
+                </div>
             </div>
-        </div>
-        <div ref={refs.diagrams} className='scrollMarginTop'>
-            <IndicatorsGraph data={data} view='endless' readonly />
-        </div>
-        <div ref={refs.businessModel} className='scrollMarginTop'>
-            <BusinessModel cik={cik} readonly />
-        </div>
-        <div ref={refs.value} className='scrollMarginTop'>
-            <CompanyValueSummary />
-        </div>
-        <div ref={refs.data} className='scrollMarginTop'>
-            <InvDataViewer cik={cik} readonly />
-        </div>
-    </div> 
+            <div>
+                <h2>Aktuelle Einschatzung</h2>
+                <div>
+                    Bla bbla bla bla Bla bbla bla bla Bla bbla bla bla Bla bbla bla bla Bla bbla bla bla Bla bbla bla bla Bla bbla bla bla Bla bbla bla bla Bla bbla bla bla <br />
+                    Bla bbla bla bla Bla bbla bla bla Bla bbla bla bla Bla bbla bla bla Bla bbla bla bla Bla bbla bla bla Bla bbla bla bla Bla bbla bla bla Bla bbla bla bla
+                </div>
+            </div>
+            <div ref={refs.diagrams} className='scrollMarginTop'>
+                <IndicatorsGraph data={data} readonly />
+            </div>
+            <div ref={refs.businessModel} className='scrollMarginTop'>
+                <BusinessModel cik={cik} readonly />
+            </div>
+            <div ref={refs.value} className='scrollMarginTop'>
+                <CompanyValue cik={cik} withSummary readonly />
+            </div>
+            <div ref={refs.data} className='scrollMarginTop'>
+                <InvDataViewer cik={cik} readonly />
+            </div>
+        </div> 
+    </BaseLayout>
     )
 }

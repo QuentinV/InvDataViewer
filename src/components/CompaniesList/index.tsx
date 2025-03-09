@@ -91,7 +91,7 @@ export const CompaniesList: React.FC<CompaniesListProps> = ({ onLoad }) => {
         return (
             <div className="flex">
                 <Paginator
-                    className="w-max ml-8 border-none"
+                    className="w-max border-none"
                     first={opts.first}
                     rows={opts.rows}
                     totalRecords={total}
@@ -111,20 +111,18 @@ export const CompaniesList: React.FC<CompaniesListProps> = ({ onLoad }) => {
     }
 
     return (
-        <div className="card pl-5 pr-5 w-full">
-            <DataView
-                value={companies}
-                rows={50}
-                itemTemplate={itemTemplate}
-                pt={{
-                    grid: {
-                        className:
-                            'gap-4 align-content-start overflow-auto overflow-x-hidden justify-content-center p-1',
-                    },
-                    header: { className: 'border-none' },
-                }}
-                header={header()}
-            />
-        </div>
+        <DataView
+            value={companies}
+            rows={50}
+            itemTemplate={itemTemplate}
+            pt={{
+                grid: {
+                    className:
+                        'gap-4 align-content-start overflow-auto overflow-x-hidden justify-content-center p-1',
+                },
+                header: { className: 'border-none' },
+            }}
+            header={header()}
+        />
     )
 }

@@ -3,13 +3,12 @@ import { PrimeReactContext } from 'primereact/api';
 import { Menu } from 'primereact/menu';
 
 const themes = [
-    { label: 'Material', value: 'md-light-indigo' },
-    { label: 'Material Dark', value: 'md-dark-indigo' },
+    { label: 'Light', value: 'value-more-light' },
     { label: 'Mira', value: 'mira' }
 ]
 
 export const ThemeMenu: React.FC = () => {
-    const [theme, setTheme] = useState<string>(localStorage.getItem('theme') ?? 'mira');
+    const [theme, setTheme] = useState<string>(localStorage.getItem('theme') ?? 'value-more-light');
     const menuRight = useRef<Menu>(null);
     const { changeTheme } = useContext(PrimeReactContext);
 
