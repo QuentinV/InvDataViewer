@@ -48,9 +48,12 @@ export const CompanyPageView: React.FC<CompanyPageEditProps> = ({ cik, name, dat
                 <h1 className='col-7 text-primary scrollMarginTop' ref={refs.overview}>{name}</h1>
                 <div className='col-2 flex gap-3 align-items-center'>
                     <CompanyScore />
-                    <CompanyFavorite favorite={data.favorite} cik={cik} />
+                    <CompanyFavorite favorite={data.favorite} cik={cik} size='xl' />
                 </div>
-                <div className='col-3'><Price ticker={data?.tickers?.[0]?.ticker} /></div>
+                <div className='col-3 flex align-items-center gap-3 p-0 mt-1'>
+                    <div><i className='pi pi-bell text-xl' /></div>
+                    <div className='text-xs'><Price ticker={data?.tickers?.[0]?.ticker} /></div>
+                </div>
             </div>
             <div className='flex flex-wrap col-12' >
                 <div className='lg:col-9 md:col-12'>
