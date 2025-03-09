@@ -48,7 +48,7 @@ export const IndicatorsGraph: React.FC<IndicatorsGraphProps> = ({ data, view = '
             </div>
         ))
     }
-
+    
     return (
         <div>
             <h2 className={`${readonly ? '' : 'bg-primary'} p-2 flex`}>
@@ -64,10 +64,12 @@ export const IndicatorsGraph: React.FC<IndicatorsGraphProps> = ({ data, view = '
                 ? (<div><ProgressSpinner /></div>)
                 : (<div>
                     {view === 'tabs' ? (
-                    <TabView>
-                        {includeScore && (<TabPanel header={t('ticker.metrics.categories.score')}>
+                    <TabView activeIndex={includeScore ? 0 : 1}>
+                        {!!includeScore && (
+                        <TabPanel header={t('ticker.metrics.categories.score')}>
                             <MetricsScoreViewer cik={Number(data.cik)} />
-                        </TabPanel>)}
+                        </TabPanel>
+                        )}
                         {!!data && Object.keys(config).map( key => (
                             <TabPanel
                                 header={t(

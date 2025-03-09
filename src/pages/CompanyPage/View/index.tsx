@@ -85,7 +85,7 @@ export const CompanyPageView: React.FC<CompanyPageEditProps> = ({ cik, name, dat
                 </div>
             </div>
             <div ref={refs.diagrams} className='scrollMarginTop'>
-                <IndicatorsGraph data={data} view='endless' readonly />
+                <IndicatorsGraph data={data} readonly />
             </div>
             <div ref={refs.businessModel} className='scrollMarginTop'>
                 <BusinessModel cik={cik} readonly />
