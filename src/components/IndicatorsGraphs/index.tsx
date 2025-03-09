@@ -62,9 +62,9 @@ export const IndicatorsGraph: React.FC<IndicatorsGraphProps> = ({ data, view = '
             {
                 !data || !config 
                 ? (<div><ProgressSpinner /></div>)
-                : (<div>
+                : (<>
                     {view === 'tabs' ? (
-                    <TabView activeIndex={includeScore ? 0 : 1}>
+                    <TabView activeIndex={includeScore ? 0 : 1} pt={{ navContainer: { className: 'z-5 sticky top-0' }}}>
                         {!!includeScore && (
                         <TabPanel header={t('ticker.metrics.categories.score')}>
                             <MetricsScoreViewer cik={Number(data.cik)} />
@@ -92,7 +92,7 @@ export const IndicatorsGraph: React.FC<IndicatorsGraphProps> = ({ data, view = '
                         ))}
                     </>
                 )}
-                </div>)
+                </>)
             }
         </div>
     )
