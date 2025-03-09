@@ -45,7 +45,7 @@ export const CompanyPageView: React.FC<CompanyPageEditProps> = ({ cik, name, dat
     <BaseLayout menu={items}>
         <div className='overflow-auto h-full pl-5 pr-5'>
             <div className='flex flex-wrap align-items-center' >
-                <h1 className='col-7 text-primary scrollMarginTop' ref={refs.overview}>{name}</h1>
+                <h1 className='col-7 scrollMarginTop' ref={refs.overview}>{name}</h1>
                 <div className='col-2 flex gap-3 align-items-center'>
                     <CompanyScore />
                     <CompanyFavorite favorite={data.favorite} cik={cik} size='xl' />
@@ -60,7 +60,7 @@ export const CompanyPageView: React.FC<CompanyPageEditProps> = ({ cik, name, dat
                     <MetricsScoreViewer cik={cik} displayDetails={false} />
                 </div>
                 <div className='lg:col-3 md:col-12'>
-                    <h3>Firmenprofil</h3>
+                    <h2>Firmenprofil</h2>
                     <div>
                         Bla bbla bla bla<br />
                         Bla bbla bla bla<br />
@@ -75,7 +75,7 @@ export const CompanyPageView: React.FC<CompanyPageEditProps> = ({ cik, name, dat
                 </div>
             </div>
             <div>
-                <h3>Aktuelle Einschatzung</h3>
+                <h2>Aktuelle Einschatzung</h2>
                 <div>
                     Bla bbla bla bla Bla bbla bla bla Bla bbla bla bla Bla bbla bla bla Bla bbla bla bla Bla bbla bla bla Bla bbla bla bla Bla bbla bla bla Bla bbla bla bla <br />
                     Bla bbla bla bla Bla bbla bla bla Bla bbla bla bla Bla bbla bla bla Bla bbla bla bla Bla bbla bla bla Bla bbla bla bla Bla bbla bla bla Bla bbla bla bla

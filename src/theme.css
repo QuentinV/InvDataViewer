@@ -3,6 +3,10 @@ body {
     color: var(--text-color);
 }
 
+h1, h2, h3 {
+    color: var(--primary-color);
+}
+
 .bg-default {
     background-color: var(--background-color);    
 }
