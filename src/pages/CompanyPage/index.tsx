@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import '../../models/company/scores/init';
 import '../../models/company/values/init';
 import { useParams } from 'react-router'
@@ -7,7 +7,6 @@ import { api } from '../../api/invData'
 import { useTranslation } from 'react-i18next'
 import { metricsScoresEvents } from '../../models/company/metricsScores';
 import { ProgressSpinner } from 'primereact/progressspinner'
-import { navs } from '../../models/routes'
 import { companyScoresEvents } from '../../models/company/scores'
 import { companyValuesEvents } from '../../models/company/values';
 import { CompanyPageEdit } from './Edit';
@@ -18,12 +17,8 @@ export const CompanyPage: React.FC = () => {
     const { cik, mode } = useParams();
     const [name, setName] = useState<string>('');
     const [data, setData] = useState<InvData | undefined | null>();
-    const titleRef = useRef(null);
-    const priceOverviewRef = useRef(null);
 
     useEffect(() => {
-        navs.setRef({ key: 'companyTitleRef', ref: titleRef });
-        navs.setRef({ key: 'priceOverviewRef', ref: priceOverviewRef });
         document.title = "Wait for it ...";
     }, []);
 

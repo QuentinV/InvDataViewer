@@ -1,9 +1,8 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
 import { api } from '../../../api/invData'
 import { useTranslation } from 'react-i18next'
 import { ProgressSpinner } from 'primereact/progressspinner'
-import { navs } from '../../../models/routes';
 import { InfoIcon } from '../../InfoIcon'
 
 interface Data {
@@ -27,11 +26,6 @@ export const ConfidenceLevels: React.FC<ConfidenceLevelsProps> = ({ timeframe: p
     const [data, setData] = useState<Data | null>();
     const [displayDetails, setDisplayDetails] = useState<string | null>(null);
     const [timeframe, setTimeframe] = useState<Timeframe>(parentTimeframe);
-    const titleRef = useRef(null);
-
-    useEffect(() => {
-        navs.setRef({ key: 'confidenceTitleRef', ref: titleRef });
-    }, []);
 
     useEffect(() => {
         if (!cik) return;
@@ -50,7 +44,7 @@ export const ConfidenceLevels: React.FC<ConfidenceLevelsProps> = ({ timeframe: p
 
     return (
         <div>
-            <h3 className="bg-primary p-2 flex align-items-center scrollMarginTop" ref={titleRef}>
+            <h3 className="bg-primary p-2 flex align-items-center">
                 <div><i className='pi pi-check-circle mr-2' />{t('ticker.confidence.title')}</div>
                 <div className='ml-2 flex gap-1'>
                     <input className='w-4rem text-center' type='number' value={timeframe.startYear} onChange={e => setTimeframe({ ...timeframe, startYear: parseInt(e.currentTarget.value as any || 0) }) } />

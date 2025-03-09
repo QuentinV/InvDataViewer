@@ -12,6 +12,7 @@ import { MetricsScoreViewer } from '../../../components/MetricsScoreViewer';
 import { Price } from '../../../components/companies/Price';
 import { BaseLayout } from '../../../BaseLayout';
 import { CompanyFavorite } from '../../../components/CompanyFavorite';
+import { CompanyValue } from '../../../components/companies/CompanyValue';
 
 interface CompanyPageEditProps {
     cik: number;
@@ -56,11 +57,13 @@ export const CompanyPageView: React.FC<CompanyPageEditProps> = ({ cik, name, dat
                 </div>
             </div>
             <div className='flex flex-wrap col-12' >
-                <div className='lg:col-9 md:col-12'>
-                    <MetricsScoreViewer cik={cik} displayDetails={false} />
+                <div className='lg:col-9 md:col-12 pr-5'>
+                    <div className='border-1 border-solid'>
+                        <MetricsScoreViewer cik={cik} displayDetails={false} />
+                    </div>
                 </div>
                 <div className='lg:col-3 md:col-12'>
-                    <h2>Firmenprofil</h2>
+                    <h2 className='mt-0'>Firmenprofil</h2>
                     <div>
                         Bla bbla bla bla<br />
                         Bla bbla bla bla<br />
@@ -88,7 +91,7 @@ export const CompanyPageView: React.FC<CompanyPageEditProps> = ({ cik, name, dat
                 <BusinessModel cik={cik} readonly />
             </div>
             <div ref={refs.value} className='scrollMarginTop'>
-                <CompanyValueSummary />
+                <CompanyValue cik={cik} withSummary readonly />
             </div>
             <div ref={refs.data} className='scrollMarginTop'>
                 <InvDataViewer cik={cik} readonly />

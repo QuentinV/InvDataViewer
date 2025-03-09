@@ -1,7 +1,6 @@
 import { Dropdown } from 'primereact/dropdown';
-import React, { useEffect, useRef } from 'react'
+import React from 'react'
 import { useTranslation } from 'react-i18next';
-import { navs } from '../../../models/routes';
 import { QuestionsAnswers } from '../../QuestionsAnswers';
 import { useUnit } from 'effector-react';
 import { companyScoresEffects, companyScoresStores } from '../../../models/company/scores';
@@ -10,20 +9,16 @@ import { InfoIcon } from '../../InfoIcon';
 interface BusinessModelProps {
     cik: number;
     readonly?: boolean;
+    withIcon?: boolean;
 }
 
-export const BusinessModel: React.FC<BusinessModelProps> = ({ cik, readonly }) => {
+export const BusinessModel: React.FC<BusinessModelProps> = ({ cik, readonly, withIcon }) => {
     const { t } = useTranslation();
     const businessModel = useUnit(companyScoresStores.$scores)?.businessModel;
-    const titleRef = useRef(null);
-
-    useEffect(() => {
-        navs.setRef({ key: 'businessModelRef', ref: titleRef });
-    }, []);
 
     return (
         <div>
-            <h3 className={`${!readonly && 'bg-primary'} p-2 scrollMarginTop`} ref={titleRef}><i className='pi pi-briefcase mr-2' />{t('ticker.businessmodel.title')}</h3>
+            <h2 className={`${!readonly && 'bg-primary'} p-2`}>{!!withIcon && (<i className='pi pi-briefcase mr-2' />)}{t('ticker.businessmodel.title')}</h2>
             {
                 readonly ?
                 (<span>{t(`ticker.businessmodel.options.${businessModel?.val}`)}</span>) :

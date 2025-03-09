@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next';
-import { navs } from '../../../models/routes';
 import { IntrinsicValueGraph } from '../../IntrinsicValueGraph';
 import { useUnit } from 'effector-react';
 import { companyValuesStores } from '../../../models/company/values';
@@ -15,17 +14,11 @@ interface IntrinsicValueProps {
 
 export const IntrinsicValue: React.FC<IntrinsicValueProps> = ({ ticker }) => {
     const { t } = useTranslation();
-    const titleRef = useRef(null);
     const svgRef = useRef<any>(null);
     const companyValues = useUnit(companyValuesStores.$values);
     const { timestamp } = useUnit(companyValuesStores.$timestamps);
     const [price, setPrice] = useState<number>(0);
     const [level, setLevel] = useState<number>(2);
-    
-    useEffect(() => {
-        navs.setRef({ key: 'companyIntrinsicValueRef', ref: titleRef });
-    }, []);
-    
     
     const areas = companyValues?.areas?.[level];
     useEffect( () => {
@@ -41,14 +34,14 @@ export const IntrinsicValue: React.FC<IntrinsicValueProps> = ({ ticker }) => {
 
     return (
         <div>
-            <h3 className="bg-primary p-2 flex scrollMarginTop" ref={titleRef}>
+            <h2 className="bg-primary p-2 flex">
                 <div>
                     <i className='pi pi-compass mr-2' />{t('ticker.intrinsicValue.title')}
                 </div>
                 <div className='ml-auto mr-2 '>
                     <InfoIcon syncTimestamp={timestamp} />
                 </div>
-            </h3>
+            </h2>
             <div className='flex mb-3'>
             {!!items && 
                 (<div>
