@@ -26,9 +26,9 @@ export const CompanyValue: React.FC<CompanyValueProps> = ({ cik, metrics, withSu
                 <div>
                     {!!withIcon && (<i className='pi pi-tag mr-2' />)}{t('ticker.value.title')}
                 </div>
-                <div className='ml-auto mr-2 '>
+                {!readonly && (<div className='ml-auto mr-2 '>
                     <InfoIcon syncTimestamp={timestamp} editTimestamp={configTimestamp} />
-                </div>
+                </div>)}
             </h2>
             {(!!withSummary && !!withConfig) && (<h3 className='mt-5 mb-2'>{t(`ticker.value.summary`)}</h3>)}
             {!!withSummary && (<CompanyValueSummary />)}
