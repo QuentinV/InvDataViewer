@@ -20,6 +20,14 @@ h1, h2, h3 {
     border-style: dashed !important;
 }
 
+.top-3 {
+    top: 3rem;
+}
+
+.top-5 {
+    top:5.5rem;
+}
+
 .p-datatable tr:hover {
     background: #d2e6f9;
 }
@@ -73,7 +81,7 @@ h1, h2, h3 {
 }
 
 .scrollMarginTop {
-    scroll-margin-top: 4rem;
+    scroll-margin-top: 6rem;
 }
 
 /** JSON Editor **/

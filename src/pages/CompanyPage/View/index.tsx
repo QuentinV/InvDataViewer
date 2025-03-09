@@ -45,8 +45,9 @@ export const CompanyPageView: React.FC<CompanyPageEditProps> = ({ cik, name, dat
     return (
     <BaseLayout menu={items}>
         <div className='overflow-auto h-full pl-5 pr-5'>
-            <div className='flex flex-wrap align-items-center' >
-                <h1 className='col-7 scrollMarginTop' ref={refs.overview}>{name}</h1>
+            <div ref={refs.overview}></div>
+            <div className='flex flex-wrap align-items-center bg-default sticky top-0 z-5'>
+                <h1 className='col-7 scrollMarginTop'>{name}</h1>
                 <div className='col-2 flex gap-3 align-items-center'>
                     <CompanyScore />
                     <CompanyFavorite favorite={data.favorite} cik={cik} size='xl' />
