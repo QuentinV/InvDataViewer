@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { useUnit } from 'effector-react'
 import { InvData } from '../../models/types'
 import { MetricsGraph } from './MetricGraph'
@@ -23,6 +23,7 @@ export const IndicatorsGraph: React.FC<IndicatorsGraphProps> = ({ data, view = '
     const { t } = useTranslation();
     const [ config, setConfig ] = useState<ChartsConfig | null>(null);
     const timestampLastEdit = useUnit(metricsScoresStores.$timestampLastEdit) ?? undefined;
+    const tabsRef = useRef(null);
 
     useEffect(() => {
         const getData = async () => {
@@ -64,23 +65,35 @@ export const IndicatorsGraph: React.FC<IndicatorsGraphProps> = ({ data, view = '
                 ? (<div><ProgressSpinner /></div>)
                 : (<>
                     {view === 'tabs' ? (
-                    <TabView activeIndex={includeScore ? 0 : 1} pt={{ navContainer: { className: `z-4 sticky ${withIcon ? 'top-3': 'top-5'}` }}}>
-                        {!!includeScore && (
-                        <TabPanel header={t('ticker.metrics.categories.score')}>
-                            <MetricsScoreViewer cik={Number(data.cik)} />
-                        </TabPanel>
-                        )}
-                        {!!data && Object.keys(config).map( key => (
-                            <TabPanel
-                                header={t(
-                                    `ticker.metrics.categories.${key}`
-                                )}
-                                key={key}
-                            >
-                                {template(key)}
+                    <>
+                        <div ref={tabsRef} className='scrollMarginTop'></div>
+                        <TabView 
+                            activeIndex={includeScore ? 0 : 1} 
+                            pt={{ navContainer: { className: `z-4 sticky ${withIcon ? 'top-3': 'top-5'}` }}} 
+                            onClick={(e) => { 
+                                const css = (e.target as HTMLElement).classList.value;
+                                if (css === 'p-tabview-nav-link' || css === 'p-tabview-title') {
+                                    (tabsRef?.current as any)?.scrollIntoView({ behavior: 'smooth', block: 'start' }); 
+                                }
+                            }}
+                        >
+                            {!!includeScore && (
+                            <TabPanel header={t('ticker.metrics.categories.score')}>
+                                <MetricsScoreViewer cik={Number(data.cik)} />
                             </TabPanel>
-                        ))}
-                    </TabView>
+                            )}
+                            {!!data && Object.keys(config).map( key => (
+                                <TabPanel
+                                    header={t(
+                                        `ticker.metrics.categories.${key}`
+                                    )}
+                                    key={key}
+                                >
+                                    {template(key)}
+                                </TabPanel>
+                            ))}
+                        </TabView>
+                    </>
                     ) : (
                     <>
                         {includeScore && (<MetricsScoreViewer cik={Number(data.cik)} />)}
