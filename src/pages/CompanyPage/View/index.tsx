@@ -5,7 +5,6 @@ import { InvData } from '../../../models/types';
 import { useTranslation } from 'react-i18next';
 import { BusinessModel } from '../../../components/companies/BusinessModel'
 import { CompanyScore } from '../../../components/companies/CompanyScore'
-import { CompanyValueSummary } from '../../../components/companies/CompanyValue/Summary';
 import { InvDataViewer } from '../../../components/InvDataViewer'
 import { IndicatorsGraph } from '../../../components/IndicatorsGraphs'
 import { MetricsScoreViewer } from '../../../components/MetricsScoreViewer';
@@ -13,6 +12,7 @@ import { Price } from '../../../components/companies/Price';
 import { BaseLayout } from '../../../BaseLayout';
 import { CompanyFavorite } from '../../../components/CompanyFavorite';
 import { CompanyValue } from '../../../components/companies/CompanyValue';
+import { CompanyProfile } from '../../../components/CompanyProfile';
 
 interface CompanyPageEditProps {
     cik: number;
@@ -65,17 +65,7 @@ export const CompanyPageView: React.FC<CompanyPageEditProps> = ({ cik, name, dat
                 </div>
                 <div className='lg:col-3 md:col-12'>
                     <h2 className='mt-0'>Firmenprofil</h2>
-                    <div>
-                        Bla bbla bla bla<br />
-                        Bla bbla bla bla<br />
-                        Bla bbla bla bla<br />
-                        Bla bbla bla bla<br />
-                        Bla bbla bla bla<br />
-                        Bla bbla bla bla<br />
-                        Bla bbla bla bla<br />
-                        Bla bbla bla bla<br />
-                        Bla bbla bla bla<br />
-                    </div>
+                    <CompanyProfile cik={cik} />
                 </div>
             </div>
             <div>
