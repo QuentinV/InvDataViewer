@@ -2,15 +2,9 @@
     "home": {
         "title": "Companies"
     },
-    "menu": {
-        "home": "Home",
-        "config": "Config",
-        "lang": "Language",
-        "changelog": "Changelog",
-        "analysis": "Data analysis"
-    },
     "controls": {
-        "search": "Search..."
+        "search": "Search...",
+        "companySearch": "Search company"
     },
     "ticker": {
         "overview": "Overview",
@@ -24,9 +18,6 @@
                 "3": "expensive",
                 "4": "pretty expensive"
             }
-        },
-        "score": {
-            "unknown": "no score yet"
         },
         "market": {
             "title": "Market share price"

@@ -2,15 +2,9 @@
     "home": {
         "title": "Unternehmen"
     },
-    "menu": {
-        "home": "Startseite",
-        "config": "Konfiguration",
-        "lang": "Sprache",
-        "changelog": "Änderungsprotokoll",
-        "analysis": "Datenanalyse"
-    },
     "controls": {
-        "search": "Suche..."
+        "search": "Suche...",
+        "companySearch": "Firma suchen"
     },
     "ticker": {
         "overview": "Übersicht",
@@ -24,9 +18,6 @@
                 "3": "teuer",
                 "4": "sehr teuer"
             }
-        },
-        "score": {
-            "unknown": "Noch keine Punktzahl"
         },
         "market": {
             "title": "Marktanteilspreis"
